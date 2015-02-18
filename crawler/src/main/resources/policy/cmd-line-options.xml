@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Author: bfoster (Brian Foster)
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <bean id="operation" class="org.apache.oodt.cas.cli.option.GroupCmdLineOption">
+    <property name="shortOption" value="op" />
+    <property name="longOption" value="operation" />
+    <property name="description" value="Declare that you wish to present an operation" />
+    <property name="hasArgs" value="false" />
+    <property name="required" value="true" />
+    <property name="subOptions">
+      <list>
+        <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+          p:option-ref="launchStdCrawler" p:required="false" />
+        <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+          p:option-ref="launchMetCrawler" p:required="false" />
+        <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+          p:option-ref="launchAutoCrawler" p:required="false" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- launchStdCrawler Options -->
+  <bean id="launchStdCrawler" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+    p:isSubOption="true">
+    <property name="shortOption" value="stdPC" />
+    <property name="longOption" value="launchStdCrawler" />
+    <property name="description" value="Triggers StdProductCrawler" />
+    <property name="hasArgs" value="false" />
+    <property name="staticArgs">
+      <list>
+        <value>launchStdCrawler</value>
+      </list>
+    </property>
+    <property name="requirementRules">
+      <list>
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="launchStdCrawler" p:relation="REQUIRED" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- launchMetCrawler Options -->
+  <bean id="launchMetCrawler" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+    p:isSubOption="true">
+    <property name="shortOption" value="metPC" />
+    <property name="longOption" value="launchMetCrawler" />
+    <property name="description" value="Triggers MetExtractorProductCrawler" />
+    <property name="hasArgs" value="false" />
+    <property name="staticArgs">
+      <list>
+        <value>launchMetCrawler</value>
+      </list>
+    </property>
+    <property name="requirementRules">
+      <list>
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="launchMetCrawler" p:relation="REQUIRED" />
+      </list>
+    </property>
+  </bean>
+
+  <!-- launchAutoCrawler Options -->
+  <bean id="launchAutoCrawler" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+    p:isSubOption="true">
+    <property name="shortOption" value="autoPC" />
+    <property name="longOption" value="launchAutoCrawler" />
+    <property name="description" value="Triggers AutoDetectProductCrawler" />
+    <property name="hasArgs" value="false" />
+    <property name="staticArgs">
+      <list>
+        <value>launchAutoCrawler</value>
+      </list>
+    </property>
+    <property name="requirementRules">
+      <list>
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="launchAutoCrawler" p:relation="REQUIRED" />
+      </list>
+    </property>
+  </bean>
+
+    <bean id="printSupportedCrawlerActions" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="psca" />
+        <property name="longOption" value="printSupportedCrawlerActions" />
+        <property name="description" value="Prints a list and description of all supported CrawlerActions" />
+        <property name="hasArgs" value="false" />
+        <property name="required" value="false" />
+        <property name="performAndQuit" value="true" />
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerActionInfoHandler">
+                <property name="applicationContext">
+                    <bean class="org.springframework.context.support.FileSystemXmlApplicationContext">
+                        <constructor-arg value="../policy/action-beans.xml" />
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="printSupportedPreconditions" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="psp" />
+        <property name="longOption" value="printSupportedPreconditions" />
+        <property name="description" value="Prints a list and description of all supported Preconditions" />
+        <property name="hasArgs" value="false" />
+        <property name="required" value="false" />
+        <property name="performAndQuit" value="true" />
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.PreconditionInfoHandler">
+                <property name="applicationContext">
+                    <bean class="org.springframework.context.support.FileSystemXmlApplicationContext">
+                        <constructor-arg value="../policy/precondition-beans.xml" />
+                    </bean>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="filemgrUrl" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="fm" />
+        <property name="longOption" value="filemgrUrl" />
+        <property name="description" value="File Manager URL" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="url" />
+        <property name="required" value="true" />
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.filemgrUrl</value>
+                        <value>MetExtractorProductCrawler.filemgrUrl</value>
+                        <value>AutoDetectProductCrawler.filemgrUrl</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.ArgRegExpCmdLineOptionValidator">
+                    <property name="allowedArgs">
+                        <list>
+                            <value>http://.*:\d*</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="failureDir" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="fd" />
+        <property name="longOption" value="failureDir" />
+        <property name="description" value="Directory where files will be moved on failure" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="directory" />
+    <property name="requirementRules">
+      <list>
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+      </list>
+    </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>MoveMetadataFileToFailureDir.toDir</value>
+                        <value>MovePushpullMetFileToFailureDir.toDir</value>
+                        <value>MoveDataFileToFailureDir.toDir</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.FileExistCmdLineOptionValidator" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="successDir" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="sd" />
+        <property name="longOption" value="successDir" />
+        <property name="description" value="Directory where files will be moved on success" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="directory" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>MovePushpullMetFileToBackupDir.toDir</value>
+                        <value>MoveMetadataFileToBackupDir.toDir</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.FileExistCmdLineOptionValidator" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="workflowMgrUrl" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="wm" />
+        <property name="longOption" value="workflowMgrUrl" />
+        <property name="description" value="Workflow Manager URL" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="url" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>UpdateWorkflowStatusToIngest.workflowMgrUrl</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.ArgRegExpCmdLineOptionValidator">
+                    <property name="allowedArgs">
+                        <list>
+                            <value>http://.*:\d*</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="clientTransferer" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="ct" />
+        <property name="longOption" value="clientTransferer" />
+        <property name="description" value="File Manager data transferer factory class" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="class" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.clientTransferer</value>
+                        <value>MetExtractorProductCrawler.clientTransferer</value>
+                        <value>AutoDetectProductCrawler.clientTransferer</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.ClassExistsCmdLineOptionValidator" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="requiredMetadata" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="rqm" />
+        <property name="longOption" value="requiredMetadata" />
+        <property name="type" value="java.util.List" />
+        <property name="description" value="Metadata required for ingest to take place" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="metadata_elements" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.requiredMetadata</value>
+                        <value>MetExtractorProductCrawler.requiredMetadata</value>
+                        <value>AutoDetectProductCrawler.requiredMetadata</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="actionIds" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="ais" />
+        <property name="longOption" value="actionIds" />
+        <property name="type" value="java.util.List" />
+        <property name="description" value="CrawlerActions that should be performed" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="CrawlerAction ids" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.actionIds</value>
+                        <value>MetExtractorProductCrawler.actionIds</value>
+                        <value>AutoDetectProductCrawler.actionIds</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="preCondIds" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="pids" />
+        <property name="longOption" value="preCondIds" />
+        <property name="type" value="java.util.List" />
+        <property name="description" value="PreConditionComparator ids that must pass before any metadata extraction will run" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="PreConditionComparator ids" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>MetExtractorProductCrawler.preCondIds</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+  <bean id="namingConventionId" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+    <property name="shortOption" value="ncid" />
+    <property name="longOption" value="namingConventionId" />
+    <property name="description" value="ID of the NamingConvention to use to rename products before ingest" />
+    <property name="hasArgs" value="true" />
+    <property name="argsDescription" value="NamingConvention ID" />
+    <property name="requirementRules">
+      <list>
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+      </list>
+    </property>
+    <property name="handler">
+      <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+        <property name="properties">
+          <list>
+            <value>MetExtractorProductCrawler.namingConventionId</value>
+          </list>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+    <bean id="noRecur" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="nr" />
+        <property name="longOption" value="noRecur" />
+        <property name="description" value="Turns off recursive crawling - will only process files in productPath directory" />
+        <property name="type" value="boolean" />
+        <property name="hasArgs" value="false" />
+                <property name="staticArgs">
+            <list>
+                <value>true</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.noRecur</value>
+                        <value>MetExtractorProductCrawler.noRecur</value>
+                        <value>AutoDetectProductCrawler.noRecur</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="crawlForDirs" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="cfd" />
+        <property name="longOption" value="crawlForDirs" />
+        <property name="description" value="Will crawl for directories instead of files" />
+        <property name="type" value="boolean" />
+        <property name="hasArgs" value="false" />
+                <property name="staticArgs">
+            <list>
+                <value>true</value>
+            </list>
+        </property>
+        <property name="required" value="false" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.crawlForDirs</value>
+                        <value>MetExtractorProductCrawler.crawlForDirs</value>
+                        <value>AutoDetectProductCrawler.crawlForDirs</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="skipIngest" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="si" />
+        <property name="longOption" value="skipIngest" />
+        <property name="description" value="Will skip ingest to file manager and any post ingest actions" />
+        <property name="type" value="boolean" />
+        <property name="hasArgs" value="false" />
+                <property name="staticArgs">
+            <list>
+                <value>true</value>
+            </list>
+        </property>
+        <property name="required" value="false" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.skipIngest</value>
+                        <value>MetExtractorProductCrawler.skipIngest</value>
+                        <value>AutoDetectProductCrawler.skipIngest</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="daemonPort" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="dp" />
+        <property name="longOption" value="daemonPort" />
+        <property name="type" value="int" />
+        <property name="description" value="Cause crawler to become a daemon with a XML-RPC webserver started on the given port number" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="portNum" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.daemonPort</value>
+                        <value>MetExtractorProductCrawler.daemonPort</value>
+                        <value>AutoDetectProductCrawler.daemonPort</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.ArgRegExpCmdLineOptionValidator">
+                    <property name="allowedArgs">
+                        <list>
+                            <value>\d*</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="daemonWait" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="dw" />
+        <property name="longOption" value="daemonWait" />
+        <property name="type" value="int" />
+        <property name="description" value="Cause crawler to become a daemon and sleep for given number of seconds between crawls" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="seconds" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.daemonWait</value>
+                        <value>MetExtractorProductCrawler.daemonWait</value>
+                        <value>AutoDetectProductCrawler.daemonWait</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.ArgRegExpCmdLineOptionValidator">
+                    <property name="allowedArgs">
+                        <list>
+                            <value>\d*</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="productPath" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="pp" />
+        <property name="longOption" value="productPath" />
+        <property name="description" value="Root directory to crawl" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="directory" />
+        <property name="required" value="true" />
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.productPath</value>
+                        <value>MetExtractorProductCrawler.productPath</value>
+                        <value>AutoDetectProductCrawler.productPath</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.FileExistCmdLineOptionValidator" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="metFileExtension" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="mfx" />
+        <property name="longOption" value="metFileExtension" />
+        <property name="description" value="The file extension of existing and to be created PCS metadata files" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="file extension" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>StdProductCrawler.metFileExtension</value>
+                        <value>DeleteMetadataFile.fileExtension</value>
+                        <value>MoveMetadataFileToBackupDir.fileExtension</value>
+                        <value>MoveMetadataFileToFailureDir.fileExtension</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="metExtractor" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="mx" />
+        <property name="longOption" value="metExtractor" />
+        <property name="description" value="Metadata extractor class to use" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="class" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="REQUIRED" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>MetExtractorProductCrawler.metExtractor</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.ClassExistsCmdLineOptionValidator" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="metExtractorConfig" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="mxc" />
+        <property name="longOption" value="metExtractorConfig" />
+        <property name="description" value="Config file for metadata extractor" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="file" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="REQUIRED" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>MetExtractorProductCrawler.metExtractorConfig</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.FileExistCmdLineOptionValidator" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mimeExtractorRepo" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="mxr" />
+        <property name="longOption" value="mimeExtractorRepo" />
+        <property name="description" value="Mime-type to metadata extractor mapping xml file" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="file" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="REQUIRED" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>AutoDetectProductCrawler.mimeExtractorRepo</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="validators">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.validator.FileExistCmdLineOptionValidator" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="pushpullMetFileExtension" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="ppmfx" />
+        <property name="longOption" value="pushpullMetFileExtension" />
+        <property name="description" value="File extension of push-pull metadata files" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="file extension" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchStdCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchMetCrawler" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="launchAutoCrawler" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+                <property name="properties">
+                    <list>
+                        <value>DeletePushpullMetFile.fileExtension</value>
+                        <value>MovePushpullMetFileToBackupDir.fileExtension</value>
+                        <value>MovePushpullMetFileToFailureDir.fileExtension</value>
+                        <value>CheckThatPushPullMetFileExists.fileExtension</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+  <bean id="notification" class="org.apache.oodt.cas.cli.option.GroupCmdLineOption">
+    <property name="shortOption" value="n" />
+    <property name="longOption" value="notification" />
+    <property name="description" value="Declare that your want email notification" />
+    <property name="hasArgs" value="false" />
+    <property name="required" value="false" />
+    <property name="subOptions">
+      <list>
+        <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+          p:option-ref="mailHost" p:required="true" />
+        <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+          p:option-ref="sender" p:required="true" />
+        <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+          p:option-ref="subject" p:required="true" />
+        <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+          p:option-ref="message" p:required="true" />
+        <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+          p:option-ref="recipients" p:required="true" />
+        <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+          p:option-ref="ignoreInvalidAddresses" p:required="false" />
+      </list>
+    </property>
+  </bean>
+
+  <bean id="mailHost" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption"
+    p:isSubOption="true">
+    <property name="shortOption" value="mh" />
+    <property name="longOption" value="mailHost" />
+    <property name="description" value="Email Host" />
+    <property name="hasArgs" value="true" />
+    <property name="argsDescription" value="host" />
+    <property name="required" value="false" />
+    <property name="handler">
+      <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+        <property name="properties">
+          <list>
+            <value>SendNotification.emailHost</value>
+          </list>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="sender" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption"
+    p:isSubOption="true">
+    <property name="shortOption" value="sdr" />
+    <property name="longOption" value="sender" />
+    <property name="description" value="Email sender" />
+    <property name="hasArgs" value="true" />
+    <property name="argsDescription" value="email address" />
+    <property name="required" value="false" />
+    <property name="handler">
+      <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+        <property name="properties">
+          <list>
+            <value>SendNotification.sender</value>
+          </list>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="subject" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption"
+    p:isSubOption="true">
+    <property name="shortOption" value="sub" />
+    <property name="longOption" value="subject" />
+    <property name="description" value="Email subject" />
+    <property name="hasArgs" value="true" />
+    <property name="argsDescription" value="email subject" />
+    <property name="required" value="false" />
+    <property name="handler">
+      <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+        <property name="properties">
+          <list>
+            <value>SendNotification.subject</value>
+          </list>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="message" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption"
+    p:isSubOption="true">
+    <property name="shortOption" value="msg" />
+    <property name="longOption" value="message" />
+    <property name="description" value="Email message body" />
+    <property name="hasArgs" value="true" />
+    <property name="argsDescription" value="email message" />
+    <property name="required" value="false" />
+    <property name="handler">
+      <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+        <property name="properties">
+          <list>
+            <value>SendNotification.message</value>
+          </list>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="recipients" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption"
+    p:isSubOption="true">
+    <property name="shortOption" value="rcpts" />
+    <property name="longOption" value="recipients" />
+    <property name="description" value="List of recipient emails" />
+    <property name="type" value="java.util.List" />
+    <property name="hasArgs" value="true" />
+    <property name="argsDescription" value="email addresses" />
+    <property name="required" value="false" />
+    <property name="handler">
+      <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+        <property name="properties">
+          <list>
+            <value>SendNotification.recipients</value>
+          </list>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="ignoreInvalidAddresses" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption"
+    p:isSubOption="true">
+    <property name="shortOption" value="iias" />
+    <property name="longOption" value="ignoreInvalidAddresses" />
+    <property name="description" value="If invalid addresses should just be ignored" />
+    <property name="type" value="boolean" />
+    <property name="hasArgs" value="false" />
+    <property name="staticArgs">
+    <list>
+        <value>true</value>
+    </list>
+    </property>
+    <property name="required" value="false" />
+    <property name="handler">
+      <bean class="org.apache.oodt.cas.crawl.cli.option.handler.CrawlerBeansPropHandler">
+        <property name="properties">
+          <list>
+            <value>SendNotification.ignoreInvalidAddresses</value>
+          </list>
+        </property>
+      </bean>
+    </property>
+  </bean>
+</beans>

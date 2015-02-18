@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Author: bfoster (Brian Foster)
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="addProductType" class="org.apache.oodt.cas.filemgr.cli.action.AddProductTypeCliAction">
+        <property name="description" value="Adds a ProductType to list of supported ProductTypes" />
+    </bean>
+  <bean id="deleteProductByName" class="org.apache.oodt.cas.filemgr.cli.action.DeleteProductByNameCliAction">
+    <property name="description" value="Delete Product by name" />
+  </bean>
+  <bean id="deleteProductById" class="org.apache.oodt.cas.filemgr.cli.action.DeleteProductByIdCliAction">
+    <property name="description" value="Delete Product by ID" />
+  </bean>
+  <bean id="dumpMetadata" class="org.apache.oodt.cas.filemgr.cli.action.DumpMetadataCliAction">
+    <property name="description" value="Dumps Product Metadata out to XML" />
+  </bean>
+    <bean id="getCurrentTransfer" class="org.apache.oodt.cas.filemgr.cli.action.GetCurrentTransferCliAction">
+    <property name="description" value="Gets the status of the current Product file transfer" />
+  </bean>
+  <bean id="getCurrentTransfers" class="org.apache.oodt.cas.filemgr.cli.action.GetCurrentTransfersCliAction">
+    <property name="description" value="Gets the status of the current Product file transfers" />
+  </bean>
+  <bean id="getFilePercentTransferred" class="org.apache.oodt.cas.filemgr.cli.action.GetFilePercentTransferredCliAction">
+    <property name="description" value="Gets the percent amount transferred of given file" />
+  </bean>
+  <bean id="getFirstPage" class="org.apache.oodt.cas.filemgr.cli.action.GetFirstPageCliAction">
+    <property name="description" value="Gets first page of Products of given ProductType" />
+  </bean>
+  <bean id="getLastPage" class="org.apache.oodt.cas.filemgr.cli.action.GetLastPageCliAction">
+    <property name="description" value="Gets last page of Products of given ProductType" />
+  </bean>
+  <bean id="getNextPage" class="org.apache.oodt.cas.filemgr.cli.action.GetNextPageCliAction">
+    <property name="description" value="Gets next page of Products of given ProductType" />
+  </bean>
+  <bean id="getNumProducts" class="org.apache.oodt.cas.filemgr.cli.action.GetNumProductsCliAction">
+    <property name="description" value="Gets number of Products ingested for a given ProductType" />
+  </bean>
+  <bean id="getPrevPage" class="org.apache.oodt.cas.filemgr.cli.action.GetPrevPageCliAction">
+    <property name="description" value="Gets prev page of Products of given ProductType" />
+  </bean>
+  <bean id="getProductByName" class="org.apache.oodt.cas.filemgr.cli.action.GetProductByNameCliAction">
+    <property name="description" value="Get Product info by name" />
+  </bean>
+  <bean id="getProductById" class="org.apache.oodt.cas.filemgr.cli.action.GetProductByIdCliAction">
+    <property name="description" value="Gets Product info by ID" />
+  </bean>
+  <bean id="getProductPercentTransferred" class="org.apache.oodt.cas.filemgr.cli.action.GetProductPercentTransferredCliAction">
+    <property name="description" value="Gets percent amount transferred of a Products data files" />
+  </bean>
+  <bean id="getProductTypeByName" class="org.apache.oodt.cas.filemgr.cli.action.GetProductTypeByNameCliAction">
+    <property name="description" value="Gets a ProductType by its name" />
+  </bean>
+  <bean id="hasProduct" class="org.apache.oodt.cas.filemgr.cli.action.HasProductCliAction">
+    <property name="description" value="Checks if Product with given name has been ingested" />
+  </bean>
+  <bean id="ingestProduct" class="org.apache.oodt.cas.filemgr.cli.action.IngestProductCliAction">
+    <property name="description" value="Ingests a Product" />
+  </bean>
+  <bean id="luceneQuery" class="org.apache.oodt.cas.filemgr.cli.action.LuceneQueryCliAction">
+    <property name="description" value="Queries by parsing an Lucene-like query into a FileManager Query" />
+  </bean>
+  <bean id="retrieveFilesById" class="org.apache.oodt.cas.filemgr.cli.action.RetrieveFilesCliAction">
+    <property name="description" value="Retrieve a Product's files by Product ID" />
+  </bean>
+  <bean id="retrieveFilesByName" class="org.apache.oodt.cas.filemgr.cli.action.RetrieveFilesCliAction">
+    <property name="description" value="Retrieve a Product's files by Product name" />
+  </bean>
+  <bean id="sqlQuery" class="org.apache.oodt.cas.filemgr.cli.action.SqlQueryCliAction">
+    <property name="description" value="Queries by parsing an SQL-like query into a FileManager Query" />
+    <property name="detailedDescription">
+      <value>
+ This supports sending queries to the FileManager in form of
+  SELECT [Elements] FROM [ProductTypes] WHERE [where-clause], where:
+   - [Elements]: is a comma separated list of Element names; may also be * which
+    represents all Elements
+   - [ProductTypes]: is a comma separated list of ProductType names; may also
+    be * which represents all ProductTypes
+   - [where-clause]: is an optional Element name filter supporting the following:
+      * AND and OR boolean operators
+      * () grouping of queries
+      * element-name == 'element-value'
+      * element-name &#60; 'element-value'
+      * element-name &#62; 'element-value'
+      * element-name &#60;= 'element-value'
+      * element-name &#62;= 'element-value'"
+
+ An additional post-query FilterAlgor can also be specified where you specify
+  which Metadata fields which should be used as each Product's StartDateTime,
+  EndDateTime, and Priority values
+      </value>
+    </property>
+    <property name="examples">
+      <value>
+ (Assume you have a ProductType, GenericFile, which supports the
+    Elements: Filename, NominalDate, Group, and DataVersion)
+  $ ./filemgr-client -u http://localhost:9000 -op -sql
+    -q "SELECT Filename FROM GenericFile WHERE (NominalDate == '2011-20-10' OR
+      NominalDate == '2011-20-11') AND Group == 'Test' AND DataVersion > '1.0'"
+ (Returns all Products in FileManager -- use with care)
+  $ ./filemgr-client -u http://localhost:9000 -op -sql -q "SELECT * FROM *"
+      </value>
+    </property>
+  </bean>
+</beans>

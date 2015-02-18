@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Author: bfoster (Brian Foster)
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="sendEvent" class="org.apache.oodt.cas.workflow.cli.action.SendEventCliAction">
+        <property name="description" value="Triggers an event" />
+    </bean>
+    <bean id="dynWorkflow" class="org.apache.oodt.cas.workflow.cli.action.DynWorkflowCliAction">
+    <property name="description" value="Creates a workflow using the given tasks and then executes it" />
+  </bean>
+  <bean id="getWorkflowInsts" class="org.apache.oodt.cas.workflow.cli.action.GetWorkflowInstsCliAction">
+    <property name="description" value="List all workflow instances" />
+  </bean>
+  <bean id="getWorkflows" class="org.apache.oodt.cas.workflow.cli.action.GetWorkflowsCliAction">
+    <property name="description" value="List all workflow models" />
+  </bean>
+  <bean id="getTaskById" class="org.apache.oodt.cas.workflow.cli.action.GetTaskByIdCliAction">
+    <property name="description" value="Gets task information for task with given ID" />
+  </bean>
+  <bean id="getConditionById" class="org.apache.oodt.cas.workflow.cli.action.GetConditionByIdCliAction">
+    <property name="description" value="Gets condition information for condition with given ID" />
+  </bean>
+  <bean id="getWorkflowById" class="org.apache.oodt.cas.workflow.cli.action.GetWorkflowByIdCliAction">
+    <property name="description" value="Gets workflow information for workflow with given ID" />
+  </bean>
+  <bean id="getWorkflowsByEvent" class="org.apache.oodt.cas.workflow.cli.action.GetWorkflowsByEventCliAction">
+    <property name="description" value="List workflow information for workflows with attached to event" />
+  </bean>
+  <bean id="getRegisteredEvents" class="org.apache.oodt.cas.workflow.cli.action.GetRegisteredEventsCliAction">
+    <property name="description" value="List registered events" />
+  </bean>
+  <bean id="getWorkflowInst" class="org.apache.oodt.cas.workflow.cli.action.GetWorkflowInstCliAction">
+    <property name="description" value="Gets workflow instance by instance ID" />
+  </bean>
+  <bean id="getWallClockTime" class="org.apache.oodt.cas.workflow.cli.action.GetWallClockTimeCliAction">
+    <property name="description" value="Gets wall clock time for workflow instance" />
+  </bean>
+  <bean id="getTaskWallClockTime" class="org.apache.oodt.cas.workflow.cli.action.GetTaskWallClockTimeCliAction">
+    <property name="description" value="Gets wall clock time for workflow instance's current task" />
+  </bean>
+  <bean id="stopWorkflowInst" class="org.apache.oodt.cas.workflow.cli.action.StopWorkflowInstCliAction">
+    <property name="description" value="Stops a workflow instance" />
+  </bean>
+  <bean id="pauseWorkflowInst" class="org.apache.oodt.cas.workflow.cli.action.PauseWorkflowInstCliAction">
+    <property name="description" value="Pauses a workflow instance" />
+  </bean>
+  <bean id="resumeWorkflowInst" class="org.apache.oodt.cas.workflow.cli.action.ResumeWorkflowInstCliAction">
+    <property name="description" value="Resumes a paused workflow instance" />
+  </bean>
+  <bean id="getFirstPage" class="org.apache.oodt.cas.workflow.cli.action.GetFirstPageCliAction">
+    <property name="description" value="Gets first page of workflows" />
+  </bean>
+  <bean id="getNextPage" class="org.apache.oodt.cas.workflow.cli.action.GetNextPageCliAction">
+    <property name="description" value="Gets next page of workflows" />
+  </bean>
+  <bean id="getPrevPage" class="org.apache.oodt.cas.workflow.cli.action.GetPrevPageCliAction">
+    <property name="description" value="Gets prev page of workflows" />
+  </bean>
+  <bean id="getLastPage" class="org.apache.oodt.cas.workflow.cli.action.GetLastPageCliAction">
+    <property name="description" value="Gets last page of workflows" />
+  </bean>
+  <bean id="getWorkflowInstMet" class="org.apache.oodt.cas.workflow.cli.action.GetWorkflowInstMetCliAction">
+    <property name="description" value="Gets workflow instance metadata" />
+  </bean>
+
+</beans>

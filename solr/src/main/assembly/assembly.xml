@@ -1,0 +1,47 @@
+<assembly>
+  <id>bin</id>
+  <formats>
+    <format>tar.gz</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <baseDirectory>solr</baseDirectory>
+  <includeSiteDirectory>false</includeSiteDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>${basedir}</directory>
+      <outputDirectory>.</outputDirectory>
+      <includes>
+        <include>LICENSE.txt</include>
+        <include>CHANGES.txt</include>
+      </includes>
+      <fileMode>775</fileMode>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/resources</directory>
+      <outputDirectory>solr</outputDirectory>
+      <includes>
+        <include>*.*</include>
+      </includes>
+      <fileMode>660</fileMode>
+      <directoryMode>775</directoryMode>
+    </fileSet>    
+    <fileSet>
+      <directory>${basedir}/src/main/resources/bin</directory>
+      <outputDirectory>solr/bin</outputDirectory>
+      <includes>
+        <include>**.*</include>
+      </includes>
+      <fileMode>775</fileMode>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/resources/oodt-fm</directory>
+      <outputDirectory>solr/oodt-fm</outputDirectory>
+      <includes>
+        <include>**/**.*</include>
+      </includes>
+      <fileMode>660</fileMode>
+      <directoryMode>775</directoryMode>
+    </fileSet>
+  </fileSets>
+</assembly>
+

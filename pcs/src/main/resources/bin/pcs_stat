@@ -1,0 +1,78 @@
+#!/bin/tcsh
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# 
+#
+# A tool to provide a report of the health of the PCS.
+# Example report:
+#
+# --------------------------------------
+# PCS Health Monitor Report
+# Generated on: 2007-07-12T10:56:23.000Z
+# 
+# Service Status:
+# 
+# File Manager:            [http://vostok:9000]: UP
+# Workflow Manager:  [http://vostok:9001]: DOWN
+# Resource Manager: [http://vostok:9002]: UP
+# > batch stub:   [http://compute-0-9:2001]: UP
+# > batch stub: [http://compute-0-10:2001]: UP
+#
+# Crawlers:
+# CPTOverview: [http://flatiron:9030]:         UP
+# CPTHeliostat:  [http://flatiron:9031]:         DOWN
+#  
+# PCS Health:
+# 
+# Files:
+# --------
+# last product ingested: oco_L1aRad01wdk_90233_070604010005.hdf at 2007-06-04T10:00:00.000Z
+#
+# Jobs:
+# --------
+# 10 tasks QUEUED
+# 9  tasks CRAWLING
+# 1  tasks PGE EXEC
+# 
+# Ingest:
+# --------
+# CPTOverview:
+# 
+# number of crawls: 10
+# average crawl time (ms): 50
+# 
+# CPTHeliostat:
+# 
+# number of crawls: 56
+# average crawl time (ms): 10
+# --------------------------------------
+# 
+# Sample usage: ./pcs_stat
+
+set ORIG_DIR = `pwd`
+set DIR = `dirname $0`
+cd $DIR
+set DIR_PATH = `pwd`
+cd $ORIG_DIR
+
+java -Djava.util.logging.config.file=$DIR_PATH/../etc/logging.properties \
+    -Djava.ext.dirs=$DIR_PATH/../lib:$DIR_PATH/../../filemgr/lib:$DIR_PATH/../workflow/lib:$DIR_PATH/../../resmgr/lib \
+    -Dorg.apache.oodt.cas.filemgr.properties=$DIR_PATH/../../filemgr/etc/filemgr.properties \
+	org.apache.oodt.pcs.tools.PCSHealthMonitor \
+	$FILEMGR_URL \
+	$WORKFLOW_URL \
+	$RESMGR_URL \
+	$DIR_PATH/../policy/pcs-crawlers.xml \
+	$DIR_PATH/../policy/pcs-workflow-statuses.xml

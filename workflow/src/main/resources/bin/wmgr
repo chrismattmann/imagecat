@@ -1,0 +1,168 @@
+#!/bin/sh
+
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# OS specific support.  $var _must_ be set to either true or false.
+cygwin=false
+os400=false
+darwin=false
+case "`uname`" in
+CYGWIN*) cygwin=true;;
+OS400*) os400=true;;
+Darwin*) darwin=true;;
+esac
+
+# resolve links - $0 may be a softlink
+PRG="$0"
+
+while [ -h "$PRG" ]; do
+  ls=`ls -ld "$PRG"`
+  link=`expr "$ls" : '.*-> \(.*\)$'`
+  if expr "$link" : '/.*' > /dev/null; then
+    PRG="$link"
+  else
+    PRG=`dirname "$PRG"`/"$link"
+  fi
+done
+
+# Get standard environment variables
+PRGDIR=`dirname "$PRG"`
+
+# Only set OODT_HOME if not already set
+[ -z "$OODT_HOME" ] && OODT_HOME=`cd "$PRGDIR/../.." ; pwd`
+
+# Get OODT environment set up
+if [ -r "$OODT_HOME"/bin/env.sh ]; then
+  . "$OODT_HOME"/bin/env.sh
+fi
+
+# Only set WORKFLOW_HOME if not already set
+if [ -z "$WORKFLOW_HOME" ]; then
+  WORKFLOW_HOME="$OODT_HOME"/workflow
+  export WORKFLOW_HOME
+fi
+
+if [ -z "$WORKFLOW_PID" ]; then
+  WORKFLOW_PID="$WORKFLOW_HOME"/run/cas.workflow.pid
+fi
+
+# For Cygwin, ensure paths are in UNIX format before anything is touched
+if $cygwin; then
+  [ -n "$JAVA_HOME" ] && JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
+  [ -n "$JRE_HOME" ] && JRE_HOME=`cygpath --unix "$JRE_HOME"`
+  [ -n "$OODT_HOME" ] && OODT_HOME=`cygpath --unix "$OODT_HOME"`
+  [ -n "$WORKFLOW_HOME" ] && WORKFLOW_HOME=`cygpath --unix "$WORKFLOW_HOME"`
+  [ -n "$CLASSPATH" ] && CLASSPATH=`cygpath --path --unix "$CLASSPATH"`
+fi
+
+if [ "$1" = "start" ]; then
+  if [ ! -z "$WORKFLOW_PID" ]; then
+    if [ -f "$WORKFLOW_PID" ]; then
+      echo "PID file ($WORKFLOW_PID) found. Is Workflow Manager still running? Start aborted."
+      exit 1
+    fi
+  fi
+
+  # In case this script was run from somewhere else cd to this directory
+  cd "$WORKFLOW_HOME"/bin
+
+  "$_RUNJAVA" $JAVA_OPTS $OODT_OPTS \
+    -Djava.ext.dirs="$WORKFLOW_HOME"/lib \
+    -Djava.util.logging.config.file="$WORKFLOW_HOME"/etc/logging.properties \
+    -Dorg.apache.oodt.cas.workflow.properties="$WORKFLOW_HOME"/etc/workflow.properties \
+    -Djava.io.tmpdir="$OODT_TMPDIR" \
+    -Dorg.apache.oodt.cas.pge.task.metkeys.legacyMode="true" \
+    -Dorg.apache.oodt.cas.pge.task.status.legacyMode="true" \
+    org.apache.oodt.cas.workflow.system.XmlRpcWorkflowManager \
+    --portNum "$WORKFLOW_PORT" 2>&1 &
+
+  if [ ! -z "$WORKFLOW_PID" ]; then
+    echo $! > $WORKFLOW_PID
+  fi
+
+  if [ $have_tty -eq 1 ]; then
+    echo "Workflow Manager started PID file ($WORKFLOW_PID)."
+  fi
+
+elif [ "$1" = "stop" ]; then
+
+  shift
+
+  SLEEP=5
+  if [ ! -z "$1" ]; then
+    echo $1 | grep "[^0-9]" > /dev/null 2>&1
+    if [ $? -eq 1 ]; then
+      SLEEP=$1
+      shift
+    fi
+  fi
+
+  FORCE=0
+  if [ "$1" = "-force" ]; then
+    shift
+    FORCE=1
+  fi
+
+  if [ ! -z "$WORKFLOW_PID" ]; then
+    if [ -f "$WORKFLOW_PID" ]; then
+      kill `cat $WORKFLOW_PID` >/dev/null 2>&1
+      if [ $? -eq 1 ]; then
+        echo "PID file ($WORKFLOW_PID) found but no matching process was found. Stop aborted."
+        exit 1
+      fi
+    else
+      echo "\$WORKFLOW_PID was set ($WORKFLOW_PID) but the specified file does not exist. Is Workflow Manager running? Stop aborted."
+      exit 1
+    fi
+  fi
+
+  if [ ! -z "$WORKFLOW_PID" ]; then
+    if [ -f "$WORKFLOW_PID" ]; then
+      while [ $SLEEP -ge 0 ]; do
+        kill -0 `cat $WORKFLOW_PID` >/dev/null 2>&1
+        if [ $? -eq 1 ]; then
+          rm $WORKFLOW_PID
+          break
+        fi
+        if [ $SLEEP -gt 0 ]; then
+          sleep 1
+        fi
+        if [ $SLEEP -eq 0 ]; then
+          if [ $FORCE -eq 0 ]; then
+            echo "Workflow Manager did not stop in time. PID file was not removed."
+          fi
+        fi
+        SLEEP=`expr $SLEEP - 1 `
+      done
+    fi
+  fi
+
+  if [ $FORCE -eq 1 ]; then
+    if [ -z "$WORKFLOW_PID" ]; then
+      echo "Kill failed: \$WORKFLOW_PID not set"
+    else
+      if [ -f "$WORKFLOW_PID" ]; then
+        echo "Killing: `cat $WORKFLOW_PID`"
+        kill -9 `cat $WORKFLOW_PID`
+        rm $WORKFLOW_PID
+      fi
+    fi
+  fi
+
+else
+  echo "Usage: wmgr {start|stop}"
+  exit 1
+fi

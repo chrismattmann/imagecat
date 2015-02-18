@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# Script to run a command on all nodes specified in a nodes.xml config file
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE.txt file distributed with
+# this work for additional information regarding copyright ownership.  The ASF
+# licenses this file to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+# License for the specific language governing permissions and limitations
+# under the License.    
+#
+# $Id$
+
+E_NO_ARGS=65
+
+if [ $# -eq 0 ]
+then
+  echo "Usage: remote /path/to/nodes.xml command..."
+  exit $E_NO_ARGS
+fi 
+
+NODES=$(awk '/<node/ {print substr($3, 12,length($3)-12)}' $1)
+shift 
+for NODE in $NODES
+do
+  ssh $NODE $"${@// /\\ }" 2>&1 | sed "s/^/$NODE: /" &
+done
+
+exit 0 

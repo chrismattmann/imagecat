@@ -1,0 +1,173 @@
+#!/bin/sh
+#
+# init script for XmlRpcResourceManager
+#
+# chkconfig: 345 88 22
+# description: CAS Resource Manager
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE.txt file distributed with
+# this work for additional information regarding copyright ownership.  The ASF
+# licenses this file to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+# License for the specific language governing permissions and limitations
+# under the License.    
+#
+# $Id$
+
+# OS specific support.  $var _must_ be set to either true or false.
+cygwin=false
+os400=false
+darwin=false
+case "`uname`" in
+CYGWIN*) cygwin=true;;
+OS400*) os400=true;;
+Darwin*) darwin=true;;
+esac
+
+# resolve links - $0 may be a softlink
+PRG="$0"
+
+while [ -h "$PRG" ]; do
+  ls=`ls -ld "$PRG"`
+  link=`expr "$ls" : '.*-> \(.*\)$'`
+  if expr "$link" : '/.*' > /dev/null; then
+    PRG="$link"
+  else
+    PRG=`dirname "$PRG"`/"$link"
+  fi
+done
+
+# Get standard environment variables
+PRGDIR=`dirname "$PRG"`
+
+# Only set OODT_HOME if not already set
+[ -z "$OODT_HOME" ] && OODT_HOME=`cd "$PRGDIR/../.." ; pwd`
+
+# Get OODT environment set up
+if [ -r "$OODT_HOME"/bin/env.sh ]; then
+  . "$OODT_HOME"/bin/env.sh
+fi
+
+# Only set RESMGR_HOME if not already set
+if [ -z "$RESMGR_HOME" ]; then
+  RESMGR_HOME="$OODT_HOME"/resmgr
+  export RESMGR_HOME
+fi
+
+if [ -z "$RESMGR_PID" ]; then
+  RESMGR_PID="$RESMGR_HOME"/run/cas.resmgr.pid
+fi
+
+# For Cygwin, ensure paths are in UNIX format before anything is touched
+if $cygwin; then
+  [ -n "$JAVA_HOME" ] && JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
+  [ -n "$JRE_HOME" ] && JRE_HOME=`cygpath --unix "$JRE_HOME"`
+  [ -n "$OODT_HOME" ] && OODT_HOME=`cygpath --unix "$OODT_HOME"`
+  [ -n "$RESMGR_HOME" ] && RESMGR_HOME=`cygpath --unix "$RESMGR_HOME"`
+  [ -n "$CLASSPATH" ] && CLASSPATH=`cygpath --path --unix "$CLASSPATH"`
+fi
+
+if [ "$1" = "start" ]; then
+  if [ ! -z "$RESMGR_PID" ]; then
+    if [ -f "$RESMGR_PID" ]; then
+      echo "PID file ($RESMGR_PID) found. Is Resource Manager still running? Start aborted."
+      exit 1
+    fi
+  fi
+
+  # In case this script was run from somewhere else cd to this directory
+  cd "$RESMGR_HOME"/bin
+
+  "$_RUNJAVA" $JAVA_OPTS $OODT_OPTS \
+    -Djava.ext.dirs="$RESMGR_HOME"/lib \
+    -Djava.util.logging.config.file="$RESMGR_HOME"/etc/logging.properties \
+    -Dorg.apache.oodt.cas.resource.properties="$RESMGR_HOME"/etc/resource.properties \
+    -Djava.io.tmpdir="$OODT_TMPDIR" \
+    org.apache.oodt.cas.resource.system.XmlRpcResourceManager \
+    --portNum "$RESMGR_PORT" 2>&1 &
+
+  if [ ! -z "$RESMGR_PID" ]; then
+    echo $! > $RESMGR_PID
+  fi
+
+  if [ $have_tty -eq 1 ]; then
+    echo "Resource Manager started PID file ($RESMGR_PID)."
+  fi
+
+elif [ "$1" = "stop" ]; then
+
+  shift
+
+  SLEEP=5
+  if [ ! -z "$1" ]; then
+    echo $1 | grep "[^0-9]" > /dev/null 2>&1
+    if [ $? -eq 1 ]; then
+      SLEEP=$1
+      shift
+    fi
+  fi
+
+  FORCE=0
+  if [ "$1" = "-force" ]; then
+    shift
+    FORCE=1
+  fi
+
+  if [ ! -z "$RESMGR_PID" ]; then
+    if [ -f "$RESMGR_PID" ]; then
+      kill `cat $RESMGR_PID` >/dev/null 2>&1
+      if [ $? -eq 1 ]; then
+        echo "PID file ($RESMGR_PID) found but no matching process was found. Stop aborted."
+        exit 1
+      fi
+    else
+      echo "\$RESMGR_PID was set ($RESMGR_PID) but the specified file does not exist. Is Resource Manager running? Stop aborted."
+      exit 1
+    fi
+  fi
+
+  if [ ! -z "$RESMGR_PID" ]; then
+    if [ -f "$RESMGR_PID" ]; then
+      while [ $SLEEP -ge 0 ]; do
+        kill -0 `cat $RESMGR_PID` >/dev/null 2>&1
+        if [ $? -eq 1 ]; then
+          rm $RESMGR_PID
+          break
+        fi
+        if [ $SLEEP -gt 0 ]; then
+          sleep 1
+        fi
+        if [ $SLEEP -eq 0 ]; then
+          if [ $FORCE -eq 0 ]; then
+            echo "Resource Manager did not stop in time. PID file was not removed."
+          fi
+        fi
+        SLEEP=`expr $SLEEP - 1 `
+      done
+    fi
+  fi
+
+  if [ $FORCE -eq 1 ]; then
+    if [ -z "$RESMGR_PID" ]; then
+      echo "Kill failed: \$RESMGR_PID not set"
+    else
+      if [ -f "$RESMGR_PID" ]; then
+        echo "Killing: `cat $RESMGR_PID`"
+        kill -9 `cat $RESMGR_PID`
+        rm $RESMGR_PID
+      fi
+    fi
+  fi
+
+else
+  echo "Usage: resmgr {start|stop}"
+  exit 1
+fi

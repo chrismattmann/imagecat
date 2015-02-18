@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Author: bfoster (Brian Foster)
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="addNode"
+		class="org.apache.oodt.cas.resource.cli.action.AddNodeCliAction">
+		<property name="description" value="Adds a ResourceNode" />
+	</bean>
+	<bean id="addNodeToQueue"
+		class="org.apache.oodt.cas.resource.cli.action.AddNodeToQueueCliAction">
+		<property name="description" value="Adds a ResourceNode to a Queue" />
+	</bean>
+	<bean id="addQueue"
+		class="org.apache.oodt.cas.resource.cli.action.AddQueueCliAction">
+		<property name="description" value="Adds a queue" />
+	</bean>
+	<bean id="getExecNode"
+		class="org.apache.oodt.cas.resource.cli.action.GetExecNodeCliAction">
+		<property name="description" value="Get execution node for a job" />
+	</bean>
+	<bean id="getJobInfo"
+		class="org.apache.oodt.cas.resource.cli.action.GetJobInfoCliAction">
+		<property name="description" value="Gets information about a job" />
+	</bean>
+	<bean id="getNodeById"
+		class="org.apache.oodt.cas.resource.cli.action.GetNodeByIdCliAction">
+		<property name="description" value="Gets information about a node" />
+	</bean>
+	<bean id="getNodeLoad"
+		class="org.apache.oodt.cas.resource.cli.action.GetNodeLoadCliAction">
+		<property name="description" value="Gets the current job load of a node" />
+	</bean>
+	<bean id="getNodes"
+		class="org.apache.oodt.cas.resource.cli.action.GetNodesCliAction">
+		<property name="description" value="Gets a list of managed nodes" />
+	</bean>
+	<bean id="getNodesInQueue"
+		class="org.apache.oodt.cas.resource.cli.action.GetNodesInQueueCliAction">
+		<property name="description"
+			value="Gets list of nodes which belong to given queue" />
+	</bean>
+	<bean id="getQueues"
+		class="org.apache.oodt.cas.resource.cli.action.GetQueuesCliAction">
+		<property name="description" value="Gets list of queues" />
+	</bean>
+	<bean id="getQueuesWithNode"
+		class="org.apache.oodt.cas.resource.cli.action.GetQueuesWithNodeCliAction">
+		<property name="description" value="Gets list of queues which contain given node" />
+	</bean>
+	<bean id="kill" class="org.apache.oodt.cas.resource.cli.action.KillCliAction">
+		<property name="description" value="Kills a job" />
+	</bean>
+	<bean id="removeNode"
+		class="org.apache.oodt.cas.resource.cli.action.RemoveNodeCliAction">
+		<property name="description" value="Removes given node from managed nodes" />
+	</bean>
+	<bean id="removeNodeFromQueue"
+		class="org.apache.oodt.cas.resource.cli.action.RemoveNodeFromQueueCliAction">
+		<property name="description" value="Removes given node from given queue" />
+	</bean>
+	<bean id="removeQueue"
+		class="org.apache.oodt.cas.resource.cli.action.RemoveQueueCliAction">
+		<property name="description" value="Removes a queue" />
+	</bean>
+	<bean id="setNodeCapacity"
+		class="org.apache.oodt.cas.resource.cli.action.SetNodeCapacityCliAction">
+		<property name="description" value="Changes a nodes capacity" />
+	</bean>
+	<bean id="submitJob"
+		class="org.apache.oodt.cas.resource.cli.action.SubmitJobCliAction">
+		<property name="description" value="Submits a job for execution" />
+	</bean>
+</beans>

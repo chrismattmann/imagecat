@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more contributor
+license agreements.  See the NOTICE.txt file distributed with this work for
+additional information regarding copyright ownership.  The ASF licenses this
+file to you under the Apache License, Version 2.0 (the "License"); you may not
+use this file except in compliance with the License.  You may obtain a copy of
+the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+License for the specific language governing permissions and limitations under
+the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean class="org.apache.oodt.commons.spring.postprocessor.SetIdBeanPostProcessor" />
+    <bean class="org.apache.oodt.cas.crawl.util.CasPropertyPlaceholderConfigurer">
+
+        <!-- Allow for system-level properties to override all properties below -->
+        <property name="systemPropertiesMode" value="2" />
+
+        <!-- Default Properties -->
+        <property name="properties">
+            <props>
+                <prop key="crawler.failure.dir">[FAILURE_DIR]</prop>
+                <prop key="crawler.backup.dir">[BACKUP_DIR]</prop>
+                <prop key="crawler.workflowmgr.url">[WORKFLOW_URL]</prop>
+                <prop key="crawler.filemgr.url">[FILEMGR_URL]</prop>
+                <prop key="crawler.client.transferer">org.apache.oodt.cas.filemgr.datatransfer.LocalDataTransferFactory</prop>
+                <prop key="crawler.met.file.ext">met</prop>
+                <prop key="crawler.pushpull.met.file.ext">[PUSHPULL_MET_FILE_EXT]</prop>
+                <prop key="crawler.anc.file.ext">anc</prop>
+                <prop key="crawler.anc.file.suffix"></prop>
+                <prop key="notification.mail.host"></prop>
+                <prop key="notification.sender"></prop>
+                <prop key="notification.success.subject"></prop>
+                <prop key="notification.success.message"></prop>
+                <prop key="notification.success.recipients"></prop>
+            </props>
+        </property>
+
+        <!-- File Properties - overrides default properties -->
+        <!-- property name="location" value="/org/apache/oodt/cas/crawl/crawler.properties" 
+            / -->
+    </bean>
+
+    <!-- DELETE Actions -->
+    <bean id="DeleteDataFile" lazy-init="true" class="org.apache.oodt.cas.crawl.action.DeleteFile">
+        <property name="description" value="Deletes the current data file" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">postIngestSuccess</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="DeleteMetadataFile" lazy-init="true" class="org.apache.oodt.cas.crawl.action.DeleteFile">
+        <property name="description" value="Deletes the metadata file for the current data file" />
+        <property name="fileExtension" value="${crawler.met.file.ext}" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">postIngestSuccess</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="DeletePushpullMetFile" lazy-init="true" class="org.apache.oodt.cas.crawl.action.DeleteFile">
+        <property name="description" value="Deletes the push-pull metadata file for the current data file" />
+        <property name="fileExtension" value="${crawler.pushpull.met.file.ext}" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">postIngestSuccess</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- MOVE to FAILURE_DIR Actions -->
+    <bean id="MoveDataFileToFailureDir" lazy-init="true" class="org.apache.oodt.cas.crawl.action.MoveFile">
+        <property name="description" value="Moves the current data file to failure directory" />
+        <property name="toDir" value="${crawler.failure.dir}" />
+        <property name="createToDir" value="true" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">postIngestFailure</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="MoveMetadataFileToFailureDir" lazy-init="true" class="org.apache.oodt.cas.crawl.action.MoveFile">
+        <property name="description" value="Moves the metadata file for the current data file to failure directory" />
+        <property name="fileExtension" value="${crawler.met.file.ext}" />
+        <property name="toDir" value="${crawler.failure.dir}" />
+        <property name="createToDir" value="true" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">postIngestFailure</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="MovePushpullMetFileToFailureDir" lazy-init="true" class="org.apache.oodt.cas.crawl.action.MoveFile">
+        <property name="description" value="Moves the push-pull metadata file for the current data file to failure directory" />
+        <property name="createToDir" value="true" />
+        <property name="fileExtension" value="${crawler.pushpull.met.file.ext}" />
+        <property name="toDir" value="${crawler.failure.dir}" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">postIngestFailure</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- MOVE to BACKUP_DIR Actions -->
+    <bean id="MovePushpullMetFileToBackupDir" lazy-init="true" class="org.apache.oodt.cas.crawl.action.MoveFile">
+        <property name="description" value="Moves the push-pull metadata file for the current data file to success directory" />
+        <property name="fileExtension" value="${crawler.pushpull.met.file.ext}" />
+        <property name="toDir" value="${crawler.backup.dir}" />
+        <property name="createToDir" value="true" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">postIngestSuccess</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="MoveMetadataFileToBackupDir" lazy-init="true" class="org.apache.oodt.cas.crawl.action.MoveFile">
+        <property name="description" value="Moves the metadata file for the current data file to success directory" />
+        <property name="fileExtension" value="${crawler.met.file.ext}" />
+        <property name="toDir" value="${crawler.backup.dir}" />
+        <property name="createToDir" value="true" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">postIngestSuccess</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Workflow Manager Actions -->
+    <bean id="TriggerPostIngestWorkflow" lazy-init="true" class="org.apache.oodt.cas.crawl.action.WorkflowMgrStatusUpdate">
+        <property name="description" value="Triggers workflow event with the name [ProductType]Ingest" />
+        <property name="ingestSuffix" value="Ingest" />
+        <property name="workflowMgrUrl" value="${crawler.workflowmgr.url}" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">postIngestSuccess</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- File Manager Actions -->
+    <bean id="Unique" lazy-init="true" class="org.apache.oodt.cas.crawl.action.FilemgrUniquenessChecker">
+        <property name="description" value="Checks the filemgr against the PRODUCT_NAME for the current data file to make sure it has not yet been ingested" />
+        <property name="filemgrUrl" value="${crawler.filemgr.url}" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">preIngest</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="IngestAncillaryFile" lazy-init="true" class="org.apache.oodt.cas.crawl.action.IngestAncillary">
+        <property name="description" value="This will ingest an associated file along with the current file being ingested by the crawler." />
+        <property name="fileManagerUrl" value="${crawler.filemgr.url}" />
+        <property name="fileExtension" value="${crawler.anc.file.ext}" />
+        <property name="fileSuffix" value="${crawler.anc.file.suffix}" />
+        <property name="keepExistingExtension">
+            <value type="java.lang.Boolean">false</value>
+        </property>
+        <property name="dataTransferService" value="${crawler.client.transferer}" />
+        <property name="relatedKey" value="CAS.ProductId" />
+        <property name="copyKeys">
+            <list>
+                <value type="java.lang.String">MetKey1</value>
+            </list>
+        </property>
+        <property name="productType" value="GenericFile" />
+        <property name="failMissingFile">
+            <value type="java.lang.Boolean">true</value>
+        </property>
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">preIngest</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Existence Check Actions -->
+    <bean id="CheckMetFileExists" lazy-init="true" class="org.apache.oodt.cas.crawl.action.ExternAction">
+        <property name="description" value="Checks if metadata file was created -- make sure check-exists.sh is on your PATH" />
+        <property name="executeCommand" value="./check-exists.sh [Filename].met" />
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">preIngest</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Email Actions -->
+    <bean id="SendNotification" lazy-init="true" class="org.apache.oodt.cas.crawl.action.EmailNotification">
+        <property name="description" value="This will send an email that indicates the submission to the catalog was successful." />
+        <property name="mailHost" value="${notification.mail.host}" />
+        <property name="sender" value="${notification.sender}" />
+        <property name="subject" value="${notification.success.subject}" />
+        <property name="message" value="${notification.success.message}" />
+        <property name="recipients" value="${notification.success.recipients}" />
+        <property name="ignoreInvalidAddresses">
+            <value type="java.lang.Boolean">true</value>
+        </property>
+        <property name="phases">
+            <list>
+                <value type="java.lang.String">postIngestSuccess</value>
+            </list>
+        </property>
+    </bean>
+</beans>

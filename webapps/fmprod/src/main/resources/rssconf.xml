@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more contributor
+license agreements.  See the NOTICE.txt file distributed with this work for
+additional information regarding copyright ownership.  The ASF licenses this
+file to you under the Apache License, Version 2.0 (the "License"); you may not
+use this file except in compliance with the License.  You may obtain a copy of
+the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+License for the specific language governing permissions and limitations under
+the License.
+	
+	Author: Chris A. Mattmann
+	Description: This file configures the CAS RSS web service. The
+	main aspects of this file are the ability to recast a product's 
+	metadata as relevant RSS compatiable tags.
+-->
+<!-- FIXME: adjust namespace URI? -->
+<cas:rssconf xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas">
+  <!-- 
+    An option "channelLink" attribute may be set on the above outer tag to 
+    set the channel's link attribute.
+    
+    Metadata available for replacement in this attribute is:
+    
+    BaseUrl: the base URL for the CAS web service layer.
+    ProductTypeId: the id passed to the RSS channel via the id param
+    ProductType: the channel product type name passed via the channel param
+    TopN: the topn param, if passed.
+   -->
+  
+  <!-- 
+    Each &lt;tag&gt; tag defines 2 attributes:
+    
+    name (required) - the RSS output tag name
+    source (optional) - the field name from the CAS product's metadata and its
+    associated value.
+    
+    Each &lt;tag&gt; has a set of &lt;attribute&gt; tags, which define XML attributes
+    on the RSS output tags. Each &lt;attribute&gt; has the following attributes:
+    
+    name (required) - the RSS output tag attribute name
+    value (required) - the RSS output tag attribute value. By default these values are
+    run through PathUtils#replaceEnvVariables which replaces met keys using the standard
+    CAS met replacement strategy.
+   -->
+    
+    <!-- 
+    
+    If you want to turn your CAS File Manager into a Podcast feeder for iTunes, uncomment
+    the below tag block. You'll need to modify your web.xml for this webapp and change
+    the default name of the /data service to /data.mp3. Then you're set!
+    
+    <tag name="enclosure">
+      <attribute name="url" value="http://localhost:8080/fmprod/data.mp3?productID=[CAS.ProductId]"/>
+      <attribute name="length" value="[FileSize]"/>
+      <attribute name="type" value="audio/mpeg"/>
+    </tag>
+    
+    -->
+
+    <!-- 
+    
+    If you want to turn your CAS File Manager into a GeoRSS 
+    simple service (see http://georss.org/simple), add the 
+    following block, assuming that you have indexed met fields 
+    named Latitude and Longitude for your product (update as 
+    appropriate otherwise).
+    
+    <tag name="georss:point" source="[Latitude] [Longitude]"/>
+    -->
+    
+    <tag name="cas:source" source="[ProductType]"/>
+    <tag name="source" source="[ProductType]"/>
+
+</cas:rssconf>

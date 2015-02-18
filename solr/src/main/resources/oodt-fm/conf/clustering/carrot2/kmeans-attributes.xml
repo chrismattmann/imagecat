@@ -1,0 +1,33 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements. See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License. You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!-- 
+  Default configuration for the bisecting k-means clustering algorithm.
+  
+  This file can be loaded (and saved) by Carrot2 Workbench.
+  http://project.carrot2.org/download.html
+-->
+<attribute-sets default="attributes">
+    <attribute-set id="attributes">
+      <value-set>
+        <label>attributes</label>
+          <attribute key="MultilingualClustering.defaultLanguage">
+            <value type="org.carrot2.core.LanguageCode" value="ENGLISH"/>
+          </attribute>
+          <attribute key="MultilingualClustering.languageAggregationStrategy">
+            <value type="org.carrot2.text.clustering.MultilingualClustering$LanguageAggregationStrategy" value="FLATTEN_MAJOR_LANGUAGE"/>
+          </attribute>
+      </value-set>
+  </attribute-set>
+</attribute-sets>

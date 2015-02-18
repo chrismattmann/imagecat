@@ -1,0 +1,76 @@
+#!/bin/sh
+
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# OS specific support.  $var _must_ be set to either true or false.
+cygwin=false
+os400=false
+darwin=false
+case "`uname`" in
+CYGWIN*) cygwin=true;;
+OS400*) os400=true;;
+Darwin*) darwin=true;;
+esac
+
+# resolve links - $0 may be a softlink
+PRG="$0"
+
+while [ -h "$PRG" ]; do
+  ls=`ls -ld "$PRG"`
+  link=`expr "$ls" : '.*-> \(.*\)$'`
+  if expr "$link" : '/.*' > /dev/null; then
+    PRG="$link"
+  else
+    PRG=`dirname "$PRG"`/"$link"
+  fi
+done
+
+# Get standard environment variables
+PRGDIR=`dirname "$PRG"`
+
+# Only set OODT_HOME if not already set
+[ -z "$OODT_HOME" ] && OODT_HOME=`cd "$PRGDIR/../.." ; pwd`
+
+# Get OODT environment set up
+if [ -r "$OODT_HOME"/bin/env.sh ]; then
+  . "$OODT_HOME"/bin/env.sh
+fi
+
+# Only set CRAWLER_HOME if not already set
+if [ -z "$CRAWLER_HOME" ]; then
+  CRAWLER_HOME="$OODT_HOME"/crawler
+  export CRAWLER_HOME
+fi
+
+# For Cygwin, ensure paths are in UNIX format before anything is touched
+if $cygwin; then
+  [ -n "$JAVA_HOME" ] && JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
+  [ -n "$JRE_HOME" ] && JRE_HOME=`cygpath --unix "$JRE_HOME"`
+  [ -n "$OODT_HOME" ] && OODT_HOME=`cygpath --unix "$OODT_HOME"`
+  [ -n "$CRAWLER_HOME" ] && CRAWLER_HOME=`cygpath --unix "$CRAWLER_HOME"`
+  [ -n "$CLASSPATH" ] && CLASSPATH=`cygpath --path --unix "$CLASSPATH"`
+fi
+
+# In case this script was run from somewhere else cd to this directory
+cd "$CRAWLER_HOME"/bin
+
+"$_RUNJAVA" $JAVA_OPTS $OODT_OPTS \
+   -Djava.ext.dirs="$CRAWLER_HOME"/lib \
+   -Djava.util.logging.config.file="$CRAWLER_HOME"/etc/logging.properties \
+   -Dorg.apache.oodt.cas.crawl.bean.repo=file:"$CRAWLER_HOME"/policy/crawler-config.xml \
+   -Dorg.apache.oodt.cas.cli.action.spring.config=file:"$CRAWLER_HOME"/policy/cmd-line-actions.xml \
+   -Dorg.apache.oodt.cas.cli.option.spring.config=file:"$CRAWLER_HOME"/policy/cmd-line-options.xml \
+    org.apache.oodt.cas.crawl.CrawlerLauncher "$@"

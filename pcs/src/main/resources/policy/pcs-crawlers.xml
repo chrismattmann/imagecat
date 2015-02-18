@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+Author: Chris Mattmann
+
+This file defines what ingest crawlers are being used by the PCS.
+This file is used in the PCSHealthMonitor tool.
+-->
+<input>
+
+    <!-- 
+      Here are global properties for the 
+      crawler. These properties are environment 
+      variable replaced.
+      
+      The only current property is:
+      
+      Hostname: the default hostname that the crawler 
+      daemons are operating on.
+     -->
+	<group name="CrawlProperties">
+		<scalar name="Hostname">localhost</scalar>
+	</group>
+
+    <!-- Here is a set of scalars where 
+         the scalar:
+         
+         name: the name of the crawler to monitor status for.
+         value: the port number that the crawler daemon to 
+         monitor is running on.
+     -->
+	<group name="CrawlerInfo">
+	    <scalar name="Crawler1">9020</scalar>
+	</group>
+
+</input>

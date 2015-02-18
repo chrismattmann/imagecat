@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Author: bfoster (Brian Foster)
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="url" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+		<property name="shortOption" value="u" />
+		<property name="longOption" value="url" />
+		<property name="description" value="Resource Manager URL" />
+		<property name="hasArgs" value="true" />
+		<property name="argsDescription" value="url" />
+		<property name="required" value="true" />
+		<property name="handler">
+			<bean
+				class="org.apache.oodt.cas.cli.option.handler.SetJavaPropertiesHandler">
+				<property name="propertyNames">
+					<list>
+						<value>org.apache.oodt.cas.resource.url</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="operation" class="org.apache.oodt.cas.cli.option.GroupCmdLineOption">
+		<property name="shortOption" value="op" />
+		<property name="longOption" value="operation" />
+		<property name="description"
+			value="Declare that you wish to present an operation" />
+		<property name="hasArgs" value="false" />
+		<property name="required" value="true" />
+		<property name="subOptions">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="getNodeById" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="getNodes" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="getQueues" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="addNode" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="removeNode" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="setNodeCapacity" p:required="false" />
+        <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+          p:option-ref="getExecNode" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="addQueue" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="removeQueue" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="addNodeToQueue" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="getNodesInQueue" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="getQueuesWithNode" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="removeNodeFromQueue" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="getNodeLoad" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="submitJob" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="getJobInfo" p:required="false" />
+				<bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+					p:option-ref="kill" p:required="false" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- GetNodeById Options -->
+	<bean id="getNodeById" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="nbyid" />
+		<property name="longOption" value="getNodeById" />
+		<property name="description" value="Triggers getNodeById Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>getNodeById</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getNodeById" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- GetNodes Options -->
+	<bean id="getNodes" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="nodes" />
+		<property name="longOption" value="getNodes" />
+		<property name="description" value="Triggers getNodes Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>getNodes</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getNodes" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- GetQueues Options -->
+	<bean id="getQueues" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="queues" />
+		<property name="longOption" value="getQueues" />
+		<property name="description" value="Triggers getQueues Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>getQueues</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getQueues" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- AddNode Options -->
+	<bean id="addNode" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="an" />
+		<property name="longOption" value="addNode" />
+		<property name="description" value="Triggers addNode Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>addNode</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="addNode" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="ipAddr" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+		<property name="shortOption" value="addr" />
+		<property name="longOption" value="ipAddr" />
+		<property name="description" value="Node IP Address" />
+		<property name="type" value="java.net.URL" />
+		<property name="hasArgs" value="true" />
+		<property name="argsDescription" value="ip-addr" />
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="addNode" p:relation="REQUIRED" />
+			</list>
+		</property>
+		<property name="handler">
+			<bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler">
+				<property name="applyToActions">
+					<list>
+						<bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+							p:actionName="addNode" p:methodName="setNodeUrl" />
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- RemoveNode Options -->
+	<bean id="removeNode" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="rn" />
+		<property name="longOption" value="removeNode" />
+		<property name="description" value="Triggers removeNode Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>removeNode</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="removeNode" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- SetNodeCapacity Options -->
+	<bean id="setNodeCapacity" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="sncap" />
+		<property name="longOption" value="setNodeCapacity" />
+		<property name="description" value="Triggers setNodeCapacity Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>setNodeCapacity</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="setNodeCapacity" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+  <!-- SetNodeCapacity Options -->
+  <bean id="getExecNode" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+    p:isSubOption="true">
+    <property name="shortOption" value="exeNode" />
+    <property name="longOption" value="getExecNode" />
+    <property name="description" value="Triggers getExecNode Action" />
+    <property name="hasArgs" value="false" />
+    <property name="staticArgs">
+      <list>
+        <value>getExecNode</value>
+      </list>
+    </property>
+    <property name="requirementRules">
+      <list>
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="getExecNode" p:relation="REQUIRED" />
+      </list>
+    </property>
+  </bean>
+
+	<!-- AddQueue Options -->
+	<bean id="addQueue" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="aq" />
+		<property name="longOption" value="addQueue" />
+		<property name="description" value="Triggers addQueue Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>addQueue</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="addQueue" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- RemoveQueue Options -->
+	<bean id="removeQueue" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="rq" />
+		<property name="longOption" value="removeQueue" />
+		<property name="description" value="Triggers removeQueue Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>removeQueue</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="removeQueue" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- AddNodeToQueue Options -->
+	<bean id="addNodeToQueue" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="antq" />
+		<property name="longOption" value="addNodeToQueue" />
+		<property name="description" value="Triggers addNodeToQueue Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>addNodeToQueue</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="addNodeToQueue" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- GetNodesInQueue Options -->
+	<bean id="getNodesInQueue" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="ninq" />
+		<property name="longOption" value="getNodesInQueue" />
+		<property name="description" value="Triggers getNodesInQueue Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>getNodesInQueue</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getNodesInQueue" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- GetQueuesWithNode Options -->
+	<bean id="getQueuesWithNode" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="qwn" />
+		<property name="longOption" value="getQueuesWithNode" />
+		<property name="description" value="Triggers getQueuesWithNode Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>getQueuesWithNode</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getQueuesWithNode" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- RemoveNodeFromQueue Options -->
+	<bean id="removeNodeFromQueue" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="rnfq" />
+		<property name="longOption" value="removeNodeFromQueue" />
+		<property name="description" value="Triggers removeNodeFromQueue Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>removeNodeFromQueue</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="removeNodeFromQueue" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- GetNodeLoad Options -->
+	<bean id="getNodeLoad" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="load" />
+		<property name="longOption" value="getNodeLoad" />
+		<property name="description" value="Triggers getNodeLoad Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>getNodeLoad</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getNodeLoad" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- SubmitJob Options -->
+	<bean id="submitJob" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="submit" />
+		<property name="longOption" value="submitJob" />
+		<property name="description" value="Triggers submitJob Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>submitJob</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="submitJob" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="def" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+		<property name="shortOption" value="d" />
+		<property name="longOption" value="def" />
+		<property name="description" value="Job Definition File" />
+		<property name="hasArgs" value="true" />
+		<property name="argsDescription" value="xml-file" />
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="submitJob" p:relation="REQUIRED" />
+			</list>
+		</property>
+		<property name="handler">
+			<bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler">
+				<property name="applyToActions">
+					<list>
+						<bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+							p:actionName="submitJob" p:methodName="setJobDefinitionFile" />
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+  <bean id="nodeUrl" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+    <property name="shortOption" value="nu" />
+    <property name="longOption" value="nodeUrl" />
+    <property name="description" value="Node URL" />
+    <property name="type" value="java.net.URL" />
+    <property name="hasArgs" value="true" />
+    <property name="argsDescription" value="url" />
+    <property name="requirementRules">
+      <list>
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="submitJob" p:relation="OPTIONAL" />
+      </list>
+    </property>
+    <property name="handler">
+      <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler">
+        <property name="applyToActions">
+          <list>
+            <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+              p:actionName="submitJob" p:methodName="setUrl" />
+          </list>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+	<!-- GetJobInfo Options -->
+	<bean id="getJobInfo" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="info" />
+		<property name="longOption" value="getJobInfo" />
+		<property name="description" value="Triggers getJobInfo Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>getJobInfo</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getJobInfo" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Kill Options -->
+	<bean id="kill" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+		p:isSubOption="true">
+		<property name="shortOption" value="k" />
+		<property name="longOption" value="kill" />
+		<property name="description" value="Triggers kill Action" />
+		<property name="hasArgs" value="false" />
+		<property name="staticArgs">
+			<list>
+				<value>kill</value>
+			</list>
+		</property>
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="kill" p:relation="REQUIRED" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Options used for multiple Actions -->
+	<bean id="nodeId" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+		<property name="shortOption" value="nid" />
+		<property name="longOption" value="nodeId" />
+		<property name="description" value="Node ID" />
+		<property name="hasArgs" value="true" />
+		<property name="argsDescription" value="node-id" />
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getNodeById" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="addNode" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="removeNode" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="setNodeCapacity" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="addNodeToQueue" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getQueuesWithNode" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="removeNodeFromQueue" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getNodeLoad" p:relation="REQUIRED" />
+			</list>
+		</property>
+		<property name="handler">
+			<bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler" />
+		</property>
+	</bean>
+
+	<bean id="capacity" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+		<property name="shortOption" value="cap" />
+		<property name="longOption" value="capacity" />
+		<property name="description" value="Node Capacity" />
+		<property name="type" value="int" />
+		<property name="hasArgs" value="true" />
+		<property name="argsDescription" value="capacity" />
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="addNode" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="setNodeCapacity" p:relation="REQUIRED" />
+			</list>
+		</property>
+		<property name="handler">
+			<bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler" />
+		</property>
+	</bean>
+
+	<bean id="queueName" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+		<property name="shortOption" value="qn" />
+		<property name="longOption" value="queueName" />
+		<property name="description" value="Queue name" />
+		<property name="hasArgs" value="true" />
+		<property name="argsDescription" value="queue-name" />
+		<property name="requirementRules">
+			<list>
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="addQueue" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="removeQueue" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="addNodeToQueue" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="getNodesInQueue" p:relation="REQUIRED" />
+				<bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+					p:actionName="removeNodeFromQueue" p:relation="REQUIRED" />
+			</list>
+		</property>
+		<property name="handler">
+			<bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler" />
+		</property>
+	</bean>
+
+  <bean id="jobId" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+    <property name="shortOption" value="jid" />
+    <property name="longOption" value="jobId" />
+    <property name="description" value="Job ID" />
+    <property name="hasArgs" value="true" />
+    <property name="argsDescription" value="job-id" />
+    <property name="requirementRules">
+      <list>
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="getJobInfo" p:relation="REQUIRED" />
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="getExecNode" p:relation="REQUIRED" />
+        <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+          p:actionName="kill" p:relation="REQUIRED" />
+      </list>
+    </property>
+    <property name="handler">
+      <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler" />
+    </property>
+  </bean>
+</beans>

@@ -1,0 +1,168 @@
+#!/usr/bin/env bash
+
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# OS specific support.  $var _must_ be set to either true or false.
+cygwin=false
+os400=false
+darwin=false
+case "`uname`" in
+CYGWIN*) cygwin=true;;
+OS400*) os400=true;;
+Darwin*) darwin=true;;
+esac
+
+# resolve links - $0 may be a softlink
+PRG="$0"
+
+while [ -h "$PRG" ]; do
+  ls=`ls -ld "$PRG"`
+  link=`expr "$ls" : '.*-> \(.*\)$'`
+  if expr "$link" : '/.*' > /dev/null; then
+    PRG="$link"
+  else
+    PRG=`dirname "$PRG"`/"$link"
+  fi
+done
+
+# Get standard environment variables
+PRGDIR=`dirname "$PRG"`
+
+# Only set OODT_HOME if not already set
+[ -z "$OODT_HOME" ] && OODT_HOME=`cd "$PRGDIR/.." ; pwd`
+
+# Get OODT environment set up
+if [ -r "$OODT_HOME"/bin/env.sh ]; then
+  . "$OODT_HOME"/bin/env.sh
+fi
+
+# Only output this if we have a TTY
+if [ $have_tty -eq 1 ]; then
+  echo "Using OODT_BASE:   $OODT_BASE"
+  echo "Using OODT_HOME:   $OODT_HOME"
+  echo "Using OODT_TMPDIR: $OODT_TMPDIR"
+  if [ "$1" = "debug" ] ; then
+    echo "Using JAVA_HOME:       $JAVA_HOME"
+  else
+    echo "Using JRE_HOME:        $JRE_HOME"
+  fi
+  echo "Using CLASSPATH:       $CLASSPATH"
+fi
+
+WORKFLOW_EXEC=wmgr
+RESMGR_EXEC=resmgr
+FILEMGR_EXEC=filemgr
+TOMCAT_EXEC=catalina.sh
+
+# Check that target executable exists
+if [ ! -x "$FILEMGR_HOME"/bin/"$FILEMGR_EXEC" ]; then
+  echo "Cannot find $FILEMGR_HOME/bin/$FILEMGR_EXEC"
+  echo "This file is needed to run this program"
+  exit 1
+fi
+
+# Check that target executable exists
+if [ ! -x "$WORKFLOW_HOME"/bin/"$WORKFLOW_EXEC" ]; then
+  echo "Cannot find $WORKFLOW_HOME/bin/$WORKFLOW_EXEC"
+  echo "This file is needed to run this program"
+  exit 1
+fi
+
+# Check that target executable exists
+if [ ! -x "$RESMGR_HOME"/bin/"$RESMGR_EXEC" ]; then
+  echo "Cannot find $RESMGR_HOME/bin/$RESMGR_EXEC"
+  echo "This file is needed to run this program"
+  exit 1
+fi
+
+# Check that target executable exists
+if [ ! -x "$OODT_BASE"/tomcat/bin/"$TOMCAT_EXEC" ]; then
+  echo "Cannot find $OODT_BASE/tomcat/bin/$TOMCAT_EXEC"
+  echo "This file is needed to run this program"
+  exit 1
+fi
+
+if [ "$1" = "start" ]; then
+  exec "$FILEMGR_HOME"/bin/"$FILEMGR_EXEC" start "$@" >> "$OODT_OUT" 2>&1  &
+  exec "$WORKFLOW_HOME"/bin/"$WORKFLOW_EXEC" start "$@" >> "$OODT_OUT" 2>&1  &
+  exec "$RESMGR_HOME"/bin/"$RESMGR_EXEC" start "$@" >> "$OODT_OUT" 2>&1  &  
+  exec "$OODT_BASE"/tomcat/bin/"$TOMCAT_EXEC" start "$@" >> "$OODT_OUT" 2>&1 &
+  sleep 0.2s
+# Print confirmation messages to the end user
+# FileManager
+# check if the PID file exists:
+  if [ ! -e "../filemgr/run/cas.filemgr.pid" ] 
+  then
+    # no pid file was created by the process, it must have failed.
+    echo -e 'Starting OODT File Manager [' $'\e[31m' 'Failed' $'\e[00m' ']'
+
+  else
+    # pid file exists, check if the associated process is running.
+    if kill -0 `cat ../filemgr/run/cas.filemgr.pid` > /dev/null 2>&1;
+    then
+        echo -e 'Starting OODT File Manager [' $'\e[32m' 'Successful' $'\e[00m' ']'
+    else
+        echo -e 'Starting OODT File Manager [' $'\e[31m' 'Failed' $'\e[00m' ']'
+    fi
+  fi
+
+# ResourceManager
+# check if the PID file exists:
+  if [ ! -e "../resmgr/run/cas.resmgr.pid" ]
+  then
+    # no pid file was created by the process, it must have failed.
+    echo -e 'Starting OODT Resource Manager [' $'\e[31m' 'Failed' $'\e[00m' ']'
+
+  else
+    # pid file exists, check if the associated process is running.
+    if kill -0 `cat ../resmgr/run/cas.resmgr.pid` > /dev/null 2>&1;
+    then
+        echo -e 'Starting OODT Resource Manager [' $'\e[32m' 'Successful' $'\e[00m' ']'
+    else
+        echo -e 'Starting OODT Resource Manager [' $'\e[31m' 'Failed' $'\e[00m' ']'
+    fi
+  fi
+
+
+# WorkflowManager
+# check if the PID file exists:
+  if [ ! -e "../workflow/run/cas.workflow.pid" ]
+  then
+    # no pid file was created by the process, it must have failed.
+    echo -e 'Starting OODT Workflow Manager [' $'\e[31m' 'Failed' $'\e[00m' ']'
+
+  else
+    # pid file exists, check if the associated process is running.
+    if kill -0 `cat ../workflow/run/cas.workflow.pid` > /dev/null 2>&1;
+    then
+        echo -e 'Starting OODT Workflow Manager [' $'\e[32m' 'Successful' $'\e[00m' ']'
+    else
+        echo -e 'Starting OODT Workflow Manager [' $'\e[31m' 'Failed' $'\e[00m' ']'
+    fi
+  fi
+elif [ "$1" = "stop" ]; then
+  exec "$FILEMGR_HOME"/bin/"$FILEMGR_EXEC" stop "$@" >> "$OODT_OUT" 2>&1  &
+  exec "$WORKFLOW_HOME"/bin/"$WORKFLOW_EXEC" stop "$@" >> "$OODT_OUT" 2>&1 &
+  exec "$RESMGR_HOME"/bin/"$RESMGR_EXEC" stop "$@" >> "$OODT_OUT" 2>&1 &
+  exec "$OODT_BASE"/tomcat/bin/"$TOMCAT_EXEC" stop "$@" >> "$OODT_OUT" 2>&1 &
+else
+  echo "Usage: oodt.sh ( commands ... )"
+  echo "commands:"
+  echo "  start             Start OODT in a separate window"
+  echo "  stop              Stop OODT, waiting up to 5 seconds for the process to end"
+#  echo "  version           What version of OODT are you running?"
+  exit 1
+fi

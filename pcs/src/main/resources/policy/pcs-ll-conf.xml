@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+Author: Chris Mattmann
+
+This file configures the PCS long lister, defining what product types
+to exclude from the listing, what field names to include as listing 
+columns, and which of those field names are collection tags that group 
+products together.
+-->
+<input>
+
+  <!-- 
+    Defines metadata fields per product to show as 
+    columns in the long listing. The scalar name 
+    attribute is the product met field name, and 
+    the value for the scalar is the name that the 
+    long lister displays while listing. The vector of 
+    ordered met keys is the display order in the listing.
+   -->
+  <group name="MetFieldColumns">
+    <vector name="OrderedMetKeys">
+      <element>Filename</element>
+      <element>TestTag</element>
+      <element>SubTestTag</element>
+      <element>TestCounter</element>
+      <element>StartDateTime</element>
+      <element>EndDateTime</element>
+    </vector>
+  
+    <scalar name="Filename">Filename</scalar>
+    <scalar name="TestTag">Test Tag(s)</scalar>
+    <scalar name="SubTestTag">Subtest tag(s)</scalar>
+    <scalar name="TestCounter">Test Counter(s)</scalar>
+    <scalar name="StartDateTime">DataStartTime</scalar>
+    <scalar name="EndDateTime">DataEndTime</scalar>
+  </group>
+  
+  <!-- 
+    Lets the long lister know which fields are 
+    collection fields: that is, fields that group 
+    products together. These fields will be used, along 
+    with the InputFiles met field, to find descendant 
+    files with matching collection field values.
+   -->
+  <group name="CollectionFields">
+    <vector name="FieldNames">
+      <element>TestTag</element>
+      <element>SubTestTag</element>
+      <element>TestCounter</element>
+    </vector>
+  </group>
+  
+  <!-- 
+    If you don't expect all the product types to be 
+    listable, you can set an exclude list. This is 
+    useful when e.g., some product types are so massive 
+    you would never do a long listing on them because 
+    the descendant query would take a long time.  
+   -->
+  <group name="ExcludedProductTypeList">
+   <vector name="ProductTypes">
+    <element>FTSSpectrum</element>
+    <element>FTSRunlog</element>
+    <element>FTSSunrun</element>
+    <element>PrimaryLog</element>
+    <element>MonitorLog</element>
+    <element>OCOTrendXML</element>
+    <element>SavesetDir</element>
+    <element>FTSIgramDir</element>
+    <element>SavesetInfoDir</element>
+    <element>CPTHeliostat</element>
+    <element>CPTMotor</element>
+    <element>CPTPhotodiode</element>
+    <element>CPTWavemeter</element>
+    <element>CPTETL</element>
+    <element>CPTStep</element>
+    <element>CPTCollimator</element>
+   </vector>
+  </group>
+
+</input>

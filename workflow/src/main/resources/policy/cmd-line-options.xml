@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+    license agreements. See the NOTICE file distributed with this work for additional 
+    information regarding copyright ownership. The ASF licenses this file to 
+    You under the Apache License, Version 2.0 (the "License"); you may not use 
+    this file except in compliance with the License. You may obtain a copy of 
+    the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+    by applicable law or agreed to in writing, software distributed under the 
+    License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+    OF ANY KIND, either express or implied. See the License for the specific 
+    language governing permissions and limitations under the License. Author: 
+    bfoster (Brian Foster) -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="url" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="u" />
+        <property name="longOption" value="url" />
+        <property name="description" value="Workflow Manager URL" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="url" />
+        <property name="required" value="true" />
+        <property name="handler">
+            <bean
+                class="org.apache.oodt.cas.cli.option.handler.SetJavaPropertiesHandler">
+                <property name="propertyNames">
+                    <list>
+                        <value>org.apache.oodt.cas.workflow.url</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="operation" class="org.apache.oodt.cas.cli.option.GroupCmdLineOption">
+        <property name="shortOption" value="op" />
+        <property name="longOption" value="operation" />
+        <property name="description"
+            value="Declare that you wish to present an operation" />
+        <property name="hasArgs" value="false" />
+        <property name="required" value="true" />
+        <property name="subOptions">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="sendEvent" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="dynWorkflow" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getWorkflowInsts" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getWorkflows" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getTaskById" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getConditionById" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getWorkflowById" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getWorkflowsByEvent" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getRegisteredEvents" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getWorkflowInst" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getWallClockTime" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getTaskWallClockTime" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="stopWorkflowInst" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="pauseWorkflowInst" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="resumeWorkflowInst" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getFirstPage" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getNextPage" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getPrevPage" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getLastPage" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="getWorkflowInstMet" p:required="false" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- SendEvent Options -->
+    <bean id="sendEvent" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="se" />
+        <property name="longOption" value="sendEvent" />
+        <property name="description" value="Triggers sendEvent Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>sendEvent</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="sendEvent" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- DynWorkflow Options -->
+    <bean id="dynWorkflow" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="dw" />
+        <property name="longOption" value="dynWorkflow" />
+        <property name="description" value="Triggers dynWorkflow Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>dynWorkflow</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="dynWorkflow" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="taskIds" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="tids" />
+        <property name="longOption" value="taskIds" />
+        <property name="description" value="List of workflow task ids" />
+        <property name="type" value="java.util.List" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="task-ids" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="dynWorkflow" p:relation="REQUIRED" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler" />
+        </property>
+    </bean>
+
+    <!-- GetWorkflowInsts Options -->
+    <bean id="getWorkflowInsts" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="winsts" />
+        <property name="longOption" value="getWorkflowInsts" />
+        <property name="description" value="Triggers GetWorkflowInsts Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getWorkflowInsts</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="GetWorkflowInsts" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetWorkflows Options -->
+    <bean id="getWorkflows" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="wflows" />
+        <property name="longOption" value="getWorkflows" />
+        <property name="description" value="Triggers getWorkflows Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getWorkflows</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWorkflows" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetTaskById Options -->
+    <bean id="getTaskById" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="tbyid" />
+        <property name="longOption" value="getTaskById" />
+        <property name="description" value="Triggers getTaskById Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getTaskById</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getTaskById" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetTaskById Options -->
+    <bean id="getConditionById" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="cbyid" />
+        <property name="longOption" value="getConditionById" />
+        <property name="description" value="Triggers getConditionById Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getConditionById</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getConditionById" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetWorkflowById Options -->
+    <bean id="getWorkflowById" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="wbyid" />
+        <property name="longOption" value="getWorkflowById" />
+        <property name="description" value="Triggers getWorkflowById Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getWorkflowById</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWorkflowById" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetWorkflowsByEvent Options -->
+    <bean id="getWorkflowsByEvent" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="wbye" />
+        <property name="longOption" value="getWorkflowsByEvent" />
+        <property name="description" value="Triggers getWorkflowsByEvent Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getWorkflowsByEvent</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWorkflowsByEvent" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetRegisteredEvents Options -->
+    <bean id="getRegisteredEvents" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="events" />
+        <property name="longOption" value="getRegisteredEvents" />
+        <property name="description" value="Triggers getRegisteredEvents Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getRegisteredEvents</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getRegisteredEvents" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetWorkflowInst Options -->
+    <bean id="getWorkflowInst" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="inst" />
+        <property name="longOption" value="getWorkflowInst" />
+        <property name="description" value="Triggers getWorkflowInst Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getWorkflowInst</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWorkflowInst" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetWallClockTime Options -->
+    <bean id="getWallClockTime" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="time" />
+        <property name="longOption" value="getWallClockTime" />
+        <property name="description" value="Triggers getWallClockTime Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getWallClockTime</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWallClockTime" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetTaskWallClockTime Options -->
+    <bean id="getTaskWallClockTime" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="ttime" />
+        <property name="longOption" value="getTaskWallClockTime" />
+        <property name="description" value="Triggers getTaskWallClockTime Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getTaskWallClockTime</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getTaskWallClockTime" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- StopWorkflowInst Options -->
+    <bean id="stopWorkflowInst" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="stop" />
+        <property name="longOption" value="stopWorkflowInst" />
+        <property name="description" value="Triggers stopWorkflowInst Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>stopWorkflowInst</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="stopWorkflowInst" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- PauseWorkflowInst Options -->
+    <bean id="pauseWorkflowInst" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="pause" />
+        <property name="longOption" value="pauseWorkflowInst" />
+        <property name="description" value="Triggers pauseWorkflowInst Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>pauseWorkflowInst</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="pauseWorkflowInst" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- ResumeWorkflowInst Options -->
+    <bean id="resumeWorkflowInst" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="resume" />
+        <property name="longOption" value="resumeWorkflowInst" />
+        <property name="description" value="Triggers resumeWorkflowInst Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>resumeWorkflowInst</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="resumeWorkflowInst" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetFirstPage Options -->
+    <bean id="getFirstPage" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="page1" />
+        <property name="longOption" value="getFirstPage" />
+        <property name="description" value="Triggers getFirstPage Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getFirstPage</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getFirstPage" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetNextPage Options -->
+    <bean id="getNextPage" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="next" />
+        <property name="longOption" value="getNextPage" />
+        <property name="description" value="Triggers getNextPage Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getNextPage</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getNextPage" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetPrevPage Options -->
+    <bean id="getPrevPage" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="prev" />
+        <property name="longOption" value="getPrevPage" />
+        <property name="description" value="Triggers getPrevPage Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getPrevPage</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getPrevPage" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetLastPage Options -->
+    <bean id="getLastPage" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="last" />
+        <property name="longOption" value="getLastPage" />
+        <property name="description" value="Triggers getLastPage Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getLastPage</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getLastPage" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- GetWorkflowInstMet Options -->
+    <bean id="getWorkflowInstMet" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="getMet" />
+        <property name="longOption" value="getWorkflowInstMet" />
+        <property name="description" value="Triggers getWorkflowInstMet Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>getWorkflowInstMet</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWorkflowInstMet" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- Options used for multiple Actions -->
+    <bean id="eventName" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="en" />
+        <property name="longOption" value="eventName" />
+        <property name="description" value="Name of the Event to trigger" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="event-name" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="sendEvent" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWorkflowsByEvent" p:relation="REQUIRED" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler" />
+        </property>
+    </bean>
+
+    <bean id="metaData" class="org.apache.oodt.cas.cli.option.GroupCmdLineOption">
+        <property name="shortOption" value="m" />
+        <property name="longOption" value="metaData" />
+        <property name="description" value="Declare that you wish to present metadata" />
+        <property name="hasArgs" value="false" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="sendEvent" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="dynMetadata" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="subOptions">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="key" p:required="true" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="key" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="k" />
+        <property name="longOption" value="key" />
+        <property name="description" value="Workflow Metadata: key val val..." />
+        <property name="type" value="java.util.List" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="key-vals" />
+        <property name="repeating" value="true" />
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler">
+                <property name="applyToActions">
+                    <list>
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="sendEvent" p:methodName="addMetadata" />
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="dynWorkflow" p:methodName="addMetadata" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="id" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="id" />
+        <property name="longOption" value="id" />
+        <property name="description" value="ID" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="id" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getTaskById" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getConditionById" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWorkflowById" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWorkflowInst" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWallClockTime" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getTaskWallClockTime" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="stopWorkflowInst" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="pauseWorkflowInst" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="resumeWorkflowInst" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getWorkflowInstMet" p:relation="REQUIRED" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler">
+                <property name="applyToActions">
+                    <list>
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="getTaskById" p:methodName="setTaskId"
+                            p:argDescription="task-id" />
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="getConditionById" p:methodName="setConditionId"
+                            p:argDescription="condition-id" />
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="getWorkflowById" p:methodName="setWorkflowId"
+                            p:argDescription="workflow-id" />
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="getWorkflowInst" p:methodName="setInstanceId"
+                            p:argDescription="instance-id" />
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="getWallClockTime" p:methodName="setInstanceId"
+                            p:argDescription="instance-id" />
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="getTaskWallClockTime" p:methodName="setInstanceId"
+                            p:argDescription="instance-id" />
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="stopWorkflowInst" p:methodName="setInstanceId"
+                            p:argDescription="instance-id" />
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="pauseWorkflowInst" p:methodName="setInstanceId"
+                            p:argDescription="instance-id" />
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="resumeWorkflowInst" p:methodName="setInstanceId"
+                            p:argDescription="instance-id" />
+                        <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToAction"
+                            p:actionName="getWorkflowInstMet" p:methodName="setInstanceId"
+                            p:argDescription="instance-id" />
+                    </list>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="status" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="s" />
+        <property name="longOption" value="status" />
+        <property name="description" value="Workflow status" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="status" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getFirstPage" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getNextPage" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getPrevPage" p:relation="OPTIONAL" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getLastPage" p:relation="OPTIONAL" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler" />
+        </property>
+    </bean>
+
+    <bean id="pageNum" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="p" />
+        <property name="longOption" value="pageNum" />
+        <property name="description" value="Page Number" />
+        <property name="type" value="int" />
+        <property name="hasArgs" value="true" />
+        <property name="argsDescription" value="page" />
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getNextPage" p:relation="REQUIRED" />
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="getPrevPage" p:relation="REQUIRED" />
+            </list>
+        </property>
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler" />
+        </property>
+    </bean>
+</beans>
