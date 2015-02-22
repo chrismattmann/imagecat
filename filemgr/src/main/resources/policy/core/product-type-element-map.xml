@@ -30,4 +30,5 @@ of elements between the types
        <element id="urn:oodt:MimeType"/>
        <element id="urn:test:DataVersion"/>
   </type>
+
 </cas:producttypemap>

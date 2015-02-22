@@ -72,6 +72,7 @@ cd "$FILEMGR_HOME"/bin
   -Djava.ext.dirs="$FILEMGR_HOME"/lib \
   -Dorg.apache.oodt.cas.filemgr.properties="$FILEMGR_HOME"/etc/filemgr.properties \
   -Djava.util.logging.config.file="$FILEMGR_HOME"/etc/logging.properties \
+  -Dlog4j.configuration=file:"$FILEMGR_HOME"/etc/log4j.properties \
   -Dorg.apache.oodt.cas.cli.action.spring.config=file:"$FILEMGR_HOME"/policy/cmd-line-actions.xml \
   -Dorg.apache.oodt.cas.cli.option.spring.config=file:"$FILEMGR_HOME"/policy/cmd-line-options.xml \
   org.apache.oodt.cas.filemgr.system.XmlRpcFileManagerClient "$@"
