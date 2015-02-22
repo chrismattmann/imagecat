@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pgeConfig>
+
+  <!-- How to run the PGE -->
+  <exe dir="[JobDir]" shell="/bin/bash">
+     <cmd>export PATH=[OODT_HOME]/bin/:${PATH}</cmd>
+     <cmd>shopt -s expand_aliases</cmd>
+     <cmd>echo "Creating working dirs"</cmd>
+     <cmd>mkdir [JobOutputDir] ; mkdir [JobInputDir]</cmd>
+     <cmd>echo "Staging file [ChunkFilePath] to [JobInputDir]"</cmd>
+     <cmd>cp -R [ChunkFilePath] [JobInputDir]</cmd>
+     <cmd>solrcell_ingest [JobInputDir]/[Filename]</cmd>
+   </exe>
+
+  <!-- Files to ingest -->
+  <output>
+ <!-- one or more of these -->
+    <dir path="[JobOutputDir]" createBeforeExe="false">
+    </dir>
+
+  </output>
+
+  <!-- Custom metadata to add to output files -->
+  <customMetadata>
+    <!-- helpful keys -->
+    <metadata key="LessThan" val="&#x3C;"/>
+    <metadata key="LessThanOrEqualTo" val="[LessThan]="/>
+    <metadata key="GreaterThan" val="&#x3E;"/>
+    <metadata key="GreaterThanOrEqualTo" val="[GreaterThan]="/>
+    <metadata key="Exclamation" val="&#33;"/>
+    <metadata key="Ampersand" val="&#38;"/>
+    <metadata key="NotEqualTo" val="[Ampersand]="/>
+    <metadata key="LogicalAnd" val="[Ampersand][Ampersand]"/>
+    <metadata key="CshPipeToStdOutAndError" val="[GreaterThan][Ampersand][Exclamation]"/>
+
+
+    <metadata key="ProductionDateTime" val="[DATE.UTC]"/>
+    <metadata key="DateMilis" val="[DATE_TO_MILLIS([ProductionDateTime],UTC_FORMAT,1970-01-01)]"/>
+    <metadata key="JobDir" val="[OODT_HOME]/data/jobs/crawl/[DateMilis]"/>
+    <metadata key="JobInputDir" val="[JobDir]/input"/>
+    <metadata key="JobOutputDir" val="[JobDir]/output"/>
+    <metadata key="JobLogDir" val="[JobDir]/logs"/>
+    <metadata key="ChunkFilePath" val="[OODT_HOME]/data/archive/chunks/[ChunkNum]/[Filename]"/>
+    <!-- if the ComplexQuery object worked in the SolrCatalog, we'd use this. -->
+    <!--<metadata key="ChunkFilePath" val="SQL(FORMAT='$FileLocation/$Filename',SORT_BY='CAS.ProductReceivedTime'){SELECT FileLocation,Filename,CAS.ProductReceivedTime FROM ChunkFile WHERE Filename = '[Filename]'}"/>    -->
+    
+  </customMetadata>
+
+</pgeConfig>
