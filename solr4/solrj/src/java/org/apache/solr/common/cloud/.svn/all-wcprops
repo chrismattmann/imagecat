@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud
+END
+Slice.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/Slice.java
+END
+ImplicitDocRouter.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ImplicitDocRouter.java
+END
+SolrZooKeeper.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/SolrZooKeeper.java
+END
+BeforeReconnect.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/BeforeReconnect.java
+END
+HashPartitioner.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/HashPartitioner.java
+END
+ZkOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ZkOperation.java
+END
+DocRouter.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/DocRouter.java
+END
+ZkStateReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ZkStateReader.java
+END
+ClosableThread.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ClosableThread.java
+END
+OnReconnect.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/OnReconnect.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/package.html
+END
+ZkNodeProps.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ZkNodeProps.java
+END
+RoutingRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/RoutingRule.java
+END
+Replica.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/Replica.java
+END
+ClusterStateUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ClusterStateUtil.java
+END
+CompositeIdRouter.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/CompositeIdRouter.java
+END
+Aliases.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/Aliases.java
+END
+DocCollection.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/DocCollection.java
+END
+PlainIdRouter.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/PlainIdRouter.java
+END
+ZooKeeperException.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ZooKeeperException.java
+END
+ClusterState.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ClusterState.java
+END
+SolrZkClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/SolrZkClient.java
+END
+HashBasedRouter.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/HashBasedRouter.java
+END
+ZkClientConnectionStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ZkClientConnectionStrategy.java
+END
+ZkCmdExecutor.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ZkCmdExecutor.java
+END
+ZkCoreNodeProps.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ZkCoreNodeProps.java
+END
+DefaultConnectionStrategy.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/DefaultConnectionStrategy.java
+END
+ConnectionManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/common/cloud/ConnectionManager.java
+END

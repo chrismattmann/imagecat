@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/velocity/src/test-files/velocity/solr/collection1/conf
+END
+schema.xml
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/velocity/src/test-files/velocity/solr/collection1/conf/schema.xml
+END
+solrconfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/velocity/src/test-files/velocity/solr/collection1/conf/solrconfig.xml
+END

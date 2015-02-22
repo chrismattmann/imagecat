@@ -1,0 +1,371 @@
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport
+END
+ContentStreamDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/ContentStreamDataSource.java
+END
+DebugInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DebugInfo.java
+END
+SolrQueryEscapingEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/SolrQueryEscapingEvaluator.java
+END
+MockDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/MockDataSource.java
+END
+PlainTextEntityProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/PlainTextEntityProcessor.java
+END
+BinURLDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/BinURLDataSource.java
+END
+EntityProcessorBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/EntityProcessorBase.java
+END
+FileListEntityProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/FileListEntityProcessor.java
+END
+HTMLStripTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/HTMLStripTransformer.java
+END
+SolrEntityProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/SolrEntityProcessor.java
+END
+EntityProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/EntityProcessor.java
+END
+SolrWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/SolrWriter.java
+END
+SortedMapBackedCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/SortedMapBackedCache.java
+END
+JdbcDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/JdbcDataSource.java
+END
+EntityProcessorWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/EntityProcessorWrapper.java
+END
+URLDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/URLDataSource.java
+END
+DIHLogLevels.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DIHLogLevels.java
+END
+DataImportHandlerException.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DataImportHandlerException.java
+END
+DIHProperties.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DIHProperties.java
+END
+BinFileDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/BinFileDataSource.java
+END
+NumberFormatTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/NumberFormatTransformer.java
+END
+LineEntityProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/LineEntityProcessor.java
+END
+DIHCacheSupport.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DIHCacheSupport.java
+END
+UrlEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/UrlEvaluator.java
+END
+HttpDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/HttpDataSource.java
+END
+DataImporter.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DataImporter.java
+END
+DIHWriterBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DIHWriterBase.java
+END
+SqlEntityProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/SqlEntityProcessor.java
+END
+SqlEscapingEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/SqlEscapingEvaluator.java
+END
+RegexTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/RegexTransformer.java
+END
+ConfigParseUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/ConfigParseUtil.java
+END
+DIHWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DIHWriter.java
+END
+Evaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/Evaluator.java
+END
+DataImportHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DataImportHandler.java
+END
+ClobTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/ClobTransformer.java
+END
+Transformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/Transformer.java
+END
+SimplePropertiesWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/SimplePropertiesWriter.java
+END
+LogTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/LogTransformer.java
+END
+RequestInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/RequestInfo.java
+END
+CachePropertyUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/CachePropertyUtil.java
+END
+ContextImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/ContextImpl.java
+END
+XPathRecordReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/XPathRecordReader.java
+END
+VariableResolver.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/VariableResolver.java
+END
+DateFormatTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DateFormatTransformer.java
+END
+DateFormatEvaluator.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DateFormatEvaluator.java
+END
+FieldStreamDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/FieldStreamDataSource.java
+END
+DocBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DocBuilder.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/package.html
+END
+FieldReaderDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/FieldReaderDataSource.java
+END
+XPathEntityProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/XPathEntityProcessor.java
+END
+Context.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/Context.java
+END
+CachedSqlEntityProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/CachedSqlEntityProcessor.java
+END
+DebugLogger.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DebugLogger.java
+END
+EventListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/EventListener.java
+END
+ScriptTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/ScriptTransformer.java
+END
+DIHCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DIHCache.java
+END
+DataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/DataSource.java
+END
+BinContentStreamDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/BinContentStreamDataSource.java
+END
+FileDataSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/FileDataSource.java
+END
+TemplateTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/TemplateTransformer.java
+END
+ZKPropertiesWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/ZKPropertiesWriter.java
+END

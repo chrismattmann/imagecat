@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test-files/uima
+END
+AggregateSentenceAE.xml
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test-files/uima/AggregateSentenceAE.xml
+END
+TestExceptionAE.xml
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test-files/uima/TestExceptionAE.xml
+END
+uima-tokenizers-schema.xml
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test-files/uima/uima-tokenizers-schema.xml
+END
+TestAE.xml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test-files/uima/TestAE.xml
+END
+stoptypes.txt
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test-files/uima/stoptypes.txt
+END
+uima-tokenizers-solrconfig.xml
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test-files/uima/uima-tokenizers-solrconfig.xml
+END
+DummySentimentAnalysisAEDescriptor.xml
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test-files/uima/DummySentimentAnalysisAEDescriptor.xml
+END
+DummyEntityAEDescriptor.xml
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test-files/uima/DummyEntityAEDescriptor.xml
+END
+DummyExceptionAEDescriptor.xml
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test-files/uima/DummyExceptionAEDescriptor.xml
+END

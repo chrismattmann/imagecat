@@ -1,0 +1,425 @@
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema
+END
+BoolField.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/BoolField.java
+END
+FieldProperties.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/FieldProperties.java
+END
+SpatialPointVectorFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SpatialPointVectorFieldType.java
+END
+LongValueFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/LongValueFieldType.java
+END
+NumericValueFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/NumericValueFieldType.java
+END
+TrieDateField.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/TrieDateField.java
+END
+FloatValueFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/FloatValueFieldType.java
+END
+BCDLongField.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/BCDLongField.java
+END
+DoubleField.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/DoubleField.java
+END
+SpatialTermQueryPrefixTreeFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SpatialTermQueryPrefixTreeFieldType.java
+END
+ZkIndexSchemaReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/ZkIndexSchemaReader.java
+END
+AbstractSpatialPrefixTreeFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/AbstractSpatialPrefixTreeFieldType.java
+END
+BCDStrField.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/BCDStrField.java
+END
+IndexSchema.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/IndexSchema.java
+END
+SpatialRecursivePrefixTreeFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SpatialRecursivePrefixTreeFieldType.java
+END
+LatLonType.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/LatLonType.java
+END
+PointType.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/PointType.java
+END
+ManagedIndexSchemaFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/ManagedIndexSchemaFactory.java
+END
+TrieFloatField.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/TrieFloatField.java
+END
+LongField.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/LongField.java
+END
+ShortField.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/ShortField.java
+END
+SimplePreAnalyzedParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SimplePreAnalyzedParser.java
+END
+SortableFloatField.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SortableFloatField.java
+END
+ByteField.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/ByteField.java
+END
+SpatialQueryable.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SpatialQueryable.java
+END
+ExchangeRateProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/ExchangeRateProvider.java
+END
+SimilarityFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SimilarityFactory.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/package.html
+END
+ClassicIndexSchemaFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/ClassicIndexSchemaFactory.java
+END
+TrieIntField.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/TrieIntField.java
+END
+FieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/FieldType.java
+END
+TextField.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/TextField.java
+END
+CollationField.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/CollationField.java
+END
+BinaryField.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/BinaryField.java
+END
+SortableIntField.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SortableIntField.java
+END
+FieldTypePluginLoader.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/FieldTypePluginLoader.java
+END
+IntValueFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/IntValueFieldType.java
+END
+StrFieldSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/StrFieldSource.java
+END
+CoordinateFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/CoordinateFieldType.java
+END
+TrieDoubleField.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/TrieDoubleField.java
+END
+ExternalFileFieldReloader.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/ExternalFileFieldReloader.java
+END
+BCDIntField.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/BCDIntField.java
+END
+TrieField.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/TrieField.java
+END
+SortableDoubleField.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SortableDoubleField.java
+END
+UUIDField.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/UUIDField.java
+END
+StrField.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/StrField.java
+END
+DoubleValueFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/DoubleValueFieldType.java
+END
+CopyField.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/CopyField.java
+END
+PrimitiveFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/PrimitiveFieldType.java
+END
+DateField.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/DateField.java
+END
+OpenExchangeRatesOrgProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/OpenExchangeRatesOrgProvider.java
+END
+ExternalFileField.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/ExternalFileField.java
+END
+TrieLongField.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/TrieLongField.java
+END
+RandomSortField.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/RandomSortField.java
+END
+BBoxField.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/BBoxField.java
+END
+SortableLongField.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SortableLongField.java
+END
+SchemaField.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SchemaField.java
+END
+ManagedIndexSchema.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/ManagedIndexSchema.java
+END
+EnumField.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/EnumField.java
+END
+FloatField.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/FloatField.java
+END
+SchemaAware.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/SchemaAware.java
+END
+DateValueFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/DateValueFieldType.java
+END
+IndexSchemaFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/IndexSchemaFactory.java
+END
+GeoHashField.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/GeoHashField.java
+END
+PreAnalyzedField.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/PreAnalyzedField.java
+END
+AbstractSubTypeFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/AbstractSubTypeFieldType.java
+END
+JsonPreAnalyzedParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/JsonPreAnalyzedParser.java
+END
+AbstractSpatialFieldType.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/AbstractSpatialFieldType.java
+END
+IntField.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/IntField.java
+END
+CurrencyField.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/schema/CurrencyField.java
+END

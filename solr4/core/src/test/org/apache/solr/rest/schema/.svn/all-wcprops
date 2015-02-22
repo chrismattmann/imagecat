@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema
+END
+TestDynamicFieldResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestDynamicFieldResource.java
+END
+TestCopyFieldCollectionResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestCopyFieldCollectionResource.java
+END
+TestFieldCollectionResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestFieldCollectionResource.java
+END
+TestClassNameShortening.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestClassNameShortening.java
+END
+TestSchemaResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestSchemaResource.java
+END
+TestSchemaNameResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestSchemaNameResource.java
+END
+TestFieldTypeCollectionResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestFieldTypeCollectionResource.java
+END
+TestSerializedLuceneMatchVersion.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestSerializedLuceneMatchVersion.java
+END
+TestSolrQueryParserDefaultOperatorResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestSolrQueryParserDefaultOperatorResource.java
+END
+TestDynamicFieldCollectionResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestDynamicFieldCollectionResource.java
+END
+TestSchemaVersionResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestSchemaVersionResource.java
+END
+TestSchemaSimilarityResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestSchemaSimilarityResource.java
+END
+TestDefaultSearchFieldResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestDefaultSearchFieldResource.java
+END
+TestManagedSchemaFieldResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestManagedSchemaFieldResource.java
+END
+TestSolrQueryParserResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestSolrQueryParserResource.java
+END
+TestFieldResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestFieldResource.java
+END
+TestUniqueKeyFieldResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestUniqueKeyFieldResource.java
+END
+TestFieldTypeResource.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/rest/schema/TestFieldTypeResource.java
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-cell/src/java/org/apache/solr/morphlines/cell
+END
+SolrCellBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-cell/src/java/org/apache/solr/morphlines/cell/SolrCellBuilder.java
+END
+StripNonCharSolrContentHandlerFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 175
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-cell/src/java/org/apache/solr/morphlines/cell/StripNonCharSolrContentHandlerFactory.java
+END
+TrimSolrContentHandlerFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-cell/src/java/org/apache/solr/morphlines/cell/TrimSolrContentHandlerFactory.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-cell/src/java/org/apache/solr/morphlines/cell/package.html
+END

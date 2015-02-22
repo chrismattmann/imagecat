@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache
+END
+BlockDirectory.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/BlockDirectory.java
+END
+CachedIndexOutput.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/CachedIndexOutput.java
+END
+BlockDirectoryCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/BlockDirectoryCache.java
+END
+Cache.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/Cache.java
+END
+ReusedBufferedIndexOutput.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/ReusedBufferedIndexOutput.java
+END
+CustomBufferedIndexInput.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/CustomBufferedIndexInput.java
+END
+BlockLocks.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/BlockLocks.java
+END
+BufferStore.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/BufferStore.java
+END
+Metrics.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/Metrics.java
+END
+BlockCacheKey.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/BlockCacheKey.java
+END
+BlockCacheLocation.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/BlockCacheLocation.java
+END
+Store.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/Store.java
+END
+BlockCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/BlockCache.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/store/blockcache/package.html
+END

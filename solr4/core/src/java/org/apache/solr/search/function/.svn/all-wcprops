@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/search/function
+END
+ValueSourceRangeFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/search/function/ValueSourceRangeFilter.java
+END
+CollapseScoreFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/search/function/CollapseScoreFunction.java
+END
+FileFloatSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/search/function/FileFloatSource.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/search/function/package.html
+END

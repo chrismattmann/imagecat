@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/test-files/clustering/solr/collection1/conf/clustering/carrot2
+END
+stopwords.mt
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/test-files/clustering/solr/collection1/conf/clustering/carrot2/stopwords.mt
+END
+mock-external-attrs-attributes.xml
+K 25
+svn:wc:ra_dav:version-url
+V 188
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/test-files/clustering/solr/collection1/conf/clustering/carrot2/mock-external-attrs-attributes.xml
+END
+stoplabels.mt
+K 25
+svn:wc:ra_dav:version-url
+V 167
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/test-files/clustering/solr/collection1/conf/clustering/carrot2/stoplabels.mt
+END

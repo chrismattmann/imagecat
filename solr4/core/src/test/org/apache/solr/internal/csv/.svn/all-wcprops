@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv
+END
+CSVPrinterTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/CSVPrinterTest.java
+END
+ExtendedBufferedReaderTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/ExtendedBufferedReaderTest.java
+END
+CharBufferTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/CharBufferTest.java
+END
+CSVParserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/CSVParserTest.java
+END
+CSVUtilsTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/CSVUtilsTest.java
+END
+CSVStrategyTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/CSVStrategyTest.java
+END

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr
+END
+BaseDistributedSearchTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/BaseDistributedSearchTestCase.java
+END
+JSONTestUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/JSONTestUtil.java
+END
+SolrIgnoredThreadsFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/SolrIgnoredThreadsFilter.java
+END
+SolrTestCaseJ4.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/SolrTestCaseJ4.java
+END
+SolrJettyTestBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/SolrJettyTestBase.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/package.html
+END

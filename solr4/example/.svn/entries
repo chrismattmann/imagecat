@@ -1,0 +1,169 @@
+10
+
+dir
+1661297
+http://svn.apache.org/repos/asf/lucene/dev/tags/lucene_solr_4_10_3/solr/example
+http://svn.apache.org/repos/asf
+
+
+
+2014-12-02T21:12:46.606487Z
+1643006
+hossman
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+13f79535-47bb-0310-9956-ffa450edef68
+
+solr
+dir
+
+example-schemaless
+dir
+
+scripts
+dir
+
+solr-webapp
+dir
+
+example-DIH
+dir
+
+build.xml
+file
+
+
+
+
+2015-02-21T08:11:33.505955Z
+bf012d55a9f70c4d78edcb7c8833824b
+2013-03-28T15:16:45.147799Z
+1462147
+markrmiller
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2597
+
+webapps
+dir
+
+multicore
+dir
+
+logs
+dir
+
+exampledocs
+dir
+
+ivy.xml
+file
+
+
+
+
+2015-02-21T08:11:33.505955Z
+1de1fa2809a5f062b2abc26f53f93357
+2014-10-22T16:59:51.938932Z
+1633651
+sarowe
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3526
+
+lib
+dir
+
+contexts
+dir
+
+resources
+dir
+
+etc
+dir
+
+README.txt
+file
+
+
+
+
+2015-02-21T08:11:33.505955Z
+ba033eda1ff7b9237fe71c636e87b18d
+2013-03-27T14:20:05.215147Z
+1461596
+markrmiller
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2992
+

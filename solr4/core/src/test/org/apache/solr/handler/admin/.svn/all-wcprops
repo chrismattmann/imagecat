@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin
+END
+CoreAdminHandlerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin/CoreAdminHandlerTest.java
+END
+CoreMergeIndexesAdminHandlerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin/CoreMergeIndexesAdminHandlerTest.java
+END
+MBeansHandlerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin/MBeansHandlerTest.java
+END
+CoreAdminCreateDiscoverTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin/CoreAdminCreateDiscoverTest.java
+END
+LoggingHandlerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin/LoggingHandlerTest.java
+END
+LukeRequestHandlerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin/LukeRequestHandlerTest.java
+END
+ShowFileRequestHandlerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin/ShowFileRequestHandlerTest.java
+END
+InfoHandlerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin/InfoHandlerTest.java
+END
+CoreAdminRequestStatusTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin/CoreAdminRequestStatusTest.java
+END
+SystemInfoHandlerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/handler/admin/SystemInfoHandlerTest.java
+END

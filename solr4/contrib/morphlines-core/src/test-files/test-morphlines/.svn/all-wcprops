@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files/test-morphlines
+END
+tokenizeText.conf
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files/test-morphlines/tokenizeText.conf
+END
+solrCellXML.conf
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files/test-morphlines/solrCellXML.conf
+END
+loadSolrBasic.conf
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files/test-morphlines/loadSolrBasic.conf
+END
+solrCellDocumentTypes.conf
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files/test-morphlines/solrCellDocumentTypes.conf
+END
+solrCellJPGCompressed.conf
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files/test-morphlines/solrCellJPGCompressed.conf
+END
+tutorialReadAvroContainer.conf
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files/test-morphlines/tutorialReadAvroContainer.conf
+END

@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util
+END
+AbstractSolrTestCase.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/AbstractSolrTestCase.java
+END
+RandomMergePolicy.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/RandomMergePolicy.java
+END
+RestTestHarness.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/RestTestHarness.java
+END
+ExternalPaths.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/ExternalPaths.java
+END
+TestHarness.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/TestHarness.java
+END
+RESTfulServerProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/RESTfulServerProvider.java
+END
+SSLTestConfig.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/SSLTestConfig.java
+END
+DOMUtilTestBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/DOMUtilTestBase.java
+END
+RestTestBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/RestTestBase.java
+END
+RevertDefaultThreadHandlerRule.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/RevertDefaultThreadHandlerRule.java
+END
+BaseTestHarness.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/BaseTestHarness.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/util/package.html
+END

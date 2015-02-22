@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev
+END
+functions.sh
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/functions.sh
+END
+solrcloud-multi-start.sh
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/solrcloud-multi-start.sh
+END
+solrcloud-start-existing.sh
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/solrcloud-start-existing.sh
+END
+example1.sh
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/example1.sh
+END
+example2.sh
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/example2.sh
+END
+example3.sh
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/example3.sh
+END
+control.sh
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/control.sh
+END
+solrcloud-start.sh
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/solrcloud-start.sh
+END
+cli-test-solrcloud-start.sh
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/cli-test-solrcloud-start.sh
+END
+solrcloud-extzk-start.sh
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/solrcloud-extzk-start.sh
+END
+stop.sh
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/cloud-dev/stop.sh
+END

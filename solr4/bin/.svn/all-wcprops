@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/bin
+END
+solr
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/bin/solr
+END
+solr.cmd
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/bin/solr.cmd
+END
+oom_solr.sh
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/bin/oom_solr.sh
+END
+solr.in.cmd
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/bin/solr.in.cmd
+END
+solr.in.sh
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/bin/solr.in.sh
+END

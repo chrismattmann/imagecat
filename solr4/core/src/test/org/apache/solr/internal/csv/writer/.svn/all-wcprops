@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/writer
+END
+CSVConfigGuesserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/writer/CSVConfigGuesserTest.java
+END
+CSVFieldTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/writer/CSVFieldTest.java
+END
+CSVConfigTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/writer/CSVConfigTest.java
+END
+CSVWriterTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test/org/apache/solr/internal/csv/writer/CSVWriterTest.java
+END

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/search/grouping/distributed/shardresultserializer
+END
+ShardResultTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 175
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/search/grouping/distributed/shardresultserializer/ShardResultTransformer.java
+END
+TopGroupsResultTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 179
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/search/grouping/distributed/shardresultserializer/TopGroupsResultTransformer.java
+END
+SearchGroupsResultTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 182
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/search/grouping/distributed/shardresultserializer/SearchGroupsResultTransformer.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr/search/grouping/distributed/shardresultserializer/package.html
+END

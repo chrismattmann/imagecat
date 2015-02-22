@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj
+END
+SolrQuery.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/SolrQuery.java
+END
+SolrServerException.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/SolrServerException.java
+END
+StreamingResponseCallback.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/StreamingResponseCallback.java
+END
+SolrServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/SolrServer.java
+END
+SolrRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/SolrRequest.java
+END
+ResponseParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/ResponseParser.java
+END
+SolrResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/SolrResponse.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/package.html
+END

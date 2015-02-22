@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop
+END
+MorphlineGoLiveMiniMRTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/MorphlineGoLiveMiniMRTest.java
+END
+AlphaNumericComparatorTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/AlphaNumericComparatorTest.java
+END
+LineRandomizerMapperReducerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/LineRandomizerMapperReducerTest.java
+END
+MapReduceIndexerToolArgumentParserTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/MapReduceIndexerToolArgumentParserTest.java
+END
+MorphlineMapperTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/MorphlineMapperTest.java
+END
+IdentityReducer.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/IdentityReducer.java
+END
+MorphlineReducerTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/MorphlineReducerTest.java
+END
+MRUnitBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/MRUnitBase.java
+END
+UtilsForTests.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/UtilsForTests.java
+END
+MorphlineBasicMiniMRTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/MorphlineBasicMiniMRTest.java
+END
+IdentityMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/IdentityMapper.java
+END

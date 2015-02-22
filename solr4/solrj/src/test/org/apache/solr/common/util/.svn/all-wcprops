@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util
+END
+NamedListTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/NamedListTest.java
+END
+URLUtilTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/URLUtilTest.java
+END
+TestHash.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/TestHash.java
+END
+TestRetryUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/TestRetryUtil.java
+END
+ContentStreamTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/ContentStreamTest.java
+END
+TestJavaBinCodec.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/TestJavaBinCodec.java
+END
+TestFastInputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/TestFastInputStream.java
+END
+TestXMLEscaping.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/TestXMLEscaping.java
+END
+TestJsonRecordReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/TestJsonRecordReader.java
+END
+IteratorChainTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/IteratorChainTest.java
+END
+TestNamedListCodec.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/test/org/apache/solr/common/util/TestNamedListCodec.java
+END

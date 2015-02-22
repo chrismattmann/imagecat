@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/analysis-extras/src/test-files/analysis-extras/solr/collection1/conf
+END
+schema-folding-extra.xml
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/analysis-extras/src/test-files/analysis-extras/solr/collection1/conf/schema-folding-extra.xml
+END
+schema-icucollate.xml
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/analysis-extras/src/test-files/analysis-extras/solr/collection1/conf/schema-icucollate.xml
+END
+solrconfig-icucollate.xml
+K 25
+svn:wc:ra_dav:version-url
+V 170
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/analysis-extras/src/test-files/analysis-extras/solr/collection1/conf/solrconfig-icucollate.xml
+END
+schema-icucollatefilter.xml
+K 25
+svn:wc:ra_dav:version-url
+V 172
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/analysis-extras/src/test-files/analysis-extras/solr/collection1/conf/schema-icucollatefilter.xml
+END
+schema-icucollate-dv.xml
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/analysis-extras/src/test-files/analysis-extras/solr/collection1/conf/schema-icucollate-dv.xml
+END
+schema-icucollateoptions.xml
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/analysis-extras/src/test-files/analysis-extras/solr/collection1/conf/schema-icucollateoptions.xml
+END

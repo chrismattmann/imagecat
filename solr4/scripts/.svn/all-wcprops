@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts
+END
+snapinstaller
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/snapinstaller
+END
+snappuller
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/snappuller
+END
+rsyncd-stop
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/rsyncd-stop
+END
+abc
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/abc
+END
+snappuller-disable
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/snappuller-disable
+END
+rsyncd-enable
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/rsyncd-enable
+END
+commit
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/commit
+END
+snapcleaner
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/snapcleaner
+END
+rsyncd-start
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/rsyncd-start
+END
+backupcleaner
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/backupcleaner
+END
+optimize
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/optimize
+END
+abo
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/abo
+END
+scripts-util
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/scripts-util
+END
+rsyncd-disable
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/rsyncd-disable
+END
+backup
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/backup
+END
+snapshooter
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/snapshooter
+END
+snappuller-enable
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/snappuller-enable
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/scripts/README.txt
+END

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files
+END
+custom-mimetypes.xml
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files/custom-mimetypes.xml
+END
+morphlines-core.marker
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files/morphlines-core.marker
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/morphlines-core/src/test-files/log4j.properties
+END

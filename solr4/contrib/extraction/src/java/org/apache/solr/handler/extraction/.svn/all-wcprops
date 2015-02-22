@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/extraction/src/java/org/apache/solr/handler/extraction
+END
+ExtractingRequestHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/extraction/src/java/org/apache/solr/handler/extraction/ExtractingRequestHandler.java
+END
+SolrContentHandlerFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/extraction/src/java/org/apache/solr/handler/extraction/SolrContentHandlerFactory.java
+END
+RegexRulesPasswordProvider.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/extraction/src/java/org/apache/solr/handler/extraction/RegexRulesPasswordProvider.java
+END
+ExtractingMetadataConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/extraction/src/java/org/apache/solr/handler/extraction/ExtractingMetadataConstants.java
+END
+SolrContentHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/extraction/src/java/org/apache/solr/handler/extraction/SolrContentHandler.java
+END
+ExtractingParams.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/extraction/src/java/org/apache/solr/handler/extraction/ExtractingParams.java
+END
+ExtractingDocumentLoader.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/extraction/src/java/org/apache/solr/handler/extraction/ExtractingDocumentLoader.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/extraction/src/java/org/apache/solr/handler/extraction/package.html
+END

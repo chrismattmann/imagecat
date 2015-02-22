@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler-extras/src/test/org/apache/solr/handler/dataimport
+END
+TestMailEntityProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler-extras/src/test/org/apache/solr/handler/dataimport/TestMailEntityProcessor.java
+END
+TestTikaEntityProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 173
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler-extras/src/test/org/apache/solr/handler/dataimport/TestTikaEntityProcessor.java
+END

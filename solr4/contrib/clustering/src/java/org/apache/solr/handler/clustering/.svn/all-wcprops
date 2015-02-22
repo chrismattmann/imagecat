@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/java/org/apache/solr/handler/clustering
+END
+ClusteringComponent.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/java/org/apache/solr/handler/clustering/ClusteringComponent.java
+END
+ClusteringParams.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/java/org/apache/solr/handler/clustering/ClusteringParams.java
+END
+DocumentClusteringEngine.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/java/org/apache/solr/handler/clustering/DocumentClusteringEngine.java
+END
+ClusteringEngine.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/java/org/apache/solr/handler/clustering/ClusteringEngine.java
+END
+SearchClusteringEngine.java
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/java/org/apache/solr/handler/clustering/SearchClusteringEngine.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/clustering/src/java/org/apache/solr/handler/clustering/package.html
+END

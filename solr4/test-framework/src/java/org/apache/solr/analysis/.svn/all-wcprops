@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/analysis
+END
+StringMockSolrResourceLoader.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/analysis/StringMockSolrResourceLoader.java
+END
+MockCharFilterFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/analysis/MockCharFilterFactory.java
+END
+MockTokenFilterFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/analysis/MockTokenFilterFactory.java
+END
+MockTokenizerFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/analysis/MockTokenizerFactory.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/test-framework/src/java/org/apache/solr/analysis/package.html
+END

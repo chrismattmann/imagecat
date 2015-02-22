@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/java/org/apache/solr/uima/processor
+END
+UIMAUpdateRequestProcessorFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 159
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/java/org/apache/solr/uima/processor/UIMAUpdateRequestProcessorFactory.java
+END
+SolrUIMAConfiguration.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/java/org/apache/solr/uima/processor/SolrUIMAConfiguration.java
+END
+UIMAToSolrMapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/java/org/apache/solr/uima/processor/UIMAToSolrMapper.java
+END
+SolrUIMAConfigurationReader.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/java/org/apache/solr/uima/processor/SolrUIMAConfigurationReader.java
+END
+UIMAUpdateRequestProcessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/java/org/apache/solr/uima/processor/UIMAUpdateRequestProcessor.java
+END
+FieldMappingException.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/java/org/apache/solr/uima/processor/FieldMappingException.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/java/org/apache/solr/uima/processor/package.html
+END

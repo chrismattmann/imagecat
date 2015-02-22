@@ -1,0 +1,2681 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses
+END
+jackson-annotations-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-annotations-NOTICE.txt
+END
+derby-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/derby-LICENSE-ASL.txt
+END
+jersey-server-1.9.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jersey-server-1.9.jar.sha1
+END
+hadoop-mapreduce-client-common-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-common-2.2.0.jar.sha1
+END
+jhighlight-1.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jhighlight-1.0.jar.sha1
+END
+httpmime-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/httpmime-NOTICE.txt
+END
+asm-commons-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/asm-commons-NOTICE.txt
+END
+poi-ooxml-schemas-3.10.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-ooxml-schemas-3.10.1.jar.sha1
+END
+guava-14.0.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/guava-14.0.1.jar.sha1
+END
+apache-mime4j-dom-0.7.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/apache-mime4j-dom-0.7.2.jar.sha1
+END
+jackson-databind-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-databind-NOTICE.txt
+END
+junit4-ant-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/junit4-ant-NOTICE.txt
+END
+hadoop-mapreduce-client-core-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-core-LICENSE-ASL.txt
+END
+antlr-runtime-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/antlr-runtime-NOTICE.txt
+END
+README.committers.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/README.committers.txt
+END
+hadoop-yarn-server-nodemanager-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-nodemanager-NOTICE.txt
+END
+OpenCalaisAnnotator-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/OpenCalaisAnnotator-NOTICE.txt
+END
+bcprov-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/bcprov-LICENSE-BSD_LIKE.txt
+END
+netty-3.7.0.Final.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/netty-3.7.0.Final.jar.sha1
+END
+jackson-core-asl-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-core-asl-LICENSE-ASL.txt
+END
+hadoop-yarn-server-nodemanager-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-nodemanager-2.2.0.jar.sha1
+END
+jersey-guice-1.9.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jersey-guice-1.9.jar.sha1
+END
+log4j-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/log4j-NOTICE.txt
+END
+fontbox-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/fontbox-NOTICE.txt
+END
+tagsoup-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tagsoup-NOTICE.txt
+END
+OpenCalaisAnnotator-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/OpenCalaisAnnotator-LICENSE-ASL.txt
+END
+wstx-asl-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/wstx-asl-NOTICE.txt
+END
+guice-servlet-3.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/guice-servlet-3.0.jar.sha1
+END
+avro-1.7.5.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/avro-1.7.5.jar.sha1
+END
+hadoop-yarn-server-common-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-common-LICENSE-ASL.txt
+END
+hppc-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hppc-NOTICE.txt
+END
+boilerpipe-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/boilerpipe-NOTICE.txt
+END
+velocity-tools-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/velocity-tools-NOTICE.txt
+END
+commons-configuration-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-configuration-LICENSE-ASL.txt
+END
+ant-1.8.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/ant-1.8.2.jar.sha1
+END
+snappy-java-1.0.5.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/snappy-java-1.0.5.jar.sha1
+END
+commons-fileupload-1.2.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-fileupload-1.2.1.jar.sha1
+END
+morfologik-polish-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/morfologik-polish-NOTICE.txt
+END
+commons-codec-1.9.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-codec-1.9.jar.sha1
+END
+hadoop-mapreduce-client-hs-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-hs-2.2.0.jar.sha1
+END
+apache-mime4j-core-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/apache-mime4j-core-LICENSE-ASL.txt
+END
+metrics-healthchecks-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/metrics-healthchecks-LICENSE-ASL.txt
+END
+joda-time-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/joda-time-NOTICE.txt
+END
+poi-ooxml-3.10.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-ooxml-3.10.1.jar.sha1
+END
+xercesImpl-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xercesImpl-NOTICE.txt
+END
+mockito-core-1.9.5.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mockito-core-1.9.5.jar.sha1
+END
+icu4j-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/icu4j-NOTICE.txt
+END
+hadoop-mapreduce-client-jobclient-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-jobclient-LICENSE-ASL.txt
+END
+hadoop-common-tests-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-common-tests-LICENSE-ASL.txt
+END
+jetty-server-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-server-8.1.10.v20130312.jar.sha1
+END
+carrot2-mini-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/carrot2-mini-LICENSE-BSD_LIKE.txt
+END
+hadoop-annotations-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-annotations-LICENSE-ASL.txt
+END
+poi-ooxml-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-ooxml-NOTICE.txt
+END
+javax.inject-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/javax.inject-NOTICE.txt
+END
+xmpcore-LICENSE-BSD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xmpcore-LICENSE-BSD.txt
+END
+guice-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/guice-NOTICE.txt
+END
+httpclient-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/httpclient-LICENSE-ASL.txt
+END
+hadoop-yarn-client-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-client-NOTICE.txt
+END
+velocity-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/velocity-NOTICE.txt
+END
+WhitespaceTokenizer-2.3.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/WhitespaceTokenizer-2.3.1.jar.sha1
+END
+hadoop-common-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-common-NOTICE.txt
+END
+pdfbox-1.8.4.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/pdfbox-1.8.4.jar.sha1
+END
+rome-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/rome-NOTICE.txt
+END
+javax.inject-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/javax.inject-LICENSE-ASL.txt
+END
+guava-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/guava-NOTICE.txt
+END
+httpcore-4.3.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/httpcore-4.3.jar.sha1
+END
+morfologik-stemming-1.7.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/morfologik-stemming-1.7.1.jar.sha1
+END
+config-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/config-NOTICE.txt
+END
+jetty-deploy-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-deploy-8.1.10.v20130312.jar.sha1
+END
+httpcore-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/httpcore-LICENSE-ASL.txt
+END
+jersey-server-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jersey-server-LICENSE-CDDL.txt
+END
+metrics-core-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/metrics-core-LICENSE-ASL.txt
+END
+hadoop-hdfs-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-hdfs-LICENSE-ASL.txt
+END
+aopalliance-LICENSE-PD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/aopalliance-LICENSE-PD.txt
+END
+slf4j-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/slf4j-NOTICE.txt
+END
+hadoop-mapreduce-client-shuffle-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-shuffle-NOTICE.txt
+END
+jdom-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jdom-NOTICE.txt
+END
+hadoop-mapreduce-client-shuffle-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-shuffle-2.2.0.jar.sha1
+END
+metrics-healthchecks-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/metrics-healthchecks-NOTICE.txt
+END
+apache-mime4j-core-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/apache-mime4j-core-NOTICE.txt
+END
+commons-configuration-1.6.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-configuration-1.6.jar.sha1
+END
+jackson-core-asl-1.9.13.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-core-asl-1.9.13.jar.sha1
+END
+javax.mail-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/javax.mail-LICENSE-CDDL.txt
+END
+pdfbox-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/pdfbox-LICENSE-ASL.txt
+END
+servlet-api-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/servlet-api-LICENSE-CDDL.txt
+END
+jsonic-1.2.7.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jsonic-1.2.7.jar.sha1
+END
+xz-LICENSE-PD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xz-LICENSE-PD.txt
+END
+netty-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/netty-NOTICE.txt
+END
+poi-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-LICENSE-ASL.txt
+END
+jersey-core-1.9.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jersey-core-1.9.jar.sha1
+END
+junit4-ant-2.1.6.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/junit4-ant-2.1.6.jar.sha1
+END
+org.restlet.ext.servlet-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/org.restlet.ext.servlet-LICENSE-ASL.txt
+END
+Tagger-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/Tagger-NOTICE.txt
+END
+vorbis-java-tika-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/vorbis-java-tika-NOTICE.txt
+END
+vorbis-java-core-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/vorbis-java-core-NOTICE.txt
+END
+hsqldb-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hsqldb-NOTICE.txt
+END
+aopalliance-1.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/aopalliance-1.0.jar.sha1
+END
+kite-morphlines-tika-decompress-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-tika-decompress-LICENSE-ASL.txt
+END
+jetty-continuation-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-continuation-8.1.10.v20130312.jar.sha1
+END
+mahout-math-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mahout-math-NOTICE.txt
+END
+hadoop-yarn-server-tests-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-tests-NOTICE.txt
+END
+jhighlight-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jhighlight-LICENSE-CDDL.txt
+END
+poi-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-NOTICE.txt
+END
+hadoop-yarn-api-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-api-NOTICE.txt
+END
+objenesis-1.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/objenesis-1.2.jar.sha1
+END
+kite-morphlines-tika-decompress-0.12.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-tika-decompress-0.12.1.jar.sha1
+END
+poi-scratchpad-3.10.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-scratchpad-3.10.1.jar.sha1
+END
+hsqldb-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hsqldb-LICENSE-BSD_LIKE.txt
+END
+jackson-annotations-2.3.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-annotations-2.3.1.jar.sha1
+END
+bcprov-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/bcprov-NOTICE.txt
+END
+attributes-binder-1.2.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/attributes-binder-1.2.1.jar.sha1
+END
+ant-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/ant-LICENSE-ASL.txt
+END
+derby-10.9.1.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/derby-10.9.1.0.jar.sha1
+END
+asm-commons-4.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/asm-commons-4.1.jar.sha1
+END
+mahout-math-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mahout-math-LICENSE-ASL.txt
+END
+jackson-mapper-asl-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-mapper-asl-LICENSE-ASL.txt
+END
+gimap-1.5.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/gimap-1.5.1.jar.sha1
+END
+junit-LICENSE-CPL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/junit-LICENSE-CPL.txt
+END
+langdetect-1.1-20120112.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/langdetect-1.1-20120112.jar.sha1
+END
+tika-xmp-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tika-xmp-LICENSE-ASL.txt
+END
+xmlbeans-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xmlbeans-NOTICE.txt
+END
+Saxon-HE-LICENSE-MPL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/Saxon-HE-LICENSE-MPL.txt
+END
+hadoop-auth-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-auth-NOTICE.txt
+END
+argparse4j-0.4.3.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/argparse4j-0.4.3.jar.sha1
+END
+hadoop-annotations-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-annotations-2.2.0.jar.sha1
+END
+velocity-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/velocity-LICENSE-ASL.txt
+END
+juniversalchardet-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/juniversalchardet-NOTICE.txt
+END
+kite-morphlines-core-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-core-LICENSE-ASL.txt
+END
+hadoop-yarn-server-web-proxy-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-web-proxy-NOTICE.txt
+END
+rome-0.9.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/rome-0.9.jar.sha1
+END
+AlchemyAPIAnnotator-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/AlchemyAPIAnnotator-LICENSE-ASL.txt
+END
+jetty-security-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-security-8.1.10.v20130312.jar.sha1
+END
+commons-configuration-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-configuration-NOTICE.txt
+END
+hadoop-yarn-server-resourcemanager-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-resourcemanager-LICENSE-ASL.txt
+END
+juniversalchardet-1.0.3.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/juniversalchardet-1.0.3.jar.sha1
+END
+isoparser-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/isoparser-LICENSE-ASL.txt
+END
+hadoop-yarn-server-web-proxy-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-web-proxy-2.2.0.jar.sha1
+END
+kite-morphlines-core-0.12.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-core-0.12.1.jar.sha1
+END
+morfologik-fsa-LICENSE-BSD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/morfologik-fsa-LICENSE-BSD.txt
+END
+xmpcore-5.1.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xmpcore-5.1.2.jar.sha1
+END
+jackson-mapper-asl-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-mapper-asl-NOTICE.txt
+END
+jetty-http-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-http-8.1.10.v20130312.jar.sha1
+END
+xercesImpl-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xercesImpl-LICENSE-ASL.txt
+END
+org.restlet.ext.servlet-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/org.restlet.ext.servlet-NOTICE.txt
+END
+hadoop-hdfs-tests-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-hdfs-tests-NOTICE.txt
+END
+slf4j-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/slf4j-LICENSE-BSD_LIKE.txt
+END
+commons-digester-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-digester-LICENSE-ASL.txt
+END
+boilerpipe-1.1.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/boilerpipe-1.1.0.jar.sha1
+END
+commons-io-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-io-LICENSE-ASL.txt
+END
+noggit-0.5.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/noggit-0.5.jar.sha1
+END
+hadoop-common-tests-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-common-tests-NOTICE.txt
+END
+hadoop-mapreduce-client-jobclient-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-jobclient-NOTICE.txt
+END
+jcl-over-slf4j-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jcl-over-slf4j-NOTICE.txt
+END
+gimap-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/gimap-LICENSE-CDDL.txt
+END
+Saxon-HE-9.5.1-4.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/Saxon-HE-9.5.1-4.jar.sha1
+END
+kite-morphlines-tika-core-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-tika-core-LICENSE-ASL.txt
+END
+activation-1.1.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/activation-1.1.1.jar.sha1
+END
+isoparser-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/isoparser-NOTICE.txt
+END
+org.restlet-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/org.restlet-NOTICE.txt
+END
+velocity-1.7.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/velocity-1.7.jar.sha1
+END
+isoparser-1.0-RC-1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/isoparser-1.0-RC-1.jar.sha1
+END
+kite-morphlines-tika-core-0.12.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-tika-core-0.12.1.jar.sha1
+END
+kite-morphlines-saxon-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-saxon-LICENSE-ASL.txt
+END
+aspectjrt-LICENSE-EPL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/aspectjrt-LICENSE-EPL.txt
+END
+kite-morphlines-avro-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-avro-NOTICE.txt
+END
+slf4j-log4j12-1.7.6.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/slf4j-log4j12-1.7.6.jar.sha1
+END
+kite-morphlines-saxon-0.12.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-saxon-0.12.1.jar.sha1
+END
+kite-morphlines-core-0.12.1-tests.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-core-0.12.1-tests.jar.sha1
+END
+protobuf-java-LICENSE-BSD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/protobuf-java-LICENSE-BSD.txt
+END
+jetty-webapp-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-webapp-8.1.10.v20130312.jar.sha1
+END
+bcmail-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/bcmail-NOTICE.txt
+END
+jaxb-impl-2.2.3-1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jaxb-impl-2.2.3-1.jar.sha1
+END
+tika-xmp-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tika-xmp-NOTICE.txt
+END
+jetty-servlet-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-servlet-8.1.10.v20130312.jar.sha1
+END
+morfologik-stemming-LICENSE-BSD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/morfologik-stemming-LICENSE-BSD.txt
+END
+hppc-0.5.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hppc-0.5.2.jar.sha1
+END
+commons-codec-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-codec-LICENSE-ASL.txt
+END
+hadoop-common-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-common-2.2.0.jar.sha1
+END
+jul-to-slf4j-1.7.6.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jul-to-slf4j-1.7.6.jar.sha1
+END
+xz-1.4.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xz-1.4.jar.sha1
+END
+mrunit-1.0.0-hadoop2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mrunit-1.0.0-hadoop2.jar.sha1
+END
+dom4j-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/dom4j-NOTICE.txt
+END
+jersey-bundle-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jersey-bundle-LICENSE-CDDL.txt
+END
+tika-core-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tika-core-NOTICE.txt
+END
+guice-servlet-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/guice-servlet-NOTICE.txt
+END
+dom4j-1.6.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/dom4j-1.6.1.jar.sha1
+END
+mail-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mail-LICENSE-CDDL.txt
+END
+jackson-mapper-asl-1.9.13.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-mapper-asl-1.9.13.jar.sha1
+END
+kite-morphlines-twitter-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-twitter-LICENSE-ASL.txt
+END
+dom4j-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/dom4j-LICENSE-BSD_LIKE.txt
+END
+commons-io-2.3.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-io-2.3.jar.sha1
+END
+morfologik-stemming-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/morfologik-stemming-NOTICE.txt
+END
+cglib-nodep-2.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/cglib-nodep-2.2.jar.sha1
+END
+hadoop-mapreduce-client-common-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-common-LICENSE-ASL.txt
+END
+jetty-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-NOTICE.txt
+END
+kite-morphlines-twitter-0.12.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-twitter-0.12.1.jar.sha1
+END
+tagsoup-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tagsoup-LICENSE-ASL.txt
+END
+wstx-asl-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/wstx-asl-LICENSE-ASL.txt
+END
+cglib-nodep-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/cglib-nodep-LICENSE-ASL.txt
+END
+randomizedtesting-runner-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/randomizedtesting-runner-NOTICE.txt
+END
+hadoop-hdfs-2.2.0-tests.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-hdfs-2.2.0-tests.jar.sha1
+END
+attributes-binder-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/attributes-binder-LICENSE-ASL.txt
+END
+carrot2-mini-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/carrot2-mini-NOTICE.txt
+END
+commons-lang-2.6.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-lang-2.6.jar.sha1
+END
+hadoop-common-2.2.0-tests.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-common-2.2.0-tests.jar.sha1
+END
+jetty-jmx-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-jmx-8.1.10.v20130312.jar.sha1
+END
+javax.servlet-api-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/javax.servlet-api-LICENSE-CDDL.txt
+END
+jetty-xml-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-xml-8.1.10.v20130312.jar.sha1
+END
+concurrentlinkedhashmap-lru-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/concurrentlinkedhashmap-lru-NOTICE.txt
+END
+morfologik-polish-LICENSE-BSD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/morfologik-polish-LICENSE-BSD.txt
+END
+hadoop-yarn-server-resourcemanager-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-resourcemanager-2.2.0.jar.sha1
+END
+org.restlet-2.1.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/org.restlet-2.1.1.jar.sha1
+END
+poi-3.10.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-3.10.1.jar.sha1
+END
+morfologik-fsa-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/morfologik-fsa-NOTICE.txt
+END
+objenesis-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/objenesis-NOTICE.txt
+END
+concurrentlinkedhashmap-lru-1.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/concurrentlinkedhashmap-lru-1.2.jar.sha1
+END
+config-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/config-LICENSE-ASL.txt
+END
+commons-digester-2.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-digester-2.1.jar.sha1
+END
+jersey-bundle-1.9.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jersey-bundle-1.9.jar.sha1
+END
+commons-cli-1.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-cli-1.2.jar.sha1
+END
+attributes-binder-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/attributes-binder-NOTICE.txt
+END
+tika-core-1.5.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tika-core-1.5.jar.sha1
+END
+xercesImpl-2.9.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xercesImpl-2.9.1.jar.sha1
+END
+spatial4j-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/spatial4j-NOTICE.txt
+END
+fontbox-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/fontbox-LICENSE-ASL.txt
+END
+log4j-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/log4j-LICENSE-ASL.txt
+END
+hadoop-yarn-api-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-api-2.2.0.jar.sha1
+END
+commons-beanutils-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-beanutils-NOTICE.txt
+END
+kite-morphlines-core-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-core-NOTICE.txt
+END
+xz-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xz-NOTICE.txt
+END
+javax.mail-1.5.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/javax.mail-1.5.1.jar.sha1
+END
+guice-3.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/guice-3.0.jar.sha1
+END
+asm-commons-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/asm-commons-LICENSE-BSD_LIKE.txt
+END
+jackson-databind-2.3.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-databind-2.3.1.jar.sha1
+END
+commons-collections-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-collections-LICENSE-ASL.txt
+END
+hadoop-yarn-api-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-api-LICENSE-ASL.txt
+END
+snappy-java-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/snappy-java-LICENSE-ASL.txt
+END
+commons-lang-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-lang-LICENSE-ASL.txt
+END
+slf4j-api-1.7.6.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/slf4j-api-1.7.6.jar.sha1
+END
+kite-morphlines-twitter-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-twitter-NOTICE.txt
+END
+jackson-databind-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-databind-LICENSE-ASL.txt
+END
+antlr-runtime-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/antlr-runtime-LICENSE-BSD_LIKE.txt
+END
+OpenCalaisAnnotator-2.3.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/OpenCalaisAnnotator-2.3.1.jar.sha1
+END
+commons-beanutils-1.8.3.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-beanutils-1.8.3.jar.sha1
+END
+hadoop-mapreduce-client-core-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-core-NOTICE.txt
+END
+randomizedtesting-runner-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/randomizedtesting-runner-LICENSE-ASL.txt
+END
+protobuf-java-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/protobuf-java-NOTICE.txt
+END
+tika-parsers-1.5.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tika-parsers-1.5.jar.sha1
+END
+morfologik-polish-1.7.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/morfologik-polish-1.7.1.jar.sha1
+END
+commons-compress-1.7.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-compress-1.7.jar.sha1
+END
+commons-io-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-io-NOTICE.txt
+END
+rome-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/rome-LICENSE-ASL.txt
+END
+jetty-io-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-io-8.1.10.v20130312.jar.sha1
+END
+joda-time-2.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/joda-time-2.2.jar.sha1
+END
+apache-mime4j-dom-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/apache-mime4j-dom-NOTICE.txt
+END
+zookeeper-3.4.6.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/zookeeper-3.4.6.jar.sha1
+END
+xmlbeans-2.6.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xmlbeans-2.6.0.jar.sha1
+END
+hadoop-mapreduce-client-core-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-core-2.2.0.jar.sha1
+END
+avro-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/avro-LICENSE-ASL.txt
+END
+hadoop-yarn-common-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-common-LICENSE-ASL.txt
+END
+jsonic-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jsonic-NOTICE.txt
+END
+commons-collections-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-collections-NOTICE.txt
+END
+mahout-collections-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mahout-collections-LICENSE-ASL.txt
+END
+tagsoup-1.2.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tagsoup-1.2.1.jar.sha1
+END
+aspectjrt-1.6.11.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/aspectjrt-1.6.11.jar.sha1
+END
+servlet-api-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/servlet-api-NOTICE.txt
+END
+tika-core-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tika-core-LICENSE-ASL.txt
+END
+guice-servlet-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/guice-servlet-LICENSE-ASL.txt
+END
+objenesis-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/objenesis-LICENSE-ASL.txt
+END
+wstx-asl-3.2.7.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/wstx-asl-3.2.7.jar.sha1
+END
+kite-morphlines-saxon-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-saxon-NOTICE.txt
+END
+bcmail-jdk15-1.45.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/bcmail-jdk15-1.45.jar.sha1
+END
+hadoop-mapreduce-client-hs-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-hs-NOTICE.txt
+END
+hadoop-yarn-server-tests-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-tests-LICENSE-ASL.txt
+END
+commons-compress-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-compress-NOTICE.txt
+END
+tika-parsers-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tika-parsers-NOTICE.txt
+END
+metadata-extractor-2.6.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/metadata-extractor-2.6.2.jar.sha1
+END
+hadoop-mapreduce-client-jobclient-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-jobclient-2.2.0.jar.sha1
+END
+hsqldb-1.8.0.10.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hsqldb-1.8.0.10.jar.sha1
+END
+avro-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/avro-NOTICE.txt
+END
+hadoop-yarn-common-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-common-NOTICE.txt
+END
+velocity-tools-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/velocity-tools-LICENSE-ASL.txt
+END
+config-1.0.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/config-1.0.2.jar.sha1
+END
+jersey-json-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jersey-json-LICENSE-CDDL.txt
+END
+hadoop-yarn-common-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-common-2.2.0.jar.sha1
+END
+mahout-collections-1.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mahout-collections-1.0.jar.sha1
+END
+mrunit-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mrunit-NOTICE.txt
+END
+paranamer-2.3.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/paranamer-2.3.jar.sha1
+END
+easymock-3.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/easymock-3.0.jar.sha1
+END
+commons-compress-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-compress-LICENSE-ASL.txt
+END
+org.restlet-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/org.restlet-LICENSE-ASL.txt
+END
+httpclient-4.3.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/httpclient-4.3.1.jar.sha1
+END
+protobuf-java-2.5.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/protobuf-java-2.5.0.jar.sha1
+END
+commons-lang-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-lang-NOTICE.txt
+END
+jul-to-slf4j-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jul-to-slf4j-NOTICE.txt
+END
+metrics-core-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/metrics-core-NOTICE.txt
+END
+hadoop-hdfs-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-hdfs-NOTICE.txt
+END
+commons-cli-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-cli-LICENSE-ASL.txt
+END
+fontbox-1.8.4.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/fontbox-1.8.4.jar.sha1
+END
+apache-mime4j-dom-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/apache-mime4j-dom-LICENSE-ASL.txt
+END
+bcmail-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/bcmail-LICENSE-BSD_LIKE.txt
+END
+hadoop-yarn-client-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-client-2.2.0.jar.sha1
+END
+derby-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/derby-NOTICE.txt
+END
+activation-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/activation-LICENSE-CDDL.txt
+END
+hadoop-mapreduce-client-jobclient-2.2.0-tests.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-jobclient-2.2.0-tests.jar.sha1
+END
+guice-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/guice-LICENSE-ASL.txt
+END
+commons-fileupload-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-fileupload-LICENSE-ASL.txt
+END
+randomizedtesting-runner-2.1.6.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/randomizedtesting-runner-2.1.6.jar.sha1
+END
+log4j-1.2.17.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/log4j-1.2.17.jar.sha1
+END
+jackson-core-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-core-NOTICE.txt
+END
+hadoop-mapreduce-client-hs-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-hs-LICENSE-ASL.txt
+END
+zookeeper-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/zookeeper-LICENSE-ASL.txt
+END
+jempbox-1.8.4.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jempbox-1.8.4.jar.sha1
+END
+jersey-json-1.9.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jersey-json-1.9.jar.sha1
+END
+jackson-core-2.3.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-core-2.3.1.jar.sha1
+END
+kite-morphlines-tika-core-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-tika-core-NOTICE.txt
+END
+joda-time-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/joda-time-LICENSE-ASL.txt
+END
+concurrentlinkedhashmap-lru-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/concurrentlinkedhashmap-lru-LICENSE-ASL.txt
+END
+morfologik-fsa-1.7.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/morfologik-fsa-1.7.1.jar.sha1
+END
+hadoop-yarn-server-tests-2.2.0-tests.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-tests-2.2.0-tests.jar.sha1
+END
+jackson-jaxrs-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-jaxrs-LICENSE-ASL.txt
+END
+asm-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/asm-LICENSE-BSD_LIKE.txt
+END
+uimaj-core-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/uimaj-core-NOTICE.txt
+END
+jersey-guice-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jersey-guice-LICENSE-CDDL.txt
+END
+jackson-annotations-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-annotations-LICENSE-ASL.txt
+END
+jdom-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jdom-LICENSE-BSD_LIKE.txt
+END
+poi-ooxml-schemas-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-ooxml-schemas-NOTICE.txt
+END
+juniversalchardet-LICENSE-MPL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/juniversalchardet-LICENSE-MPL.txt
+END
+bcprov-jdk15-1.45.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/bcprov-jdk15-1.45.jar.sha1
+END
+start.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/start.jar.sha1
+END
+spatial4j-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/spatial4j-LICENSE-ASL.txt
+END
+vorbis-java-tika-0.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/vorbis-java-tika-0.1.jar.sha1
+END
+vorbis-java-core-0.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/vorbis-java-core-0.1.jar.sha1
+END
+hadoop-yarn-server-nodemanager-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-nodemanager-LICENSE-ASL.txt
+END
+poi-ooxml-schemas-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-ooxml-schemas-LICENSE-ASL.txt
+END
+cglib-nodep-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/cglib-nodep-NOTICE.txt
+END
+vorbis-java-tika-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/vorbis-java-tika-LICENSE-BSD_LIKE.txt
+END
+vorbis-java-core-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/vorbis-java-core-LICENSE-BSD_LIKE.txt
+END
+commons-codec-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-codec-NOTICE.txt
+END
+langdetect-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/langdetect-LICENSE-ASL.txt
+END
+icu4j-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/icu4j-LICENSE-BSD_LIKE.txt
+END
+mrunit-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mrunit-LICENSE-ASL.txt
+END
+hadoop-yarn-server-web-proxy-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-web-proxy-LICENSE-ASL.txt
+END
+jetty-6.1.26.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-6.1.26.jar.sha1
+END
+velocity-tools-2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/velocity-tools-2.0.jar.sha1
+END
+simple-xml-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/simple-xml-LICENSE-ASL.txt
+END
+hadoop-annotations-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-annotations-NOTICE.txt
+END
+jul-to-slf4j-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jul-to-slf4j-LICENSE-BSD_LIKE.txt
+END
+noggit-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/noggit-LICENSE-ASL.txt
+END
+hadoop-auth-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-auth-2.2.0.jar.sha1
+END
+asm-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/asm-NOTICE.txt
+END
+pdfbox-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/pdfbox-NOTICE.txt
+END
+jetty-util-8.1.10.v20130312.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-util-8.1.10.v20130312.jar.sha1
+END
+noggit-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/noggit-NOTICE.txt
+END
+Tagger-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/Tagger-LICENSE-ASL.txt
+END
+simple-xml-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/simple-xml-NOTICE.txt
+END
+jackson-core-asl-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-core-asl-NOTICE.txt
+END
+javax.inject-1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/javax.inject-1.jar.sha1
+END
+jackson-core-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-core-LICENSE-ASL.txt
+END
+commons-fileupload-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-fileupload-NOTICE.txt
+END
+kite-morphlines-avro-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-avro-LICENSE-ASL.txt
+END
+jdom-1.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jdom-1.0.jar.sha1
+END
+poi-ooxml-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-ooxml-LICENSE-ASL.txt
+END
+kite-morphlines-tika-decompress-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-tika-decompress-NOTICE.txt
+END
+servlet-api-3.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/servlet-api-3.0.jar.sha1
+END
+spatial4j-0.4.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/spatial4j-0.4.1.jar.sha1
+END
+javax.servlet-api-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/javax.servlet-api-NOTICE.txt
+END
+jempbox-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jempbox-NOTICE.txt
+END
+simple-xml-2.7.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/simple-xml-2.7.jar.sha1
+END
+WhitespaceTokenizer-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/WhitespaceTokenizer-LICENSE-ASL.txt
+END
+kite-morphlines-avro-0.12.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-avro-0.12.1.jar.sha1
+END
+javax.servlet-api-3.0.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/javax.servlet-api-3.0.1.jar.sha1
+END
+hadoop-hdfs-tests-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-hdfs-tests-LICENSE-ASL.txt
+END
+langdetect-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/langdetect-NOTICE.txt
+END
+junit4-ant-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/junit4-ant-LICENSE-ASL.txt
+END
+hadoop-yarn-server-common-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-common-NOTICE.txt
+END
+jcl-over-slf4j-LICENSE-BSD_LIKE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jcl-over-slf4j-LICENSE-BSD_LIKE.txt
+END
+jackson-jaxrs-1.9.13.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-jaxrs-1.9.13.jar.sha1
+END
+antlr-runtime-3.5.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/antlr-runtime-3.5.jar.sha1
+END
+jackson-jaxrs-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jackson-jaxrs-NOTICE.txt
+END
+commons-digester-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-digester-NOTICE.txt
+END
+commons-cli-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-cli-NOTICE.txt
+END
+jcl-over-slf4j-1.7.6.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jcl-over-slf4j-1.7.6.jar.sha1
+END
+kite-morphlines-json-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-json-NOTICE.txt
+END
+hadoop-yarn-server-common-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-common-2.2.0.jar.sha1
+END
+guava-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/guava-LICENSE-ASL.txt
+END
+ant-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/ant-NOTICE.txt
+END
+junit-4.10.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/junit-4.10.jar.sha1
+END
+jempbox-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jempbox-LICENSE-ASL.txt
+END
+mockito-core-LICENSE-MIT.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mockito-core-LICENSE-MIT.txt
+END
+carrot2-mini-3.9.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/carrot2-mini-3.9.0.jar.sha1
+END
+hadoop-auth-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-auth-LICENSE-ASL.txt
+END
+WhitespaceTokenizer-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/WhitespaceTokenizer-NOTICE.txt
+END
+xmlbeans-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xmlbeans-LICENSE-ASL.txt
+END
+httpcore-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/httpcore-NOTICE.txt
+END
+junit-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/junit-NOTICE.txt
+END
+argparse4j-LICENSE-MIT.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/argparse4j-LICENSE-MIT.txt
+END
+metadata-extractor-LICENSE-PD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/metadata-extractor-LICENSE-PD.txt
+END
+jersey-core-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jersey-core-LICENSE-CDDL.txt
+END
+hadoop-mapreduce-client-shuffle-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-shuffle-LICENSE-ASL.txt
+END
+poi-scratchpad-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-scratchpad-NOTICE.txt
+END
+httpmime-4.3.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/httpmime-4.3.1.jar.sha1
+END
+AlchemyAPIAnnotator-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/AlchemyAPIAnnotator-NOTICE.txt
+END
+metrics-core-3.0.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/metrics-core-3.0.1.jar.sha1
+END
+hadoop-hdfs-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-hdfs-2.2.0.jar.sha1
+END
+jsonic-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jsonic-LICENSE-ASL.txt
+END
+apache-mime4j-core-0.7.2.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/apache-mime4j-core-0.7.2.jar.sha1
+END
+uimaj-core-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/uimaj-core-LICENSE-ASL.txt
+END
+AlchemyAPIAnnotator-2.3.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/AlchemyAPIAnnotator-2.3.1.jar.sha1
+END
+icu4j-53.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/icu4j-53.1.jar.sha1
+END
+xmpcore-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/xmpcore-NOTICE.txt
+END
+jetty-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-LICENSE-ASL.txt
+END
+hadoop-common-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-common-LICENSE-ASL.txt
+END
+netty-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/netty-LICENSE-ASL.txt
+END
+tika-parsers-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tika-parsers-LICENSE-ASL.txt
+END
+hadoop-mapreduce-client-app-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-app-LICENSE-ASL.txt
+END
+asm-LICENSE-BSD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/asm-LICENSE-BSD.txt
+END
+jaxb-impl-LICENSE-CDDL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jaxb-impl-LICENSE-CDDL.txt
+END
+asm-4.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/asm-4.1.jar.sha1
+END
+snappy-java-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/snappy-java-NOTICE.txt
+END
+mahout-math-0.6.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mahout-math-0.6.jar.sha1
+END
+kite-morphlines-json-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-json-LICENSE-ASL.txt
+END
+commons-collections-3.2.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-collections-3.2.1.jar.sha1
+END
+metrics-healthchecks-3.0.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/metrics-healthchecks-3.0.1.jar.sha1
+END
+org.restlet.ext.servlet-2.1.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/org.restlet.ext.servlet-2.1.1.jar.sha1
+END
+zookeeper-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/zookeeper-NOTICE.txt
+END
+uimaj-core-2.3.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/uimaj-core-2.3.1.jar.sha1
+END
+easymock-LICENSE-MIT.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/easymock-LICENSE-MIT.txt
+END
+tika-xmp-1.5.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/tika-xmp-1.5.jar.sha1
+END
+hadoop-yarn-server-resourcemanager-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-server-resourcemanager-NOTICE.txt
+END
+httpmime-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/httpmime-LICENSE-ASL.txt
+END
+paranamer-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/paranamer-NOTICE.txt
+END
+kite-morphlines-json-0.12.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/kite-morphlines-json-0.12.1.jar.sha1
+END
+hadoop-mapreduce-client-app-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-app-NOTICE.txt
+END
+hppc-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hppc-LICENSE-ASL.txt
+END
+boilerpipe-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/boilerpipe-LICENSE-ASL.txt
+END
+mahout-collections-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/mahout-collections-NOTICE.txt
+END
+hadoop-yarn-client-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-yarn-client-LICENSE-ASL.txt
+END
+jetty-util-6.1.26.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/jetty-util-6.1.26.jar.sha1
+END
+commons-beanutils-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/commons-beanutils-LICENSE-ASL.txt
+END
+hadoop-mapreduce-client-app-2.2.0.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-app-2.2.0.jar.sha1
+END
+paranamer-LICENSE-BSD.txt
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/paranamer-LICENSE-BSD.txt
+END
+httpclient-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/httpclient-NOTICE.txt
+END
+poi-scratchpad-LICENSE-ASL.txt
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/poi-scratchpad-LICENSE-ASL.txt
+END
+hadoop-mapreduce-client-common-NOTICE.txt
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/hadoop-mapreduce-client-common-NOTICE.txt
+END
+Tagger-2.3.1.jar.sha1
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/licenses/Tagger-2.3.1.jar.sha1
+END

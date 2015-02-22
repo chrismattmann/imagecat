@@ -1,0 +1,156 @@
+10
+
+dir
+1661297
+http://svn.apache.org/repos/asf/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/java/org/apache/solr
+http://svn.apache.org/repos/asf
+
+
+
+2014-12-02T21:12:46.606487Z
+1643006
+hossman
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13f79535-47bb-0310-9956-ffa450edef68
+
+update
+dir
+
+analysis
+dir
+
+servlet
+dir
+
+SolrLogFormatter.java
+file
+
+
+
+
+2015-02-21T08:11:31.405933Z
+14354b93078cf9c2574ca1f37dc8c047
+2014-03-12T18:14:05.239656Z
+1576837
+rmuir
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13915
+
+logging
+dir
+
+request
+dir
+
+core
+dir
+
+common
+dir
+
+parser
+dir
+
+store
+dir
+
+response
+dir
+
+package.html
+file
+
+
+
+
+2015-02-21T08:11:31.405933Z
+1ccbbd7dd9a590ecf3b36f65856495bb
+2014-08-07T05:21:33.335563Z
+1616403
+sarowe
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1055
+
+schema
+dir
+
+search
+dir
+
+cloud
+dir
+
+highlight
+dir
+
+internal
+dir
+
+rest
+dir
+
+handler
+dir
+
+spelling
+dir
+
+util
+dir
+
+client
+dir
+

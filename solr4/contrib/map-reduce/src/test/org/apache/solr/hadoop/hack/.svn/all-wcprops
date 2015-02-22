@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/hack
+END
+MiniMRClientClusterFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/hack/MiniMRClientClusterFactory.java
+END
+MiniMRYarnCluster.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/hack/MiniMRYarnCluster.java
+END
+MiniMRYarnClusterAdapter.java
+K 25
+svn:wc:ra_dav:version-url
+V 153
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/hack/MiniMRYarnClusterAdapter.java
+END
+MiniYARNCluster.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/hack/MiniYARNCluster.java
+END
+MiniMRClientCluster.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/hack/MiniMRClientCluster.java
+END
+MiniMRCluster.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/map-reduce/src/test/org/apache/solr/hadoop/hack/MiniMRCluster.java
+END

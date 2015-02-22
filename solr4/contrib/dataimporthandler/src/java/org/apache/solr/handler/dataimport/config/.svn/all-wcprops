@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/config
+END
+EntityField.java
+K 25
+svn:wc:ra_dav:version-url
+V 161
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/config/EntityField.java
+END
+PropertyWriter.java
+K 25
+svn:wc:ra_dav:version-url
+V 164
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/config/PropertyWriter.java
+END
+ConfigNameConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/config/ConfigNameConstants.java
+END
+Field.java
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/config/Field.java
+END
+Script.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/config/Script.java
+END
+DIHConfiguration.java
+K 25
+svn:wc:ra_dav:version-url
+V 166
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/config/DIHConfiguration.java
+END
+Entity.java
+K 25
+svn:wc:ra_dav:version-url
+V 156
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/config/Entity.java
+END
+ConfigParseUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/config/ConfigParseUtil.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/dataimporthandler/src/java/org/apache/solr/handler/dataimport/config/package.html
+END

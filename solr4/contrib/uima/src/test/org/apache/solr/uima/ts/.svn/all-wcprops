@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test/org/apache/solr/uima/ts
+END
+EntityAnnotation.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test/org/apache/solr/uima/ts/EntityAnnotation.java
+END
+EntityAnnotation_Type.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test/org/apache/solr/uima/ts/EntityAnnotation_Type.java
+END
+DummySentimentAnnotation.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test/org/apache/solr/uima/ts/DummySentimentAnnotation.java
+END
+DummySentimentAnnotation_Type.java
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/contrib/uima/src/test/org/apache/solr/uima/ts/DummySentimentAnnotation_Type.java
+END

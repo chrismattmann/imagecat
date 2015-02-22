@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test-files/solr/collection1/conf/xslt
+END
+dummy.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test-files/solr/collection1/conf/xslt/dummy.xsl
+END
+xsl-update-handler-test.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test-files/solr/collection1/conf/xslt/xsl-update-handler-test.xsl
+END
+dummy-using-include.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/core/src/test-files/solr/collection1/conf/xslt/dummy-using-include.xsl
+END

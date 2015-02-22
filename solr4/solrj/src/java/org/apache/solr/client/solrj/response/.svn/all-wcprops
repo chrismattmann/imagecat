@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response
+END
+RangeFacet.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/RangeFacet.java
+END
+DocumentAnalysisResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/DocumentAnalysisResponse.java
+END
+UpdateResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/UpdateResponse.java
+END
+PivotField.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/PivotField.java
+END
+FieldAnalysisResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/FieldAnalysisResponse.java
+END
+TermsResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/TermsResponse.java
+END
+GroupResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/GroupResponse.java
+END
+SolrPingResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/SolrPingResponse.java
+END
+FieldStatsInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/FieldStatsInfo.java
+END
+package.html
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/package.html
+END
+LukeResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/LukeResponse.java
+END
+CoreAdminResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/CoreAdminResponse.java
+END
+CollectionAdminResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 149
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/CollectionAdminResponse.java
+END
+QueryResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/QueryResponse.java
+END
+FacetField.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/FacetField.java
+END
+IntervalFacet.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/IntervalFacet.java
+END
+SolrResponseBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/SolrResponseBase.java
+END
+GroupCommand.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/GroupCommand.java
+END
+SpellCheckResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/SpellCheckResponse.java
+END
+Group.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/Group.java
+END
+AnalysisResponseBase.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/repos/asf/!svn/ver/1647020/lucene/dev/tags/lucene_solr_4_10_3/solr/solrj/src/java/org/apache/solr/client/solrj/response/AnalysisResponseBase.java
+END
