@@ -27,13 +27,13 @@ the License.
 	    value="[RESMGR_URL]"/>
 	    
 	<Parameter name="org.apache.oodt.pcs.ll.conf.filePath"
-	    value="[PCS_HOME]/aux/pcs/pcs-ll-conf.xmnl"/>
+	    value="[PCS_HOME]/policy/pcs-ll-conf.xmnl"/>
 	    
 	<Parameter name="org.apache.oodt.pcs.health.crawler.conf.filePath"
-	    value="[PCS_HOME]/aux/pcs/pcs-crawlers.xml"/>
+	    value="[PCS_HOME]/policy/pcs-crawlers.xml"/>
 	    
 	<Parameter name="org.apache.oodt.pcs.health.workflow.statuses.filePath"
-	    value="[PCS_HOME]/aux/pcs/pcs-workflow-statuses.xml"/>
+	    value="[PCS_HOME]/policy/pcs-workflow-statuses.xml"/>
 	    
 	<Parameter name="org.apache.oodt.pcs.trace.enableNonCat"
 	    value="true"/>

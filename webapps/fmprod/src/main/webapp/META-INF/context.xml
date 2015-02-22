@@ -22,8 +22,8 @@ the License.
     prefix="fmprod_access_log." suffix=".txt" pattern="common" />
 
   <Parameter name="filemgr.url" value="[FILEMGR_URL]" override="false" />
-  <Parameter name="filemgr.rdfconf.file" value="[FMPROD_HOME]/rdfconf.xml" override="false"/>
-  <Parameter name="filemgr.rssconf.file" value="[FMPROD_HOME]/rssconf.xml" override="false"/>
+  <Parameter name="filemgr.rdfconf.file" value="[FILEMGR_HOME]/policy/rdfconf.xml" override="false"/>
+  <Parameter name="filemgr.rssconf.file" value="[FILEMGR_HOME]/policy/rssconf.xml" override="false"/>
   <Parameter name="filemgr.working.dir" value="/tmp" override="false" />
 
 </Context>
