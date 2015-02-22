@@ -20,8 +20,8 @@ Installation
 8. edit tomcat7/conf/Catalina/localhost/solr.xml and replace [OODT_HOME] with the path to your deploy dir.
 9. edit deploy/bin/env.sh to make sure OODT_HOME is set to the path to your deploy dir.
 10. cd $OODT_HOME/bin && ./oodt start 
-11. cd $OODT_HOME/tomcat7/bin && ./startup.sh
-12 cd $OODT_HOME/resmgr/bin/ && ./start_memex_stubs
+11. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
+12. cd $OODT_HOME/resmgr/bin/ && ./start_memex_stubs 
 13. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
 14. $OODT_HOME/bin/chunker 
 15. #win
