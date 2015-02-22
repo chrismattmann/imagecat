@@ -1,51 +1,25 @@
- Licensed to the Apache Software Foundation (ASF) under one or more
- contributor license agreements. See the NOTICE file distributed with
- this work for additional information regarding copyright ownership.
- The ASF licenses this file to You under the Apache License, Version 2.0
- (the "License"); you may not use this file except in compliance with
- the License. You may obtain a copy of the License at
+ImageCatalog 
+============
 
- http://www.apache.org/licenses/LICENSE-2.0
+This is an [OODT RADIX](https://cwiki.apache.org/confluence/display/OODT/RADiX+Powered+By+OODT)
+application that uses [Apache Solr](http://lucene.apache.org/solr/),
+[Apache Tika](http://tika.apache.org) and [Apache OODT](http://oodt.apache.org) 
+to ingest 10s of millions of files (images,but could be extended to other files) 
+in place, and to extract metadtaa and OCR information from those files/images using 
+Tika and [Tesseract OCR](https://wiki.apache.org/tika/TikaOCR).
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Installation 
+============ 
+0. mkdir deploy 
+1. git clone https://github.com/chrismattmann/imagecat.git 
+2. cd imagecat 
+3. mvn install 
+4. cp -R distribution/target/*.tar.gz deploy 
+5. cd deploy && tar xvzf *.tar.gz 
+6. edit deploy/bin/env.sh to make sure OODT_HOME is set 
+7. cd $OODT_HOME/bin && ./oodt start 
+8. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
+9. cd $OODT_HOME/resmgr/bin/ && ./start_memex_stubs
+10. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
+11. $OODT_HOME/bin/chunker 12. #win
 
-     OODT RADiX README
-
-    Description:
-       This project is meant as template to support faster
-       data system deployment. Configurable OODT deployments
-       are possible using Maven profiles (see below).
-       
-       OODT version 0.7-SNAPSHOT 
-
-REQUIREMENTS:
-* Java Development Kit (JDK) 1.6+
-* JAVA_HOME set 
-  see: http://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/index.html
-* (Snapshot releases only) OODT source tree installed. 
-  see: http://oodt.apache.org/components/maven/filemgr/user/basic.html
-
-INSTALLATION:
-  # build oodt
-  $ mvn clean package <OPTIONAL PROFILES> # see optional build profiles below
-
-  # deploy oodt
-  $ tar zxf distribution/target/${PROJECT_ARTIFACT_ID}-distribution-*-bin.tar.gz -C /my/deployment/directory/oodt
-  
-  ---
-  NOTE: For other build configurations, add the following arguments:
-  (default)           : bin, crawler, data, extensions,
-                        filemgr (Lucene), logs, pcs, resmgr,
-                        tomcat, workflow, pge
-
-  -Pfm-solr-catalog   : default components, filemgr (Solr),
-                        solr, tomcat/webapps/solr
-
-RUN:
-  $ cd /my/deployment/directory/oodt
-  $ cd bin
-  $ ./oodt start
