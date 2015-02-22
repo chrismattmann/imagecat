@@ -1,0 +1,5 @@
+<cas:workflow xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas" name="IngestInPlace" id="urn:memex:IngestInPlaceWorkflow">
+ <tasks>
+   <task id="urn:memex:IngestInPlaceTask"/>
+ </tasks>
+</cas:workflow>

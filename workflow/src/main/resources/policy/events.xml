@@ -15,7 +15,9 @@
   limitations under the License.
 -->
 <cas:workflowevents xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas">
-<!--
-  TODO: Add some examples
--->
+
+  <event name="ChunkListIngest">
+     <workflow id="urn:memex:IngestInPlaceWorkflow"/>
+  </event>
+
 </cas:workflowevents>
