@@ -53,7 +53,7 @@ The overall workflow is as follows:
 
 1. OODT starts with the original large file that contains *full file paths*. It
 then chunks this file into sizeof(file) / 
-$OODT_HOME/workflow/policy/tasks.xml[urn\:id\:memex\:Chunker/ChunkSizer] sized files.
+$OODT_HOME/workflow/policy/tasks.xml[urn\:id\:memex\:Chunker/ChunkSize] sized files.
 
 2. Each resultant _ChunkFile_ is then ingested into OODT, by the 
 OODT crawler, which triggers the OODT workflow manager to process
