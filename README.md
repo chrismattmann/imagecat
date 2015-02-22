@@ -18,13 +18,14 @@ Installation
 6. cd deploy && tar xvzf *.tar.gz 
 7. cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7
 8. edit tomcat7/conf/Catalina/localhost/solr.xml and replace [OODT_HOME] with the path to your deploy dir.
-9. edit deploy/bin/env.sh to make sure OODT_HOME is set to the path to your deploy dir.
-10. cd $OODT_HOME/bin && ./oodt start 
-11. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
-12. cd $OODT_HOME/resmgr/bin/ && ./start_memex_stubs 
-13. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
-14. $OODT_HOME/bin/chunker 
-15. #win
+9. edit deploy/bin/env.sh and deploy/bin/imagecatenv.sh to make sure OODT_HOME is set to the path to your deploy dir.
+10. /bin/bash && source bin/imagecatenv.sh
+11. cd $OODT_HOME/bin && ./oodt start 
+12. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
+13. cd $OODT_HOME/resmgr/bin/ && ./start_memex_stubs 
+14. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
+15. $OODT_HOME/bin/chunker 
+16. #win
 
 Observing what's going on
 =========================
@@ -53,7 +54,7 @@ The overall workflow is as follows:
 
 1. OODT starts with the original large file that contains *full file paths*. It
 then chunks this file into sizeof(file) / 
-$OODT_HOME/workflow/policy/tasks.xml[urn\:id\:memex\:Chunker/ChunkSize] sized files.
+$OODT_HOME/workflow/policy/tasks.xml[urn:id:memex:Chunker/ChunkSize] sized files.
 
 2. Each resultant _ChunkFile_ is then ingested into OODT, by the 
 OODT crawler, which triggers the OODT workflow manager to process
