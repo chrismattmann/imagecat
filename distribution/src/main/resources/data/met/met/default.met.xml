@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<cas:metadata xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas">
+   <keyval>
+       <key>ProductType</key>
+       <val>GenericFile</val>
+   </keyval>
+</cas:metadata>
