@@ -16,11 +16,60 @@ License for the specific language governing permissions and limitations under
 the License.
 -->
 <cas:node-to-queue-mapping xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas">
-	<node id="localhost">
+	<node id="memex-job1">
 		<queues>
 			<queue name="high"/>
 			<queue name="quick"/>
 			<queue name="long"/>
 		</queues>
 	</node>	
+        <node id="memex-job2">
+                <queues>
+                        <queue name="high"/>
+                        <queue name="quick"/>
+                        <queue name="long"/>
+                </queues>
+        </node>
+        <node id="memex-job3">
+                <queues>
+                        <queue name="high"/>
+                        <queue name="quick"/>
+                        <queue name="long"/>
+                </queues>
+        </node>
+        <node id="memex-job4">
+                <queues>
+                        <queue name="high"/>
+                        <queue name="quick"/>
+                        <queue name="long"/>
+                </queues>
+        </node>
+        <node id="memex-job5">
+                <queues>
+                        <queue name="high"/>
+                        <queue name="quick"/>
+                        <queue name="long"/>
+                </queues>
+        </node>
+        <node id="memex-job6">
+                <queues>
+                        <queue name="high"/>
+                        <queue name="quick"/>
+                        <queue name="long"/>
+                </queues>
+        </node>
+        <node id="memex-job7">
+                <queues>
+                        <queue name="high"/>
+                        <queue name="quick"/>
+                        <queue name="long"/>
+                </queues>
+        </node>
+        <node id="memex-job8">
+                <queues>
+                        <queue name="high"/>
+                        <queue name="quick"/>
+                        <queue name="long"/>
+                </queues>
+        </node>
 </cas:node-to-queue-mapping>

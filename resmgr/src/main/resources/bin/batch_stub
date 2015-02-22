@@ -26,6 +26,8 @@ if ( $#argv != 1 ) then
         exit 1
 else
         java -Djava.ext.dirs=../lib \
+        -Dorg.apache.oodt.cas.pge.task.metkeys.legacyMode="true" \
+	-Dorg.apache.oodt.cas.pge.task.status.legacyMode="true" \
         org.apache.oodt.cas.resource.system.extern.XmlRpcBatchStub \
-        --portNum $1&
+        --portNum $1 >>& $OODT_HOME/logs/`hostname`-$1.job.log&
 endif

@@ -16,8 +16,12 @@ License for the specific language governing permissions and limitations under
 the License.
 -->
 <cas:resourcenodes xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas">
-	<node nodeId="localhost" ip="http://localhost:2001" capacity="8"/>
-	<!-- EnvReplace Example 
-	<node nodeId="somehost" ip="http://somehost:[BATCH_STUB_PORT]" capacity="8" envReplace="true"/>
-	-->
+	<node nodeId="memex-job1" ip="http://localhost:2001" capacity="2"/>
+        <node nodeId="memex-job2" ip="http://localhost:2002" capacity="2"/>
+        <node nodeId="memex-job3" ip="http://localhost:2003" capacity="2"/>
+        <node nodeId="memex-job4" ip="http://localhost:2004" capacity="2"/>
+        <node nodeId="memex-job5" ip="http://localhost:2005" capacity="2"/>
+        <node nodeId="memex-job6" ip="http://localhost:2006" capacity="2"/>
+        <node nodeId="memex-job7" ip="http://localhost:2007" capacity="2"/>
+        <node nodeId="memex-job8" ip="http://localhost:2008" capacity="2"/>
 </cas:resourcenodes>
