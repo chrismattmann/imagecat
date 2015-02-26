@@ -75,7 +75,7 @@
     <dependency>
       <groupId>org.apache.oodt</groupId>
       <artifactId>cas-pge</artifactId>
-      <version>${oodt.pge.version}</version>
+      <version>0.9-SNAPSHOT</version>
       <exclusions>
         <exclusion>
           <groupId>org.apache.oodt</groupId>
