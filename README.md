@@ -14,8 +14,8 @@ Installation
 2. git clone https://github.com/chrismattmann/imagecat.git 
 3. cd imagecat 
 4. mvn install 
-5. cp -R distribution/target/*.tar.gz deploy 
-6. cd deploy && tar xvzf *.tar.gz 
+5. cp -R distribution/target/*.tar.gz ../deploy 
+6. cd ../deploy && tar xvzf *.tar.gz 
 7. cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7
 8. edit tomcat7/conf/Catalina/localhost/solr.xml and replace [OODT_HOME] with the path to your deploy dir.
 9. edit deploy/bin/env.sh and deploy/bin/imagecatenv.sh to make sure OODT_HOME is set to the path to your deploy dir.
