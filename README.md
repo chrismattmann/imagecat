@@ -8,6 +8,11 @@ to ingest 10s of millions of files (images,but could be extended to other files)
 in place, and to extract metadata and OCR information from those files/images using 
 Tika and [Tesseract OCR](https://wiki.apache.org/tika/TikaOCR).
 
+Python Pre-Requisites
+=====================
+1. pip install xmlrpc
+2. pip install solrpy
+
 Installation 
 ============ 
 1. mkdir deploy 
