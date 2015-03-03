@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pgeConfig>
+
+  <!-- How to run the PGE -->
+  <exe dir="[JobDir]" shell="/bin/bash">
+     <cmd>export PATH=[OODT_HOME]/bin/:[PGE_ROOT]/bin/check_failed:${PATH}</cmd>
+     <cmd>shopt -s expand_aliases</cmd>
+     <cmd>echo "Creating working dirs"</cmd>
+     <cmd>mkdir [JobOutputDir] ; mkdir [JobInputDir]</cmd>
+     <cmd>cd [JobOutputDir]</cmd>
+     <cmd>export NUM_CHUNKS=`ls -t [ChunkDir] | head -1`</cmd>
+     <cmd>for i in $(seq 0 $NUM_CHUNKS); do</cmd>
+     <cmd>check_failed.py -f [ChunkDir]/${i}/filelist_chunk_${i}.txt -s [SolrUrl] -o filelist_chunk_${i}_missed.txt;</cmd>
+     <cmd>done</cmd>
+   </exe>
+
+  <!-- Files to ingest -->
+  <output>
+ <!-- one or more of these -->
+    <dir path="[JobOutputDir]" createBeforeExe="false">
+       <files regExp=".*\.txt" metFileWriterClass="org.apache.oodt.cas.pge.writers.metlist.MetadataListPcsMetFileWriter" args="[PGE_ROOT]/extractors/metout/chunkfile_metout.xml"/>
+       <files regExp=".*\.txt" metFileWriterClass="org.apache.oodt.cas.pge.writers.FilenameExtractorWriter" args="[PGE_ROOT]/extractors/filename/chunkfile_extractor.xml"/>
+     </dir>
+
+  </output>
+
+  <!-- Custom metadata to add to output files -->
+  <customMetadata>
+    <!-- helpful keys -->
+    <metadata key="LessThan" val="&#x3C;"/>
+    <metadata key="LessThanOrEqualTo" val="[LessThan]="/>
+    <metadata key="GreaterThan" val="&#x3E;"/>
+    <metadata key="GreaterThanOrEqualTo" val="[GreaterThan]="/>
+    <metadata key="Exclamation" val="&#33;"/>
+    <metadata key="Ampersand" val="&#38;"/>
+    <metadata key="NotEqualTo" val="[Ampersand]="/>
+    <metadata key="LogicalAnd" val="[Ampersand][Ampersand]"/>
+    <metadata key="CshPipeToStdOutAndError" val="[GreaterThan][Ampersand][Exclamation]"/>
+    <metadata key="ProductionDateTime" val="[DATE.UTC]"/>
+    <metadata key="DateMilis" val="[DATE_TO_MILLIS([ProductionDateTime],UTC_FORMAT,1970-01-01)]"/>
+    <metadata key="JobDir" val="[OODT_HOME]/data/jobs/check_failed/[DateMilis]"/>
+    <metadata key="JobInputDir" val="[JobDir]/input"/>
+    <metadata key="JobOutputDir" val="[JobDir]/output"/>
+    <metadata key="JobLogDir" val="[JobDir]/logs"/>
+    <metadata key="PCS_ActionsIds" val="TriggerPostIngestWorkflow,DeleteDataFile" split="true"/>
+    
+  </customMetadata>
+
+</pgeConfig>

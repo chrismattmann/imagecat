@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pushd $OODT_HOME/workflow/bin
+./wmgr-client --url $WORKFLOW_URL --operation --dynWorkflow  --taskIds urn:memex:CheckFailedTask
+popd
