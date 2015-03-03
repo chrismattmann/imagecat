@@ -45,6 +45,8 @@ def buildChunkFile(outputFile, chunkFile, s):
             for filepath in missedList:
                 theOutputFile.write("%s\n" % filepath)
 
+    missedList = None
+
 def main(argv):
    chunkFile=None
    solrUrl=None

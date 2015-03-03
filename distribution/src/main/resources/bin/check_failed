@@ -1,5 +1,11 @@
 #!/bin/bash
 
-pushd $OODT_HOME/workflow/bin
-./wmgr-client --url $WORKFLOW_URL --operation --dynWorkflow  --taskIds urn:memex:CheckFailedTask
-popd
+if [ "$#" -eq 1 ]; then
+    pushd $OODT_HOME/workflow/bin
+    ./wmgr-client --url $WORKFLOW_URL --operation --dynWorkflow  --taskIds urn:memex:CheckFailedTask --metaData --key ChunkStart $1
+    popd
+else
+    pushd $OODT_HOME/workflow/bin
+    ./wmgr-client --url $WORKFLOW_URL --operation --dynWorkflow  --taskIds urn:memex:CheckFailedTask
+    popd
+fi

@@ -10,7 +10,7 @@
      <cmd>mkdir [JobOutputDir] ; mkdir [JobInputDir]</cmd>
      <cmd>cd [JobOutputDir]</cmd>
      <cmd>export NUM_CHUNKS=`ls -t [ChunkDir] | head -1`</cmd>
-     <cmd>for i in $(seq 0 $NUM_CHUNKS); do</cmd>
+     <cmd>for i in $(seq [ChunkStart] $NUM_CHUNKS); do</cmd>
      <cmd>check_failed.py -f [ChunkDir]/${i}/filelist_chunk_${i}.txt -s [SolrUrl] -o filelist_chunk_${i}_missed.txt;</cmd>
      <cmd>done</cmd>
    </exe>
@@ -44,6 +44,7 @@
     <metadata key="JobOutputDir" val="[JobDir]/output"/>
     <metadata key="JobLogDir" val="[JobDir]/logs"/>
     <metadata key="PCS_ActionsIds" val="TriggerPostIngestWorkflow,DeleteDataFile" split="true"/>
+    <metadata key="ChunkStart" val="0"/>
     
   </customMetadata>
 
