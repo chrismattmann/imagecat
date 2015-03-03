@@ -73,6 +73,20 @@ going on. This will happen sporadically b/c $OODT_HOME/bin/solrcell_ingest
 ingests all 50k files in memory, and then sends a commit at the end for
 efficiency (resulting in 50k * 8 files every ~30-40 minutes).
 
+Cleaning up and checking any failed ingestions
+==============================================
+For whatever reason, sometimes ingests fail. For example initially when
+I was building ImageCat, I had an error in the solrcell_ingest script
+that didn't account for files that had spaces in the directory path
+(fixed now). If you find anything happens that makes ingests fail, just
+run:
+
+``$OODT_HOME/bin/check_failed`` 
+
+This program will verify all ChunkFiles in Solr and make sure all paths
+were ingested into Solr. If any weren't, new ChunkedFiles with the extension
+_missing.txt will be created and any remaining files will be ingested.
+
 Questions, comments?
 ===================
 Send them to [Chris A. Mattmann](mailto:chris.a.mattmann@jpl.nasa.gov).
