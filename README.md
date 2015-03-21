@@ -8,6 +8,17 @@ to ingest 10s of millions of files (images,but could be extended to other files)
 in place, and to extract metadata and OCR information from those files/images using 
 Tika and [Tesseract OCR](https://wiki.apache.org/tika/TikaOCR).
 
+Shell Pre-Requisites
+====================
+Some programs used by ImageCat require the use of the (/bin/tcsh)[https://en.wikipedia.org/wiki/Tcsh]
+shell. You can usually install it on Linux via:
+
+1. yum install tcsh
+
+or
+
+1. apt-get install tcsh
+
 Python Pre-Requisites
 =====================
 1. pip install xmlrpc
@@ -27,7 +38,7 @@ Installation
 10. /bin/bash && source bin/imagecatenv.sh
 11. cd $OODT_HOME/bin && ./oodt start 
 12. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
-13. cd $OODT_HOME/resmgr/bin/ && ./start_memex_stubs 
+13. cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs 
 14. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
 15. $OODT_HOME/bin/chunker 
 16. #win
