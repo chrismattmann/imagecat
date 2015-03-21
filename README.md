@@ -10,14 +10,11 @@ Tika and [Tesseract OCR](https://wiki.apache.org/tika/TikaOCR).
 
 Shell Pre-Requisites
 ====================
-Some programs used by ImageCat require the use of the (/bin/tcsh)[https://en.wikipedia.org/wiki/Tcsh]
+Some programs used by ImageCat require the use of the [/bin/tcsh](https://en.wikipedia.org/wiki/Tcsh)
 shell. You can usually install it on Linux via:
 
-1. yum install tcsh
-
-or
-
-1. apt-get install tcsh
+1. yum install tcsh; or
+2. apt-get install tcsh
 
 Python Pre-Requisites
 =====================
