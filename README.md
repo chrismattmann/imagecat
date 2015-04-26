@@ -21,6 +21,23 @@ Python Pre-Requisites
 1. pip install xmlrpc
 2. pip install solrpy
 
+Useful Environment Variables
+============================
+The following environment variables are used in ImageCat.
+
+```
+setenv JAVA_HOME e.g. `readlink -f /usr/bin/java | sed "s:bin/java::"`
+setenv OODT_HOME ~/imagecat
+setenv GANGLIA_URL http://zipper.jpl.nasa.gov/ganglia/
+setenv FILEMGR_URL http://localhost:9000
+setenv WORKFLOW_URL http://localhost:9001
+setenv RESMGR_URL http://localhost:9002
+setenv WORKFLOW_HOME $OODT_HOME/workflow
+setenv FILEMGR_HOME $OODT_HOME/filemgr
+setenv PGE_ROOT $OODT_HOME/pge
+setenv PCS_HOME $OODT_HOME/pcs
+```
+
 Installation 
 ============ 
 1. mkdir deploy 
