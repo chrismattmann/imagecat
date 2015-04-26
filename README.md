@@ -78,6 +78,21 @@ Each directory in $OODT_HOME/data/jobs/crawl/ is an independent, fully detached
 job that can be executed independent of OODT to ingest 50K image files into 
 SolrCell and to perform TesesractOCR and EXIF metadata extraction.
 
+Note that sometimes images will fail to ingest, e.g., with a message such
+as:
+
+```
+INFO: on.SolrException: org.apache.tika.exception.TikaException: TIKA-198: Illegal IOException from org.apache.tika.parser.jpeg.JpegParser@5c0bae4a
+OUTPUT:         at org.apache.solr.handler.extraction.ExtractingDocumentLoader.load(ExtractingDocumentLoader.java:225)
+OUTPUT:         at org.apache.solr.handler.ContentStreamHandlerBase.handleRequestBody(ContentStreamHandlerBase.java:74)
+OUTPUT:         at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:135)
+OUTPUT:         at org.apache.solr.core.RequestHandler
+Apr 15, 2015 9:18:29 PM org.apache.oodt.commons.io.LoggerOutputStream flush
+```
+
+In the Solr Tomcat logs. This is normal, since sometimes the JpegParser will fail 
+to parse the image.
+
 Chunk Files
 ===========
 
