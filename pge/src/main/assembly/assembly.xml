@@ -43,6 +43,11 @@
       <includes/>
     </fileSet>
     <fileSet>
+      <directory>${basedir}/src/main/resources/extractors</directory>
+      <outputDirectory>pge/extractors</outputDirectory>
+      <includes/>  
+    </fileSet>
+    <fileSet>
       <directory>target/site/apidocs</directory>
       <filtered>false</filtered>
       <outputDirectory>doc</outputDirectory>
