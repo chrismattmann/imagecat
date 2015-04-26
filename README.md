@@ -50,12 +50,13 @@ Installation
 8. edit tomcat7/conf/Catalina/localhost/solr.xml and replace [OODT_HOME] with the path to your deploy dir.
 9. edit deploy/bin/env.sh and deploy/bin/imagecatenv.sh to make sure OODT_HOME is set to the path to your deploy dir.
 10. /bin/bash && source bin/imagecatenv.sh
-11. cd $OODT_HOME/bin && ./oodt start 
-12. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
-13. cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs 
-14. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
-15. $OODT_HOME/bin/chunker 
-16. #win
+11. Copy cas-filemgr-VERSION.jar, cas-workflow-VERSION.jar, cas-crawler-VERSION.jar and cas-pge-VERSION.jar to the resmgr/lib directory.
+12. cd $OODT_HOME/bin && ./oodt start 
+13. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
+14. cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs 
+15. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
+16. $OODT_HOME/bin/chunker 
+17. #win
 
 Observing what's going on
 =========================
