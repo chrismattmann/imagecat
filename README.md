@@ -55,13 +55,11 @@ Installation
 13. Copy solr4/example/lib/*.jar to tomcat/common/lib
 14. Copy solr4/example/resources/log4j.properties to tomcat/common/lib
 15. Edit tomcat/common/lib/log4j.properties to read:
-{{{
-#  Logging level                                                                                                                                                              
-log4j.rootLogger=INFO, CONSOLE
-log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
-log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
-log4j.appender.CONSOLE.layout.ConversionPattern=%-4r [%t] %-5p %c %x \u2013 %m%n
-}}}
+    #  Logging level                                                                                                                                                              
+    log4j.rootLogger=INFO, CONSOLE
+    log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+    log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+    log4j.appender.CONSOLE.layout.ConversionPattern=%-4r [%t] %-5p %c %x \u2013 %m%n
 16. cd $OODT_HOME/bin && ./oodt start 
 17. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
 18. cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs 
