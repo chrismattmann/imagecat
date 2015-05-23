@@ -51,12 +51,23 @@ Installation
 9. edit deploy/bin/env.sh and deploy/bin/imagecatenv.sh to make sure OODT_HOME is set to the path to your deploy dir.
 10. /bin/bash && source bin/imagecatenv.sh
 11. Copy cas-filemgr-VERSION.jar, cas-workflow-VERSION.jar, cas-crawler-VERSION.jar and cas-pge-VERSION.jar to the resmgr/lib directory.
-12. cd $OODT_HOME/bin && ./oodt start 
-13. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
-14. cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs 
-15. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
-16. $OODT_HOME/bin/chunker 
-17. #win
+12. Remove `$OODT_HOME/tomcat/webapps/opsui/WEB-INF/lib/*slf4j*.jar`
+13. Copy solr4/example/lib/*.jar to tomcat/common/lib
+14. Copy solr4/example/resources/log4j.properties to tomcat/common/lib
+15. Edit tomcat/common/lib/log4j.properties to read:
+{{{
+#  Logging level                                                                                                                                                              
+log4j.rootLogger=INFO, CONSOLE
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.ConversionPattern=%-4r [%t] %-5p %c %x \u2013 %m%n
+}}}
+16. cd $OODT_HOME/bin && ./oodt start 
+17. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
+18. cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs 
+19. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
+20. $OODT_HOME/bin/chunker 
+21. #win
 
 Observing what's going on
 =========================
