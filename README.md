@@ -54,7 +54,7 @@ Installation
 12. Remove `$OODT_HOME/tomcat/webapps/opsui/WEB-INF/lib/*slf4j*.jar`
 13. Copy solr4/example/lib/*.jar to tomcat/common/lib
 14. Copy solr4/example/resources/log4j.properties to tomcat/common/lib
-15. Edit tomcat/common/lib/log4j.properties to read:<br>
+15. Edit tomcat/common/lib/log4j.properties to read:  
     #  Logging level                                                                                                                                                              
     log4j.rootLogger=INFO, CONSOLE
     log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
