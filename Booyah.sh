@@ -42,10 +42,10 @@ cd ..
 cd imagecat
 mv Startall.sh ../deploy
 mv Stopall.sh ../deploy
-chmod +x Startall.sh
-chmod +x Stopall.sh
 cd ..
 cd deploy
+chmod +x Startall.sh
+chmod +x Stopall.sh
 echo [SUCCESS]
 echo - Automated Setup Complete -
 echo Booyah!
