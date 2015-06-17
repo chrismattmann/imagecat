@@ -1,6 +1,6 @@
 export OODT_HOME='pwd'
 echo -- Starting All Required Scripts --
-/bin/bash/
+/bin/bash
 source bin/imagecatenv.sh
 cd $OODT_HOME/bin
 ./oodt start
