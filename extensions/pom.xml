@@ -59,12 +59,12 @@
     <dependency>
       <groupId>org.apache.oodt</groupId>
       <artifactId>cas-metadata</artifactId>
-      <version>0.9-SNAPSHOT</version>
+      <version>${oodt.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.oodt</groupId>
       <artifactId>cas-filemgr</artifactId>
-      <version>0.9-SNAPSHOT</version>
+      <version>${oodt.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.oodt</groupId>
