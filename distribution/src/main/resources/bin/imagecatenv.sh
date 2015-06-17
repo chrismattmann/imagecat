@@ -1,4 +1,4 @@
-export OODT_HOME=a[OODT_HOME]a
+export OODT_HOME=--OODT_HOME--
 export FILEMGR_URL="http://localhost:9000"
 export WORKFLOW_URL="http://localhost:9001"
 export RESMGR_URL="http://localhost:9002"
