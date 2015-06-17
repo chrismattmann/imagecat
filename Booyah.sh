@@ -18,6 +18,7 @@ sed -i "" s?--OODT_HOME--?${OODT_HOME}? tomcat7/conf/Catalina/localhost/solr.xml
 sed -i "" s?--OODT_HOME--?${OODT_HOME}? bin/env.sh
 sed -i "" s?--OODT_HOME--?${OODT_HOME}? bin/imagecatenv.sh
 /bin/bash && source bin/imagecatenv.sh
+exit
 cp filemgr/lib/cas-filemgr-* resmgr/lib
 cp workflow/lib/cas-workflow-* resmgr/lib
 cp crawler/lib/cas-crawler-* resmgr/lib
@@ -35,6 +36,14 @@ cd data/staging
 touch roxy-image-list-jpg-nonzero.txt
 cd ..
 cd ..
+echo [SUCCESS]
+echo - Moving Global Start/Stop Commands -
+cd ..
+cd imagecat
+mv Startall.sh ../deploy
+mv Stopall.sh ../deploy
+cd ..
+cd deploy
 echo [SUCCESS]
 echo - Automated Setup Complete -
 echo Booyah!
