@@ -18,8 +18,12 @@ shell. You can usually install it on Linux via:
 
 Python Pre-Requisites
 =====================
-1. pip install xmlrpc
+1. pip install xmlrpclib (which comes default in python 2.7)
 2. pip install solrpy
+
+Other Pre-Requisites
+====================
+1. Maven 3.x
 
 Useful Environment Variables
 ============================
@@ -48,32 +52,31 @@ Installation
 6. cd ../deploy && tar xvzf *.tar.gz 
 7. cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7
 8. edit tomcat7/conf/Catalina/localhost/solr.xml and replace [OODT_HOME] with the path to your deploy dir.
-9. edit deploy/bin/env.sh and deploy/bin/imagecatenv.sh to make sure OODT_HOME is set to the path to your deploy dir.
+9. edit /bin/env.sh and /bin/imagecatenv.sh in your deploy directory to make sure OODT_HOME is set to the path to your deploy dir.
 10. /bin/bash && source bin/imagecatenv.sh
-11. Copy cas-filemgr-VERSION.jar, cas-workflow-VERSION.jar, cas-crawler-VERSION.jar and cas-pge-VERSION.jar to the resmgr/lib directory.
-12. Remove `$OODT_HOME/tomcat/webapps/opsui/WEB-INF/lib/*slf4j*.jar`
-13. Copy solr4/example/lib/*.jar to tomcat/common/lib
-14. Copy solr4/example/resources/log4j.properties to tomcat/common/lib
-15. Edit tomcat/common/lib/log4j.properties to read:  
+11. Copy cas-filemgr-VERSION.jar, cas-workflow-VERSION.jar, cas-crawler-VERSION.jar and cas-pge-VERSION.jar to the resmgr/lib directory. *Grab them from their component directory (i.e. cas-filemgr-VERSION.jar from filemgr/lib/cas-filemgr-VERSION.jar)*
+12. Copy solr4/example/lib/*.jar to tomcat/common/lib
+13. Copy solr4/example/resources/log4j.properties to tomcat/common/lib
+14. Edit tomcat/common/lib/log4j.properties to read:  
     #  Logging level                                                                                                                                                              
     log4j.rootLogger=INFO, CONSOLE
     log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
     log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
     log4j.appender.CONSOLE.layout.ConversionPattern=%-4r [%t] %-5p %c %x \u2013 %m%n
-16. cd $OODT_HOME/bin && ./oodt start 
-17. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
-18. cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs 
-19. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
-20. $OODT_HOME/bin/chunker 
-21. #win
+15. cd $OODT_HOME/bin && ./oodt start 
+16. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
+17. cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs 
+18. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
+19. $OODT_HOME/bin/chunker 
+20. #win
 
 Observing what's going on
 =========================
 ImageCat runs 2 Solr deployments, and a full stack OODT Deployment. 
 The URLs are below:
 
-* http://localhost:8081/solr/imagecatdev - [Solr4.10.3-fork](https://issues.apache.org/jira/browse/SOLR-7139) Core where SolrCell runs for Image extraction.
-* http://localhost:8081/solr/imagecatoodt - [Solr4.10.3-fork](https://issues.apache.org/jira/browse/SOLR-7139) Core where OODT's file catalog is, home to ChunkFiles representing a 50k-sized slice of full file paths from the original file list.
+* http://localhost:8081/solr/#/imagecatdev - [Solr4.10.3-fork](https://issues.apache.org/jira/browse/SOLR-7139) Core where SolrCell runs for Image extraction.
+* http://localhost:8081/solr/#/imagecatoodt - [Solr4.10.3-fork](https://issues.apache.org/jira/browse/SOLR-7139) Core where OODT's file catalog is, home to ChunkFiles representing a 50k-sized slice of full file paths from the original file list.
 * http://localhost:8080/opsui/ - [Apache OODT OPSUI](https://cwiki.apache.org/confluence/display/OODT/Quick+Start+for+PCS+OPSUI) cockpit to observe ingestion of ChunkFiles, and jobs for ingesting into SolrCell
 * http://localhost:8080/pcs/services/health/report - [Apache OODT PCS REST Services](https://cwiki.apache.org/confluence/display/OODT/OODT+REST+Services) showing system health and provenance.
 
