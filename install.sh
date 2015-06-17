@@ -40,12 +40,12 @@ echo [SUCCESS]
 echo - Moving Global Start/Stop Commands -
 cd ..
 cd imagecat
-mv Startall.sh ../deploy
-mv Stopall.sh ../deploy
+mv start.sh ../deploy
+mv stop.sh ../deploy
 cd ..
 cd deploy
-chmod +x Startall.sh
-chmod +x Stopall.sh
+chmod +x start.sh
+chmod +x stop.sh
 echo [SUCCESS]
 echo - Automated Setup Complete -
 echo Booyah!
