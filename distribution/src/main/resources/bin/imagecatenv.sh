@@ -1,4 +1,4 @@
-export OODT_HOME=/home/mattmann/data/exp5/image_catalog/deploy
+export OODT_HOME=a[OODT_HOME]a
 export FILEMGR_URL="http://localhost:9000"
 export WORKFLOW_URL="http://localhost:9001"
 export RESMGR_URL="http://localhost:9002"
