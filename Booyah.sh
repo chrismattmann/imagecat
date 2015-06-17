@@ -1,7 +1,11 @@
-export OODT_HOME= ../'pwd'
 echo - Starting Install -
 echo - Creating Deploy Directory -
 mkdir ../deploy
+cd ..
+cd deploy
+export OODT_HOME= 'pwd'
+cd ..
+cd imagecat
 echo [SUCCESS]
 echo - Building via Maven -
 mvn install
