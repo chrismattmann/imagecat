@@ -3,7 +3,7 @@ echo - Creating Deploy Directory -
 mkdir ../deploy
 cd ..
 cd deploy
-export OODT_HOME= `pwd`
+export OODT_HOME=`pwd`
 cd ..
 cd imagecat
 echo [SUCCESS]
