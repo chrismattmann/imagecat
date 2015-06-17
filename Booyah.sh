@@ -20,6 +20,11 @@ cp crawler/lib/cas-crawler-* resmgr/lib
 cp pge/lib/cas-pge-* resmgr/lib
 cp solr4/example/lib/*.jar tomcat/common/lib
 cp solr4/example/resources/log4j.properties tomcat/common/lib
+echo - Fixing Extras -
+cd tomcat
+touch logs
+cd ..
+cp filemgr/lib/cas-filemgr-* workflow/lib
 echo [SUCCESS]
 echo - Downloading Roxy... -
 cd data/staging
@@ -29,3 +34,12 @@ cd ..
 echo [SUCCESS]
 echo - Automated Setup Complete -
 echo Booyah!
+echo Check on website for final edits
+echo Loading final file for user input using vi...
+echo 3
+sleep 2
+echo 2
+sleep 2
+echo 1
+sleep 2
+vi tomcat/common/lib/log4j.properties
