@@ -27,7 +27,10 @@ cp solr4/example/lib/*.jar tomcat/common/lib
 cp solr4/example/resources/log4j.properties tomcat/common/lib
 echo - Fixing Extras -
 cd tomcat
-touch logs
+mkdir logs
+cd logs
+touch catalina.out
+cd ..
 cd ..
 cp filemgr/lib/cas-filemgr-* workflow/lib
 echo [SUCCESS]
