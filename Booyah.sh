@@ -1,4 +1,4 @@
-export OODT_HOME= your/deploy/path/
+export OODT_HOME= ../'pwd'
 echo - Starting Install -
 echo - Creating Deploy Directory -
 mkdir ../deploy
