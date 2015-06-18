@@ -46,7 +46,7 @@ Automated Install
 1. Navigate to location for imagecat
 2. git clone https://github.com/ATZimdars/ImageCatInstall.git
 3. cd ImageCatInstall
-4. ./booyah
+4. ./booyah.sh
 5. Wait for a install to finish
 6. Follow Manual installation step #16
 7. $OODT_HOME/bin/chunker
