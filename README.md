@@ -66,8 +66,8 @@ Manual Installation
 5. cp -R distribution/target/*.tar.gz ../deploy 
 6. cd ../deploy && tar xvzf *.tar.gz 
 7. cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7
-8. edit tomcat7/conf/Catalina/localhost/solr.xml and replace [OODT_HOME] with the path to your deploy dir.
-9. edit /bin/env.sh and /bin/imagecatenv.sh in your deploy directory to make sure OODT_HOME is set to the path to your deploy dir.
+8. edit tomcat7/conf/Catalina/localhost/solr.xml and replace --OODT_HOME-- with the path to your deploy dir.
+9. edit /bin/env.sh and /bin/imagecatenv.sh in your deploy directory to make sure --OODT_HOME-- is set to the path to your deploy dir.
 10. /bin/bash && source bin/imagecatenv.sh
 11. mkdir tomcat7/logs
 12. Copy cas-filemgr-VERSION.jar, cas-workflow-VERSION.jar, cas-crawler-VERSION.jar and cas-pge-VERSION.jar to the resmgr/lib directory. *Grab them from their component directory (i.e. cas-filemgr-VERSION.jar from filemgr/lib/cas-filemgr-VERSION.jar)*
