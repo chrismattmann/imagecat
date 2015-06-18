@@ -1,3 +1,4 @@
+export OODT_HOME=`pwd`
 echo -- Stopping All Scripts --
 cd $OODT_HOME/bin
 ./oodt stop
