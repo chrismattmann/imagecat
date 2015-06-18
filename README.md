@@ -75,7 +75,8 @@ Manual Installation
 14. Copy solr4/example/resources/log4j.properties to tomcat/common/lib
 15. cp filemgr/lib/cas-filemgr-VERSION.jar workflow/lib
 16. Edit tomcat/common/lib/log4j.properties to read:  
-    #  Logging level                                                                                                             solr.log=logs/                                                 
+    #  Logging level                                                    
+    solr.log=logs/                                                 
     log4j.rootLogger=INFO, CONSOLE
     log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
     log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
