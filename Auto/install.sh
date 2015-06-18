@@ -1,6 +1,7 @@
 echo - Starting Install -
 echo - Creating Deploy Directory -
-mkdir ../deploy
+mkdir ../../deploy
+cd ..
 cd ..
 cd deploy
 export OODT_HOME=`pwd`
@@ -42,8 +43,10 @@ echo [SUCCESS]
 echo - Moving Global Start/Stop Commands -
 cd ..
 cd imagecat
-mv start.sh ../deploy
-mv stop.sh ../deploy
+cd Auto
+mv start.sh ../../deploy
+mv stop.sh ../../deploy
+cd ..
 cd ..
 cd deploy
 chmod +x start.sh
