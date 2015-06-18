@@ -5,5 +5,4 @@ cd $OODT_HOME/bin
 cd $OODT_HOME/tomcat7/bin
 ./shutdown.sh
 killall java
-ps -aef | grep java
 echo [DONE]
