@@ -49,8 +49,12 @@ Automated Install
 4. ./booyah.sh
 5. Wait for a install to finish
 6. Follow Manual installation step #16
-7. $OODT_HOME/bin/chunker
-8. #win
+7. cd deploy
+7. Add directorys for images in data/staging/roxy-image-list-jpg-nonzero.txt
+7. ./start.sh 
+8. or Manual Setup #17-#19
+9. $OODT_HOME/bin/chunker
+10. #win
 
 
 Manual Installation 
