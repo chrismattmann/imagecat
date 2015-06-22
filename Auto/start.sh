@@ -16,6 +16,9 @@
 export OODT_HOME=`pwd`
 echo -- Starting All Required Scripts --
 source bin/imagecatenv.sh
+rm /Users/azimdars/downloads/test/deploy/resmgr/run/cas.resmgr.pid
+rm /Users/azimdars/downloads/test/deploy/filemgr/run/cas.filemgr.pid
+rm /Users/azimdars/downloads/test/deploy/workflow/run/cas.workflow.pid
 cd $OODT_HOME/bin
 echo *******Starting OODT*******
 ./oodt start
