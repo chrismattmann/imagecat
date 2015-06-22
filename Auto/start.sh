@@ -13,12 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export OODT_HOME=`pwd`
+export OODT_HOME=pwd
 echo -- Starting All Required Scripts --
 source bin/imagecatenv.sh
-rm /Users/azimdars/downloads/test/deploy/resmgr/run/cas.resmgr.pid
-rm /Users/azimdars/downloads/test/deploy/filemgr/run/cas.filemgr.pid
-rm /Users/azimdars/downloads/test/deploy/workflow/run/cas.workflow.pid
+rm $OODT_HOME/resmgr/run/cas.resmgr.pid
+rm $OODT_HOME/filemgr/run/cas.filemgr.pid
+rm $OODT_HOME/workflow/run/cas.workflow.pid
 cd $OODT_HOME/bin
 echo *******Starting OODT*******
 ./oodt start
