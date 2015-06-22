@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export OODT_HOME=pwd
+export OODT_HOME=`pwd`
 echo -- Starting All Required Scripts --
 source bin/imagecatenv.sh
 rm $OODT_HOME/resmgr/run/cas.resmgr.pid
