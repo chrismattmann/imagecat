@@ -43,18 +43,20 @@ setenv PCS_HOME $OODT_HOME/pcs
 ```
 Automated Install
 =================
-1. Navigate to location for imagecat
-2. git clone https://github.com/ATZimdars/ImageCatInstall.git
-3. cd ImageCatInstall
-4. ./booyah.sh
-5. Wait for a install to finish
-6. Follow Manual installation step #16
-7. cd deploy
-7. Add directorys for images in data/staging/roxy-image-list-jpg-nonzero.txt
-7. ./start.sh 
-8. or Manual Setup #17-#19
-9. $OODT_HOME/bin/chunker
-10. #win
+1. Navigate to desired location for imagecat
+2. git clone https://github.com/chrismattmann/imagecat.git
+3. cd imagecat
+4. cd auto
+4. chmod +x install.sh
+5. ./install.sh
+6. Wait for a install to finish
+7. Follow Manual installation step #16 (Below)
+8. cd deploy
+9. Add directorys for images in data/staging/roxy-image-list-jpg-nonzero.txt
+10. ./start.sh 
+11. or Manual Setup #17-#19
+12. $OODT_HOME/bin/chunker
+13. #win
 
 
 Manual Installation 
