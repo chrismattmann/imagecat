@@ -53,10 +53,11 @@ Automated Install
 7. Follow Manual installation step #16 (Below)
 8. cd deploy
 9. Add directorys for images in data/staging/roxy-image-list-jpg-nonzero.txt
-10. ./start.sh 
-11. or Manual Setup #17-#19
-12. $OODT_HOME/bin/chunker
-13. #win
+10. souce bin/imagecatenv.sh
+11. ./start.sh 
+12. or Manual Setup #17-#19
+13. $OODT_HOME/bin/chunker
+14. #win
 
 
 Manual Installation 
@@ -76,7 +77,7 @@ Manual Installation
 13. Copy solr4/example/lib/*.jar to tomcat/common/lib
 14. Copy solr4/example/resources/log4j.properties to tomcat/common/lib
 15. cp filemgr/lib/cas-filemgr-VERSION.jar workflow/lib
-16. Edit tomcat/common/lib/log4j.properties to read:  
+16. Edit tomcat/common/lib/log4j.properties top rows to read:  
     #  Logging level                                                    
     solr.log=logs/                                                 
     log4j.rootLogger=INFO, CONSOLE
