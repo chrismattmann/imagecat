@@ -10,6 +10,9 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/starter-template.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,45 +32,67 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">ImageCat</a>
+          <a class="navbar-brand page-scroll" href="#intro">ImageCat</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/solr">Solr</a></li>
-            <li><a href="/opsui">OODT</a></li>
-	    <li><a href="/imagespace">Image Space</a></li>
+            <li><a class="page-scroll" href="#intro">Home</a></li>
+            <li><a class="page-scroll" href="#apps">Apps</a></li>
+            <li><a class="page-scroll" href="#about">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-    <div class="container">
-
-      <div class="starter-template">
-	<img src="img/ImageCatLogo.png" alt="Image Cat" width="600" height="300"/>
-        <p class="lead">ImageCat is an application built by <a href="http://www.jpl.nasa.gov">NASA Jet Propulsion Laboratory</a>, <a href="http://www.kitware.com">Kitware, Inc.</a>, and <a href="http://continuum.io">Continuum Analytics, Inc</a>. It is a rich index in <a href="http://lucene.apache.org/solr/">Apache Solr</a> of extracted image OCR and metadata features using the <a href="http://tika.apache.org/">Apache Tika</a> library. ImageCat uses <a href="http://oodt.apache.org/">Apache OODT</a> as a mechanism for loading the Apache Solr catalog, via Apache Tika. A user provides an image list text file with 10s of millions of images, and ImageCat uses OODT to map reduce through the file, and ingest the images and extract the metadata via Tika and Solr. <a href="http://github.com/memex-explorer/image_space">Image Space</a>, an application that leverages ImageCat, allows a user to browse and search the rich Solr catalog built by Tika and OODT. You can access the OODT and Solr and Image Space apps below. The data is currently loaded with the full Roxyimages dataset from <a href="http://www.darpa.mil/newsevents/releases/2014/02/09.aspx">DARPA Memex</a>.
+    <section id="intro" class="intro-section">
+    <div class="container center">
+       <div class="starter-template">
+	<div class="center"><img src="img/ImageCatLogo.png" alt="Image Cat" width="600" height="300"/></div>
+        <p class="lead">ImageCat is a rich index in <a href="http://lucene.apache.org/solr/">Apache Solr</a> of extracted image OCR and metadata features using the <a href="http://tika.apache.org/">Apache Tika</a> library. ImageCat uses <a href="http://oodt.apache.org/">Apache OODT</a> as a mechanism for loading the Apache Solr catalog, via Apache Tika. A user provides an image list text file with 10s of millions of images, and ImageCat uses OODT to map reduce through the file, and ingest the images and extract the metadata via Tika and Solr. <a href="http://github.com/memex-explorer/image_space">Image Space</a>, an application that leverages ImageCat, allows a user to browse and search the rich Solr catalog built by Tika and OODT. You can access the OODT and Solr and Image Space apps below. The data is currently loaded with the full Roxyimages dataset from <a href="http://www.darpa.mil/newsevents/releases/2014/02/09.aspx">DARPA Memex</a>.
 	</p>
+
       <div class="container center">
            <p>You can find the source code for ImageCat on <a href="http://github.com/chrismattmann/imagecat">Github</a> and on the <a href="http://www.darpa.mil/opencatalog/MEMEX.html">DARPA Open Catalog for Memex</a>.
       </div>
-       
-<div class="container center">
+</div>
+</div>
+</section>
+
+<section id="apps" class="apps-section">
+    <div class="container center">
+       <div class="starter-template">
     <div class="row">
-        <div class="col-md-6"><p><h4>ImageCat Processing Pipeline</h4><a href="/opsui" border="0"><img alt="Apache OODT OPSUI" src="img/oodt.png" width="240" height="80"/></a></p></div>
-        <div class="col-md-6"><p><h4>ImageCat Search Index</h4><a href="/solr" border="0"><img alt="Apache Solr and Tika" src="img/solr.png" width="210" height="60"/></a></p></div>
+        <div class="col-md-6"><p><h4>ImageCat Processing Pipeline</h4><a href="/opsui/" border="0"><img alt="Apache OODT OPSUI" src="img/oodt.png" width="240" height="80"/></a></p></div>
+        <div class="col-md-6"><p><h4>ImageCat Search Index</h4><a href="/solr/" border="0"><img alt="Apache Solr and Tika" src="img/solr.png" width="210" height="60"/></a></p></div>
     </div>
     <div class="row">
-        <div class="col-md-12"><p><h4>Image Space</h4><a href="/imagespace" border="0"><img alt="Image Space" src="img/imagespace.jpg" width="240" height="80"/></a></p></div>
+        <div class="col-md-12"><p><h4>Image Space</h4><a href="/imagespace/" border="0"><img alt="Image Space" src="img/imagespace.jpg" width="240" height="80"/></a></p></div>
     </div>
 </div>
+</div>
+</section>
 
-    </div>
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-14">
+                    <h1>About ImageCat</h1>
+                     <p class="lead">ImageCat is an application built by <a href="http://www.jpl.nasa.gov">NASA Jet Propulsion Laboratory</a>, <a href="http://www.kitware.com">Kitware, Inc.</a>, and <a href="http://continuum.io">Continuum Analytics, Inc</a>
+                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/scrolling-nav.js"></script>
+
   </body>
 </html>
