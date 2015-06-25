@@ -19,7 +19,7 @@
   <parent>
     <artifactId>oodt</artifactId>
     <groupId>org.apache.oodt</groupId>
-    <version>0.8.1</version>
+    <version>0.9</version>
   </parent>
 
   <groupId>gov.darpa.memex.imageCatalog</groupId>
@@ -32,8 +32,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <oodt.version>0.8.1</oodt.version>
-    <oodt.pge.version>0.8.1</oodt.pge.version>
+    <oodt.version>0.9</oodt.version>
+    <oodt.pge.version>0.9</oodt.pge.version>
    <!-- Maven plugin dependencies -->
     <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
     <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>

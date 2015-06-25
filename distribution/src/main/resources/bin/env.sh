@@ -45,8 +45,7 @@ PRGDIR=`dirname "$PRG"`
 # Only set OODT_HOME if not already set
 [ -z "$OODT_HOME" ] && OODT_HOME=`cd "$PRGDIR/.." ; pwd`
 
-export OODT_HOME
-
+export OODT_HOME=--OODT_HOME--
 # Ensure that any user defined CLASSPATH variables are not used on startup,
 # but allow them to be specified in setenv.sh, in rare case when it is needed.
 CLASSPATH=
