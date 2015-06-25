@@ -52,7 +52,7 @@ Automated Install
 6. Wait for a install to finish
 7. Follow Manual installation step #16 (Below)
 8. cd ../../deploy
-9. Add directorys for images in data/staging/roxy-image-list-jpg-nonzero.txt
+9. Add directories for images in data/staging/roxy-image-list-jpg-nonzero.txt
 10. souce bin/imagecatenv.sh
 11. ./start.sh 
 12. or Manual Setup #17-#19
