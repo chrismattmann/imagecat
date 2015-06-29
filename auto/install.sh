@@ -58,7 +58,7 @@ echo [SUCCESS]
 echo - Moving Global Start/Stop Commands -
 cd ..
 cd imagecat
-cd Auto
+cd auto
 mv start.sh ../../deploy
 mv stop.sh ../../deploy
 cd ..
