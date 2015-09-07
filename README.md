@@ -27,11 +27,11 @@ Other Pre-Requisites
 
 Useful Environment Variables
 ============================
-The following environment variables are used in ImageCat.
+The following environment variables are used in ImageCat. Set them in ~/.tcshrc
 
 ```
-setenv JAVA_HOME e.g. `readlink -f /usr/bin/java | sed "s:bin/java::"`
-setenv OODT_HOME ~/imagecat
+setenv JAVA_HOME `readlink -f /usr/bin/java | sed "s:bin/java::"`
+setenv OODT_HOME ~/deploy 
 setenv GANGLIA_URL http://zipper.jpl.nasa.gov/ganglia/
 setenv FILEMGR_URL http://localhost:9000
 setenv WORKFLOW_URL http://localhost:9001
@@ -52,8 +52,8 @@ Automated Install
 6. Wait for a install to finish
 7. Follow Manual installation step #16 (Below)
 8. cd ../../deploy
-9. Add directories for images in data/staging/roxy-image-list-jpg-nonzero.txt
-10. souce bin/imagecatenv.sh
+9. Add the absolute paths of all images (one image path per line) in data/staging/roxy-image-list-jpg-nonzero.txt
+10. source bin/imagecatenv.sh
 11. ./start.sh 
 12. or Manual Setup #17-#19
 13. $OODT_HOME/bin/chunker
