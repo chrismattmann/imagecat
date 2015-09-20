@@ -31,7 +31,7 @@ The following environment variables are used in ImageCat. Set them in ~/.tcshrc
 
 ```
 setenv JAVA_HOME `readlink -f /usr/bin/java | sed "s:bin/java::"`
-setenv OODT_HOME ~/deploy 
+setenv OODT_HOME ~/path_to_deploy_directory 
 setenv GANGLIA_URL http://zipper.jpl.nasa.gov/ganglia/
 setenv FILEMGR_URL http://localhost:9000
 setenv WORKFLOW_URL http://localhost:9001
