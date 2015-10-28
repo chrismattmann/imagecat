@@ -59,8 +59,8 @@ echo - Moving Global Start/Stop Commands -
 cd ..
 cd imagecat
 cd auto
-mv start.sh ../../deploy
-mv stop.sh ../../deploy
+cp start.sh ../../deploy
+cp stop.sh ../../deploy
 cd ..
 cd ..
 cd deploy
