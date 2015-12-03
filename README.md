@@ -41,6 +41,11 @@ setenv FILEMGR_HOME $OODT_HOME/filemgr
 setenv PGE_ROOT $OODT_HOME/pge
 setenv PCS_HOME $OODT_HOME/pcs
 ```
+
+* NOTE: Mac OS X users may need to use a different value for JAVA_HOME because the Java installation that is found by the above command does not necessarily contain the bin/java folder layout.  If that's the case, then try a path along the lines of: (your jdk version may vary)
+```
+setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
+```
 Automated Install
 =================
 1. Navigate to desired location for imagecat
