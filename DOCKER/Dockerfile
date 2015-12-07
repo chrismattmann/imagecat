@@ -17,7 +17,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 ENV JRE_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 
 RUN mkdir /deploy
-RUN git clone https://github.com/chrismattmann/imagecat.git
+RUN git clone -b docker-allow-override-of-list-file https://github.com/danlamanna/imagecat.git
 WORKDIR imagecat
 RUN mvn install
 RUN cp -R distribution/target/*.tar.gz /deploy
@@ -38,8 +38,8 @@ RUN mkdir -p /deploy/pge/extractors/filename
 COPY chunkfile_extractor.xml /deploy/pge/extractors/filename/chunkfile_extractor.xml
 COPY chunkfile_metout.xml /deploy/pge/extractors/metout/chunkfile_metout.xml
 
-RUN cp /deploy/filemgr/lib/cas-filemgr-*.jar /deploy/workflow/lib/ 
-RUN cp /deploy/filemgr/lib/cas-filemgr-*.jar /deploy/resmgr/lib/ 
+RUN cp /deploy/filemgr/lib/cas-filemgr-*.jar /deploy/workflow/lib/
+RUN cp /deploy/filemgr/lib/cas-filemgr-*.jar /deploy/resmgr/lib/
 RUN cp /deploy/filemgr/lib/cas-filemgr-*.jar /deploy/extensions/lib/
 
 COPY imagecatenv.sh /deploy/bin/imagecatenv.sh
