@@ -8,6 +8,11 @@ After building or pulling: `docker pull continuumio/imagecat`
 
 - `docker run -v /home/ubuntu/imagecat/DOCKER/images:/images -v /home/ubuntu/imagecat/DOCKER//staging:/deploy/data/staging/ -P -t -i continuumio/imagecat`
 
+Additionally you can specify a file other than ```staging/roxy-image-list-jpg-nonzero.txt``` by passing that filepath to the docker run statement:
+
+    docker run -v /home/ubuntu/imagecat/DOCKER/images:/images -v /home/ubuntu/imagecat/DOCKER//staging:/deploy/data/staging/ -P -t -i continuumio/imagecat my-image-list.txt
+
+
 A running container should result in starting all services: solr, tomcat, oodt, etc.  Last few lines of the running container will also expose 
 the hostname/container id
 
