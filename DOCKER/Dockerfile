@@ -61,6 +61,7 @@ EXPOSE 8080
 EXPOSE 8081
 EXPOSE 8888
 EXPOSE 8000
+EXPOSE 9241
 
 COPY entrypoint_imagecatdev.sh /deploy/entrypoint_imagecatdev.sh
 

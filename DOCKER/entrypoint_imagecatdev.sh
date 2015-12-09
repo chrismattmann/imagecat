@@ -15,5 +15,10 @@ else
     LIST_FILE=/deploy/data/staging/roxy-image-list-jpg-nonzero.txt
 fi
 
+if [ -n "$IMAGECAT_IMAGE_PATH" ] && [ -d "$IMAGECAT_IMAGE_PATH" ]; then
+    pushd $IMAGECAT_IMAGE_PATH
+    python -m SimpleHTTPServer 9241 &
+fi
+
 echo "Watching $LIST_FILE"
 while inotifywait -e close_write $LIST_FILE; do $OODT_HOME/bin/chunker $LIST_FILE; done
