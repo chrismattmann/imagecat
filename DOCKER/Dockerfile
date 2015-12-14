@@ -24,6 +24,7 @@ RUN cp -R distribution/target/*.tar.gz /deploy
 WORKDIR /deploy
 RUN tar xvzf *.tar.gz
 RUN cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7
+COPY solr.xml /imagecat/master/tomcat7/conf/Catalina/localhost/solr.xml
 ENV OODT_HOME /deploy
 
 RUN mkdir -p /deploy/tomcat7/logs
