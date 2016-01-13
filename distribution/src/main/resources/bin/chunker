@@ -14,5 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+if [ -n "$1" ]; then
+    LIST_FILE=$1
+else
+    LIST_FILE=$OODT_HOME/data/staging/roxy-image-list-jpg-nonzero.txt
+fi
+
 cd $OODT_HOME/workflow/bin
-./wmgr-client --url $WORKFLOW_URL --operation --dynWorkflow  --taskIds urn:memex:Chunker --metaData --key ImageListFile $OODT_HOME/data/staging/roxy-image-list-jpg-nonzero.txt
+./wmgr-client --url $WORKFLOW_URL --operation --dynWorkflow  --taskIds urn:memex:Chunker --metaData --key ImageListFile $LIST_FILE
