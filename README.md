@@ -24,6 +24,7 @@ Python Pre-Requisites
 Other Pre-Requisites
 ====================
 1. Maven 3.x
+2. Tesseract - use this [guide](http://wiki.apache.org/tika/TikaOCR)
 
 Useful Environment Variables
 ============================
