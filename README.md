@@ -43,58 +43,69 @@ setenv PGE_ROOT $OODT_HOME/pge
 setenv PCS_HOME $OODT_HOME/pcs
 ```
 
-* NOTE: Mac OS X users may need to use a different value for JAVA_HOME because the Java installation that is found by the above command does not necessarily contain the bin/java folder layout.  If that's the case, then try a path along the lines of: (your jdk version may vary)
+Or, if you're using bash, set `~/.bash_profile` (Mac) or `~/.bashrc`, or with zsh, `~/.zshrc`:
+
+```
+export OODT_HOME=~/path_to_deploy_directory 
+export FILEMGR_URL="http://localhost:9000"
+export WORKFLOW_URL="http://localhost:9001"
+export RESMGR_URL="http://localhost:9002"
+```
+
+*NOTE* 
+- Mac OS X users may need to use a different value for JAVA_HOME because the Java installation that is found by the above command does not necessarily contain the bin/java folder layout.  If that's the case, then try a path along the lines of: (your jdk version may vary)
 ```
 setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
 ```
+- Please ensure that `OODT_HOME`, `FILEMGR_URL`, `WORKFLOW_URL`, `RESMGR_URL` are all set to the above values without fail.
+
+
 Automated Install
 =================
 1. Navigate to desired location for imagecat
-2. git clone https://github.com/chrismattmann/imagecat.git
-3. cd imagecat
-4. cd auto
-4. chmod +x install.sh
-5. ./install.sh
-6. Wait for a install to finish
-7. Follow Manual installation step #16 (Below)
-8. cd ../../deploy
-9. Add the absolute paths of all images (one image path per line) in data/staging/roxy-image-list-jpg-nonzero.txt
-10. source bin/imagecatenv.sh
-11. ./start.sh 
-12. or Manual Setup #17-#19
-13. $OODT_HOME/bin/chunker
-14. #win
+2. `git clone https://github.com/chrismattmann/imagecat.git`
+3. `cd imagecat`
+4. `cd auto`
+5. `chmod +x install.sh`
+6. `./install.sh` and wait for a install to finish
+7. `cd ../../deploy`
+8. Add the absolute paths of all images (one image path per line) in data/staging/roxy-image-list-jpg-nonzero.txt
+9. `./start.sh`
+10. `./bin/chunker`
+11. #win
 
 
 Manual Installation 
 ===================
-1. mkdir deploy 
-2. git clone https://github.com/chrismattmann/imagecat.git 
-3. cd imagecat 
-4. mvn install 
-5. cp -R distribution/target/*.tar.gz ../deploy 
-6. cd ../deploy && tar xvzf *.tar.gz 
-7. cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7
-8. edit tomcat7/conf/Catalina/localhost/solr.xml and replace "--OODT_HOME--" with the path to your deploy dir.
-9. edit /bin/env.sh and /bin/imagecatenv.sh in your deploy directory to make sure "--OODT_HOME--" is set to the path to your deploy dir.
-10. /bin/bash && source bin/imagecatenv.sh
-11. mkdir tomcat7/logs
-12. Copy cas-filemgr-VERSION.jar, cas-workflow-VERSION.jar, cas-crawler-VERSION.jar and cas-pge-VERSION.jar to the resmgr/lib directory. *Grab them from their component directory (i.e. cas-filemgr-VERSION.jar from filemgr/lib/cas-filemgr-VERSION.jar)*
-13. Copy solr4/example/lib/*.jar to tomcat/common/lib
-14. Copy solr4/example/resources/log4j.properties to tomcat/common/lib
-15. cp filemgr/lib/cas-filemgr-VERSION.jar workflow/lib
-16. Edit tomcat/common/lib/log4j.properties top rows to read:  
-    #  Logging level                                                    
-    solr.log=logs/                                                 
-    log4j.rootLogger=INFO, CONSOLE
-    log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
-    log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
-    log4j.appender.CONSOLE.layout.ConversionPattern=%-4r [%t] %-5p %c %x \u2013 %m%n
-17. cd $OODT_HOME/bin && ./oodt start 
-18. cd $OODT_HOME/tomcat7/bin && ./startup.sh 
-19. cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs 
-20. download roxy-image-list-jpg-nonzero.txt and place it in $OODT_HOME/data/staging 
-21. $OODT_HOME/bin/chunker 
+1. `mkdir deploy`
+2. `git clone https://github.com/chrismattmann/imagecat.git`
+3. `cd imagecat`
+4. `mvn install` 
+5. `cp -R distribution/target/*.tar.gz ../deploy` 
+6. `cd ../deploy && tar xvzf *.tar.gz` 
+7. `cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7`
+8. edit `tomcat7/conf/Catalina/localhost/solr.xml` and replace `"--OODT_HOME--"` with the path to your deploy dir.
+9. edit `./bin/env.sh` and `./bin/imagecatenv.sh` in your deploy directory to make sure `"--OODT_HOME--"` is set to the path to your deploy dir.
+10. `/bin/bash && source bin/imagecatenv.sh`
+11. `mkdir tomcat7/logs`
+12. Copy `cas-filemgr-VERSION.jar`, `cas-workflow-VERSION.jar`, `cas-crawler-VERSION.jar` and `cas-pge-VERSION.jar` to the `resmgr/lib` directory. *Grab them from their component directory (i.e. `cas-filemgr-VERSION.jar` from `filemgr/lib/cas-filemgr-VERSION.jar`)*
+13. Copy `solr4/example/lib/*.jar` to `tomcat/common/lib`
+14. Copy `solr4/example/resources/log4j.properties` to `tomcat/common/lib`
+15. `cp filemgr/lib/cas-filemgr-VERSION.jar workflow/lib`
+16. Edit `tomcat/common/lib/log4j.properties` top rows to read (if not already done):  
+```
+#  Logging level                                                    
+solr.log=logs/                                                 
+log4j.rootLogger=INFO, CONSOLE
+log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
+log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
+log4j.appender.CONSOLE.layout.ConversionPattern=%-4r [%t] %-5p %c %x \u2013 %m%n
+```
+17. `cd $OODT_HOME/bin && ./oodt start `
+18. `cd $OODT_HOME/tomcat7/bin && ./startup.sh`
+19. `cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs` 
+20. download `roxy-image-list-jpg-nonzero.txt` and place it in `$OODT_HOME/data/staging`
+21. `$OODT_HOME/bin/chunker`
 22. #win
 
 Observing what's going on
