@@ -57,7 +57,6 @@ export RESMGR_URL="http://localhost:9002"
 ```
 setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
 ```
-- For bash, you will need to change `setenv var str` to `export var="str"` in the .
 - Please ensure that `OODT_HOME`, `FILEMGR_URL`, `WORKFLOW_URL`, `RESMGR_URL` are all set to the above values without fail.
 
 
