@@ -43,7 +43,11 @@ setenv PGE_ROOT $OODT_HOME/pge
 setenv PCS_HOME $OODT_HOME/pcs
 ```
 
-* NOTE: Mac OS X users may need to use a different value for JAVA_HOME because the Java installation that is found by the above command does not necessarily contain the bin/java folder layout.  If that's the case, then try a path along the lines of: (your jdk version may vary)
+* NOTE: 
+- Mac OS X users may need to use a different value for JAVA_HOME because the Java installation that is found by the above command does not necessarily contain the bin/java folder layout.  If that's the case, then try a path along the lines of: (your jdk version may vary)
+- With, you will need to change `setenv var str` to `export var="str"`.
+- Please ensure that `OODT_HOME`, `FILEMGR_URL`, `WORKFLOW_URL`, `RESMGR_URL` are all set to the above values without fail.
+
 ```
 setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
 ```
@@ -53,17 +57,14 @@ Automated Install
 2. git clone https://github.com/chrismattmann/imagecat.git
 3. cd imagecat
 4. cd auto
-4. chmod +x install.sh
-5. ./install.sh
-6. Wait for a install to finish
-7. Follow Manual installation step #16 (Below)
+5. chmod +x install.sh
+6. ./install.sh
+7. Wait for a install to finish
 8. cd ../../deploy
 9. Add the absolute paths of all images (one image path per line) in data/staging/roxy-image-list-jpg-nonzero.txt
-10. source bin/imagecatenv.sh
-11. ./start.sh 
-12. or Manual Setup #17-#19
-13. $OODT_HOME/bin/chunker
-14. #win
+10. ./start.sh
+11. ./bin/chunker
+12. #win
 
 
 Manual Installation 
@@ -84,6 +85,7 @@ Manual Installation
 14. Copy solr4/example/resources/log4j.properties to tomcat/common/lib
 15. cp filemgr/lib/cas-filemgr-VERSION.jar workflow/lib
 16. Edit tomcat/common/lib/log4j.properties top rows to read:  
+
     #  Logging level                                                    
     solr.log=logs/                                                 
     log4j.rootLogger=INFO, CONSOLE
