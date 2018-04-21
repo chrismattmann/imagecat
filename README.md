@@ -74,39 +74,9 @@ Automated Install
 10. `./bin/chunker`
 11. #win
 
-
-Manual Installation 
-===================
-1. `mkdir deploy`
-2. `git clone https://github.com/chrismattmann/imagecat.git`
-3. `cd imagecat`
-4. `mvn install` 
-5. `cp -R distribution/target/*.tar.gz ../deploy` 
-6. `cd ../deploy && tar xvzf *.tar.gz` 
-7. `cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7`
-8. edit `tomcat7/conf/Catalina/localhost/solr.xml` and replace `"--OODT_HOME--"` with the path to your deploy dir.
-9. edit `./bin/env.sh` and `./bin/imagecatenv.sh` in your deploy directory to make sure `"--OODT_HOME--"` is set to the path to your deploy dir.
-10. `/bin/bash && source bin/imagecatenv.sh`
-11. `mkdir tomcat7/logs`
-12. Copy `cas-filemgr-VERSION.jar`, `cas-workflow-VERSION.jar`, `cas-crawler-VERSION.jar` and `cas-pge-VERSION.jar` to the `resmgr/lib` directory. *Grab them from their component directory (i.e. `cas-filemgr-VERSION.jar` from `filemgr/lib/cas-filemgr-VERSION.jar`)*
-13. Copy `solr4/example/lib/*.jar` to `tomcat/common/lib`
-14. Copy `solr4/example/resources/log4j.properties` to `tomcat/common/lib`
-15. `cp filemgr/lib/cas-filemgr-VERSION.jar workflow/lib`
-16. Edit `tomcat/common/lib/log4j.properties` top rows to read (if not already done):  
-```
-#  Logging level                                                    
-solr.log=logs/                                                 
-log4j.rootLogger=INFO, CONSOLE
-log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
-log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
-log4j.appender.CONSOLE.layout.ConversionPattern=%-4r [%t] %-5p %c %x \u2013 %m%n
-```
-17. `cd $OODT_HOME/bin && ./oodt start `
-18. `cd $OODT_HOME/tomcat7/bin && ./startup.sh`
-19. `cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs` 
-20. download `roxy-image-list-jpg-nonzero.txt` and place it in `$OODT_HOME/data/staging`
-21. `$OODT_HOME/bin/chunker`
-22. #win
+Docker Install
+==============
+1. See [Dockerfile](https://github.com/chrismattmann/imagecat/blob/master/DOCKER/Dockerfile) and instructions [here](https://github.com/chrismattmann/imagecat/blob/master/DOCKER/README.md).
 
 Observing what's going on
 =========================
