@@ -19,7 +19,6 @@ mkdir ../../deploy
 cd ..
 cd ..
 cd deploy
-export OODT_HOME=`pwd`
 cd ..
 cd imagecat
 echo [SUCCESS]
@@ -29,10 +28,24 @@ echo [SUCCESS]
 echo - Copying Files and Changing Paths -
 cp -R distribution/target/*.tar.gz ../deploy
 cd ../deploy && tar xvzf *.tar.gz
+export OODT_HOME=`pwd`
 cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7
-sed -i  s?--OODT_HOME--?${OODT_HOME}? tomcat7/conf/Catalina/localhost/solr.xml
-sed -i  s?--OODT_HOME--?${OODT_HOME}? bin/env.sh
-sed -i  s?--OODT_HOME--?${OODT_HOME}? bin/imagecatenv.sh
+
+platform=`uname`
+if [ "$platform" == "Darwin" ]; then 
+	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? tomcat7/conf/Catalina/localhost/solr.xml
+	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? tomcat7/tomcat7/conf/Catalina/localhost/solr.xml
+	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? bin/env.sh
+	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? bin/imagecatenv.sh
+
+else
+
+	sed -i s?--OODT_HOME--?${OODT_HOME}? tomcat7/conf/Catalina/localhost/solr.xml
+	sed -i s?--OODT_HOME--?${OODT_HOME}? tomcat7/tomcat7/conf/Catalina/localhost/solr.xml
+	sed -i s?--OODT_HOME--?${OODT_HOME}? bin/env.sh
+	sed -i s?--OODT_HOME--?${OODT_HOME}? bin/imagecatenv.sh
+fi
+
 source bin/imagecatenv.sh
 cp filemgr/lib/cas-filemgr-* resmgr/lib
 cp workflow/lib/cas-workflow-* resmgr/lib
