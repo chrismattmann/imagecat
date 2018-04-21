@@ -43,28 +43,37 @@ setenv PGE_ROOT $OODT_HOME/pge
 setenv PCS_HOME $OODT_HOME/pcs
 ```
 
-* NOTE: 
-- Mac OS X users may need to use a different value for JAVA_HOME because the Java installation that is found by the above command does not necessarily contain the bin/java folder layout.  If that's the case, then try a path along the lines of: (your jdk version may vary)
-- With, you will need to change `setenv var str` to `export var="str"`.
-- Please ensure that `OODT_HOME`, `FILEMGR_URL`, `WORKFLOW_URL`, `RESMGR_URL` are all set to the above values without fail.
+Or, if you're using bash, set `~/.bash_profile` (Mac) or `~/.bashrc`, or with zsh, `~/.zshrc`:
 
+```
+export OODT_HOME=~/path_to_deploy_directory 
+export FILEMGR_URL="http://localhost:9000"
+export WORKFLOW_URL="http://localhost:9001"
+export RESMGR_URL="http://localhost:9002"
+```
+
+*NOTE* 
+- Mac OS X users may need to use a different value for JAVA_HOME because the Java installation that is found by the above command does not necessarily contain the bin/java folder layout.  If that's the case, then try a path along the lines of: (your jdk version may vary)
 ```
 setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
 ```
+- For bash, you will need to change `setenv var str` to `export var="str"` in the .
+- Please ensure that `OODT_HOME`, `FILEMGR_URL`, `WORKFLOW_URL`, `RESMGR_URL` are all set to the above values without fail.
+
+
 Automated Install
 =================
 1. Navigate to desired location for imagecat
-2. git clone https://github.com/chrismattmann/imagecat.git
-3. cd imagecat
-4. cd auto
-5. chmod +x install.sh
-6. ./install.sh
-7. Wait for a install to finish
-8. cd ../../deploy
-9. Add the absolute paths of all images (one image path per line) in data/staging/roxy-image-list-jpg-nonzero.txt
-10. ./start.sh
-11. ./bin/chunker
-12. #win
+2. `git clone https://github.com/chrismattmann/imagecat.git`
+3. `cd imagecat`
+4. `cd auto`
+5. `chmod +x install.sh`
+6. `./install.sh` and wait for a install to finish
+7. `cd ../../deploy`
+8. Add the absolute paths of all images (one image path per line) in data/staging/roxy-image-list-jpg-nonzero.txt
+9. `./start.sh`
+10. `./bin/chunker`
+11. #win
 
 
 Manual Installation 
