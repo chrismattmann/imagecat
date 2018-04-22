@@ -11,7 +11,7 @@ Tika and [Tesseract OCR](https://wiki.apache.org/tika/TikaOCR).
 See the wiki for more information on installing and running ImageCat:  
 * [Installation instructions](https://github.com/chrismattmann/imagecat/wiki/Installation)  
 * [How to run](https://github.com/chrismattmann/imagecat/wiki/How-to-Run)  
-* [How to interact with DRAT](https://github.com/chrismattmann/imagecat/wiki/Interacting-with-ImageCat)  
+* [How to interact with ImageCat](https://github.com/chrismattmann/imagecat/wiki/Interacting-with-ImageCat)  
 * [Docker setup](https://github.com/chrismattmann/imagecat/wiki/Docker-Install)
 
 
