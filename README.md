@@ -1,5 +1,6 @@
 ImageCatalog 
 ============
+<img align="left" width="100" height="80" src="https://github.com/chrismattmann/imagecat/raw/master/ImageCat.png">
 
 This is an [OODT RADIX](https://cwiki.apache.org/confluence/display/OODT/RADiX+Powered+By+OODT)
 application that uses [Apache Solr](http://lucene.apache.org/solr/),
