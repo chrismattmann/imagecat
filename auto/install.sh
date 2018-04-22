@@ -34,14 +34,12 @@ cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7
 platform=`uname`
 if [ "$platform" == "Darwin" ]; then 
 	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? tomcat7/conf/Catalina/localhost/solr.xml
-	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? tomcat7/tomcat7/conf/Catalina/localhost/solr.xml
 	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? bin/env.sh
 	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? bin/imagecatenv.sh
 
 else
 
 	sed -i s?--OODT_HOME--?${OODT_HOME}? tomcat7/conf/Catalina/localhost/solr.xml
-	sed -i s?--OODT_HOME--?${OODT_HOME}? tomcat7/tomcat7/conf/Catalina/localhost/solr.xml
 	sed -i s?--OODT_HOME--?${OODT_HOME}? bin/env.sh
 	sed -i s?--OODT_HOME--?${OODT_HOME}? bin/imagecatenv.sh
 fi
