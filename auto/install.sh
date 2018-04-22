@@ -83,11 +83,4 @@ echo [SUCCESS]
 echo - Automated Setup Complete -
 echo Booyah!
 echo Check on website for final edits
-echo Loading final file for user input using vi...
-echo 3
-sleep 2
-echo 2
-sleep 2
-echo 1
-sleep 2
-vi tomcat/common/lib/log4j.properties
+echo Check logging properties in tomcat/common/lib/log4j.properties 
