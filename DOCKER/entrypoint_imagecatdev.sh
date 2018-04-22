@@ -1,6 +1,7 @@
 #!/bin/bash
 cd $OODT_HOME
 ./start.sh
+source $OODT_HOME/bin/imagecatenv.sh
 
 echo "Docker Container ID:" $HOSTNAME
 pushd $OODT_HOME/logs/
@@ -12,8 +13,8 @@ else
     LIST_FILE=/deploy/data/staging/roxy-image-list-jpg-nonzero.txt
 fi
 
-if [ -n "$IMAGECAT_IMAGE_PATH" ] && [ -d "$IMAGECAT_IMAGE_PATH" ]; then
-    pushd $IMAGECAT_IMAGE_PATH
+if [ -n /images ] && [ -d /images ]; then
+    pushd /images
     python -m SimpleHTTPServer 9241 &
 fi
 

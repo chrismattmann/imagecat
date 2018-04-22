@@ -27,6 +27,8 @@ services:
       - "8888"
       - "8000"
       - "9241"
+    volumes:
+      - ${IMAGECAT_IMAGE_PATH}:/images
 
 networks:
   imagespace-network:
