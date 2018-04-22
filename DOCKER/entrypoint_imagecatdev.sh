@@ -1,9 +1,6 @@
 #!/bin/bash
-source $OODT_HOME/bin/imagecatenv.sh
-cd $OODT_HOME/bin && ./oodt start
-cd $OODT_HOME/tomcat7/bin && ./startup.sh
-cd $OODT_HOME/resmgr/bin/ && ./start-memex-stubs
-
+cd $OODT_HOME
+./start.sh
 
 echo "Docker Container ID:" $HOSTNAME
 pushd $OODT_HOME/logs/
