@@ -1,22 +1,18 @@
 
+Requirements
+============
+Docker >= 1.9   
+[Docker Compose](https://docs.docker.com/compose/install/)
+
 ## Building
 
-    docker build -t="continuumio/imagecat" .
+    docker build -f Dockerfile -t nasajplmemex/imagecat .
 
 ## Starting
 
-After building or pulling: `docker pull continuumio/imagecat`
+You should set the environment variable ```IMAGECAT_IMAGE_PATH``` and the container will start a SimpleHTTPServer on port 9241, for example:
 
-    docker run -v /home/ubuntu/imagecat/DOCKER/images:/images -v /home/ubuntu/imagecat/DOCKER//staging:/deploy/data/staging/ -P -t -i continuumio/imagecat
-
-If you're running ImageCat locally and need to host the images, you can set the environment variable ```IMAGECAT_IMAGE_PATH``` and the container will start a SimpleHTTPServer on port 9241, for example:
-
-    docker run -e IMAGECAT_IMAGE_PATH=/images ... continuumio/imagecat
-
-Additionally you can specify a file other than ```staging/roxy-image-list-jpg-nonzero.txt``` by passing that filepath to the docker run statement:
-
-    docker run -v /home/ubuntu/imagecat/DOCKER/images:/images -v /home/ubuntu/imagecat/DOCKER//staging:/deploy/data/staging/ -P -t -i continuumio/imagecat my-image-list.txt
-
+    IMAGECAT_IMAGE_PATH=/path/to/your/images docker-compose up -d
 
 A running container should result in starting all services: solr, tomcat, oodt, etc.  Last few lines of the running container will also expose
 the hostname/container id
@@ -29,11 +25,15 @@ Setting up watches.
 Watches established.
 ```
 
-With a running docker container you can now add images to the images dir: `imagecat/DOCKER/images` and update the list `staging/roxy-image-list-jpg-nonzero.txt`.
-Updating the list will automatically result in the `chunker` script being executed
+With a running docker container you can now add images to the images dir: `/images` and update the list `staging/roxy-image-list-jpg-nonzero.txt`. Updating the list will automatically result in the `chunker` script being executed. For example:
+
+# Ingesting Images
+
+1. `docker exec -it <CONTAINER ID> bash`
+2. `cd /deploy/data/staging && find /images -name "*" -print >> roxy-image-list-jpg-nonzero.txt`
 
 ## Ports
-docker port <CONTAINER_ID>
+You can check which ports are running by executing docker port <CONTAINER_ID>
 ```
 docker port e622260b8701
 8080/tcp -> 0.0.0.0:49457
@@ -42,5 +42,4 @@ docker port e622260b8701
 8000/tcp -> 0.0.0.0:49456
 ```
 
-8081 mapping is the solr instance where one can externally view/query.  Port 8000 has a simple webserver running in the logs directory for
-help with debugging a running container.  This should be switched out for logstash or docker's 1.6 logging facilities.
+8081 mapping is the solr instance where one can externally view/query.  Port 8000 has a simple webserver running in the logs directory for help with debugging a running container.  This should be switched out for logstash or docker's 1.6 logging facilities.
