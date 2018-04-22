@@ -8,6 +8,16 @@ to ingest 10s of millions of files (images,but could be extended to other files)
 in place, and to extract metadata and OCR information from those files/images using 
 Tika and [Tesseract OCR](https://wiki.apache.org/tika/TikaOCR).
 
+Docker Install
+==============
+1. See [Dockerfile](https://github.com/chrismattmann/imagecat/blob/master/DOCKER/Dockerfile) and 
+instructions [here](https://github.com/chrismattmann/imagecat/blob/master/DOCKER/README.md).
+
+Installing without Docker
+=========================
+
+If you are going to install without Docker, follow the instructions below.
+
 Shell Pre-Requisites
 ====================
 Some programs used by ImageCat require the use of the [/bin/tcsh](https://en.wikipedia.org/wiki/Tcsh)
@@ -28,7 +38,7 @@ Other Pre-Requisites
 
 Useful Environment Variables
 ============================
-The following environment variables are used in ImageCat. Set them in ~/.tcshrc
+The following environment variables are used in ImageCat. Set them in ~/.tcshrc or ~/.bashrc.
 
 ```
 setenv JAVA_HOME `readlink -f /usr/bin/java | sed "s:bin/java::"`
@@ -60,23 +70,18 @@ setenv JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home
 - Please ensure that `OODT_HOME`, `FILEMGR_URL`, `WORKFLOW_URL`, `RESMGR_URL` are all set to the above values without fail.
 
 
-Automated Install
-=================
+Automated Install without Docker
+================================
 1. Navigate to desired location for imagecat
 2. `git clone https://github.com/chrismattmann/imagecat.git`
-3. `cd imagecat`
-4. `cd auto`
-5. `chmod +x install.sh`
-6. `./install.sh` and wait for a install to finish
-7. `cd ../../deploy`
-8. Add the absolute paths of all images (one image path per line) in data/staging/roxy-image-list-jpg-nonzero.txt
-9. `./start.sh`
-10. `./bin/chunker`
-11. #win
-
-Docker Install
-==============
-1. See [Dockerfile](https://github.com/chrismattmann/imagecat/blob/master/DOCKER/Dockerfile) and instructions [here](https://github.com/chrismattmann/imagecat/blob/master/DOCKER/README.md).
+3. `cd imagecat/auto && chmod +x install.sh`
+4. `./install.sh` and wait for a install to finish
+5. `cd ../../deploy`
+6. Add the absolute paths of all images (one image path per line) in data/staging/roxy-image-list-jpg-nonzero.txt
+7. `./start.sh`
+8. `source bin/imagecatenv.sh`
+9. `./bin/chunker`
+10. #win
 
 Observing what's going on
 =========================
