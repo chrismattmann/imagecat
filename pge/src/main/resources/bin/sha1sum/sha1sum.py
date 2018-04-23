@@ -42,7 +42,7 @@ def iterateDocs(sUrl):
     while results.hits > 0 and len(results) > 0:
         for doc in results:
             print "Processing: "+doc["id"]
-            doc["sha1sum_md"] = computeSha(doc["id"])
+            doc["sha1sum_s_md"] = computeSha(doc["id"])
             s.add([doc])
 
         rows = rows + 1
