@@ -45,8 +45,8 @@ def iterateDocs(sUrl):
             doc["sha1sum_s_md"] = computeSha(doc["id"])
             s.add([doc])
 
-        rows = rows + 1
         start = rows*pageSize
+        rows = rows + 1
         print "Searching: page: ["+str(rows)+"]: start: ["+str(start)+"]"
         results = s.search('id:*',**{'start' : start})
 
