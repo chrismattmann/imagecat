@@ -13,7 +13,7 @@ RUN apt-get update -y && \
     apt-get -y install software-properties-common && \
     apt-get -y install openjdk-8-jdk
 
-RUN pip install solrpy
+RUN pip install solrpy pysolr
 RUN conda install -c conda-cluster apache-maven 
 
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
@@ -24,6 +24,8 @@ RUN git clone https://github.com/chrismattmann/imagecat.git
 WORKDIR imagecat/auto
 RUN ./install.sh
 ENV OODT_HOME /deploy
+RUN echo '. /deploy/bin/imagecatenv.sh' >> /root/.bashrc
+RUN echo 'export PATH=$OODT_HOME/bin:$PATH' >> /root/.bashrc
 
 EXPOSE 8080
 EXPOSE 8081
