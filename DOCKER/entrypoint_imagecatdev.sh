@@ -18,6 +18,8 @@ if [ -n /images ] && [ -d /images ]; then
     python -m SimpleHTTPServer 9241 &
 fi
 
+cd /deploy/data/staging && find /images -name "*" -print >> roxy-image-list-jpg-nonzero.txt
+
 $OODT_HOME/bin/chunker
 INITIAL_CHUNK=$?
 
