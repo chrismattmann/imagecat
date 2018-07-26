@@ -34,7 +34,7 @@ def computeSha(filePath):
 
 def iterateDocs(sUrl):
     s = pysolr.Solr(sUrl, timeout=10)
-    results = s.search('id:*')
+    results = s.search('-sha1sum_s_md:[* TO *]')
     rows = 1
     pageSize = 10
     start = 0
@@ -45,10 +45,10 @@ def iterateDocs(sUrl):
             doc["sha1sum_s_md"] = computeSha(doc["id"])
             s.add([doc], commit=True)
 
-        start = rows*pageSize
+        #start = rows*pageSize
         rows = rows + 1
         print "Searching: page: ["+str(rows)+"]: start: ["+str(start)+"]"
-        results = s.search('id:*',**{'start' : start})
+        results = s.search('-sha1sum_s_md:[* TO *]',**{'start' : start})
 
 def main(argv):
    chunkFile=None
