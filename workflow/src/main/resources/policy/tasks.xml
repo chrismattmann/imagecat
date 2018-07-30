@@ -26,6 +26,7 @@
       <property name="PCS_MetFileExtension" value="met"/>
       <property name="PCS_ClientTransferServiceFactory" value="org.apache.oodt.cas.filemgr.datatransfer.InPlaceDataTransferFactory"/>
       <property name="PCS_ActionRepoFile" value="file:[CRAWLER_HOME]/policy/crawler-config.xml" envReplace="true"/>
+      <property name="SolrUrl" value="http://localhost:8081/solr/imagecatdev/"/>
     </configuration>
     <requiredMetFields/>
   </task>
