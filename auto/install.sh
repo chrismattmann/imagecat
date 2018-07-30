@@ -44,7 +44,7 @@ else
 	sed -i s?--OODT_HOME--?${OODT_HOME}? bin/imagecatenv.sh
 fi
 
-source bin/imagecatenv.sh
+source ../distribution/src/main/resources/bin/imagecatenv.sh
 cp filemgr/lib/cas-filemgr-* resmgr/lib
 cp workflow/lib/cas-workflow-* resmgr/lib
 cp crawler/lib/cas-crawler-* resmgr/lib
