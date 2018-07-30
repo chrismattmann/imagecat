@@ -5,14 +5,13 @@
   <!-- How to run the PGE -->
   <exe dir="[JobDir]" shell="/bin/bash">
      <cmd>export PATH=[OODT_HOME]/bin/:${PATH}</cmd>
-     <cmd>export PATH=[PGE_ROOT]/bin/sha1sum/:${PATH}</cmd>
      <cmd>shopt -s expand_aliases</cmd>
      <cmd>echo "Creating working dirs"</cmd>
      <cmd>mkdir [JobOutputDir] ; mkdir [JobInputDir]</cmd>
      <cmd>echo "Staging file [ChunkFilePath] to [JobInputDir]"</cmd>
      <cmd>cp -R [ChunkFilePath] [JobInputDir]</cmd>
      <cmd>solrcell_ingest [JobInputDir]/[Filename]</cmd>
-     <cmd>python2.7 sha1sum.py -s [SolrUrl]</cmd>
+     <cmd>python2.7 [PGE_ROOT]/bin/sha1sum/sha1sum.py -s [SolrUrl]</cmd>
    </exe>
 
   <!-- Files to ingest -->
