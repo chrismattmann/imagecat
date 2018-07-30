@@ -11,7 +11,9 @@ RUN apt-get update -y && \
     apt-get -y install gpg && \
     apt-get -y install inotify-tools && \
     apt-get -y install software-properties-common && \
-    apt-get -y install openjdk-8-jdk
+    apt-get -y install openjdk-8-jdk && \
+    apt-get -y install imagemagick && \
+    apt-get -y install tesseract-ocr-all
 
 RUN pip install solrpy pysolr
 RUN conda install -c conda-cluster apache-maven 
