@@ -1,3 +1,4 @@
+#!/bin/bash
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -14,19 +15,16 @@
 # limitations under the License.
 
 export OODT_HOME=`pwd`
-echo -- Starting All Required Scripts --
-source bin/imagecatenv.sh
-rm $OODT_HOME/resmgr/run/cas.resmgr.pid
-rm $OODT_HOME/filemgr/run/cas.filemgr.pid
-rm $OODT_HOME/workflow/run/cas.workflow.pid
-cd $OODT_HOME/bin
-echo *******Starting OODT*******
+export IMAGECAT_HOME=${IMAGECAT_HOME:-$OODT_HOME}
+echo -- Starting ImageCat --
+if [ -r bin/imagecatenv.sh ]; then
+  # shellcheck disable=SC1091
+  source bin/imagecatenv.sh
+fi
+rm -f "$OODT_HOME/resmgr/run/cas.resmgr.pid"
+rm -f "$OODT_HOME/filemgr/run/cas.filemgr.pid"
+rm -f "$OODT_HOME/workflow/run/cas.workflow.pid"
+cd "$OODT_HOME/bin"
+echo *******Starting Mnemosyne / Tomcat 9 / Solr 10*******
 ./oodt start
-cd $OODT_HOME/tomcat7/bin
-echo *******Starting Tomcat*******
-./startup.sh
-cd $OODT_HOME/resmgr/bin
-echo ******Starting Memex Stubs******
-./start-memex-stubs
-exit
 echo [DONE]

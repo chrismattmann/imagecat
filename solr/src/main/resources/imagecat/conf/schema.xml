@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<!--
+  OCR / image-content core. id is the original file path. ocr_text is what
+  TrOCR or Donut produced. sha1sum_s_md is filled by the OCR PGE and by
+  sha1sum.py for documents that arrived without one.
+-->
+<schema name="imagecat" version="1.6">
+
+  <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true"/>
+  <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+  <fieldType name="pdate" class="solr.DatePointField" docValues="true"/>
+
+  <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer name="standard"/>
+      <filter name="stop" ignoreCase="true" words="stopwords.txt"/>
+      <filter name="lowercase"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer name="standard"/>
+      <filter name="stop" ignoreCase="true" words="stopwords.txt"/>
+      <filter name="synonymGraph" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+      <filter name="lowercase"/>
+    </analyzer>
+  </fieldType>
+
+  <fieldType name="text_general_rev" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer name="standard"/>
+      <filter name="stop" ignoreCase="true" words="stopwords.txt"/>
+      <filter name="lowercase"/>
+      <filter name="reversedWildcard" withOriginal="true"
+              maxPosAsterisk="3" maxPosQuestion="2" maxFractionAsterisk="0.33"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer name="standard"/>
+      <filter name="synonymGraph" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+      <filter name="stop" ignoreCase="true" words="stopwords.txt"/>
+      <filter name="lowercase"/>
+    </analyzer>
+  </fieldType>
+
+  <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
+  <field name="ocr_text" type="text_general" indexed="true" stored="true" required="false" multiValued="false"/>
+  <field name="ocr_model_s" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+  <field name="sha1sum_s_md" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+  <field name="caption" type="text_general" indexed="true" stored="true" required="false" multiValued="false"/>
+  <field name="content_type" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+
+  <field name="content" type="text_general" indexed="false" stored="true" multiValued="true"/>
+  <field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
+  <field name="text_rev" type="text_general_rev" indexed="true" stored="false" multiValued="true"/>
+  <field name="_version_" type="plong" indexed="false" stored="false" docValues="true"/>
+
+  <dynamicField name="*" type="string" indexed="true" stored="true" omitNorms="true" multiValued="true"/>
+
+  <copyField source="*" dest="text"/>
+  <copyField source="*" dest="text_rev"/>
+
+  <uniqueKey>id</uniqueKey>
+
+</schema>

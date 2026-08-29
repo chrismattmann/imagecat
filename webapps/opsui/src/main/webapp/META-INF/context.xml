@@ -16,49 +16,15 @@ License for the specific language governing permissions and limitations under
 the License.
 -->
 <Context path="/opsui">
-		
+
 	<Parameter name="filemgr.url"
-	    value="[FILEMGR_URL]"/>		
-		
+	    value="[FILEMGR_URL]"/>
+	<Parameter name="filemgr.working.dir"
+	    value="/tmp"/>
+
 	<Parameter name="workflow.url"
 	    value="[WORKFLOW_URL]"/>
-
 	<Parameter name="resmgr.url"
 	    value="[RESMGR_URL]"/>
-
-	<Parameter name="org.apache.oodt.pcs.opsui.workflow.lifecycleFilePath"
-	    value="[WORKFLOW_HOME]/policy/workflow-lifecycle.xml"/>
-	    
-	<Parameter name="org.apache.oodt.pcs.opsui.winst.statuses"
-	    value="QUEUED, RSUBMIT, BUILDING CONFIG FILE, PGE EXEC, CRAWLING, STAGING INPUT, FINISHED, STARTED, PAUSED"/>
-	    
-	<Parameter name="org.apache.oodt.pcs.opsui.winst.metFields.filePath"
-	    value="[WORKFLOW_HOME]/policy/workflow-instance-met.xml"/>   
-	    
-	<Parameter name="org.apache.oodt.pcs.health.crawler.conf.filePath"
-	    value="[PCS_HOME]/policy/pcs-crawlers.xml"/>
-	    
-	<Parameter name="org.apache.oodt.pcs.health.workflow.statuses.filePath"
-	    value="[PCS_HOME]/policy/pcs-workflow-statuses.xml"/>	    
-	 
-	<Parameter name="ganglia.url" value="[GANGLIA_URL]"/>
-	<Parameter name="contact.email" value="user@oodt.apache.org"/>
-
-    <Parameter name="org.apache.oodt.pcs.trace.excludeList"
-               value=""/>   
-    <Parameter name="org.apache.oodt.pcs.trace.enableNotCat"
-               value="true"/>
-               	
-        <!-- OPSUI SKINNING
-                Directions: Set the 'opsui.skin' property's value attribute. 
-                Supported skins:
-                        ""           => No skin
-                        "cleanwhite" => Clean, white background OODT base skin
-                        "navyblue"   => Darker, blue background OODT base skin
-                        "classic"    => The original, OCO (Orbiting Carbon Observatory) skin for OPSUI
-                OR add your own!
-        -->
-        <Parameter name="opsui.skin" value="cleanwhite"/>
-        <Parameter name="opsui.homepage" value="org.apache.oodt.pcs.opsui.HomePage"/>
 
 </Context>

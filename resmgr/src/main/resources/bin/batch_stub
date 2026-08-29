@@ -25,9 +25,7 @@ if ( $#argv != 1 ) then
         echo "Usage: $0 <port>"
         exit 1
 else
-        java -Djava.ext.dirs=../lib \
-        -Dorg.apache.oodt.cas.pge.task.metkeys.legacyMode="true" \
-	-Dorg.apache.oodt.cas.pge.task.status.legacyMode="true" \
-        org.apache.oodt.cas.resource.system.extern.XmlRpcBatchStub \
-        --portNum $1 >>& $OODT_HOME/logs/`hostname`-$1.job.log&
+        java -cp "../lib/*" \
+        org.apache.oodt.cas.resource.system.extern.AvroRpcBatchStub \
+        --portNum $1&
 endif

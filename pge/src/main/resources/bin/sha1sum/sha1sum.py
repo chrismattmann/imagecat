@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -13,68 +13,66 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# 
+#
 # $Id$
 #
 # Author: mattmann
-# Description: Takes a Solr URL and a Chunk file, and then compares each
-# file path entry to see if it's been ingested. If it hasn't yet, it builds
-# up a new chunk file, and ingests it, kicking off a IngestInPlace workflow.
+# Description: Fill sha1sum_s_md on Solr documents that are missing it.
 
-import pysolr
-import sys
 import getopt
 import hashlib
+import sys
 
-def computeSha(filePath):
-    with open(filePath, 'rb') as fd:
-        m = hashlib.sha1()
-        m.update(fd.read())
-        return m.hexdigest()
+import pysolr
 
-def iterateDocs(sUrl):
-    s = pysolr.Solr(sUrl, timeout=10)
-    results = s.search('-sha1sum_s_md:[* TO *]')
-    rows = 1
-    pageSize = 10
+
+def compute_sha(file_path):
+    digest = hashlib.sha1()
+    with open(file_path, "rb") as fd:
+        for chunk in iter(lambda: fd.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def iterate_docs(solr_url):
+    client = pysolr.Solr(solr_url, timeout=10)
     start = 0
-    print "Searching: page: ["+str(rows)+"]: start: ["+str(start)+"]"
-    while results.hits > 0 and len(results) > 0:
+    page = 1
+    while True:
+        print("Searching: page: [%s]: start: [%s]" % (page, start))
+        results = client.search("-sha1sum_s_md:[* TO *]", **{"start": start, "rows": 10})
+        if not results.hits or not len(results):
+            break
         for doc in results:
-            print "Processing: "+doc["id"]
-            doc["sha1sum_s_md"] = computeSha(doc["id"])
-            s.add([doc], commit=True)
+            print("Processing: %s" % doc["id"])
+            doc["sha1sum_s_md"] = compute_sha(doc["id"])
+            client.add([doc], commit=True)
+        page += 1
 
-        #start = rows*pageSize
-        rows = rows + 1
-        print "Searching: page: ["+str(rows)+"]: start: ["+str(start)+"]"
-        results = s.search('-sha1sum_s_md:[* TO *]',**{'start' : start})
 
 def main(argv):
-   chunkFile=None
-   solrUrl=None
-   outputFile=None
-   usage = 'sha1sum.py -s <solr url> '
+    solr_url = None
+    usage = "sha1sum.py -s <solr url> "
 
-   try:
-      opts, args = getopt.getopt(argv,"hs:",["solrUrl="])
-   except getopt.GetoptError:
-      print usage
-      sys.exit(2)
-   for opt, arg in opts:
-      if opt == '-h':
-         print usage
-         sys.exit()
-      elif opt in ("-s", "--solrUrl"):
-          solrUrl = arg
+    try:
+        opts, _args = getopt.getopt(argv, "hs:", ["solrUrl="])
+    except getopt.GetoptError:
+        print(usage)
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == "-h":
+            print(usage)
+            sys.exit()
+        elif opt in ("-s", "--solrUrl"):
+            solr_url = arg
 
-   if solrUrl == None:
-       print usage
-       sys.exit()
+    if solr_url is None:
+        print(usage)
+        sys.exit()
 
-   print "Solr URL    : ["+str(solrUrl)+"]"
+    print("Solr URL    : [%s]" % solr_url)
+    iterate_docs(solr_url)
 
-   iterateDocs(solrUrl)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

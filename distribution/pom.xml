@@ -27,159 +27,12 @@
       <relativePath>../pom.xml</relativePath>
    </parent>
    <artifactId>oodt-distribution</artifactId>
-   <name>Distribution (RADiX Distro of OODT)</name>
+   <name>Distribution (RADiX Distro of ImageCat)</name>
    <packaging>pom</packaging>
    <properties>
-      <tomcat.version>5.5.23</tomcat.version>
+      <tomcat.version>9.0.7</tomcat.version>
+      <solr.version>10.0.0</solr.version>
    </properties>
-   <profiles>
-      <profile>
-         <id>default</id>
-         <activation>
-            <activeByDefault>true</activeByDefault>
-         </activation>
-         <dependencies>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-filemgr</artifactId>
-               <version>${project.parent.version}</version>
-               <type>tar.gz</type>
-               <classifier>bin</classifier>
-            </dependency>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-crawler</artifactId>
-               <version>${project.parent.version}</version>
-               <type>tar.gz</type>
-               <classifier>bin</classifier>
-            </dependency>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-workflow</artifactId>
-               <version>${project.parent.version}</version>
-               <type>tar.gz</type>
-               <classifier>bin</classifier>
-            </dependency>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-pge</artifactId>
-               <version>${project.parent.version}</version>
-               <type>tar.gz</type>
-               <classifier>bin</classifier>
-            </dependency>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-pcs</artifactId>
-               <version>${project.parent.version}</version>
-               <type>tar.gz</type>
-               <classifier>bin</classifier>
-            </dependency>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-resmgr</artifactId>
-               <version>${project.parent.version}</version>
-               <type>tar.gz</type>
-               <classifier>bin</classifier>
-            </dependency>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-extensions</artifactId>
-               <version>${project.parent.version}</version>
-               <type>tar.gz</type>
-               <classifier>bin</classifier>
-            </dependency>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-opsui</artifactId>
-               <version>${project.parent.version}</version>
-               <type>war</type>
-            </dependency>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-pcs-services</artifactId>
-               <version>${project.parent.version}</version>
-               <type>war</type>
-            </dependency>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-fmprod</artifactId>
-               <version>${project.parent.version}</version>
-               <type>war</type>
-            </dependency>
-         </dependencies>
-         <build>
-            <plugins>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-dependency-plugin</artifactId>
-                  <version>2.3</version>
-                  <executions>
-                     <execution>
-                        <id>unpack-tomcat</id>
-                        <phase>process-sources</phase>
-                        <goals>
-                           <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                           <artifactItems>
-                              <artifactItem>
-                                 <groupId>tomcat</groupId>
-                                 <artifactId>apache-tomcat</artifactId>
-                                 <version>${tomcat.version}</version>
-                                 <type>zip</type>
-                                 <overWrite>false</overWrite>
-                                 <outputDirectory>${project.build.directory}/</outputDirectory>
-                              </artifactItem>
-                              <artifactItem>
-                                 <groupId>gov.darpa.memex.imageCatalog</groupId>
-                                 <artifactId>${parent.artifactId}-opsui</artifactId>
-                                 <type>war</type>
-                                 <overWrite>false</overWrite>
-                                 <outputDirectory>${project.build.directory}/apache-tomcat-${tomcat.version}/webapps/opsui</outputDirectory>
-                              </artifactItem>
-                              <artifactItem>
-                                 <groupId>gov.darpa.memex.imageCatalog</groupId>
-                                 <artifactId>${parent.artifactId}-pcs-services</artifactId>
-                                 <type>war</type>
-                                 <overWrite>false</overWrite>
-                                 <outputDirectory>${project.build.directory}/apache-tomcat-${tomcat.version}/webapps/pcs</outputDirectory>
-                              </artifactItem>
-                              <artifactItem>
-                                 <groupId>gov.darpa.memex.imageCatalog</groupId>
-                                 <artifactId>${parent.artifactId}-fmprod</artifactId>
-                                 <type>war</type>
-                                 <overWrite>false</overWrite>
-                                 <outputDirectory>${project.build.directory}/apache-tomcat-${tomcat.version}/webapps/fmprod</outputDirectory>
-                              </artifactItem>
-                           </artifactItems>
-                        </configuration>
-                     </execution>
-                  </executions>
-               </plugin>
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-assembly-plugin</artifactId>
-                  <version>2.2</version>
-                  <configuration>
-                     <descriptors>
-                        <descriptor>src/main/assembly/assembly.xml</descriptor>
-                     </descriptors>
-                  </configuration>
-                  <executions>
-                     <execution>
-                        <phase>package</phase>
-                        <goals>
-                           <goal>single</goal>
-                        </goals>
-                     </execution>
-                  </executions>
-               </plugin>
-            </plugins>
-         </build>
-      </profile>
-      <profile>
-         <id>fm-solr-catalog</id>
-         <activation/>
          <dependencies>
             <dependency>
                <groupId>gov.darpa.memex.imageCatalog</groupId>
@@ -255,12 +108,6 @@
                <version>${project.parent.version}</version>
                <type>war</type>
             </dependency>
-            <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
-               <artifactId>oodt-solr-webapp</artifactId>
-               <version>${project.parent.version}</version>
-               <type>war</type>
-            </dependency>
          </dependencies>
          <build>
             <plugins>
@@ -271,15 +118,15 @@
                   <executions>
                      <execution>
                         <id>unpack-tomcat</id>
-                        <phase>process-sources</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                            <goal>unpack</goal>
                         </goals>
                         <configuration>
                            <artifactItems>
                               <artifactItem>
-                                 <groupId>tomcat</groupId>
-                                 <artifactId>apache-tomcat</artifactId>
+                                 <groupId>org.apache.tomcat</groupId>
+                                 <artifactId>tomcat</artifactId>
                                  <version>${tomcat.version}</version>
                                  <type>zip</type>
                                  <overWrite>false</overWrite>
@@ -287,41 +134,62 @@
                               </artifactItem>
                               <artifactItem>
                                  <groupId>gov.darpa.memex.imageCatalog</groupId>
-                                 <artifactId>${parent.artifactId}-opsui</artifactId>
+                                 <artifactId>${project.parent.artifactId}-opsui</artifactId>
                                  <type>war</type>
                                  <overWrite>false</overWrite>
                                  <outputDirectory>${project.build.directory}/apache-tomcat-${tomcat.version}/webapps/opsui</outputDirectory>
                               </artifactItem>
                               <artifactItem>
                                  <groupId>gov.darpa.memex.imageCatalog</groupId>
-                                 <artifactId>${parent.artifactId}-pcs-services</artifactId>
+                                 <artifactId>${project.parent.artifactId}-pcs-services</artifactId>
                                  <type>war</type>
                                  <overWrite>false</overWrite>
                                  <outputDirectory>${project.build.directory}/apache-tomcat-${tomcat.version}/webapps/pcs</outputDirectory>
                               </artifactItem>
                               <artifactItem>
                                  <groupId>gov.darpa.memex.imageCatalog</groupId>
-                                 <artifactId>${parent.artifactId}-fmprod</artifactId>
+                                 <artifactId>${project.parent.artifactId}-fmprod</artifactId>
                                  <type>war</type>
                                  <overWrite>false</overWrite>
                                  <outputDirectory>${project.build.directory}/apache-tomcat-${tomcat.version}/webapps/fmprod</outputDirectory>
-                              </artifactItem>
-                              <artifactItem>
-                                 <groupId>gov.darpa.memex.imageCatalog</groupId>
-                                 <artifactId>${parent.artifactId}-solr-webapp</artifactId>
-                                 <type>war</type>
-                                 <overWrite>false</overWrite>
-                                 <outputDirectory>${project.build.directory}/apache-tomcat-${tomcat.version}/webapps/solr</outputDirectory>
                               </artifactItem>
                            </artifactItems>
                         </configuration>
                      </execution>
                   </executions>
                </plugin>
+      <!--
+        Solr ships as a standalone application with its own Jetty; it stopped
+        publishing a war, and its distribution is not on Maven Central, so it
+        cannot be fetched with dependency:unpack the way Tomcat is above.
+        skipexisting keeps rebuilds from pulling 343MB again.
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>fetch-solr</id>
+            <phase>prepare-package</phase>
+            <goals><goal>run</goal></goals>
+            <configuration>
+              <target>
+                <get src="https://archive.apache.org/dist/solr/solr/${solr.version}/solr-${solr.version}.tgz"
+                     dest="${project.build.directory}/solr-${solr.version}.tgz"
+                     skipexisting="true" verbose="false"/>
+                <untar src="${project.build.directory}/solr-${solr.version}.tgz"
+                       dest="${project.build.directory}" compression="gzip"/>
+                <chmod dir="${project.build.directory}/solr-${solr.version}/bin" perm="755" includes="*"/>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-assembly-plugin</artifactId>
-                  <version>2.2</version>
+                  <version>${maven.assembly.plugin.version}</version>
                   <configuration>
                      <descriptors>
                         <descriptor>src/main/assembly/assembly.xml</descriptor>
@@ -338,6 +206,4 @@
                </plugin>
             </plugins>
          </build>
-      </profile>
-   </profiles>
 </project>

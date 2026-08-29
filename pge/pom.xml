@@ -62,27 +62,27 @@
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
-          <groupId>org.apache.oodt</groupId>
+          <groupId>ai.mattmann.mnemosyne</groupId>
           <artifactId>cas-filemgr</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.apache.oodt</groupId>
+      <groupId>ai.mattmann.mnemosyne</groupId>
       <artifactId>cas-workflow</artifactId>
       <version>${oodt.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.oodt</groupId>
+      <groupId>ai.mattmann.mnemosyne</groupId>
       <artifactId>cas-pge</artifactId>
       <version>${oodt.version}</version>
       <exclusions>
         <exclusion>
-          <groupId>org.apache.oodt</groupId>
+          <groupId>ai.mattmann.mnemosyne</groupId>
           <artifactId>cas-filemgr</artifactId>
         </exclusion>
         <exclusion>
-          <groupId>org.apache.oodt</groupId>
+          <groupId>ai.mattmann.mnemosyne</groupId>
           <artifactId>cas-crawler</artifactId>
         </exclusion>
       </exclusions>

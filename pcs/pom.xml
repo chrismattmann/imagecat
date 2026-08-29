@@ -63,13 +63,13 @@
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
-          <groupId>org.apache.oodt</groupId>
+          <groupId>ai.mattmann.mnemosyne</groupId>
           <artifactId>cas-filemgr</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.apache.oodt</groupId>
+      <groupId>ai.mattmann.mnemosyne</groupId>
       <artifactId>pcs-core</artifactId>
       <version>${oodt.version}</version>
     </dependency>

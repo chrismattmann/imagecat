@@ -29,5 +29,5 @@ else
 	--clientTransferer org.apache.oodt.cas.filemgr.datatransfer.InPlaceDataTransferFactory \
 	--productPath $1 \
 	--metExtractor org.apache.oodt.cas.metadata.extractors.TikaCmdLineMetExtractor \
-	--metExtractorConfig /home/mattmann/data/exp5/image_catalog/deploy/data/met/tika.conf
+	--metExtractorConfig ${OODT_HOME}/data/met/tika.conf
 fi

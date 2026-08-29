@@ -42,6 +42,15 @@
       <fileMode>660</fileMode>
       <directoryMode>775</directoryMode>
     </fileSet>
+    <fileSet>
+      <directory>${basedir}/src/main/resources/imagecat</directory>
+      <outputDirectory>solr/imagecat</outputDirectory>
+      <includes>
+        <include>**/**.*</include>
+      </includes>
+      <fileMode>660</fileMode>
+      <directoryMode>775</directoryMode>
+    </fileSet>
   </fileSets>
 </assembly>
 

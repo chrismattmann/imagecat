@@ -57,17 +57,17 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.oodt</groupId>
+      <groupId>ai.mattmann.mnemosyne</groupId>
       <artifactId>cas-metadata</artifactId>
       <version>${oodt.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.oodt</groupId>
+      <groupId>ai.mattmann.mnemosyne</groupId>
       <artifactId>cas-filemgr</artifactId>
       <version>${oodt.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.oodt</groupId>
+      <groupId>ai.mattmann.mnemosyne</groupId>
       <artifactId>pcs-core</artifactId>
       <version>${oodt.version}</version>
     </dependency>

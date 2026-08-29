@@ -89,7 +89,33 @@
         <exclude>**/webapps/servlets-examples/**</exclude>
         <exclude>**/webapps/jsp-examples/**</exclude>
         <exclude>**/webapps/webdav/**</exclude>
+        <exclude>bin/*.sh</exclude>
       </excludes>
+    </fileSet>
+    <fileSet>
+      <directory>${project.build.directory}/apache-tomcat-${tomcat.version}/bin</directory>
+      <outputDirectory>tomcat/bin</outputDirectory>
+      <includes>
+        <include>*.sh</include>
+      </includes>
+      <fileMode>775</fileMode>
+    </fileSet>
+    <fileSet>
+      <directory>${basedir}/../</directory>
+      <outputDirectory>.</outputDirectory>
+      <includes>
+        <include>requirements.txt</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>${project.build.directory}/solr-${solr.version}</directory>
+      <outputDirectory>solr-server</outputDirectory>
+      <excludes><exclude>bin/**</exclude></excludes>
+    </fileSet>
+    <fileSet>
+      <directory>${project.build.directory}/solr-${solr.version}/bin</directory>
+      <outputDirectory>solr-server/bin</outputDirectory>
+      <fileMode>0755</fileMode>
     </fileSet>
   </fileSets>
   <dependencySets>
@@ -99,10 +125,9 @@
       <useProjectArtifact>false</useProjectArtifact>
       <useTransitiveDependencies>false</useTransitiveDependencies>
       <excludes>
-        <exclude>${groupId}:${parent.artifactId}-opsui</exclude>
-        <exclude>${groupId}:${parent.artifactId}-pcs-services</exclude>
-        <exclude>${groupId}:${parent.artifactId}-fmprod</exclude>
-        <exclude>${groupId}:${parent.artifactId}-solr-webapp</exclude>
+        <exclude>${groupId}:${project.parent.artifactId}-opsui</exclude>
+        <exclude>${groupId}:${project.parent.artifactId}-pcs-services</exclude>
+        <exclude>${groupId}:${project.parent.artifactId}-fmprod</exclude>
       </excludes>
     </dependencySet>
   </dependencySets>

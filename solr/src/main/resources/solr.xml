@@ -15,31 +15,18 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-
 <!--
-   This is an example of a simple "solr.xml" file for configuring one or 
-   more Solr Cores, as well as allowing Cores to be added, removed, and 
-   reloaded via HTTP requests.
-
-   More information about options available in this configuration file, 
-   and Solr Core administration can be found online:
-   http://wiki.apache.org/solr/CoreAdmin
+  The imagecat and oodt-fm cores are declared by their own core.properties;
+  Solr walks this directory and adopts what it finds. ImageCat runs a single
+  node and does not use SolrCloud.
 -->
-
 <solr>
 
-  <solrcloud>
-    <str name="host">${host:}</str>
-    <int name="hostPort">${jetty.port:8983}</int>
-    <str name="hostContext">${hostContext:solr}</str>
-    <int name="zkClientTimeout">${zkClientTimeout:30000}</int>
-    <bool name="genericCoreNodeNames">${genericCoreNodeNames:true}</bool>
-  </solrcloud>
+  <str name="sharedLib">${solr.sharedLib:}</str>
 
-  <shardHandlerFactory name="shardHandlerFactory"
-    class="HttpShardHandlerFactory">
-    <int name="socketTimeout">${socketTimeout:0}</int>
-    <int name="connTimeout">${connTimeout:0}</int>
+  <shardHandlerFactory name="shardHandlerFactory" class="HttpShardHandlerFactory">
+    <int name="socketTimeout">${socketTimeout:600000}</int>
+    <int name="connTimeout">${connTimeout:60000}</int>
   </shardHandlerFactory>
 
 </solr>

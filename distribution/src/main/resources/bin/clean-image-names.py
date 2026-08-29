@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -13,7 +13,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# 
 
 
 import os
@@ -21,9 +20,9 @@ import os
 directory = "images2"
 count = 0
 for filename in os.listdir(directory):
-    filenamePath, fileExt = os.path.splitext(filename)
-    newfilename = "image"+str(count)+fileExt
-    
-    print "Moving file ["+filename+"] to ["+newfilename+"]"
+    _filename_path, file_ext = os.path.splitext(filename)
+    newfilename = "image%s%s" % (count, file_ext)
+
+    print("Moving file [%s] to [%s]" % (filename, newfilename))
     os.rename(os.path.join(directory, filename), os.path.join(directory, newfilename))
     count = count + 1

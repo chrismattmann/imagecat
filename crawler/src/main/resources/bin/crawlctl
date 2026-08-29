@@ -15,4 +15,4 @@
 # under the License.    
 ##########################################################################
 
-java -Djava.util.logging.config.file=../etc/logging.properties -Djava.ext.dirs=../lib org.apache.oodt.cas.crawl.daemon.CrawlDaemonController $@
+java -Dlog4j.configurationFile=../etc/log4j2.xml -Djava.util.logging.config.file=../etc/logging.properties -cp "../lib/*" org.apache.oodt.cas.crawl.daemon.AvroRpcCrawlDaemonController $@

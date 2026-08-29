@@ -1,3 +1,4 @@
+#!/bin/bash
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -15,70 +16,25 @@
 
 echo - Starting Install -
 echo - Creating Deploy Directory -
-mkdir ../../deploy
-cd ..
-cd ..
-cd deploy
-cd ..
+mkdir -p ../../deploy
+cd ../..
 cd imagecat
 echo [SUCCESS]
 echo - Building via Maven -
-mvn install
+mvn -B package
 echo [SUCCESS]
-echo - Copying Files and Changing Paths -
-cp -R distribution/target/*.tar.gz ../deploy
-cd ../deploy && tar xvzf *.tar.gz
+echo - Unpacking distribution -
+cp -R distribution/target/oodt-distribution-*-bin.tar.gz ../deploy/
+cd ../deploy && tar xvzf oodt-distribution-*-bin.tar.gz
 export OODT_HOME=`pwd`
-cp -R ../imagecat/solr4 ./solr4 && cp -R ../imagecat/tomcat7 ./tomcat7
-
-platform=`uname`
-if [ "$platform" == "Darwin" ]; then 
-	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? tomcat7/conf/Catalina/localhost/solr.xml
-	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? bin/env.sh
-	sed -i .bak s?--OODT_HOME--?${OODT_HOME}? bin/imagecatenv.sh
-
-else
-
-	sed -i s?--OODT_HOME--?${OODT_HOME}? tomcat7/conf/Catalina/localhost/solr.xml
-	sed -i s?--OODT_HOME--?${OODT_HOME}? bin/env.sh
-	sed -i s?--OODT_HOME--?${OODT_HOME}? bin/imagecatenv.sh
+export IMAGECAT_HOME=`pwd`
+echo [SUCCESS]
+echo - Python OCR environment -
+if [ -f requirements.txt ]; then
+  PYTHON=${PYTHON:-python3} bin/imagecat-setup || echo "imagecat-setup failed; install requirements.txt by hand"
 fi
-
-source ../distribution/src/main/resources/bin/imagecatenv.sh
-cp filemgr/lib/cas-filemgr-* resmgr/lib
-cp workflow/lib/cas-workflow-* resmgr/lib
-cp crawler/lib/cas-crawler-* resmgr/lib
-cp pge/lib/cas-pge-* resmgr/lib
-cp solr4/example/lib/*.jar tomcat/common/lib
-cp solr4/example/resources/log4j.properties tomcat/common/lib
-echo - Fixing Extras -
-cd tomcat7
-mkdir logs
-cd logs
-touch catalina.out
-cd ..
-cd ..
-cp filemgr/lib/cas-filemgr-* workflow/lib
-echo [SUCCESS]
-echo - Downloading Roxy... -
-cd data/staging
-touch roxy-image-list-jpg-nonzero.txt
-cd ..
-cd ..
-echo [SUCCESS]
-echo - Moving Global Start/Stop Commands -
-cd ..
-cd imagecat
-cd auto
-cp start.sh ../../deploy
-cp stop.sh ../../deploy
-cd ..
-cd ..
-cd deploy
-chmod +x start.sh
-chmod +x stop.sh
 echo [SUCCESS]
 echo - Automated Setup Complete -
-echo Booyah!
-echo Check on website for final edits
-echo Check logging properties in tomcat/common/lib/log4j.properties 
+echo Check docs/WHAT-IS-IN.md for keep / throw / replace
+echo OPSUI is at http://localhost:8080/opsui/
+echo Solr is at http://localhost:8983/solr/imagecat

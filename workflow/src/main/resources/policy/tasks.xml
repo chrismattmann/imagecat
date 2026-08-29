@@ -26,7 +26,8 @@
       <property name="PCS_MetFileExtension" value="met"/>
       <property name="PCS_ClientTransferServiceFactory" value="org.apache.oodt.cas.filemgr.datatransfer.InPlaceDataTransferFactory"/>
       <property name="PCS_ActionRepoFile" value="file:[CRAWLER_HOME]/policy/crawler-config.xml" envReplace="true"/>
-      <property name="SolrUrl" value="http://localhost:8081/solr/imagecatdev/"/>
+      <property name="SolrUrl" value="http://localhost:8983/solr/imagecat"/>
+      <property name="OcrModel" value="trocr"/>
     </configuration>
     <requiredMetFields/>
   </task>
@@ -60,7 +61,24 @@
       <property name="PCS_ClientTransferServiceFactory" value="org.apache.oodt.cas.filemgr.datatransfer.InPlaceDataTransferFactory"/>
       <property name="PCS_ActionRepoFile" value="file:[CRAWLER_HOME]/policy/crawler-config.xml" envReplace="true"/>
       <property name="ChunkDir" value="[OODT_HOME]/data/archive/chunks" envReplace="true"/>
-      <property name="SolrUrl" value="http://localhost:8081/solr/imagecatdev/"/>
+      <property name="SolrUrl" value="http://localhost:8983/solr/imagecat"/>
+    </configuration>
+    <requiredMetFields/>
+  </task>
+
+  <task id="urn:memex:OcrTask" name="OCR" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
+    <conditions/>
+    <configuration>
+      <property name="PGETask_Name" value="OCR"/>
+      <property name="PGETask_ConfigFilePath" value="[PGE_ROOT]/policy/PgeConfig_Ocr.xml" envReplace="true"/>
+      <property name="PGETask_DumpMetadata" value="true"/>
+      <property name="PCS_WorkflowManagerUrl" value="[WORKFLOW_URL]" envReplace="true"/>
+      <property name="PCS_FileManagerUrl" value="[FILEMGR_URL]" envReplace="true"/>
+      <property name="PCS_MetFileExtension" value="met"/>
+      <property name="PCS_ClientTransferServiceFactory" value="org.apache.oodt.cas.filemgr.datatransfer.InPlaceDataTransferFactory"/>
+      <property name="PCS_ActionRepoFile" value="file:[CRAWLER_HOME]/policy/crawler-config.xml" envReplace="true"/>
+      <property name="SolrUrl" value="http://localhost:8983/solr/imagecat"/>
+      <property name="OcrModel" value="trocr"/>
     </configuration>
     <requiredMetFields/>
   </task>

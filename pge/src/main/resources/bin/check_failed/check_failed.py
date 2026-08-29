@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -13,72 +13,80 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# 
+#
 # $Id$
 #
 # Author: mattmann
 # Description: Takes a Solr URL and a Chunk file, and then compares each
 # file path entry to see if it's been ingested. If it hasn't yet, it builds
-# up a new chunk file, and ingests it, kicking off a IngestInPlace workflow.
+# up a new chunk file.
 
-import solr
-import sys
 import getopt
+import sys
 
-def checkImageFile(filepath, s):
-    response = s.query('id:"'+filepath+'"')
-    return len(response.results) > 0
+import pysolr
 
-def buildChunkFile(outputFile, chunkFile, s):
-    numMissed=0
-    missedList=[]
 
-    with open(chunkFile,'r') as theChunkFile:
-        for filepath in theChunkFile:
-            if not checkImageFile(filepath.strip(), s):
-                numMissed = numMissed+1
-                missedList.append(filepath.strip())
+def check_image_file(filepath, client):
+    response = client.search('id:"%s"' % filepath)
+    return len(response) > 0
 
-    print "Num Missed    : ["+str(numMissed)+"]"
-    if numMissed > 0:
-        with open(outputFile, 'w') as theOutputFile:
-            for filepath in missedList:
-                theOutputFile.write("%s\n" % filepath)
 
-    missedList = None
+def build_chunk_file(output_file, chunk_file, client):
+    num_missed = 0
+    missed_list = []
+
+    with open(chunk_file, "r", encoding="utf-8") as the_chunk_file:
+        for filepath in the_chunk_file:
+            path = filepath.strip()
+            if not path:
+                continue
+            if not check_image_file(path, client):
+                num_missed += 1
+                missed_list.append(path)
+
+    print("Num Missed    : [%s]" % num_missed)
+    if num_missed > 0:
+        with open(output_file, "w", encoding="utf-8") as the_output_file:
+            for filepath in missed_list:
+                the_output_file.write("%s\n" % filepath)
+
 
 def main(argv):
-   chunkFile=None
-   solrUrl=None
-   outputFile=None
-   usage = 'check_failed.py -f <chunk file> -s <solr url> -o <output file> '
+    chunk_file = None
+    solr_url = None
+    output_file = None
+    usage = "check_failed.py -f <chunk file> -s <solr url> -o <output file> "
 
-   try:
-      opts, args = getopt.getopt(argv,"hf:s:o:",["chunkFile=", "solrUrl=", "outputFile="])
-   except getopt.GetoptError:
-      print usage
-      sys.exit(2)
-   for opt, arg in opts:
-      if opt == '-h':
-         print usage
-         sys.exit()
-      elif opt in ("-f", "--chunkFile"):
-          chunkFile = arg
-      elif opt in ("-s", "--solrUrl"):
-          solrUrl = arg
-      elif opt in ("-o", "--outputFile"):
-          outputFile = arg
+    try:
+        opts, _args = getopt.getopt(
+            argv, "hf:s:o:", ["chunkFile=", "solrUrl=", "outputFile="]
+        )
+    except getopt.GetoptError:
+        print(usage)
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == "-h":
+            print(usage)
+            sys.exit()
+        elif opt in ("-f", "--chunkFile"):
+            chunk_file = arg
+        elif opt in ("-s", "--solrUrl"):
+            solr_url = arg
+        elif opt in ("-o", "--outputFile"):
+            output_file = arg
 
-   if chunkFile == None or solrUrl == None or outputFile == None:
-       print usage
-       sys.exit()
+    if chunk_file is None or solr_url is None or output_file is None:
+        print(usage)
+        sys.exit()
 
-   print "Chunk File  : ["+str(chunkFile)+"]"
-   print "Solr URL    : ["+str(solrUrl)+"]"
-   print "Output File : ["+str(outputFile)+"]"
+    print("Chunk File  : [%s]" % chunk_file)
+    print("Solr URL    : [%s]" % solr_url)
+    print("Output File : [%s]" % output_file)
 
-   s = solr.SolrConnection(solrUrl)
-   buildChunkFile(outputFile, chunkFile, s)
+    client = pysolr.Solr(solr_url, timeout=10)
+    build_chunk_file(output_file, chunk_file, client)
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])

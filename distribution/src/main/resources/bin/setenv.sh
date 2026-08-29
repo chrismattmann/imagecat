@@ -25,3 +25,18 @@
 #
 ############################
 
+export IMAGECAT_HOME=${IMAGECAT_HOME:-/usr/local/imagecat}
+export FILEMGR_URL=http://localhost:9000
+export WORKFLOW_URL=http://localhost:9001
+export RESMGR_URL=http://localhost:9002
+export FILEMGR_HOME=$IMAGECAT_HOME/filemgr
+export PGE_HOME=$IMAGECAT_HOME/pge
+export PGE_ROOT=$IMAGECAT_HOME/pge
+export PCS_HOME=$IMAGECAT_HOME/pcs
+export FMPROD_HOME=$IMAGECAT_HOME/tomcat/webapps/fmprod/WEB-INF/classes/
+
+# Bound every Avro client call (Mnemosyne #197). Ten minutes is the code
+# default; 0 waits forever. JDK_JAVA_OPTIONS reaches File Manager, Workflow
+# Manager, Resource Manager, and Tomcat.
+AVRO_CLIENT_TIMEOUT_MS=${AVRO_CLIENT_TIMEOUT_MS:-600000}
+export JDK_JAVA_OPTIONS="${JDK_JAVA_OPTIONS:+$JDK_JAVA_OPTIONS }-Dorg.apache.oodt.avro.client.requestTimeoutMillis=${AVRO_CLIENT_TIMEOUT_MS}"

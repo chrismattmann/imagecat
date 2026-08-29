@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Logging configuration for the ImageCat resource manager.
+
+  The start script points at this file with -Dlog4j.configurationFile. Without
+  it log4j2 falls back to its default, which is ERROR to the console and no
+  file appender at all.
+-->
+<Configuration status="WARN">
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_ERR">
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <File name="File" fileName="../logs/cas_resource.log" immediateFlush="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="org.springframework" level="error"/>
+        <Logger name="org.mortbay" level="error"/>
+        <Logger name="org.apache.avro.ipc" level="warn"/>
+        <Logger name="org.jboss.netty" level="warn"/>
+
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -45,7 +45,6 @@ PRGDIR=`dirname "$PRG"`
 # Only set OODT_HOME if not already set
 [ -z "$OODT_HOME" ] && OODT_HOME=`cd "$PRGDIR/.." ; pwd`
 
-export OODT_HOME=--OODT_HOME--
 # Ensure that any user defined CLASSPATH variables are not used on startup,
 # but allow them to be specified in setenv.sh, in rare case when it is needed.
 CLASSPATH=
@@ -87,6 +86,14 @@ fi
 if [ -z "$OODT_BASE" ]; then
   OODT_BASE="$OODT_HOME"
   export OODT_BASE
+fi
+
+# The Python half of the pipeline (imagecat-ocr, chunk_file, pysolr) lives
+# in a virtual environment created by bin/imagecat-setup. Put it on PATH
+# here so PGEs inherit it from the workflow manager.
+if [ -d "$OODT_BASE"/.venv/bin ]; then
+  PATH="$OODT_BASE"/.venv/bin:"$PATH"
+  export PATH
 fi
 
 if [ -z "$OODT_OUT" ] ; then
