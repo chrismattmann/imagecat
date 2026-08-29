@@ -58,7 +58,7 @@ def load_ocr(model_name: str):
     if name == "trocr":
         from transformers import TrOCRProcessor, VisionEncoderDecoderModel
 
-        processor = TrOCRProcessor.from_pretrained(TROCR_MODEL)
+        processor = TrOCRProcessor.from_pretrained(TROCR_MODEL, use_fast=False)
         model = VisionEncoderDecoderModel.from_pretrained(TROCR_MODEL)
 
         def ocr(path: str) -> str:
