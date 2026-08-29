@@ -13,26 +13,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
+# Compatibility shim. Solr Cell + Tesseract are gone; this calls the
+# HuggingFace OCR PGE (TrOCR by default) against Solr 10.
 
-export START_TIME=$(date +%s.%N)
-export CHUNK_FILE=$1
-export SOLR_URL="http://localhost:8081/solr/imagecatdev/update/extract?"
-export SOLR_URL_PREFIX="${SOLR_URL}literal.id="
-export SOLR_URL_SUFFIX=""
-export FILE_COUNT=1
+set -euo pipefail
 
-for file in $(cat $CHUNK_FILE); do 
-    export escaped_file=$(printf %q "$file")
-    curl "$SOLR_URL_PREFIX$escaped_file$SOLR_URL_SUFFIX" -H "Content-Type: image/jpeg" --data-binary "@$escaped_file"; 
-    echo "Posted file $escaped_file: total count: $FILE_COUNT"
-    export FILE_COUNT=$[$FILE_COUNT+1]
-done
+CHUNK_FILE=${1:?Usage: solrcell_ingest <chunk file>}
+SOLR_URL=${SOLR_URL:-http://localhost:8983/solr/imagecat}
+OCR_MODEL=${OCR_MODEL:-trocr}
+OCR_PY=${PGE_ROOT:-${OODT_HOME:?}/pge}/bin/imagecat-ocr/imagecat-ocr.py
 
-export FILE_COUNT=$[$FILE_COUNT-1]
-export END_TIME=$(date +%s.%N)
-export DIFF_TIME=$(echo "$END_TIME - $START_TIME" | bc)
-
-echo "Total docs indexed: $FILE_COUNT"
-echo "Total time: $DIFF_TIME"
-echo "Sending commit message to ${SOLR_URL}commit=true"
-curl "${SOLR_URL}commit=true"
+exec python3 "$OCR_PY" -f "$CHUNK_FILE" -s "$SOLR_URL" --model "$OCR_MODEL"

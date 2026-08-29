@@ -80,13 +80,14 @@ if [ "$1" = "start" ]; then
   cd "$WORKFLOW_HOME"/bin
 
   "$_RUNJAVA" $JAVA_OPTS $OODT_OPTS \
-    -Djava.ext.dirs="$WORKFLOW_HOME"/lib \
+    -cp "$WORKFLOW_HOME/lib/*" \
+    -Dlog4j.configurationFile="$WORKFLOW_HOME"/etc/log4j2.xml \
     -Djava.util.logging.config.file="$WORKFLOW_HOME"/etc/logging.properties \
     -Dorg.apache.oodt.cas.workflow.properties="$WORKFLOW_HOME"/etc/workflow.properties \
     -Djava.io.tmpdir="$OODT_TMPDIR" \
     -Dorg.apache.oodt.cas.pge.task.metkeys.legacyMode="true" \
     -Dorg.apache.oodt.cas.pge.task.status.legacyMode="true" \
-    org.apache.oodt.cas.workflow.system.XmlRpcWorkflowManager \
+    org.apache.oodt.cas.workflow.system.WorkflowManagerStarter \
     --portNum "$WORKFLOW_PORT" 2>&1 &
 
   if [ ! -z "$WORKFLOW_PID" ]; then

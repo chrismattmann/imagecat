@@ -73,5 +73,8 @@ fi
 cd "$FILEMGR_HOME"/bin
 
 "$_RUNJAVA" $JAVA_OPTS $OODT_OPTS \
-  -Djava.endorsed.dirs=../lib \
+  -Dorg.apache.oodt.cas.filemgr.properties="$FILEMGR_HOME"/etc/filemgr.properties \
+  -Dlog4j.configurationFile="$FILEMGR_HOME"/etc/log4j2.xml \
+  -Djava.util.logging.config.file="$FILEMGR_HOME"/etc/logging.properties \
+  -cp "$FILEMGR_HOME/lib/*" \
   org.apache.oodt.cas.filemgr.tools.QueryTool "$@"

@@ -29,8 +29,9 @@ if ( $#argv != 1 ) then
 	echo "Usage: $0 <product>"
 	exit 1
 else
-	java -Djava.ext.dirs=$DIR_PATH/../lib:$DIR_PATH/../../filemgr/lib:$DIR_PATH/../../workflow/lib \
-    -Djava.util.logging.config.file=$DIR_PATH/../etc/logging.properties \
+	java -cp "$DIR_PATH/../lib/*:$DIR_PATH/../../filemgr/lib/*:$DIR_PATH/../../workflow/lib/*" \
+    -Dlog4j.configurationFile=$DIR_PATH/../etc/log4j2.xml \
+     -Djava.util.logging.config.file=$DIR_PATH/../etc/logging.properties \
     -Dorg.apache.oodt.cas.filemgr.properties=$DIR_PATH/../../filemgr/etc/filemgr.properties \
 	org.apache.oodt.pcs.tools.PCSTrace \
 	--fm $FILEMGR_URL \

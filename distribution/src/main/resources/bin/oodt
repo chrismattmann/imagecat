@@ -66,6 +66,9 @@ WORKFLOW_EXEC=wmgr
 RESMGR_EXEC=resmgr
 FILEMGR_EXEC=filemgr
 TOMCAT_EXEC=catalina.sh
+SOLR_EXEC=solr
+SOLR_SERVER_HOME="$OODT_BASE"/solr-server
+SOLR_PORT=${SOLR_PORT:-8983}
 
 # Check that target executable exists
 if [ ! -x "$FILEMGR_HOME"/bin/"$FILEMGR_EXEC" ]; then
@@ -100,6 +103,12 @@ if [ "$1" = "start" ]; then
   exec "$WORKFLOW_HOME"/bin/"$WORKFLOW_EXEC" start "$@" >> "$OODT_OUT" 2>&1  &
   exec "$RESMGR_HOME"/bin/"$RESMGR_EXEC" start "$@" >> "$OODT_OUT" 2>&1  &  
   exec "$OODT_BASE"/tomcat/bin/"$TOMCAT_EXEC" start "$@" >> "$OODT_OUT" 2>&1 &
+  # Solr runs as its own application now, with its own Jetty, rather than as a
+  # war inside Tomcat. --solr-home points it at the imagecat and oodt-fm cores.
+  if [ -x "$SOLR_SERVER_HOME"/bin/"$SOLR_EXEC" ]; then
+    nohup "$SOLR_SERVER_HOME"/bin/"$SOLR_EXEC" start -p "$SOLR_PORT" \
+      --solr-home "$OODT_BASE"/solr --user-managed >> "$OODT_OUT" 2>&1 &
+  fi
   sleep 0.2s
 # Print confirmation messages to the end user
 # FileManager
@@ -158,6 +167,9 @@ elif [ "$1" = "stop" ]; then
   exec "$WORKFLOW_HOME"/bin/"$WORKFLOW_EXEC" stop "$@" >> "$OODT_OUT" 2>&1 &
   exec "$RESMGR_HOME"/bin/"$RESMGR_EXEC" stop "$@" >> "$OODT_OUT" 2>&1 &
   exec "$OODT_BASE"/tomcat/bin/"$TOMCAT_EXEC" stop "$@" >> "$OODT_OUT" 2>&1 &
+  if [ -x "$SOLR_SERVER_HOME"/bin/"$SOLR_EXEC" ]; then
+    "$SOLR_SERVER_HOME"/bin/"$SOLR_EXEC" stop -p "$SOLR_PORT" >> "$OODT_OUT" 2>&1 &
+  fi
 else
   echo "Usage: oodt.sh ( commands ... )"
   echo "commands:"

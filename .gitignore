@@ -1,0 +1,8 @@
+target/
+.venv/
+__pycache__/
+*.pyc
+*.iml
+.idea/
+.DS_Store
+*.bak

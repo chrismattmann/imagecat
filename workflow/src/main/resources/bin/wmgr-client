@@ -68,8 +68,9 @@ fi
 cd "$WORKFLOW_HOME"/bin
 
 "$_RUNJAVA" $JAVA_OPTS $OODT_OPTS \
-  -Djava.ext.dirs="$WORKFLOW_HOME"/lib \
+  -cp "$WORKFLOW_HOME/lib/*" \
+  -Dlog4j.configurationFile="$WORKFLOW_HOME"/etc/log4j2.xml \
   -Djava.util.logging.config.file="$WORKFLOW_HOME"/etc/logging.properties \
   -Dorg.apache.oodt.cas.cli.action.spring.config=file:"$WORKFLOW_HOME"/policy/cmd-line-actions.xml \
   -Dorg.apache.oodt.cas.cli.option.spring.config=file:"$WORKFLOW_HOME"/policy/cmd-line-options.xml \
-  org.apache.oodt.cas.workflow.system.XmlRpcWorkflowManagerClient "$@"
+  org.apache.oodt.cas.workflow.system.WorkflowManagerClientStarter "$@"

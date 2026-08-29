@@ -87,11 +87,12 @@ if [ "$1" = "start" ]; then
   cd "$RESMGR_HOME"/bin
 
   "$_RUNJAVA" $JAVA_OPTS $OODT_OPTS \
-    -Djava.ext.dirs="$RESMGR_HOME"/lib \
+    -cp "$RESMGR_HOME/lib/*" \
+    -Dlog4j.configurationFile="$RESMGR_HOME"/etc/log4j2.xml \
     -Djava.util.logging.config.file="$RESMGR_HOME"/etc/logging.properties \
     -Dorg.apache.oodt.cas.resource.properties="$RESMGR_HOME"/etc/resource.properties \
     -Djava.io.tmpdir="$OODT_TMPDIR" \
-    org.apache.oodt.cas.resource.system.XmlRpcResourceManager \
+    org.apache.oodt.cas.resource.system.ResourceManagerMain \
     --portNum "$RESMGR_PORT" 2>&1 &
 
   if [ ! -z "$RESMGR_PID" ]; then

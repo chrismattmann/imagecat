@@ -1,3 +1,4 @@
+#!/bin/bash
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -14,10 +15,7 @@
 # limitations under the License.
 
 export OODT_HOME=`pwd`
-echo -- Stopping All Scripts --
-cd $OODT_HOME/bin
+echo -- Stopping ImageCat --
+cd "$OODT_HOME/bin"
 ./oodt stop
-cd $OODT_HOME/tomcat7/bin
-./shutdown.sh
-killall java
 echo [DONE]

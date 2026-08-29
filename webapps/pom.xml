@@ -30,6 +30,5 @@
     <module>opsui</module>
     <module>pcs-services</module>
     <module>fmprod</module>
-    <module>solr-webapp</module>
   </modules>
 </project>

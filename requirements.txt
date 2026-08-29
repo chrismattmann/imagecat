@@ -1,0 +1,8 @@
+# Python half of the ImageCat pipeline. bin/imagecat-setup installs these
+# into $IMAGECAT_HOME/.venv. TrOCR/Donut pull torch + transformers on first
+# use; the HuggingFace model weights download then, not at pip time.
+
+pysolr>=3.9.0
+Pillow>=10.0.0
+transformers>=4.40.0
+torch>=2.2.0

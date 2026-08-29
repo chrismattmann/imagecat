@@ -1,0 +1,56 @@
+name: build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  python:
+    name: PGE Python 3 checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Test
+        run: python -m unittest tests.test_pge_python -v
+
+  package:
+    name: Maven package (JDK 21)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Package ImageCat
+        run: mvn -B package
+
+      - name: Check the distribution contents
+        run: |
+          set -e
+          TARBALL=distribution/target/oodt-distribution-*-bin.tar.gz
+          test -f $TARBALL
+
+          tar tzf $TARBALL | grep -q 'tomcat/webapps/opsui/'
+          tar tzf $TARBALL | grep -q 'solr/imagecat/conf/schema.xml'
+          tar tzf $TARBALL | grep -q 'solr/oodt-fm/conf/schema.xml'
+          tar tzf $TARBALL | grep -q 'pge/bin/imagecat-ocr/imagecat-ocr.py'
+          tar tzf $TARBALL | grep -q 'solr-server/bin/solr'
+          tar tvzf $TARBALL | grep -E 'tomcat/bin/catalina.sh' | grep -q '^-rwx'
+
+          ! tar tzf $TARBALL | grep -q 'solr4/'
+          ! tar tzf $TARBALL | grep -q 'tomcat7/'
+          ! tar xzOf $TARBALL --wildcards '*/bin/*' 2>/dev/null | grep -q 'java.ext.dirs'
+          ! tar xzOf $TARBALL --wildcards '*/WEB-INF/web.xml' 2>/dev/null | grep -qi wicket
+
+          echo "distribution contents OK"

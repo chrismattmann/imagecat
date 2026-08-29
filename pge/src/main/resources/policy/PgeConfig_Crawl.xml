@@ -10,8 +10,8 @@
      <cmd>mkdir [JobOutputDir] ; mkdir [JobInputDir]</cmd>
      <cmd>echo "Staging file [ChunkFilePath] to [JobInputDir]"</cmd>
      <cmd>cp -R [ChunkFilePath] [JobInputDir]</cmd>
-     <cmd>solrcell_ingest [JobInputDir]/[Filename]</cmd>
-     <cmd>python2.7 [PGE_ROOT]/bin/sha1sum/sha1sum.py -s [SolrUrl]</cmd>
+     <cmd>python3 [PGE_ROOT]/bin/imagecat-ocr/imagecat-ocr.py -f [JobInputDir]/[Filename] -s [SolrUrl] --model [OcrModel]</cmd>
+     <cmd>python3 [PGE_ROOT]/bin/sha1sum/sha1sum.py -s [SolrUrl]</cmd>
    </exe>
 
   <!-- Files to ingest -->

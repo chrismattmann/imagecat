@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# 
+#
 # $Id$
 #
 # Author: mattmann
@@ -21,77 +21,67 @@
 # in the file is a full path to some file to ingest. SPLITS collections
 # of lines in the file into sub-groups of size chunkSize
 
-import sys
 import getopt
-
-def splitAndExecute(chunkFile, chunkSize):
-    theChunkFile = open(chunkFile, 'r')
-    numChunks = 0
-    fileList=[]
-    currentChunkSize = 0
-
-    while True:
-        line=theChunkFile.readline()
-
-        if not line:
-            chunkfilename = "filelist_chunk_"+str(numChunks)+".txt"
-            writeFile(chunkfilename, fileList)
-
-            # reset
-            fileList=[]
-            currentChunkSize = long(0)
-            numChunks = numChunks + 1
-            break
-
-        fileList.append(line)
-        currentChunkSize = currentChunkSize+1
-
-        if (currentChunkSize == chunkSize):
-            chunkfilename = "filelist_chunk_"+str(numChunks)+".txt"
-            writeFile(chunkfilename, fileList)
-
-            # reset
-            fileList=[]
-            currentChunkSize = long(0)
-            numChunks = numChunks + 1
-
-    print "Total Chunks: "+str(numChunks)
+import sys
 
 
-def writeFile(chunkfilename, filelist):
-    with open(chunkfilename, "w") as thefile:
+def split_and_execute(chunk_file, chunk_size):
+    num_chunks = 0
+    file_list = []
+    current_chunk_size = 0
+
+    with open(chunk_file, "r", encoding="utf-8") as the_chunk_file:
+        for line in the_chunk_file:
+            file_list.append(line)
+            current_chunk_size += 1
+            if current_chunk_size == chunk_size:
+                write_file("filelist_chunk_%s.txt" % num_chunks, file_list)
+                file_list = []
+                current_chunk_size = 0
+                num_chunks += 1
+
+    if file_list:
+        write_file("filelist_chunk_%s.txt" % num_chunks, file_list)
+        num_chunks += 1
+
+    print("Total Chunks: %s" % num_chunks)
+    return num_chunks
+
+
+def write_file(chunkfilename, filelist):
+    with open(chunkfilename, "w", encoding="utf-8") as thefile:
         for fileentry in filelist:
-            print>>thefile, fileentry.strip()
-        
+            thefile.write("%s\n" % fileentry.strip())
+
 
 def main(argv):
-   chunkSize=0
-   chunkFile=None
-   ingestTaskId=''
-   usage = 'chunk_file.py -f <file> -c <chunkSize>'
+    chunk_size = 0
+    chunk_file = None
+    usage = "chunk_file.py -f <file> -c <chunkSize>"
 
-   try:
-      opts, args = getopt.getopt(argv,"hf:c:",["chunkFile=", "chunkSize="])
-   except getopt.GetoptError:
-      print usage
-      sys.exit(2)
-   for opt, arg in opts:
-      if opt == '-h':
-         print usage
-         sys.exit()
-      elif opt in ("-f", "--chunkFile"):
-          chunkFile = arg
-      elif opt in ("-c", "--chunkSize"):
-         chunkSize = long(arg)
+    try:
+        opts, _args = getopt.getopt(argv, "hf:c:", ["chunkFile=", "chunkSize="])
+    except getopt.GetoptError:
+        print(usage)
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == "-h":
+            print(usage)
+            sys.exit()
+        elif opt in ("-f", "--chunkFile"):
+            chunk_file = arg
+        elif opt in ("-c", "--chunkSize"):
+            chunk_size = int(arg)
 
-   if chunkFile == None or chunkSize == 0:
-       print usage
-       sys.exit()
+    if chunk_file is None or chunk_size == 0:
+        print(usage)
+        sys.exit()
 
-   print "Chunk Size: ["+str(chunkSize)+"]"
-   print "Chunk File: ["+str(chunkFile)+"]"
+    print("Chunk Size: [%s]" % chunk_size)
+    print("Chunk File: [%s]" % chunk_file)
 
-   splitAndExecute(chunkFile, chunkSize)
+    split_and_execute(chunk_file, chunk_size)
+
 
 if __name__ == "__main__":
-   main(sys.argv[1:])
+    main(sys.argv[1:])
