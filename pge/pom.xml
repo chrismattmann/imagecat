@@ -87,6 +87,19 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <!-- Fat jar. imagecat-ocr.py shells out to tika-app -m for MIME/EXIF
+         the way Solr Cell used to. Exclude transitives; the jar is self-contained. -->
+    <dependency>
+      <groupId>org.apache.tika</groupId>
+      <artifactId>tika-app</artifactId>
+      <version>3.3.2</version>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

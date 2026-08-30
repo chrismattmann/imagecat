@@ -9,7 +9,7 @@ into Solr, File Manager catalogs the files. The stack under it is new.
 - RADiX layout (filemgr, workflow, resmgr, crawler, pge, pcs, distribution)
 - Chunker → Ingest-in-place → Solr
 - File Manager catalog (Solr core `oodt-fm`)
-- Tika MIME / EXIF on the File Manager ingest path (`ingestinplace`)
+- Tika MIME / EXIF on the Solr `imagecat` core (`imagecat-ocr.py`), the same place Solr Cell used to put it. File Manager catalogs ChunkList path files, not the images.
 - Vue OPSUI overlay of `ai.mattmann.mnemosyne:pcs-opsui`
 - image_space as the later search UI (lives in `nasa-jpl-memex/image_space`, not this repo)
 
