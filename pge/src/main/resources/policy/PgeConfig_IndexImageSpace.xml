@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  FLAG: run after IngestInPlace so ImageSpace CLIP/FAISS sees new Solr docs.
-  The script no-ops unless IMAGE_SPACE_HOME is set. Do not full-rebuild the
-  catalog on every chunk — the indexer is --incremental.
+  After IngestInPlace, increment ImageSpace CLIP/FAISS.
+  The script no-ops unless IMAGE_SPACE_HOME is set.
+  Incremental encode of new Solr ids, then rewrite FAISS.
+  XML comments must not contain double-hyphen.
 -->
 <pgeConfig>
   <exe dir="[JobDir]" shell="/bin/bash">
