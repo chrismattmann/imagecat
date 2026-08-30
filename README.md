@@ -42,8 +42,10 @@ OCR
 The IngestInPlace PGE calls `imagecat-ocr.py` over each chunk file.
 `--model trocr` (default) is printed/scene text;
 `--model donut` is document understanding and also fills `caption`.
-Tesseract and Solr Cell are gone. The old `solrcell_ingest` name remains as
-a shim onto the same script.
+Tika runs on each image in that same script (MIME, EXIF, IPTC) so the
+`imagecat` Solr core has the metadata Solr Cell used to attach. Tesseract
+and Solr Cell are gone. The old `solrcell_ingest` name remains as a shim
+onto the same script.
 
 ```bash
 python3 pge/bin/imagecat-ocr/imagecat-ocr.py \

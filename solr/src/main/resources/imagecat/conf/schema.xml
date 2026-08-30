@@ -17,8 +17,9 @@
 -->
 <!--
   OCR / image-content core. id is the original file path. ocr_text is what
-  TrOCR or Donut produced. sha1sum_s_md is filled by the OCR PGE and by
-  sha1sum.py for documents that arrived without one.
+  TrOCR or Donut produced. Tika MIME/EXIF from imagecat-ocr.py lands on
+  content_type and the catch-all dynamicField (tiff_Make, Exif_IFD0_*, …).
+  sha1sum_s_md is filled by the OCR PGE and by sha1sum.py.
 -->
 <schema name="imagecat" version="1.6">
 
