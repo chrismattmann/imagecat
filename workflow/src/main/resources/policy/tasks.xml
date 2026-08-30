@@ -83,10 +83,8 @@
     <requiredMetFields/>
   </task>
 
-  <!-- FLAG: after IngestInPlace OCR, increment CLIP/FAISS for ImageSpace.
-       Script no-ops unless IMAGE_SPACE_HOME is set. Not on the default
-       IngestInPlace workflow yet — see the commented task in
-       IngestInPlace.workflow.xml. -->
+  <!-- After IngestInPlace OCR, increment CLIP/FAISS for ImageSpace.
+       Script no-ops unless IMAGE_SPACE_HOME is set on the workflow manager. -->
   <task id="urn:memex:IndexImageSpace" name="IndexImageSpace" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
     <conditions/>
     <configuration>

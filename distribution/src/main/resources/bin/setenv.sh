@@ -35,6 +35,10 @@ export PGE_ROOT=$IMAGECAT_HOME/pge
 export PCS_HOME=$IMAGECAT_HOME/pcs
 export FMPROD_HOME=$IMAGECAT_HOME/tomcat/webapps/fmprod/WEB-INF/classes/
 
+# ImageSpace CLIP/FAISS after ingest. Unset = IndexImageSpace no-ops.
+# export IMAGE_SPACE_HOME=/path/to/imagespace
+# export IMAGE_SPACE_PYTHON=/path/to/imagespace/.venv-embed/bin/python
+
 # Bound every Avro client call (Mnemosyne #197). Ten minutes is the code
 # default; 0 waits forever. JDK_JAVA_OPTIONS reaches File Manager, Workflow
 # Manager, Resource Manager, and Tomcat.

@@ -49,6 +49,16 @@ class ChunkFileTests(unittest.TestCase):
             with open(path, encoding="utf-8") as handle:
                 ast.parse(handle.read(), filename=path)
 
+    def test_index_imagespace_skips_without_home(self):
+        import subprocess
+
+        script = os.path.join(PGE_BIN, "index-imagespace", "index-imagespace.sh")
+        env = os.environ.copy()
+        env.pop("IMAGE_SPACE_HOME", None)
+        env.pop("IMAGE_SPACE_PYTHON", None)
+        out = subprocess.check_output(["bash", script], env=env, text=True)
+        self.assertIn("skip CLIP rebuild", out)
+
 
 class TikaSolrMappingTests(unittest.TestCase):
     def test_content_type_field(self):

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  FLAG: run after IngestInPlace so ImageSpace CLIP/FAISS sees new Solr docs.
+  Run after IngestInPlace so ImageSpace CLIP/FAISS sees new Solr docs.
   The script no-ops unless IMAGE_SPACE_HOME is set. Do not full-rebuild the
-  catalog on every chunk — the indexer is --incremental.
+  catalog on every chunk — the indexer is --incremental (encode new ids,
+  concatenate vectors, rewrite FAISS FlatIP until 10k then HNSW).
 -->
 <pgeConfig>
   <exe dir="[JobDir]" shell="/bin/bash">
