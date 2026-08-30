@@ -24,7 +24,7 @@ if [ "$#" -ne 1 ]; then
 else
 	export PRODUCT_PATH=$1
 	$DIR_PATH/../crawler/bin/crawler_launcher \
-	--filemgrUrl http://localhost:9000 \
+	--filemgrUrl ${FILEMGR_URL:-http://localhost:9000} \
 	--operation --launchMetCrawler \
 	--clientTransferer org.apache.oodt.cas.filemgr.datatransfer.InPlaceDataTransferFactory \
 	--productPath $1 \
