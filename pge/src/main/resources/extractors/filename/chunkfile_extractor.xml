@@ -43,7 +43,7 @@ the License.
              Also can use vector to indicate multiple values for a particular met field.
         -->
         <scalar name="DataVersion">1.0</scalar>
-        <scalar name="CollectionName">Products extracted by the OODT Filename Met Extractor</scalar>
-        <scalar name="DataProvider">OODT</scalar>
+        <scalar name="CollectionName">Products extracted by the ImageCat Filename Met Extractor</scalar>
+        <scalar name="DataProvider">ImageCat</scalar>
     </group>
 </input>

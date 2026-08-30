@@ -49,6 +49,18 @@ class ChunkFileTests(unittest.TestCase):
             with open(path, encoding="utf-8") as handle:
                 ast.parse(handle.read(), filename=path)
 
+    def test_chunkfile_extractor_labels_are_imagecat(self):
+        path = os.path.join(
+            ROOT, "pge", "src", "main", "resources",
+            "extractors", "filename", "chunkfile_extractor.xml",
+        )
+        with open(path, encoding="utf-8") as handle:
+            text = handle.read()
+        self.assertIn("ImageCat Filename Met Extractor", text)
+        self.assertIn("<scalar name=\"DataProvider\">ImageCat</scalar>", text)
+        self.assertNotIn("OODT Filename Met Extractor", text)
+        self.assertNotIn("<scalar name=\"DataProvider\">OODT</scalar>", text)
+
 
 class TikaSolrMappingTests(unittest.TestCase):
     def test_content_type_field(self):
