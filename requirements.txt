@@ -4,5 +4,7 @@
 
 pysolr>=3.9.0
 Pillow>=10.0.0
-transformers>=4.40.0
+# transformers 5.x broke TrOCRProcessor (tokenizer backend). Stay on 4.x.
+transformers>=4.40.0,<5
+sentencepiece>=0.2.0
 torch>=2.2.0
