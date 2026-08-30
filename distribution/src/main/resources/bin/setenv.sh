@@ -26,14 +26,21 @@
 ############################
 
 export IMAGECAT_HOME=${IMAGECAT_HOME:-/usr/local/imagecat}
+export OODT_HOME=${OODT_HOME:-$IMAGECAT_HOME}
 export FILEMGR_URL=http://localhost:9000
 export WORKFLOW_URL=http://localhost:9001
 export RESMGR_URL=http://localhost:9002
 export FILEMGR_HOME=$IMAGECAT_HOME/filemgr
+export WORKFLOW_HOME=$IMAGECAT_HOME/workflow
+export RESMGR_HOME=$IMAGECAT_HOME/resmgr
+export CRAWLER_HOME=$IMAGECAT_HOME/crawler
 export PGE_HOME=$IMAGECAT_HOME/pge
 export PGE_ROOT=$IMAGECAT_HOME/pge
 export PCS_HOME=$IMAGECAT_HOME/pcs
 export FMPROD_HOME=$IMAGECAT_HOME/tomcat/webapps/fmprod/WEB-INF/classes/
+if [ -d "$OODT_HOME/.venv/bin" ]; then
+  export PATH="$OODT_HOME/.venv/bin:$PATH"
+fi
 
 # Bound every Avro client call (Mnemosyne #197). Ten minutes is the code
 # default; 0 waits forever. JDK_JAVA_OPTIONS reaches File Manager, Workflow
