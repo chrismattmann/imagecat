@@ -6,3 +6,6 @@ __pycache__/
 .idea/
 .DS_Store
 *.bak
+imagespace/web/node_modules/
+imagespace/web/dist/
+imagespace/data/

@@ -1,0 +1,12 @@
+fastapi>=0.110
+uvicorn[standard]>=0.27
+httpx>=0.27
+numpy>=1.24
+faiss-cpu>=1.8.0
+Pillow>=10.0.0
+# Phase 2 indexer (CLIP). The search server only needs numpy for similar.
+# Install with: pip install -r requirements-embed.txt
+# torch
+# transformers>=4.40.0,<5
+# Pillow>=10.0.0
+# Phase 3 IQR: pip install -r requirements-iqr.txt (Python 3.9+)

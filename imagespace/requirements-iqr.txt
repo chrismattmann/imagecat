@@ -1,0 +1,4 @@
+# Python 3.9+ (Keras 3). The search-only 3.8 venv does not include this.
+-r requirements.txt
+keras>=3.0
+tensorflow>=2.16

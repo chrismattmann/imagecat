@@ -109,6 +109,11 @@ if [ "$1" = "start" ]; then
     nohup "$SOLR_SERVER_HOME"/bin/"$SOLR_EXEC" start -p "$SOLR_PORT" \
       --solr-home "$OODT_BASE"/solr --user-managed >> "$OODT_OUT" 2>&1 &
   fi
+  # ImageSpace is a Python sidecar (FastAPI), same idea as Solr: own
+  # process, own port. No-op if the module was not packed into this distro.
+  if [ -x "$OODT_BASE"/bin/imagespace ]; then
+    "$OODT_BASE"/bin/imagespace start >> "$OODT_OUT" 2>&1 || true
+  fi
   sleep 0.2s
 # Print confirmation messages to the end user
 # FileManager
@@ -162,6 +167,14 @@ if [ "$1" = "start" ]; then
         echo -e 'Starting OODT Workflow Manager [' $'\e[31m' 'Failed' $'\e[00m' ']'
     fi
   fi
+
+# ImageSpace
+  if [ -e "$OODT_BASE/run/imagespace.pid" ] && kill -0 "$(cat "$OODT_BASE/run/imagespace.pid")" > /dev/null 2>&1;
+  then
+      echo -e 'Starting ImageSpace [' $'\e[32m' 'Successful' $'\e[00m' ']'
+  else
+      echo -e 'Starting ImageSpace [' $'\e[31m' 'Failed' $'\e[00m' ']'
+  fi
 elif [ "$1" = "stop" ]; then
   exec "$FILEMGR_HOME"/bin/"$FILEMGR_EXEC" stop "$@" >> "$OODT_OUT" 2>&1  &
   exec "$WORKFLOW_HOME"/bin/"$WORKFLOW_EXEC" stop "$@" >> "$OODT_OUT" 2>&1 &
@@ -169,6 +182,9 @@ elif [ "$1" = "stop" ]; then
   exec "$OODT_BASE"/tomcat/bin/"$TOMCAT_EXEC" stop "$@" >> "$OODT_OUT" 2>&1 &
   if [ -x "$SOLR_SERVER_HOME"/bin/"$SOLR_EXEC" ]; then
     "$SOLR_SERVER_HOME"/bin/"$SOLR_EXEC" stop -p "$SOLR_PORT" >> "$OODT_OUT" 2>&1 &
+  fi
+  if [ -x "$OODT_BASE"/bin/imagespace ]; then
+    "$OODT_BASE"/bin/imagespace stop >> "$OODT_OUT" 2>&1 || true
   fi
 else
   echo "Usage: oodt.sh ( commands ... )"

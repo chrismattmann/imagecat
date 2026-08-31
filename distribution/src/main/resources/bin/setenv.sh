@@ -35,6 +35,15 @@ export PGE_ROOT=$IMAGECAT_HOME/pge
 export PCS_HOME=$IMAGECAT_HOME/pcs
 export FMPROD_HOME=$IMAGECAT_HOME/tomcat/webapps/fmprod/WEB-INF/classes/
 
+# ImageSpace lives in this tarball. CLIP/fg/bg ingest hooks use these.
+export IMAGE_SPACE_HOME=$IMAGECAT_HOME/imagespace
+export IMAGE_SPACE_DATA=$IMAGECAT_HOME/data/imagespace
+export IMAGE_SPACE_SOLR=http://localhost:8983/solr/imagecat
+export IMAGESPACE_PORT=8090
+if [ -x "$IMAGECAT_HOME/.venv/bin/python" ]; then
+  export IMAGE_SPACE_PYTHON=$IMAGECAT_HOME/.venv/bin/python
+fi
+
 # Bound every Avro client call (Mnemosyne #197). Ten minutes is the code
 # default; 0 waits forever. JDK_JAVA_OPTIONS reaches File Manager, Workflow
 # Manager, Resource Manager, and Tomcat.
