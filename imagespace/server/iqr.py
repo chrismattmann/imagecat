@@ -1,17 +1,26 @@
 """Tiny Keras head for Interactive Query Refinement.
 
 CLIP vectors stay on disk. This ranker maps a CLIP vector to P(relevant).
+The head is fitted at Refine time; Keras is the library, not a pretrained
+IQR model. Use the Torch backend (already in ImageCat for CLIP/TrOCR)
+so the distro does not pull TensorFlow.
 """
 
 from __future__ import annotations
 
+import os
 from functools import lru_cache
 
 DEFAULT_DIM = 512
 
 
+def _use_torch_backend():
+    os.environ.setdefault("KERAS_BACKEND", "torch")
+
+
 @lru_cache(maxsize=1)
 def keras_available() -> bool:
+    _use_torch_backend()
     try:
         import keras  # noqa: F401
         return True
@@ -24,6 +33,7 @@ def keras_available() -> bool:
 
 
 def _layers():
+    _use_torch_backend()
     try:
         from keras import Sequential, layers
         return Sequential, layers
