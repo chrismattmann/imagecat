@@ -32,6 +32,11 @@ import subprocess
 import sys
 from pathlib import Path
 
+_BIN = Path(__file__).resolve().parent.parent
+if str(_BIN) not in sys.path:
+    sys.path.insert(0, str(_BIN))
+from progress import write_progress  # noqa: E402
+
 
 TROCR_MODEL = "microsoft/trocr-base-printed"
 DONUT_MODEL = "naver-clova-ix/donut-base"
@@ -268,16 +273,20 @@ def main(argv=None) -> int:
     batch = []
     indexed = 0
     failed = 0
-    for path in paths:
+    n = len(paths)
+    write_progress(0, n, "ocr")
+    for i, path in enumerate(paths):
         if not Path(path).is_file():
             print("Missing: %s" % path, file=sys.stderr)
             failed += 1
+            write_progress(i + 1, n, "ocr")
             continue
         try:
             text = ocr(path)
         except Exception as exc:  # keep the chunk moving
             print("OCR failed %s: %s" % (path, exc), file=sys.stderr)
             failed += 1
+            write_progress(i + 1, n, "ocr")
             continue
         doc = {
             "id": path,
@@ -290,16 +299,18 @@ def main(argv=None) -> int:
         if tika_app is not None:
             doc.update(tika_metadata(path, tika_app))
         batch.append(doc)
+        write_progress(i + 1, n, "ocr")
         if len(batch) >= args.commit_every:
             index_docs(args.solr_url, batch)
             indexed += len(batch)
-            print("Posted %d / %d" % (indexed, len(paths)))
+            print("Posted %d / %d" % (indexed, n))
             batch = []
 
     if batch:
         index_docs(args.solr_url, batch)
         indexed += len(batch)
 
+    write_progress(n, n, "ocr")
     print("Indexed: %d  Failed: %d" % (indexed, failed))
     return 0 if failed == 0 else 1
 
