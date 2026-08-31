@@ -22,8 +22,14 @@
 import getopt
 import hashlib
 import sys
+from pathlib import Path
 
 import pysolr
+
+_BIN = Path(__file__).resolve().parent.parent
+if str(_BIN) not in sys.path:
+    sys.path.insert(0, str(_BIN))
+from progress import write_progress  # noqa: E402
 
 
 def compute_sha(file_path):
@@ -38,16 +44,26 @@ def iterate_docs(solr_url):
     client = pysolr.Solr(solr_url, timeout=10)
     start = 0
     page = 1
+    total = None
+    done = 0
     while True:
         print("Searching: page: [%s]: start: [%s]" % (page, start))
         results = client.search("-sha1sum_s_md:[* TO *]", **{"start": start, "rows": 10})
+        if total is None:
+            total = int(results.hits or 0)
+            write_progress(0, max(total, 1), "sha1")
         if not results.hits or not len(results):
             break
         for doc in results:
             print("Processing: %s" % doc["id"])
             doc["sha1sum_s_md"] = compute_sha(doc["id"])
             client.add([doc], commit=True)
+            done += 1
+            write_progress(done, max(total, 1), "sha1")
         page += 1
+        start = done
+    if total is not None:
+        write_progress(done, max(total, 1), "sha1")
 
 
 def main(argv):

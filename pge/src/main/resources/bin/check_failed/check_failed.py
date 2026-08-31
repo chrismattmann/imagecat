@@ -23,8 +23,14 @@
 
 import getopt
 import sys
+from pathlib import Path
 
 import pysolr
+
+_BIN = Path(__file__).resolve().parent.parent
+if str(_BIN) not in sys.path:
+    sys.path.insert(0, str(_BIN))
+from progress import write_progress  # noqa: E402
 
 
 def check_image_file(filepath, client):
@@ -35,15 +41,20 @@ def check_image_file(filepath, client):
 def build_chunk_file(output_file, chunk_file, client):
     num_missed = 0
     missed_list = []
-
+    paths = []
     with open(chunk_file, "r", encoding="utf-8") as the_chunk_file:
         for filepath in the_chunk_file:
             path = filepath.strip()
-            if not path:
-                continue
-            if not check_image_file(path, client):
-                num_missed += 1
-                missed_list.append(path)
+            if path:
+                paths.append(path)
+    n = len(paths)
+    write_progress(0, max(n, 1), "check")
+    for i, path in enumerate(paths):
+        if not check_image_file(path, client):
+            num_missed += 1
+            missed_list.append(path)
+        if (i + 1) % 25 == 0 or (i + 1) == n:
+            write_progress(i + 1, n, "check")
 
     print("Num Missed    : [%s]" % num_missed)
     if num_missed > 0:
