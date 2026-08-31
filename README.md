@@ -15,6 +15,14 @@ OPSUI is the Vue 3 console from Mnemosyne, overlaid at `/opsui/`. Solr runs as
 its own process (not a Tomcat war) with two cores: `imagecat` (OCR text) and
 `oodt-fm` (File Manager catalog).
 
+[ImageSpace](imagespace/README.md) is the analyst desktop in this same tarball:
+search OCR and Tika fields, browse the image grid, CLIP similar, foreground /
+background similar (U2-Net / rembg), and IQR (a tiny Keras head fitted at
+Refine time on CLIP vectors). `bin/oodt start` brings it up on port 8090
+the way it starts Solr — FastAPI, not a WAR. CLIP / fg / bg indexes live
+under `$IMAGECAT_HOME/data/imagespace/`. The NASA Girder/SMQTK ImageSpace
+is a different tree.
+
 See [docs/WHAT-IS-IN.md](docs/WHAT-IS-IN.md) for keep / throw / replace.
 
 Build
@@ -28,8 +36,8 @@ mvn -B package
 tar xzf distribution/target/oodt-distribution-0.1-bin.tar.gz
 cd <unpacked>
 export IMAGECAT_HOME=$PWD
-bin/imagecat-setup          # pysolr + transformers + torch into .venv
-bin/oodt start              # File Manager, Workflow, Resource, Tomcat 9, Solr 10
+bin/imagecat-setup          # .venv (OCR, CLIP, Keras IQR) + Vue build
+bin/oodt start              # File Manager, Workflow, Resource, Tomcat 9, Solr 10, ImageSpace
 ```
 
 - OPSUI: `http://localhost:8080/opsui/`
@@ -48,18 +56,26 @@ Tika runs on each image in that same script (MIME, EXIF, IPTC) so the
 and Solr Cell are gone. The old `solrcell_ingest` name remains as a shim
 onto the same script.
 
-ImageSpace (analyst UI, CLIP, fg/bg, IQR) ships in this tarball. `bin/oodt start`
-brings it up on `http://127.0.0.1:8090/` (FastAPI, like Solr). After ingest,
-`urn:memex:IndexImageSpace` increments CLIP/FAISS and
-`urn:memex:IndexImageSpaceFgBg` increments foreground/background CLIP
-(U2-Net / rembg). Indexes live under `$IMAGECAT_HOME/data/imagespace/`.
-
 ```bash
 python3 pge/bin/imagecat-ocr/imagecat-ocr.py \
   -f data/archive/chunks/0/filelist_chunk_0.txt \
   -s http://localhost:8983/solr/imagecat \
   --model trocr
 ```
+
+ImageSpace
+----------
+
+After OCR, the same ingest workflow increments CLIP/FAISS
+(`urn:memex:IndexImageSpace`) and foreground/background CLIP
+(`urn:memex:IndexImageSpaceFgBg`). The UI at
+`http://127.0.0.1:8090/` searches Solr, shows the pictures, and
+runs Similar / FG / BG against those indexes. IQR is not a pretrained
+model: mark tiles + / − and Refine fits a small Keras head (Torch
+backend) on the CLIP vectors you already have.
+
+`bin/imagecat-setup` installs Keras with the rest of the Python env
+and builds the Vue UI. Vite on 5173 is optional for UI development.
 
 See the wiki for more on installing and running ImageCat:
 * [Installation instructions](https://github.com/chrismattmann/imagecat/wiki/Installation)
