@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Incremental CLIP index from ImageCat Solr, rewrite FAISS, reload the API.
+set -euo pipefail
+HERE=$(cd "$(dirname "$0")/.." && pwd)
+OODT_HOME=${OODT_HOME:-${IMAGECAT_HOME:-}}
+cd "$HERE"
+export PYTHONPATH="$HERE"
+export IMAGE_SPACE_SOLR=${IMAGE_SPACE_SOLR:-http://localhost:8983/solr/imagecat}
+if [ -n "$OODT_HOME" ]; then
+  export IMAGE_SPACE_DATA=${IMAGE_SPACE_DATA:-$OODT_HOME/data/imagespace}
+fi
+if [ -n "${IMAGE_SPACE_PYTHON:-}" ]; then
+  PY=$IMAGE_SPACE_PYTHON
+elif [ -n "$OODT_HOME" ] && [ -x "$OODT_HOME/.venv/bin/python" ]; then
+  PY=$OODT_HOME/.venv/bin/python
+elif [ -x "$HERE/.venv-embed/bin/python" ]; then
+  PY=$HERE/.venv-embed/bin/python
+else
+  PY=python3
+fi
+"$PY" -m server.embed --incremental "$@"

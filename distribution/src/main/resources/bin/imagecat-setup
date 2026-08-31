@@ -33,5 +33,24 @@ fi
 "$PYTHON" -m venv "$VENV"
 "$VENV/bin/python" -m pip install --upgrade pip
 "$VENV/bin/python" -m pip install -r "$REQ"
+if [ -f "$IMAGECAT_HOME/imagespace/requirements-embed.txt" ]; then
+  (cd "$IMAGECAT_HOME/imagespace" && "$VENV/bin/python" -m pip install -r requirements-embed.txt) || \
+    echo "CLIP extra (torch) already covered by requirements.txt or failed; CLIP ingest needs it" >&2
+fi
+if [ -f "$IMAGECAT_HOME/imagespace/requirements-iqr.txt" ]; then
+  (cd "$IMAGECAT_HOME/imagespace" && "$VENV/bin/python" -m pip install -r requirements-iqr.txt) || \
+    echo "IQR extra (keras) skipped; similar still works without it" >&2
+fi
+# rembg is optional; fg/bg ingest no-ops usefully if missing.
+"$VENV/bin/python" -m pip install rembg onnxruntime >/dev/null 2>&1 || \
+  echo "rembg not installed; IndexImageSpaceFgBg will skip until pip install rembg onnxruntime" >&2
+
+if [ -f "$IMAGECAT_HOME/imagespace/web/package.json" ]; then
+  if command -v npm >/dev/null 2>&1; then
+    (cd "$IMAGECAT_HOME/imagespace/web" && npm ci && npm run build)
+  else
+    echo "npm not on PATH; ImageSpace UI will be API-only until: cd imagespace/web && npm ci && npm run build" >&2
+  fi
+fi
 echo "Installed into $VENV"
 echo "Restart ImageCat so PGEs pick up $VENV/bin: bin/oodt stop && bin/oodt start"

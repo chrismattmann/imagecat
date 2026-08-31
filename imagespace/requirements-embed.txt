@@ -1,0 +1,6 @@
+-r requirements.txt
+torch>=2.2.0
+transformers>=4.40.0,<5
+Pillow>=10.0.0
+sentencepiece>=0.2.0
+# Phase 4 fg/bg: pip install rembg onnxruntime

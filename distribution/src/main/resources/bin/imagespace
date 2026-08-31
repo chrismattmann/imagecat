@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# Start/stop the ImageSpace FastAPI process (analyst UI + /api).
+# Solr-shaped sidecar: own pid file, own port, started from bin/oodt.
+
+set -euo pipefail
+
+HERE=$(cd "$(dirname "$0")/.." && pwd)
+OODT_HOME=${OODT_HOME:-$HERE}
+IMAGE_SPACE_HOME=${IMAGE_SPACE_HOME:-$OODT_HOME/imagespace}
+PORT=${IMAGESPACE_PORT:-8090}
+PIDFILE=${IMAGESPACE_PID:-$OODT_HOME/run/imagespace.pid}
+LOG=${IMAGESPACE_LOG:-$OODT_HOME/logs/imagespace.out}
+PY=${IMAGE_SPACE_PYTHON:-$OODT_HOME/.venv/bin/python}
+
+pick_python() {
+  if [ -x "$PY" ]; then
+    echo "$PY"
+    return
+  fi
+  if [ -x "$OODT_HOME/.venv/bin/python" ]; then
+    echo "$OODT_HOME/.venv/bin/python"
+    return
+  fi
+  echo python3
+}
+
+is_running() {
+  if [ ! -f "$PIDFILE" ]; then
+    return 1
+  fi
+  pid=$(cat "$PIDFILE")
+  kill -0 "$pid" 2>/dev/null
+}
+
+start() {
+  if [ ! -d "$IMAGE_SPACE_HOME/server" ]; then
+    echo "ImageSpace is not installed at $IMAGE_SPACE_HOME" >&2
+    return 1
+  fi
+  if is_running; then
+    echo "ImageSpace already running (pid $(cat "$PIDFILE"))"
+    return 0
+  fi
+  mkdir -p "$OODT_HOME/run" "$OODT_HOME/logs" \
+    "$OODT_HOME/data/imagespace/clip" \
+    "$OODT_HOME/data/imagespace/fg" \
+    "$OODT_HOME/data/imagespace/bg" \
+    "$OODT_HOME/data/imagespace/thumbs"
+  PYTHON=$(pick_python)
+  export OODT_HOME IMAGECAT_HOME=${IMAGECAT_HOME:-$OODT_HOME}
+  export IMAGE_SPACE_HOME
+  export IMAGE_SPACE_DATA=${IMAGE_SPACE_DATA:-$OODT_HOME/data/imagespace}
+  export IMAGE_SPACE_SOLR=${IMAGE_SPACE_SOLR:-http://localhost:8983/solr/imagecat}
+  export PYTHONPATH="$IMAGE_SPACE_HOME${PYTHONPATH:+:$PYTHONPATH}"
+  cd "$IMAGE_SPACE_HOME"
+  nohup "$PYTHON" -m uvicorn server.main:app --host 127.0.0.1 --port "$PORT" \
+    >> "$LOG" 2>&1 &
+  echo $! > "$PIDFILE"
+  echo "Started ImageSpace pid $(cat "$PIDFILE") on http://127.0.0.1:$PORT/"
+}
+
+stop() {
+  if ! is_running; then
+    rm -f "$PIDFILE"
+    echo "ImageSpace is not running"
+    return 0
+  fi
+  pid=$(cat "$PIDFILE")
+  kill "$pid" 2>/dev/null || true
+  for _ in 1 2 3 4 5; do
+    kill -0 "$pid" 2>/dev/null || break
+    sleep 0.2
+  done
+  if kill -0 "$pid" 2>/dev/null; then
+    kill -9 "$pid" 2>/dev/null || true
+  fi
+  rm -f "$PIDFILE"
+  echo "Stopped ImageSpace"
+}
+
+case "${1:-}" in
+  start) start ;;
+  stop) stop ;;
+  *)
+    echo "Usage: imagespace start|stop" >&2
+    exit 1
+    ;;
+esac

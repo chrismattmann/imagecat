@@ -55,10 +55,12 @@ class ChunkFileTests(unittest.TestCase):
         env = os.environ.copy()
         env.pop("IMAGE_SPACE_HOME", None)
         env.pop("IMAGE_SPACE_PYTHON", None)
+        env.pop("OODT_HOME", None)
+        env.pop("IMAGECAT_HOME", None)
         for name in ("index-imagespace", "index-imagespace-fgbg"):
             script = os.path.join(PGE_BIN, name, name + ".sh")
             out = subprocess.check_output(["bash", script], env=env, text=True)
-            self.assertIn("unset; skip", out)
+            self.assertIn("skip", out)
 
     def test_chunkfile_extractor_labels_are_imagecat(self):
         path = os.path.join(

@@ -8,3 +8,11 @@ Pillow>=10.0.0
 transformers>=4.40.0,<5
 sentencepiece>=0.2.0
 torch>=2.2.0
+
+# ImageSpace API (FastAPI sidecar). CLIP/IQR extras are in
+# imagespace/requirements-embed.txt and requirements-iqr.txt.
+fastapi>=0.110
+uvicorn[standard]>=0.27
+httpx>=0.27
+numpy>=1.24
+faiss-cpu>=1.8.0

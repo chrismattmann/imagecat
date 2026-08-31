@@ -33,6 +33,7 @@ bin/oodt start              # File Manager, Workflow, Resource, Tomcat 9, Solr 1
 ```
 
 - OPSUI: `http://localhost:8080/opsui/`
+- ImageSpace: `http://127.0.0.1:8090/`
 - Solr OCR core: `http://localhost:8983/solr/imagecat`
 - Solr FM catalog: `http://localhost:8983/solr/oodt-fm`
 
@@ -47,9 +48,11 @@ Tika runs on each image in that same script (MIME, EXIF, IPTC) so the
 and Solr Cell are gone. The old `solrcell_ingest` name remains as a shim
 onto the same script.
 
-After ingest, `urn:memex:IndexImageSpace` increments CLIP/FAISS and
+ImageSpace (analyst UI, CLIP, fg/bg, IQR) ships in this tarball. `bin/oodt start`
+brings it up on `http://127.0.0.1:8090/` (FastAPI, like Solr). After ingest,
+`urn:memex:IndexImageSpace` increments CLIP/FAISS and
 `urn:memex:IndexImageSpaceFgBg` increments foreground/background CLIP
-(U2-Net / rembg). Both no-op unless `IMAGE_SPACE_HOME` is set on the WM.
+(U2-Net / rembg). Indexes live under `$IMAGECAT_HOME/data/imagespace/`.
 
 ```bash
 python3 pge/bin/imagecat-ocr/imagecat-ocr.py \

@@ -108,6 +108,26 @@
       </includes>
     </fileSet>
     <fileSet>
+      <directory>${basedir}/../imagespace</directory>
+      <outputDirectory>imagespace</outputDirectory>
+      <excludes>
+        <exclude>web/node_modules/**</exclude>
+        <exclude>web/dist/**</exclude>
+        <exclude>data/**</exclude>
+        <exclude>**/__pycache__/**</exclude>
+        <exclude>**/*.pyc</exclude>
+        <exclude>.venv/**</exclude>
+        <exclude>.venv-embed/**</exclude>
+      </excludes>
+    </fileSet>
+    <fileSet>
+      <directory>target</directory>
+      <outputDirectory>data/imagespace</outputDirectory>
+      <excludes>
+        <exclude>**/*</exclude>
+      </excludes>
+    </fileSet>
+    <fileSet>
       <directory>${project.build.directory}/solr-${solr.version}</directory>
       <outputDirectory>solr-server</outputDirectory>
       <excludes><exclude>bin/**</exclude></excludes>

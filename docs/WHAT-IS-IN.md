@@ -10,9 +10,9 @@ into Solr, File Manager catalogs the files. The stack under it is new.
 - Chunker → Ingest-in-place → Solr
 - File Manager catalog (Solr core `oodt-fm`)
 - Tika MIME / EXIF on the Solr `imagecat` core (`imagecat-ocr.py`), the same place Solr Cell used to put it. File Manager catalogs ChunkList path files, not the images.
-- FLAG: after IngestInPlace, ImageSpace CLIP/FAISS must be incremented (`urn:memex:IndexImageSpace`, commented on the IngestInPlace workflow until `IMAGE_SPACE_HOME` is set).
+- FLAG: after IngestInPlace, ImageSpace CLIP/FAISS and fg/bg are incremented (`urn:memex:IndexImageSpace`, `urn:memex:IndexImageSpaceFgBg`).
 - Vue OPSUI overlay of `ai.mattmann.mnemosyne:pcs-opsui`
-- image_space as the later search UI (lives in `nasa-jpl-memex/image_space`, not this repo)
+- ImageSpace analyst UI in this repo (`imagespace/`), started by `bin/oodt start` on port 8090. Indexes under `$OODT_HOME/data/imagespace/`. The NASA Girder/SMQTK ImageSpace stays at `nasa-jpl-memex/image_space`.
 
 ## Throw out
 
@@ -42,12 +42,10 @@ into Solr, File Manager catalogs the files. The stack under it is new.
 | `solrcell_ingest` curl loop | same name, now a shim onto `imagecat-ocr.py` |
 | `python2.7` shebangs and `print` / `long()` | Python 3 |
 
-## Replace later (image_space, not this repo)
+## Replace later
 
-- SMQTK
-- FLANN
-- CMU / Columbia / Georgetown extractors
-- Girder / Mongo
+- SMQTK / FLANN / Caffe (already replaced in-tree by CLIP + rembg + Keras)
+- Columbia / Georgetown / weapons / VideoSpace (not v1)
 
 SCE domain discovery stays public for Sparkler. Sparkler itself lives at
 [gitlab.com/sparkler-crawl-environment/sparkler](https://gitlab.com/sparkler-crawl-environment/sparkler).

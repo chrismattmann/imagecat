@@ -1,21 +1,29 @@
 #!/usr/bin/env bash
 # Incremental CLIP/FAISS after ImageCat ingest.
-# No-op unless IMAGE_SPACE_HOME is set.
+# Defaults to $OODT_HOME/imagespace (packed in the distro). Skip if missing.
 set -euo pipefail
+
+if [ -z "${IMAGE_SPACE_HOME:-}" ] && [ -n "${OODT_HOME:-}" ]; then
+  IMAGE_SPACE_HOME=$OODT_HOME/imagespace
+fi
 
 if [ -z "${IMAGE_SPACE_HOME:-}" ]; then
   echo "urn:memex:IndexImageSpace: IMAGE_SPACE_HOME is unset; skip CLIP rebuild"
   exit 0
 fi
 
-if [ ! -d "$IMAGE_SPACE_HOME" ]; then
-  echo "urn:memex:IndexImageSpace: IMAGE_SPACE_HOME=$IMAGE_SPACE_HOME is not a directory" >&2
-  exit 1
+if [ ! -d "$IMAGE_SPACE_HOME/server" ]; then
+  echo "urn:memex:IndexImageSpace: no server at $IMAGE_SPACE_HOME; skip CLIP rebuild"
+  exit 0
 fi
 
 pick_python() {
   if [ -n "${IMAGE_SPACE_PYTHON:-}" ]; then
     echo "$IMAGE_SPACE_PYTHON"
+    return
+  fi
+  if [ -x "${OODT_HOME:-}/.venv/bin/python" ]; then
+    echo "$OODT_HOME/.venv/bin/python"
     return
   fi
   if [ -x "$IMAGE_SPACE_HOME/.venv-embed/bin/python" ]; then
@@ -31,6 +39,9 @@ PY=$(pick_python)
 
 export IMAGE_SPACE_SOLR="$SOLR_URL"
 export PYTHONPATH="$IMAGE_SPACE_HOME"
+if [ -n "${OODT_HOME:-}" ]; then
+  export IMAGE_SPACE_DATA="${IMAGE_SPACE_DATA:-$OODT_HOME/data/imagespace}"
+fi
 # JobDir is cwd when the PGE starts us; python cds to IMAGE_SPACE_HOME.
 export PGE_PROGRESS_DIR="${PGE_PROGRESS_DIR:-$PWD}"
 cd "$IMAGE_SPACE_HOME"
