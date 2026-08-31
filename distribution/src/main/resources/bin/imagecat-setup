@@ -34,13 +34,10 @@ fi
 "$VENV/bin/python" -m pip install --upgrade pip
 "$VENV/bin/python" -m pip install -r "$REQ"
 if [ -f "$IMAGECAT_HOME/imagespace/requirements-embed.txt" ]; then
-  (cd "$IMAGECAT_HOME/imagespace" && "$VENV/bin/python" -m pip install -r requirements-embed.txt) || \
-    echo "CLIP extra (torch) already covered by requirements.txt or failed; CLIP ingest needs it" >&2
+  (cd "$IMAGECAT_HOME/imagespace" && "$VENV/bin/python" -m pip install -r requirements-embed.txt)
 fi
-if [ -f "$IMAGECAT_HOME/imagespace/requirements-iqr.txt" ]; then
-  (cd "$IMAGECAT_HOME/imagespace" && "$VENV/bin/python" -m pip install -r requirements-iqr.txt) || \
-    echo "IQR extra (keras) skipped; similar still works without it" >&2
-fi
+# keras is in requirements.txt (IQR head, Torch backend). Fail setup if it
+# did not land — "IQR off (needs Keras)" is not an optional extra.
 # rembg is optional; fg/bg ingest no-ops usefully if missing.
 "$VENV/bin/python" -m pip install rembg onnxruntime >/dev/null 2>&1 || \
   echo "rembg not installed; IndexImageSpaceFgBg will skip until pip install rembg onnxruntime" >&2

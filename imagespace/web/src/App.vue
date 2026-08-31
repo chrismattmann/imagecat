@@ -50,7 +50,7 @@
       <p class="status">{{ statusLine }}</p>
       <div class="iqr-bar">
         <span v-if="canIqr">IQR {{ iqrPos.length }} relevant / {{ iqrNeg.length }} not</span>
-        <span v-else title="Python 3.9+ with Keras and TensorFlow">IQR off (needs Keras)</span>
+        <span v-else title="Keras 3 (Torch backend) is not installed in this ImageSpace process">IQR off (needs Keras)</span>
         <button :disabled="!canIqr || !iqrPos.length || !iqrNeg.length || loading" title="Fit the Keras head on CLIP vectors and rerank" @click="runIqr">Refine</button>
         <button class="ghost" :disabled="!iqrPos.length && !iqrNeg.length && !iqrActive" @click="clearIqr">Clear labels</button>
       </div>
