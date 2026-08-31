@@ -8,6 +8,7 @@
      <cmd>shopt -s expand_aliases</cmd>
      <cmd>echo "Creating working dirs"</cmd>
      <cmd>mkdir [JobOutputDir] ; mkdir [JobInputDir]</cmd>
+     <cmd>export PGE_PROGRESS_DIR=[JobDir]</cmd>
      <cmd>cd [JobOutputDir]</cmd>
      <cmd>chunk_file.py -f [ImageListFile] -c [ChunkSize]</cmd>
    </exe>
