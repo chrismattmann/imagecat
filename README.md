@@ -20,8 +20,8 @@ search OCR and Tika fields, browse the image grid, CLIP similar, foreground /
 background similar (U2-Net / rembg), and IQR (a tiny Keras head fitted at
 Refine time on CLIP vectors). `bin/oodt start` brings it up on port 8090
 the way it starts Solr — FastAPI, not a WAR. CLIP / fg / bg indexes live
-under `$IMAGECAT_HOME/data/imagespace/`. The NASA Girder/SMQTK ImageSpace
-is a different tree.
+under `$IMAGECAT_HOME/data/imagespace/`. This is new work inspired by
+NASA JPL's efforts on the DARPA MEMEX program.
 
 See [docs/WHAT-IS-IN.md](docs/WHAT-IS-IN.md) for keep / throw / replace.
 
