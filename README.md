@@ -23,7 +23,8 @@ the way it starts Solr — FastAPI, not a WAR. CLIP / fg / bg indexes live
 under `$IMAGECAT_HOME/data/imagespace/`. This is new work inspired by
 NASA JPL's efforts on the DARPA MEMEX program.
 
-See [docs/WHAT-IS-IN.md](docs/WHAT-IS-IN.md) for keep / throw / replace.
+See [docs/WHAT-IS-IN.md](docs/WHAT-IS-IN.md) for keep / throw / replace
+and [docs/roadmap.md](docs/roadmap.md) for where we are and what is next.
 
 Build
 -----
