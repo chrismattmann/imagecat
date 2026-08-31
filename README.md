@@ -47,9 +47,9 @@ Tika runs on each image in that same script (MIME, EXIF, IPTC) so the
 and Solr Cell are gone. The old `solrcell_ingest` name remains as a shim
 onto the same script.
 
-FLAG: after ingest, ImageSpace CLIP/FAISS is stale until
-`urn:memex:IndexImageSpace` runs (`IMAGE_SPACE_HOME`, `--incremental`).
-The task is defined but commented on `IngestInPlace.workflow.xml`.
+After ingest, `urn:memex:IndexImageSpace` increments CLIP/FAISS and
+`urn:memex:IndexImageSpaceFgBg` increments foreground/background CLIP
+(U2-Net / rembg). Both no-op unless `IMAGE_SPACE_HOME` is set on the WM.
 
 ```bash
 python3 pge/bin/imagecat-ocr/imagecat-ocr.py \
