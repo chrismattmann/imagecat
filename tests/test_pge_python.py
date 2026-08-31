@@ -49,6 +49,17 @@ class ChunkFileTests(unittest.TestCase):
             with open(path, encoding="utf-8") as handle:
                 ast.parse(handle.read(), filename=path)
 
+    def test_index_imagespace_skips_without_home(self):
+        import subprocess
+
+        env = os.environ.copy()
+        env.pop("IMAGE_SPACE_HOME", None)
+        env.pop("IMAGE_SPACE_PYTHON", None)
+        for name in ("index-imagespace", "index-imagespace-fgbg"):
+            script = os.path.join(PGE_BIN, name, name + ".sh")
+            out = subprocess.check_output(["bash", script], env=env, text=True)
+            self.assertIn("unset; skip", out)
+
     def test_chunkfile_extractor_labels_are_imagecat(self):
         path = os.path.join(
             ROOT, "pge", "src", "main", "resources",

@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# Incremental CLIP/FAISS after ImageCat ingest.
-# No-op unless IMAGE_SPACE_HOME is set.
+# Incremental CLIP foreground/background indexes after ImageCat ingest.
+# No-op unless IMAGE_SPACE_HOME is set. Needs rembg in the embed venv.
 set -euo pipefail
 
 if [ -z "${IMAGE_SPACE_HOME:-}" ]; then
-  echo "urn:memex:IndexImageSpace: IMAGE_SPACE_HOME is unset; skip CLIP rebuild"
+  echo "urn:memex:IndexImageSpaceFgBg: IMAGE_SPACE_HOME is unset; skip fg/bg CLIP"
   exit 0
 fi
 
 if [ ! -d "$IMAGE_SPACE_HOME" ]; then
-  echo "urn:memex:IndexImageSpace: IMAGE_SPACE_HOME=$IMAGE_SPACE_HOME is not a directory" >&2
+  echo "urn:memex:IndexImageSpaceFgBg: IMAGE_SPACE_HOME=$IMAGE_SPACE_HOME is not a directory" >&2
   exit 1
 fi
 
@@ -32,5 +32,5 @@ PY=$(pick_python)
 export IMAGE_SPACE_SOLR="$SOLR_URL"
 export PYTHONPATH="$IMAGE_SPACE_HOME"
 cd "$IMAGE_SPACE_HOME"
-echo "IndexImageSpace: incremental CLIP+FAISS from $SOLR_URL using $PY"
-"$PY" -m server.embed --incremental --reload-url "$RELOAD"
+echo "IndexImageSpaceFgBg: incremental fg/bg CLIP from $SOLR_URL using $PY"
+"$PY" -m server.embed_fgbg --incremental --reload-url "$RELOAD"
