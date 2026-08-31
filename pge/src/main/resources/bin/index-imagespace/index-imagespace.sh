@@ -31,6 +31,8 @@ PY=$(pick_python)
 
 export IMAGE_SPACE_SOLR="$SOLR_URL"
 export PYTHONPATH="$IMAGE_SPACE_HOME"
+# JobDir is cwd when the PGE starts us; python cds to IMAGE_SPACE_HOME.
+export PGE_PROGRESS_DIR="${PGE_PROGRESS_DIR:-$PWD}"
 cd "$IMAGE_SPACE_HOME"
 echo "IndexImageSpace: incremental CLIP+FAISS from $SOLR_URL using $PY"
 "$PY" -m server.embed --incremental --reload-url "$RELOAD"
