@@ -194,6 +194,35 @@ class MetaIndex:
         return path
 
 
+def _xml_escape(text: str) -> str:
+    return (
+        str(text)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace('"', "&quot;")
+    )
+
+
+def _atomic_xml(rows: list[dict]) -> bytes:
+    # Solr 10 treats JSON {"field": {"set": x}} as a nested child document
+    # (missing id). XML update="set" is the atomic form that keeps Tika fields.
+    parts = ["<add>"]
+    for row in rows:
+        parts.append(
+            "<doc><field name=\"id\">%s</field>"
+            "<field name=\"jaccard_keys_f\" update=\"set\">%.6f</field>"
+            "<field name=\"jaccard_vals_f\" update=\"set\">%.6f</field></doc>"
+            % (
+                _xml_escape(row["id"]),
+                float(row["jaccard_keys_f"]),
+                float(row["jaccard_vals_f"]),
+            )
+        )
+    parts.append("</add>")
+    return "".join(parts).encode("utf-8")
+
+
 def _post_scores(rows: list[dict], commit_every: int = 32) -> None:
     import httpx
 
@@ -202,22 +231,21 @@ def _post_scores(rows: list[dict], commit_every: int = 32) -> None:
     total = len(rows)
     if total:
         write_progress(0, total, "jaccard")
+    headers = {"Content-Type": "application/xml"}
     with httpx.Client(timeout=solr_timeout()) as client:
         for i, row in enumerate(rows):
-            batch.append(
-                {
-                    "id": row["id"],
-                    "jaccard_keys_f": {"set": float(row["jaccard_keys_f"])},
-                    "jaccard_vals_f": {"set": float(row["jaccard_vals_f"])},
-                }
-            )
+            batch.append(row)
             if len(batch) >= commit_every:
-                response = client.post(url, params={"commit": "true"}, json=batch)
+                response = client.post(
+                    url, params={"commit": "true"}, content=_atomic_xml(batch), headers=headers
+                )
                 response.raise_for_status()
                 write_progress(i + 1, total, "jaccard")
                 batch = []
         if batch:
-            response = client.post(url, params={"commit": "true"}, json=batch)
+            response = client.post(
+                url, params={"commit": "true"}, content=_atomic_xml(batch), headers=headers
+            )
             response.raise_for_status()
             write_progress(total, total, "jaccard")
         elif total:

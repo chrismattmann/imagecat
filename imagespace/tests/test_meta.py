@@ -73,6 +73,16 @@ class MetaJaccardTests(unittest.TestCase):
         self.assertEqual(hits[0]["id"], "b.jpg")
         self.assertEqual(hits[0]["meta_score"], 1.0)
 
+    def test_atomic_xml_uses_update_set(self):
+        from server.meta import _atomic_xml
+
+        xml = _atomic_xml(
+            [{"id": "/a & b.jpg", "jaccard_keys_f": 0.5, "jaccard_vals_f": 0.25}]
+        ).decode()
+        self.assertIn('update="set"', xml)
+        self.assertIn("/a &amp; b.jpg", xml)
+        self.assertNotIn('{"set"', xml)
+
     def test_solr_scores_match_golden_union(self):
         docs = [
             {"id": "rich.jpg", "tiff_Make": "Apple", "tiff_Model": "iPhone"},
