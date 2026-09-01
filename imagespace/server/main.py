@@ -2,6 +2,13 @@
 
 from __future__ import annotations
 
+import os
+
+# FAISS and Keras/Torch each ship libomp. Two copies abort the process on
+# macOS (OMP Error #15) the first time IQR imports Keras after CLIP is loaded.
+os.environ.setdefault("KERAS_BACKEND", "torch")
+os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
+
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
