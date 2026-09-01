@@ -1,8 +1,8 @@
 # ImageSpace (inside ImageCat)
 
 Analyst desktop for this RADiX stack: Solr search, CLIP similar, fg/bg,
-IQR. Packed into the ImageCat tarball and started by `bin/oodt start`
-(FastAPI on port 8090, same idea as Solr).
+metadata Jaccard (Keys / Vals), IQR. Packed into the ImageCat tarball
+and started by `bin/oodt start` (FastAPI on port 8090, same idea as Solr).
 
 CLIP / fg / bg files live under `$OODT_HOME/data/imagespace/`, not in git.
 
@@ -13,5 +13,6 @@ bin/oodt start        # includes ImageSpace
 ```
 
 Vite on 5173 is optional for UI development (`cd imagespace/web && npm run dev`).
-The ingest PGEs (`urn:memex:IndexImageSpace`, `IndexImageSpaceFgBg`) use
-`IMAGE_SPACE_HOME=$OODT_HOME/imagespace` from `bin/setenv.sh`.
+The ingest PGEs (`urn:memex:IndexMetadataJaccard`, `IndexImageSpace`,
+`IndexImageSpaceFgBg`) use `IMAGE_SPACE_HOME=$OODT_HOME/imagespace`
+from `bin/setenv.sh`.

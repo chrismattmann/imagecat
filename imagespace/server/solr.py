@@ -11,7 +11,14 @@ import httpx
 from .config import solr_timeout, solr_url
 
 HIDDEN = {"_version_", "_root_", "text", "text_rev"}
-SKIP_FIELD_SEARCH = HIDDEN | {"highlight", "clip_score", "iqr_score"}
+SKIP_FIELD_SEARCH = HIDDEN | {
+    "highlight",
+    "clip_score",
+    "iqr_score",
+    "meta_score",
+    "jaccard_keys_f",
+    "jaccard_vals_f",
+}
 _FIELD_QUERY = re.compile(r"^[A-Za-z_][\w.]*:")
 _FIELD_CLAUSE = re.compile(r"^([A-Za-z_][\w.]*)\s*:\s*(.*)$")
 

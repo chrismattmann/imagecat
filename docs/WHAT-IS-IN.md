@@ -10,7 +10,7 @@ into Solr, File Manager catalogs the files. The stack under it is new.
 - Chunker → Ingest-in-place → Solr
 - File Manager catalog (Solr core `oodt-fm`)
 - Tika MIME / EXIF on the Solr `imagecat` core (`imagecat-ocr.py`), the same place Solr Cell used to put it. File Manager catalogs ChunkList path files, not the images.
-- FLAG: after IngestInPlace, ImageSpace CLIP/FAISS and fg/bg are incremented (`urn:memex:IndexImageSpace`, `urn:memex:IndexImageSpaceFgBg`).
+- FLAG: after IngestInPlace, metadata Jaccard, ImageSpace CLIP/FAISS, and fg/bg are incremented (`urn:memex:IndexMetadataJaccard`, `urn:memex:IndexImageSpace`, `urn:memex:IndexImageSpaceFgBg`).
 - Vue OPSUI overlay of `ai.mattmann.mnemosyne:pcs-opsui`
 - ImageSpace analyst UI in this repo (`imagespace/`), started by `bin/oodt start` on port 8090. Indexes under `$OODT_HOME/data/imagespace/`. Inspired by NASA JPL's work on the DARPA MEMEX program.
 

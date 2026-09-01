@@ -67,11 +67,12 @@ python3 pge/bin/imagecat-ocr/imagecat-ocr.py \
 ImageSpace
 ----------
 
-After OCR, the same ingest workflow increments CLIP/FAISS
+After OCR, the same ingest workflow scores Tika metadata Jaccard
+(`urn:memex:IndexMetadataJaccard`), then CLIP/FAISS
 (`urn:memex:IndexImageSpace`) and foreground/background CLIP
 (`urn:memex:IndexImageSpaceFgBg`). The UI at
 `http://127.0.0.1:8090/` searches Solr, shows the pictures, and
-runs Similar / FG / BG against those indexes. IQR is not a pretrained
+runs Similar / FG / BG / Keys / Vals against those indexes. IQR is not a pretrained
 model: mark tiles + / − and Refine fits a small Keras head (Torch
 backend) on the CLIP vectors you already have.
 

@@ -64,6 +64,8 @@
             <button :disabled="!canSimilar" :title="canSimilar ? 'CLIP neighbors' : 'Build the CLIP index first'" @click="runSimilar(doc, 'clip')">Similar</button>
             <button class="ghost" :disabled="!canFg(doc)" :title="fgTitle(doc)" @click="runSimilar(doc, 'fg')">FG</button>
             <button class="ghost" :disabled="!canBg(doc)" :title="bgTitle(doc)" @click="runSimilar(doc, 'bg')">BG</button>
+            <button class="ghost" :disabled="!canMeta" :title="canMeta ? 'Same metadata names (camera/pipeline)' : 'Run IndexMetadataJaccard first'" @click="runSimilar(doc, 'keys')">Keys</button>
+            <button class="ghost" :disabled="!canMeta" :title="canMeta ? 'Same metadata values' : 'Run IndexMetadataJaccard first'" @click="runSimilar(doc, 'vals')">Vals</button>
             <button class="ghost" :class="{ on: isPos(doc.id) }" :disabled="!canIqr" title="Relevant" @click="markPos(doc.id)">+</button>
             <button class="ghost" :class="{ on: isNeg(doc.id) }" :disabled="!canIqr" title="Not relevant" @click="markNeg(doc.id)">−</button>
           </div>
@@ -85,6 +87,8 @@
               <button :disabled="!canSimilar" :title="canSimilar ? 'CLIP neighbors' : 'Build the CLIP index first'" @click="runSimilar(open, 'clip')">Find similar</button>
               <button class="ghost" :disabled="!canFg(open)" :title="fgTitle(open)" @click="runSimilar(open, 'fg')">Similar FG</button>
               <button class="ghost" :disabled="!canBg(open)" :title="bgTitle(open)" @click="runSimilar(open, 'bg')">Similar BG</button>
+              <button class="ghost" :disabled="!canMeta" :title="canMeta ? 'Same metadata names (camera/pipeline)' : 'Run IndexMetadataJaccard first'" @click="runSimilar(open, 'keys')">Keys</button>
+              <button class="ghost" :disabled="!canMeta" :title="canMeta ? 'Same metadata values' : 'Run IndexMetadataJaccard first'" @click="runSimilar(open, 'vals')">Vals</button>
               <button class="ghost" :class="{ on: isPos(open.id) }" :disabled="!canIqr" @click="markPos(open.id)">Relevant</button>
               <button class="ghost" :class="{ on: isNeg(open.id) }" :disabled="!canIqr" @click="markNeg(open.id)">Not relevant</button>
               <button class="ghost" @click="open = null">Close</button>
@@ -147,6 +151,7 @@ export default {
     const canSimilar = computed(() => Boolean(health.value && health.value.capabilities && health.value.capabilities.similar))
     const canIqr = computed(() => Boolean(health.value && health.value.capabilities && health.value.capabilities.iqr))
     const canFgbg = computed(() => Boolean(health.value && health.value.capabilities && health.value.capabilities.fgbg))
+    const canMeta = computed(() => Boolean(health.value && health.value.capabilities && health.value.capabilities.meta))
 
     function canFg(doc) {
       if (!canFgbg.value || !doc) {
@@ -188,6 +193,12 @@ export default {
       if (similarSpace.value === 'bg') {
         return 'Similar BG'
       }
+      if (similarSpace.value === 'keys') {
+        return 'Metadata keys like'
+      }
+      if (similarSpace.value === 'vals') {
+        return 'Metadata values like'
+      }
       return 'Similar to'
     })
 
@@ -203,7 +214,11 @@ export default {
         return 'IQR ranked — ' + count
       }
       if (similarTo.value) {
-        const kind = similarSpace.value === 'fg' ? 'FG similar to ' : similarSpace.value === 'bg' ? 'BG similar to ' : 'Similar to '
+        const kind = similarSpace.value === 'fg' ? 'FG similar to '
+        : similarSpace.value === 'bg' ? 'BG similar to '
+          : similarSpace.value === 'keys' ? 'Metadata keys like '
+            : similarSpace.value === 'vals' ? 'Metadata values like '
+              : 'Similar to '
         return kind + basename(similarTo.value) + ' — ' + count
       }
       return count
@@ -211,6 +226,9 @@ export default {
 
     function scoreLine(doc) {
       const text = scalar(doc.ocr_text) || basename(doc.id)
+      if (doc.meta_score != null && doc.meta_score !== '') {
+        return Number(doc.meta_score).toFixed(3) + ' · ' + text
+      }
       if (doc.iqr_score != null && doc.iqr_score !== '') {
         return Number(doc.iqr_score).toFixed(3) + ' · ' + text
       }
@@ -413,6 +431,9 @@ export default {
       if (mode === 'bg' && !canBg(doc)) {
         return
       }
+      if ((mode === 'keys' || mode === 'vals') && !canMeta.value) {
+        return
+      }
       loading.value = true
       error.value = ''
       open.value = null
@@ -477,7 +498,7 @@ export default {
 
     return {
       q, filters, addingFilter, newField, newValue, newFieldEl, fieldHints, docs, numFound, loading, error, open, tray, health, similarTo, similarSpace, iqrPos, iqrNeg, iqrActive, refining,
-      statusLine, canSimilar, canIqr, canFgbg, canFg, canBg, fgTitle, bgTitle, similarLabel, isPos, isNeg, markPos, markNeg, runIqr, clearIqr,
+      statusLine, canSimilar, canIqr, canFgbg, canMeta, canFg, canBg, fgTitle, bgTitle, similarLabel, isPos, isNeg, markPos, markNeg, runIqr, clearIqr,
       basename, scoreLine, formatVal, formatOne, searchField, dropFilter, startAddFilter, cancelAddFilter, submitNewFilter, filterLabel, isActiveFilter, canSearchField, valueList, saved, toggle, runSearch, onSearchBox, loadMore, runSimilar, clearSimilar, openDoc, fileSrc, fieldEntries, scalar
     }
   }

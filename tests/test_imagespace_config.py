@@ -30,6 +30,7 @@ class DataRootTests(unittest.TestCase):
         self.assertEqual(self.config.data_root(), "/opt/imagecat/data/imagespace")
         self.assertEqual(self.config.fg_dir(), "/opt/imagecat/data/imagespace/fg")
         self.assertEqual(self.config.thumb_dir(), "/opt/imagecat/data/imagespace/thumbs")
+        self.assertEqual(self.config.meta_dir(), "/opt/imagecat/data/imagespace/meta")
 
     def test_explicit_data_wins(self):
         from importlib import reload

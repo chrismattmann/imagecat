@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  After IngestInPlace OCR/Tika, score Solr docs with metadata Jaccard
+  (ETLlib golden-set keys and values). No-op if IMAGE_SPACE_HOME is unset
+  or Solr is empty. XML comments must not contain double-hyphen.
+-->
+<pgeConfig>
+  <exe dir="[JobDir]" shell="/bin/bash">
+     <cmd>export PATH=[OODT_HOME]/bin/:[PGE_ROOT]/bin/index-metadata-jaccard:${PATH}</cmd>
+     <cmd>shopt -s expand_aliases</cmd>
+     <cmd>mkdir -p [JobOutputDir] [JobLogDir]</cmd>
+     <cmd>index-metadata-jaccard.sh</cmd>
+  </exe>
+  <output>
+    <dir path="[JobOutputDir]" createBeforeExe="false">
+    </dir>
+  </output>
+  <customMetadata>
+    <metadata key="ProductionDateTime" val="[DATE.UTC]"/>
+    <metadata key="DateMilis" val="[DATE_TO_MILLIS([ProductionDateTime],UTC_FORMAT,1970-01-01)]"/>
+    <metadata key="JobDir" val="[OODT_HOME]/data/jobs/metadata-jaccard/[DateMilis]"/>
+    <metadata key="JobOutputDir" val="[JobDir]/output"/>
+    <metadata key="JobLogDir" val="[JobDir]/logs"/>
+  </customMetadata>
+</pgeConfig>

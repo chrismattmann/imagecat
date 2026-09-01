@@ -18,6 +18,7 @@ from pydantic import BaseModel, Field
 
 from . import images, iqr, solr
 from .config import bg_dir, fg_dir
+from .meta import MetaIndex
 from .similar import ClipIndex
 
 app = FastAPI(title="ImageSpace", version="0.1.0")
@@ -39,6 +40,7 @@ class IqrRefineBody(BaseModel):
 _clip = ClipIndex()
 _fg = ClipIndex(fg_dir())
 _bg = ClipIndex(bg_dir())
+_meta = MetaIndex()
 
 
 def _index() -> ClipIndex:
@@ -69,6 +71,7 @@ def health():
         "similar": index.available(),
         "iqr": index.available() and iqr.keras_available(),
         "fgbg": _fg.available() and _bg.available(),
+        "meta": _meta.available(),
     }
     if index.available():
         ping["clip"] = {
@@ -123,8 +126,24 @@ def file(id: str = Query(...), w: int | None = Query(None)):
 
 @app.get("/api/similar")
 def similar(id: str = Query(...), n: int = Query(24), space: str = Query("clip")):
-    index = _space(space)
     label = (space or "clip").lower()
+    if label in ("keys", "vals"):
+        if not _meta.available():
+            raise HTTPException(status_code=503, detail="Metadata Jaccard is not built. Run python -m server.meta")
+        hits = _meta.similar(id, n, space=label)
+        if hits is None:
+            raise HTTPException(status_code=404, detail="That image is not in the metadata index")
+        docs = solr.get_docs([h["id"] for h in hits])
+        scores = {h["id"]: h["meta_score"] for h in hits}
+        for doc in docs:
+            doc["meta_score"] = scores.get(doc.get("id"))
+        _mark_indexes(docs)
+        return {
+            "id": id,
+            "numFound": max(0, len(_meta.ids) - 1),
+            "docs": docs,
+        }
+    index = _space(space)
     if label in ("fg", "bg"):
         missing = "Foreground/background index is not built. Run python -m server.embed_fgbg"
     else:
@@ -184,6 +203,18 @@ def clip_reload():
         "model": index.meta.get("model"),
         "fg": len(_fg.ids),
         "bg": len(_bg.ids),
+    }
+
+
+@app.post("/api/meta/reload")
+def meta_reload():
+    """Called after python -m server.meta (ImageCat Jaccard ingest hook)."""
+    _meta.reload()
+    return {
+        "ok": _meta.available(),
+        "count": len(_meta.ids),
+        "keys": len(_meta.golden_keys),
+        "vals": len(_meta.golden_vals),
     }
 
 

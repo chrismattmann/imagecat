@@ -57,7 +57,7 @@ class ChunkFileTests(unittest.TestCase):
         env.pop("IMAGE_SPACE_PYTHON", None)
         env.pop("OODT_HOME", None)
         env.pop("IMAGECAT_HOME", None)
-        for name in ("index-imagespace", "index-imagespace-fgbg"):
+        for name in ("index-imagespace", "index-imagespace-fgbg", "index-metadata-jaccard"):
             script = os.path.join(PGE_BIN, name, name + ".sh")
             out = subprocess.check_output(["bash", script], env=env, text=True)
             self.assertIn("skip", out)

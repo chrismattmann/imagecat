@@ -25,6 +25,7 @@
 
   <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true"/>
   <fieldType name="plong" class="solr.LongPointField" docValues="true"/>
+  <fieldType name="pfloat" class="solr.FloatPointField" docValues="true"/>
   <fieldType name="pdate" class="solr.DatePointField" docValues="true"/>
 
   <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
@@ -63,6 +64,8 @@
   <field name="sha1sum_s_md" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
   <field name="caption" type="text_general" indexed="true" stored="true" required="false" multiValued="false"/>
   <field name="content_type" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+  <field name="jaccard_keys_f" type="pfloat" indexed="true" stored="true" required="false" multiValued="false"/>
+  <field name="jaccard_vals_f" type="pfloat" indexed="true" stored="true" required="false" multiValued="false"/>
 
   <field name="content" type="text_general" indexed="false" stored="true" multiValued="true"/>
   <field name="text" type="text_general" indexed="true" stored="false" multiValued="true"/>
