@@ -1,8 +1,10 @@
 <cas:workflow xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas" name="IngestInPlace" id="urn:memex:IngestInPlaceWorkflow">
  <tasks>
    <task id="urn:memex:IngestInPlaceTask"/>
-   <!-- After OCR/Tika land in Solr imagecat, increment ImageSpace CLIP/FAISS
-        then fg/bg CLIP. Scripts no-op unless IMAGE_SPACE_HOME is set on the WM. -->
+   <!-- After OCR/Tika land in Solr imagecat, score metadata Jaccard, then
+        CLIP/FAISS, then fg/bg CLIP. Scripts no-op unless IMAGE_SPACE_HOME
+        is set on the WM. -->
+   <task id="urn:memex:IndexMetadataJaccard"/>
    <task id="urn:memex:IndexImageSpace"/>
    <task id="urn:memex:IndexImageSpaceFgBg"/>
  </tasks>

@@ -60,7 +60,8 @@ start() {
     "$OODT_HOME/data/imagespace/clip" \
     "$OODT_HOME/data/imagespace/fg" \
     "$OODT_HOME/data/imagespace/bg" \
-    "$OODT_HOME/data/imagespace/thumbs"
+    "$OODT_HOME/data/imagespace/thumbs" \
+    "$OODT_HOME/data/imagespace/meta"
   PYTHON=$(pick_python)
   export OODT_HOME IMAGECAT_HOME=${IMAGECAT_HOME:-$OODT_HOME}
   export IMAGE_SPACE_HOME

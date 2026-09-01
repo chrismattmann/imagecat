@@ -2,9 +2,12 @@
 
 After IngestInPlace writes OCR/Tika into Solr `imagecat`, ImageCat runs:
 
-1. `urn:memex:IndexImageSpace` (`pge/bin/index-imagespace/index-imagespace.sh`)
+1. `urn:memex:IndexMetadataJaccard` (`pge/bin/index-metadata-jaccard/index-metadata-jaccard.sh`)
+   — `python -m server.meta` (golden-set Jaccard on Tika keys/values, POST
+   `jaccard_keys_f` / `jaccard_vals_f`, then `/api/meta/reload`)
+2. `urn:memex:IndexImageSpace` (`pge/bin/index-imagespace/index-imagespace.sh`)
    — `python -m server.embed --incremental`
-2. `urn:memex:IndexImageSpaceFgBg` (`pge/bin/index-imagespace-fgbg/index-imagespace-fgbg.sh`)
+3. `urn:memex:IndexImageSpaceFgBg` (`pge/bin/index-imagespace-fgbg/index-imagespace-fgbg.sh`)
    — `python -m server.embed_fgbg --incremental`
 
 `bin/setenv.sh` sets `IMAGE_SPACE_HOME=$OODT_HOME/imagespace`. Optional
