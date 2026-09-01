@@ -67,6 +67,8 @@ start() {
   export IMAGE_SPACE_DATA=${IMAGE_SPACE_DATA:-$OODT_HOME/data/imagespace}
   export IMAGE_SPACE_SOLR=${IMAGE_SPACE_SOLR:-http://localhost:8983/solr/imagecat}
   export KERAS_BACKEND=${KERAS_BACKEND:-torch}
+  # FAISS + PyTorch both ship libomp; without this, IQR aborts uvicorn on macOS.
+  export KMP_DUPLICATE_LIB_OK=${KMP_DUPLICATE_LIB_OK:-TRUE}
   export PYTHONPATH="$IMAGE_SPACE_HOME${PYTHONPATH:+:$PYTHONPATH}"
   cd "$IMAGE_SPACE_HOME"
   nohup "$PYTHON" -m uvicorn server.main:app --host 127.0.0.1 --port "$PORT" \

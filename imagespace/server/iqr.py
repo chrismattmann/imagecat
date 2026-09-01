@@ -16,6 +16,7 @@ DEFAULT_DIM = 512
 
 def _use_torch_backend():
     os.environ.setdefault("KERAS_BACKEND", "torch")
+    os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 
 
 @lru_cache(maxsize=1)
