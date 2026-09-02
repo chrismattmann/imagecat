@@ -5,11 +5,14 @@ ImageCatalog
 This is a [RADiX](https://cwiki.apache.org/confluence/display/OODT/RADiX+Powered+By+OODT)
 application on [Mnemosyne](https://github.com/chrismattmann/mnemosyne) 1.11.0
 that uses [Apache Solr](https://solr.apache.org/) 10,
-[Apache Tika](https://tika.apache.org/) and HuggingFace
-[TrOCR](https://huggingface.co/microsoft/trocr-base-printed) /
-[Donut](https://huggingface.co/naver-clova-ix/donut-base)
-to ingest tens of millions of files (images, but it can be extended) in place,
-extract MIME/EXIF with Tika, and OCR them into Solr.
+[Apache Tika](https://tika.apache.org/) and
+[PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) via
+[RapidOCR](https://github.com/RapidAI/RapidOCR) (Apache 2.0 ONNX; detect then
+recognize) to ingest tens of millions of files (images, but it can be
+extended) in place, extract MIME/EXIF with Tika, and OCR them into Solr.
+HuggingFace [TrOCR](https://huggingface.co/microsoft/trocr-base-printed) and
+[Donut](https://huggingface.co/naver-clova-ix/donut-base) remain as `--model`
+options.
 
 OPSUI is the Vue 3 console from Mnemosyne, overlaid at `/opsui/`. Solr runs as
 its own process (not a Tomcat war) with two cores: `imagecat` (OCR text) and
@@ -50,7 +53,9 @@ OCR
 ---
 
 The IngestInPlace PGE calls `imagecat-ocr.py` over each chunk file.
-`--model trocr` (default) is printed/scene text;
+`--model paddle` (default) is PP-OCR detect-then-recognize: no text boxes
+means empty `ocr_text`, not a hallucinated receipt word.
+`--model trocr` is a printed line recognizer;
 `--model donut` is document understanding and also fills `caption`.
 Tika runs on each image in that same script (MIME, EXIF, IPTC) so the
 `imagecat` Solr core has the metadata Solr Cell used to attach. Tesseract
@@ -61,7 +66,7 @@ onto the same script.
 python3 pge/bin/imagecat-ocr/imagecat-ocr.py \
   -f data/archive/chunks/0/filelist_chunk_0.txt \
   -s http://localhost:8983/solr/imagecat \
-  --model trocr
+  --model paddle
 ```
 
 ImageSpace
