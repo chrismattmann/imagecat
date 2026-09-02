@@ -20,6 +20,26 @@ jobs:
       - name: Test
         run: python -m unittest tests.test_pge_python -v
 
+  imagespace-web:
+    name: ImageSpace Vue
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: imagespace/web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: imagespace/web/package-lock.json
+
+      - run: npm ci
+      - run: npm test
+      - run: npm audit
+      - run: npm run build
+
   package:
     name: Maven package (JDK 21)
     runs-on: ubuntu-latest
