@@ -3,9 +3,12 @@
     <aside class="tray">
       <h2>Saved</h2>
       <p v-if="!tray.length" class="empty">Save an image from the grid to pin it here.</p>
-      <button v-for="row in tray" :key="row.id" class="tray-item" :class="{ active: open && open.id === row.id }" @click="openDoc(row.id)">
-        <img :src="fileSrc(row.id, 180)" :alt="basename(row.id)" loading="lazy" decoding="async"/>
-      </button>
+      <div v-for="row in tray" :key="row.id" class="tray-item" :class="{ active: open && open.id === row.id }">
+        <button type="button" class="tray-thumb" :title="basename(row.id)" @click="openDoc(row.id)">
+          <img :src="fileSrc(row.id, 180)" :alt="basename(row.id)" loading="lazy" decoding="async"/>
+        </button>
+        <button type="button" class="tray-remove" title="Remove from tray" :aria-label="'Remove ' + basename(row.id) + ' from tray'" @click.stop="dropSaved(row)">×</button>
+      </div>
     </aside>
     <div class="main">
       <header class="mast">
@@ -123,7 +126,7 @@
 import { computed, nextTick, onMounted, ref } from 'vue'
 import { canSearchField, fieldEntries, fileSrc, getDoc, getHealth, refineIqr, scalar, search, similar, valueList } from './api.js'
 import { addFilter, filterLabel, isActiveFilter, looksLikeFieldQuery, removeFilter } from './filters.js'
-import { inTray, loadTray, saveTray, toggleTray } from './tray.js'
+import { inTray, loadTray, removeFromTray, saveTray, toggleTray } from './tray.js'
 
 export default {
   name: 'App',
@@ -349,6 +352,11 @@ export default {
       saveTray(tray.value)
     }
 
+    function dropSaved(row) {
+      tray.value = removeFromTray(tray.value, row && row.id)
+      saveTray(tray.value)
+    }
+
     async function runSearch(start) {
       loading.value = true
       error.value = ''
@@ -499,7 +507,7 @@ export default {
     return {
       q, filters, addingFilter, newField, newValue, newFieldEl, fieldHints, docs, numFound, loading, error, open, tray, health, similarTo, similarSpace, iqrPos, iqrNeg, iqrActive, refining,
       statusLine, canSimilar, canIqr, canFgbg, canMeta, canFg, canBg, fgTitle, bgTitle, similarLabel, isPos, isNeg, markPos, markNeg, runIqr, clearIqr,
-      basename, scoreLine, formatVal, formatOne, searchField, dropFilter, startAddFilter, cancelAddFilter, submitNewFilter, filterLabel, isActiveFilter, canSearchField, valueList, saved, toggle, runSearch, onSearchBox, loadMore, runSimilar, clearSimilar, openDoc, fileSrc, fieldEntries, scalar
+      basename, scoreLine, formatVal, formatOne, searchField, dropFilter, startAddFilter, cancelAddFilter, submitNewFilter, filterLabel, isActiveFilter, canSearchField, valueList, saved, toggle, dropSaved, runSearch, onSearchBox, loadMore, runSimilar, clearSimilar, openDoc, fileSrc, fieldEntries, scalar
     }
   }
 }
