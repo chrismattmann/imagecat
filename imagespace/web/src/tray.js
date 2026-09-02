@@ -17,12 +17,16 @@ export function inTray(rows, id) {
   return rows.some((row) => row.id === id)
 }
 
+export function removeFromTray(rows, id) {
+  return rows.filter((row) => row.id !== id)
+}
+
 export function toggleTray(rows, doc) {
   if (!doc || !doc.id) {
     return rows
   }
   if (inTray(rows, doc.id)) {
-    return rows.filter((row) => row.id !== doc.id)
+    return removeFromTray(rows, doc.id)
   }
   const next = rows.concat([{ id: doc.id, content_type: doc.content_type }])
   return next
