@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>JPL/Kitware/Continuum - ImageCat</title>
+    <title>ImageCat</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -48,11 +48,11 @@
     <div class="container center">
        <div class="starter-template">
 	<div class="center"><img src="img/ImageCatLogo.png" alt="Image Cat" width="600" height="300"/></div>
-        <p class="lead">ImageCat is a rich index in <a href="http://lucene.apache.org/solr/">Apache Solr</a> of extracted image OCR and metadata features using the <a href="http://tika.apache.org/">Apache Tika</a> library. ImageCat uses <a href="http://oodt.apache.org/">Apache OODT</a> as a mechanism for loading the Apache Solr catalog, via Apache Tika. A user provides an image list text file with 10s of millions of images, and ImageCat uses OODT to map reduce through the file, and ingest the images and extract the metadata via Tika and Solr. <a href="http://github.com/memex-explorer/image_space">Image Space</a>, an application that leverages ImageCat, allows a user to browse and search the rich Solr catalog built by Tika and OODT. You can access the OODT and Solr and Image Space apps below. The data is currently loaded with the full Roxyimages dataset from <a href="http://www.darpa.mil/newsevents/releases/2014/02/09.aspx">DARPA Memex</a>.
+        <p class="lead">ImageCat is a <a href="https://cwiki.apache.org/confluence/display/OODT/RADiX+Powered+By+OODT">RADiX</a> overlay on <a href="https://github.com/chrismattmann/mnemosyne">Mnemosyne</a> 1.11.0. It ingests images in place, extracts MIME/EXIF with <a href="https://tika.apache.org/">Apache Tika</a>, OCRs them with Paddle/RapidOCR into <a href="https://solr.apache.org/">Apache Solr</a> 10, and serves the catalog through <a href="http://127.0.0.1:8090/">ImageSpace</a> (search, CLIP similar, fg/bg, IQR). OPSUI at <a href="/opsui/">/opsui/</a> is the job console. This ImageSpace is new work inspired by NASA JPL's efforts on the DARPA MEMEX program.
 	</p>
 
       <div class="container center">
-           <p>You can find the source code for ImageCat on <a href="http://github.com/chrismattmann/imagecat">Github</a> and on the <a href="http://www.darpa.mil/opencatalog/MEMEX.html">DARPA Open Catalog for Memex</a>.
+           <p>Source: <a href="https://github.com/chrismattmann/imagecat">github.com/chrismattmann/imagecat</a>. Wiki: <a href="https://github.com/chrismattmann/imagecat/wiki">Installation and How to Run</a>.
       </div>
 </div>
 </div>
@@ -63,10 +63,10 @@
        <div class="starter-template">
     <div class="row">
         <div class="col-md-6"><p><h4>ImageCat Processing Pipeline</h4><a href="/opsui/" border="0"><img alt="Apache OODT OPSUI" src="img/oodt.png" width="240" height="80"/></a></p></div>
-        <div class="col-md-6"><p><h4>ImageCat Search Index</h4><a href="/solr/" border="0"><img alt="Apache Solr and Tika" src="img/solr.png" width="210" height="60"/></a></p></div>
+        <div class="col-md-6"><p><h4>ImageCat Search Index</h4><a href="http://localhost:8983/solr/imagecat" border="0"><img alt="Apache Solr and Tika" src="img/solr.png" width="210" height="60"/></a></p></div>
     </div>
     <div class="row">
-        <div class="col-md-12"><p><h4>Image Space</h4><a href="/imagespace/" border="0"><img alt="Image Space" src="img/imagespace.jpg" width="240" height="80"/></a></p></div>
+        <div class="col-md-12"><p><h4>ImageSpace</h4><a href="http://127.0.0.1:8090/" border="0"><img alt="ImageSpace" src="img/imagespace.jpg" width="240" height="80"/></a></p></div>
     </div>
 </div>
 </div>
@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-lg-14">
                     <h1>About ImageCat</h1>
-                     <p class="lead">ImageCat is an application built by <a href="http://www.jpl.nasa.gov">NASA Jet Propulsion Laboratory</a>, <a href="http://www.kitware.com">Kitware, Inc.</a>, and <a href="http://continuum.io">Continuum Analytics, Inc</a>
+                     <p class="lead">ImageCat is a RADiX overlay on Mnemosyne. The ImageSpace desktop in this tarball is inspired by work NASA JPL, Kitware, and Continuum Analytics did on the DARPA MEMEX program.
                      </p>
                 </div>
             </div>

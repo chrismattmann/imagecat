@@ -1,8 +1,10 @@
 # ImageSpace (inside ImageCat)
 
-Analyst desktop for this RADiX stack: Solr search, CLIP similar, fg/bg,
-metadata Jaccard (Keys / Vals), IQR. Packed into the ImageCat tarball
-and started by `bin/oodt start` (FastAPI on port 8090, same idea as Solr).
+Analyst desktop for this RADiX stack: Solr search (`ocr_text` / `text_ocr`,
+caption, Tika), CLIP similar, fg/bg, metadata Jaccard (Keys / Vals), IQR,
+and a tray of saved thumbs (hover × to drop). Packed into the ImageCat
+tarball and started by `bin/oodt start` (FastAPI on port 8090, same idea
+as Solr).
 
 CLIP / fg / bg files live under `$OODT_HOME/data/imagespace/`, not in git.
 

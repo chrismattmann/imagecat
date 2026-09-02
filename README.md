@@ -21,10 +21,11 @@ its own process (not a Tomcat war) with two cores: `imagecat` (OCR text) and
 [ImageSpace](imagespace/README.md) is the analyst desktop in this same tarball:
 search OCR and Tika fields, browse the image grid, CLIP similar, foreground /
 background similar (U2-Net / rembg), and IQR (a tiny Keras head fitted at
-Refine time on CLIP vectors). `bin/oodt start` brings it up on port 8090
-the way it starts Solr — FastAPI, not a WAR. CLIP / fg / bg indexes live
-under `$IMAGECAT_HOME/data/imagespace/`. This is new work inspired by
-NASA JPL's efforts on the DARPA MEMEX program.
+Refine time on CLIP vectors). Saved thumbs sit in a tray; hover (or tap) the
+× to drop one. `bin/oodt start` brings it up on port 8090 the way it starts
+Solr — FastAPI, not a WAR. CLIP / fg / bg indexes live under
+`$IMAGECAT_HOME/data/imagespace/`. This is new work inspired by NASA JPL's
+efforts on the DARPA MEMEX program.
 
 See [docs/WHAT-IS-IN.md](docs/WHAT-IS-IN.md) for keep / throw / replace
 and [docs/roadmap.md](docs/roadmap.md) for where we are and what is next.
@@ -57,6 +58,8 @@ The IngestInPlace PGE calls `imagecat-ocr.py` over each chunk file.
 means empty `ocr_text`, not a hallucinated receipt word.
 `--model trocr` is a printed line recognizer;
 `--model donut` is document understanding and also fills `caption`.
+`ocr_text` is Solr field type `text_ocr` (WordDelimiter, preserve original)
+so a URL overlay like `emmejihad.wordpress.com` is searchable as `wordpress`.
 Tika runs on each image in that same script (MIME, EXIF, IPTC) so the
 `imagecat` Solr core has the metadata Solr Cell used to attach. Tesseract
 and Solr Cell are gone. The old `solrcell_ingest` name remains as a shim
@@ -76,10 +79,11 @@ After OCR, the same ingest workflow scores Tika metadata Jaccard
 (`urn:memex:IndexMetadataJaccard`), then CLIP/FAISS
 (`urn:memex:IndexImageSpace`) and foreground/background CLIP
 (`urn:memex:IndexImageSpaceFgBg`). The UI at
-`http://127.0.0.1:8090/` searches Solr, shows the pictures, and
-runs Similar / FG / BG / Keys / Vals against those indexes. IQR is not a pretrained
-model: mark tiles + / − and Refine fits a small Keras head (Torch
-backend) on the CLIP vectors you already have.
+`http://127.0.0.1:8090/` searches Solr (`ocr_text`, `caption`, copy-field
+`text`), shows the pictures, and runs Similar / FG / BG / Keys / Vals
+against those indexes. IQR is not a pretrained model: mark tiles + / −
+and Refine fits a small Keras head (Torch backend) on the CLIP vectors
+you already have.
 
 `bin/imagecat-setup` installs Keras with the rest of the Python env
 and builds the Vue UI. Vite on 5173 is optional for UI development.

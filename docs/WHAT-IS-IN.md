@@ -44,8 +44,9 @@ into Solr, File Manager catalogs the files. The stack under it is new.
 
 ## Replace later
 
-- SMQTK / FLANN / Caffe (already replaced in-tree by CLIP + rembg + Keras)
 - Columbia / Georgetown / weapons / VideoSpace (not v1)
 
+SMQTK / FLANN / Caffe, Girder ImageSpace, and the NASA `image_space` tree
+are gone: CLIP + rembg + Keras IQR in this tarball is the replacement.
 SCE domain discovery stays public for Sparkler. Sparkler itself lives at
 [gitlab.com/sparkler-crawl-environment/sparkler](https://gitlab.com/sparkler-crawl-environment/sparkler).
