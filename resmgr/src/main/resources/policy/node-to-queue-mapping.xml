@@ -16,56 +16,56 @@ License for the specific language governing permissions and limitations under
 the License.
 -->
 <cas:node-to-queue-mapping xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas">
-	<node id="memex-job1">
+	<node id="imagecat-job1">
 		<queues>
 			<queue name="high"/>
 			<queue name="quick"/>
 			<queue name="long"/>
 		</queues>
 	</node>	
-        <node id="memex-job2">
+        <node id="imagecat-job2">
                 <queues>
                         <queue name="high"/>
                         <queue name="quick"/>
                         <queue name="long"/>
                 </queues>
         </node>
-        <node id="memex-job3">
+        <node id="imagecat-job3">
                 <queues>
                         <queue name="high"/>
                         <queue name="quick"/>
                         <queue name="long"/>
                 </queues>
         </node>
-        <node id="memex-job4">
+        <node id="imagecat-job4">
                 <queues>
                         <queue name="high"/>
                         <queue name="quick"/>
                         <queue name="long"/>
                 </queues>
         </node>
-        <node id="memex-job5">
+        <node id="imagecat-job5">
                 <queues>
                         <queue name="high"/>
                         <queue name="quick"/>
                         <queue name="long"/>
                 </queues>
         </node>
-        <node id="memex-job6">
+        <node id="imagecat-job6">
                 <queues>
                         <queue name="high"/>
                         <queue name="quick"/>
                         <queue name="long"/>
                 </queues>
         </node>
-        <node id="memex-job7">
+        <node id="imagecat-job7">
                 <queues>
                         <queue name="high"/>
                         <queue name="quick"/>
                         <queue name="long"/>
                 </queues>
         </node>
-        <node id="memex-job8">
+        <node id="imagecat-job8">
                 <queues>
                         <queue name="high"/>
                         <queue name="quick"/>

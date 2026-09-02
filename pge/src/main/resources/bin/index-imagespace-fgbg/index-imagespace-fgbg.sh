@@ -8,12 +8,12 @@ if [ -z "${IMAGE_SPACE_HOME:-}" ] && [ -n "${OODT_HOME:-}" ]; then
 fi
 
 if [ -z "${IMAGE_SPACE_HOME:-}" ]; then
-  echo "urn:memex:IndexImageSpaceFgBg: IMAGE_SPACE_HOME is unset; skip fg/bg CLIP"
+  echo "urn:imagecat:IndexImageSpaceFgBg: IMAGE_SPACE_HOME is unset; skip fg/bg CLIP"
   exit 0
 fi
 
 if [ ! -d "$IMAGE_SPACE_HOME/server" ]; then
-  echo "urn:memex:IndexImageSpaceFgBg: no server at $IMAGE_SPACE_HOME; skip fg/bg CLIP"
+  echo "urn:imagecat:IndexImageSpaceFgBg: no server at $IMAGE_SPACE_HOME; skip fg/bg CLIP"
   exit 0
 fi
 

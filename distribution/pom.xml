@@ -21,7 +21,7 @@
    
    <modelVersion>4.0.0</modelVersion>
    <parent>
-      <groupId>gov.darpa.memex.imageCatalog</groupId>
+      <groupId>ai.mattmann.imagecat</groupId>
       <artifactId>oodt</artifactId>
       <version>0.1</version>
       <relativePath>../pom.xml</relativePath>
@@ -35,75 +35,75 @@
    </properties>
          <dependencies>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-filemgr</artifactId>
                <version>${project.parent.version}</version>
                <type>tar.gz</type>
                <classifier>bin</classifier>
             </dependency>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-crawler</artifactId>
                <version>${project.parent.version}</version>
                <type>tar.gz</type>
                <classifier>bin</classifier>
             </dependency>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-workflow</artifactId>
                <version>${project.parent.version}</version>
                <type>tar.gz</type>
                <classifier>bin</classifier>
             </dependency>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-pge</artifactId>
                <version>${project.parent.version}</version>
                <type>tar.gz</type>
                <classifier>bin</classifier>
             </dependency>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-pcs</artifactId>
                <version>${project.parent.version}</version>
                <type>tar.gz</type>
                <classifier>bin</classifier>
             </dependency>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-resmgr</artifactId>
                <version>${project.parent.version}</version>
                <type>tar.gz</type>
                <classifier>bin</classifier>
             </dependency>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-extensions</artifactId>
                <version>${project.parent.version}</version>
                <type>tar.gz</type>
                <classifier>bin</classifier>
             </dependency>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-solr</artifactId>
                <version>${project.parent.version}</version>
                <type>tar.gz</type>
                <classifier>bin</classifier>
             </dependency>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-opsui</artifactId>
                <version>${project.parent.version}</version>
                <type>war</type>
             </dependency>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-pcs-services</artifactId>
                <version>${project.parent.version}</version>
                <type>war</type>
             </dependency>
             <dependency>
-               <groupId>gov.darpa.memex.imageCatalog</groupId>
+               <groupId>ai.mattmann.imagecat</groupId>
                <artifactId>oodt-fmprod</artifactId>
                <version>${project.parent.version}</version>
                <type>war</type>
@@ -133,21 +133,21 @@
                                  <outputDirectory>${project.build.directory}/</outputDirectory>
                               </artifactItem>
                               <artifactItem>
-                                 <groupId>gov.darpa.memex.imageCatalog</groupId>
+                                 <groupId>ai.mattmann.imagecat</groupId>
                                  <artifactId>${project.parent.artifactId}-opsui</artifactId>
                                  <type>war</type>
                                  <overWrite>false</overWrite>
                                  <outputDirectory>${project.build.directory}/apache-tomcat-${tomcat.version}/webapps/opsui</outputDirectory>
                               </artifactItem>
                               <artifactItem>
-                                 <groupId>gov.darpa.memex.imageCatalog</groupId>
+                                 <groupId>ai.mattmann.imagecat</groupId>
                                  <artifactId>${project.parent.artifactId}-pcs-services</artifactId>
                                  <type>war</type>
                                  <overWrite>false</overWrite>
                                  <outputDirectory>${project.build.directory}/apache-tomcat-${tomcat.version}/webapps/pcs</outputDirectory>
                               </artifactItem>
                               <artifactItem>
-                                 <groupId>gov.darpa.memex.imageCatalog</groupId>
+                                 <groupId>ai.mattmann.imagecat</groupId>
                                  <artifactId>${project.parent.artifactId}-fmprod</artifactId>
                                  <type>war</type>
                                  <overWrite>false</overWrite>

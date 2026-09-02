@@ -8,12 +8,12 @@ if [ -z "${IMAGE_SPACE_HOME:-}" ] && [ -n "${OODT_HOME:-}" ]; then
 fi
 
 if [ -z "${IMAGE_SPACE_HOME:-}" ]; then
-  echo "urn:memex:IndexImageSpace: IMAGE_SPACE_HOME is unset; skip CLIP rebuild"
+  echo "urn:imagecat:IndexImageSpace: IMAGE_SPACE_HOME is unset; skip CLIP rebuild"
   exit 0
 fi
 
 if [ ! -d "$IMAGE_SPACE_HOME/server" ]; then
-  echo "urn:memex:IndexImageSpace: no server at $IMAGE_SPACE_HOME; skip CLIP rebuild"
+  echo "urn:imagecat:IndexImageSpace: no server at $IMAGE_SPACE_HOME; skip CLIP rebuild"
   exit 0
 fi
 

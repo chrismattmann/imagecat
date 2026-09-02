@@ -15,6 +15,6 @@ bin/oodt start        # includes ImageSpace
 ```
 
 Vite on 5173 is optional for UI development (`cd imagespace/web && npm run dev`).
-The ingest PGEs (`urn:memex:IndexMetadataJaccard`, `IndexImageSpace`,
+The ingest PGEs (`urn:imagecat:IndexMetadataJaccard`, `IndexImageSpace`,
 `IndexImageSpaceFgBg`) use `IMAGE_SPACE_HOME=$OODT_HOME/imagespace`
 from `bin/setenv.sh`.
