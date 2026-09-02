@@ -31,7 +31,7 @@ local `IMAGE_SPACE_HOME`. ImageSpace was a second repo.
 | Tika metadata Jaccard + Keys/Vals | ImageCat #61, #62 |
 | Paddle/RapidOCR default; `text_ocr` URL split | ImageCat #63 |
 | Tray × to drop a saved thumb | ImageCat #64 |
-| Workflow/FM IDs `urn:imagecat:` (was `urn:memex:`) | this PR |
+| Workflow/FM IDs `urn:imagecat:` (was `urn:memex:`) | ImageCat #67 |
 | Wiki Installation / How to Run / Interacting | [imagecat wiki](https://github.com/chrismattmann/imagecat/wiki) |
 
 ## Next
