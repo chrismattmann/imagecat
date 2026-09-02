@@ -9,8 +9,9 @@ it and shows the pictures.
 - Solr `imagecat` as the catalog (`id`, `ocr_text`, Tika EXIF, `sha1sum_s_md`)
 - Search box = OCR / metadata; `*` = browse
 - Image grid
-- Detective tray of saved images
+- Detective tray of saved images (hover / tap × to drop)
 - Details: full Tika record + thumbnail; click a field value to search Solr for it
+- `ocr_text` via ImageCat `text_ocr` so URL-like OCR is searchable as words
 - Images on disk at the Solr `id` path
 
 ## Throw out
