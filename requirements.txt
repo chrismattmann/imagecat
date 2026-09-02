@@ -1,6 +1,7 @@
 # Python half of the ImageCat pipeline. bin/imagecat-setup installs these
-# into $IMAGECAT_HOME/.venv. TrOCR/Donut pull torch + transformers on first
-# use; the HuggingFace model weights download then, not at pip time.
+# into $IMAGECAT_HOME/.venv. Paddle OCR is RapidOCR + onnxruntime (pip).
+# TrOCR/Donut pull torch + transformers on first use; the HuggingFace
+# model weights download then, not at pip time.
 
 pysolr>=3.9.0
 Pillow>=10.0.0
@@ -8,6 +9,9 @@ Pillow>=10.0.0
 transformers>=4.40.0,<5
 sentencepiece>=0.2.0
 torch>=2.2.0
+# --model paddle: PP-OCR ONNX via RapidOCR (Apache 2.0). Detect-then-recognize.
+rapidocr>=3.0
+onnxruntime>=1.17
 
 # ImageSpace API (FastAPI sidecar). CLIP extras are in
 # imagespace/requirements-embed.txt. IQR is Keras 3 on the Torch

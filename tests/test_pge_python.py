@@ -75,6 +75,28 @@ class ChunkFileTests(unittest.TestCase):
         self.assertNotIn("<scalar name=\"DataProvider\">OODT</scalar>", text)
 
 
+class PaddleOcrResultTests(unittest.TestCase):
+    def test_empty_when_detector_finds_nothing(self):
+        self.assertEqual(ocr.texts_from_paddle(None), "")
+        self.assertEqual(ocr.texts_from_paddle((None, None)), "")
+        self.assertEqual(ocr.texts_from_paddle([]), "")
+        class Empty:
+            txts = ()
+        self.assertEqual(ocr.texts_from_paddle(Empty()), "")
+
+    def test_joins_rapidocr_txts(self):
+        class Out:
+            txts = ("HELLO", "WORLD")
+        self.assertEqual(ocr.texts_from_paddle(Out()), "HELLO\nWORLD")
+
+    def test_joins_legacy_box_text_score(self):
+        rows = [[[0, 0], [1, 0], [1, 1], [0, 1]], "CASHIER", 0.99]
+        self.assertEqual(ocr.texts_from_paddle([rows]), "CASHIER")
+
+    def test_paddle_is_a_model_choice(self):
+        self.assertEqual(ocr.PADDLE_MODEL, "rapidocr/pp-ocr")
+
+
 class TikaSolrMappingTests(unittest.TestCase):
     def test_content_type_field(self):
         self.assertEqual(ocr.solr_field_name("Content-Type"), "content_type")

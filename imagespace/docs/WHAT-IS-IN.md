@@ -34,5 +34,5 @@ it and shows the pictures.
 | CMU Caffe segmentation | U2-Net (`rembg`) fg/bg CLIP indexes |
 | Girder Private folder | `localStorage` tray |
 
-Vision transformers stay on Torch + HuggingFace, same as ImageCat TrOCR.
+Vision transformers stay on Torch + HuggingFace, same as ImageCat CLIP.
 The IQR ranker is a small Keras dense head, not a second vision stack.

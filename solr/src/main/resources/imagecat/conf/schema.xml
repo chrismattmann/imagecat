@@ -17,9 +17,12 @@
 -->
 <!--
   OCR / image-content core. id is the original file path. ocr_text is what
-  TrOCR or Donut produced. Tika MIME/EXIF from imagecat-ocr.py lands on
-  content_type and the catch-all dynamicField (tiff_Make, Exif_IFD0_*, …).
-  sha1sum_s_md is filled by the OCR PGE and by sha1sum.py.
+  Paddle/RapidOCR, TrOCR, or Donut produced. Tika MIME/EXIF from
+  imagecat-ocr.py lands on content_type and the catch-all dynamicField
+  (tiff_Make, Exif_IFD0_*, …). sha1sum_s_md is filled by the OCR PGE
+  and by sha1sum.py. ocr_text uses text_ocr so a URL like
+  emmejihad.wordpress.com is searchable as wordpress, not only as the
+  whole host token StandardTokenizer would keep.
 -->
 <schema name="imagecat" version="1.6">
 
@@ -36,6 +39,31 @@
     </analyzer>
     <analyzer type="query">
       <tokenizer name="standard"/>
+      <filter name="stop" ignoreCase="true" words="stopwords.txt"/>
+      <filter name="synonymGraph" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+      <filter name="lowercase"/>
+    </analyzer>
+  </fieldType>
+
+  <!-- OCR overlays are often URLs / watermarks. StandardTokenizer keeps
+       emmejihad.wordpress.com as one token, so q=wordpress misses.
+       Split on punctuation, keep the original token too. -->
+  <fieldType name="text_ocr" class="solr.TextField" positionIncrementGap="100">
+    <analyzer type="index">
+      <tokenizer name="standard"/>
+      <filter name="wordDelimiterGraph" generateWordParts="1" generateNumberParts="1"
+              catenateWords="0" catenateNumbers="0" catenateAll="0"
+              splitOnCaseChange="0" splitOnNumerics="0"
+              stemEnglishPossessive="0" preserveOriginal="1"/>
+      <filter name="stop" ignoreCase="true" words="stopwords.txt"/>
+      <filter name="lowercase"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer name="standard"/>
+      <filter name="wordDelimiterGraph" generateWordParts="1" generateNumberParts="1"
+              catenateWords="0" catenateNumbers="0" catenateAll="0"
+              splitOnCaseChange="0" splitOnNumerics="0"
+              stemEnglishPossessive="0" preserveOriginal="1"/>
       <filter name="stop" ignoreCase="true" words="stopwords.txt"/>
       <filter name="synonymGraph" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
       <filter name="lowercase"/>
@@ -59,7 +87,7 @@
   </fieldType>
 
   <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false"/>
-  <field name="ocr_text" type="text_general" indexed="true" stored="true" required="false" multiValued="false"/>
+  <field name="ocr_text" type="text_ocr" indexed="true" stored="true" required="false" multiValued="false"/>
   <field name="ocr_model_s" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
   <field name="sha1sum_s_md" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
   <field name="caption" type="text_general" indexed="true" stored="true" required="false" multiValued="false"/>

@@ -14,11 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# OCR a chunk file of image paths with HuggingFace TrOCR (printed/scene
-# text) or Donut (documents), then POST the text plus Tika MIME/EXIF to
-# Solr. Replaces Solr Cell + Tesseract. Solr Cell used to run Tika on
-# each image as it indexed; File Manager only catalogs the ChunkList
-# path files, so Tika has to happen here.
+# OCR a chunk file of image paths with Paddle/RapidOCR (detect then
+# recognize; default), HuggingFace TrOCR, or Donut, then POST the text
+# plus Tika MIME/EXIF to Solr. Replaces Solr Cell + Tesseract. Solr Cell
+# used to run Tika on each image as it indexed; File Manager only
+# catalogs the ChunkList path files, so Tika has to happen here.
 
 """OCR images listed in a chunk file and index the text plus Tika metadata in Solr."""
 
@@ -40,6 +40,9 @@ from progress import write_progress  # noqa: E402
 
 TROCR_MODEL = "microsoft/trocr-base-printed"
 DONUT_MODEL = "naver-clova-ix/donut-base"
+# RapidOCR ships PP-OCR ONNX (Apache 2.0). Detect-then-recognize: no
+# boxes means empty text, unlike TrOCR which always emits a token.
+PADDLE_MODEL = "rapidocr/pp-ocr"
 MAX_TIKA_VALUE = 1024
 # ICC curves, padding, and per-component JPEG tables are not what SolrCell
 # users looked at, and they blow up a string field.
@@ -179,11 +182,55 @@ def tika_metadata(path: str, tika_app: Path | None) -> dict[str, str]:
     return parse_tika_metadata_text(proc.stdout)
 
 
+def texts_from_paddle(result) -> str:
+    """Join RapidOCR / PP-OCR detections. Empty if the detector found nothing."""
+    if result is None:
+        return ""
+    txts = getattr(result, "txts", None)
+    if txts is not None:
+        lines = [str(t).strip() for t in txts if t and str(t).strip()]
+        return "\n".join(lines)
+    if isinstance(result, tuple) and result:
+        result = result[0]
+    if not result:
+        return ""
+    lines = []
+    for item in result:
+        if item is None:
+            continue
+        text = ""
+        if isinstance(item, dict):
+            text = item.get("text") or item.get("rec_txt") or ""
+        elif isinstance(item, (list, tuple)):
+            if len(item) >= 2 and isinstance(item[1], str):
+                text = item[1]
+            elif item and isinstance(item[0], str):
+                text = item[0]
+        text = str(text).strip()
+        if text:
+            lines.append(text)
+    return "\n".join(lines)
+
+
 def load_ocr(model_name: str):
     """Return a callable image-path -> text. Heavy imports stay here."""
     from PIL import Image
 
     name = model_name.lower()
+    if name == "paddle":
+        try:
+            from rapidocr import RapidOCR
+        except ImportError:
+            raise SystemExit(
+                "paddle OCR needs rapidocr: pip install rapidocr onnxruntime"
+            )
+        engine = RapidOCR()
+
+        def ocr(path: str) -> str:
+            return texts_from_paddle(engine(path))
+
+        return ocr, PADDLE_MODEL
+
     if name == "trocr":
         from transformers import TrOCRProcessor, VisionEncoderDecoderModel
 
@@ -220,7 +267,7 @@ def load_ocr(model_name: str):
 
         return ocr, DONUT_MODEL
 
-    raise SystemExit("Unknown --model %s (use trocr or donut)" % model_name)
+    raise SystemExit("Unknown --model %s (use paddle, trocr or donut)" % model_name)
 
 
 def index_docs(solr_url: str, docs: list[dict]) -> None:
@@ -232,15 +279,16 @@ def index_docs(solr_url: str, docs: list[dict]) -> None:
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(
-        description="OCR a chunk file of images with TrOCR or Donut and post to Solr."
+        description="OCR a chunk file of images with Paddle/RapidOCR, TrOCR, or Donut and post to Solr."
     )
     parser.add_argument("-f", "--chunk-file", required=True, help="text file, one image path per line")
     parser.add_argument("-s", "--solr-url", required=True, help="Solr core URL, e.g. http://localhost:8983/solr/imagecat")
     parser.add_argument(
         "--model",
-        default="trocr",
-        choices=("trocr", "donut"),
-        help="trocr = printed/scene text (default); donut = document understanding",
+        default="paddle",
+        choices=("paddle", "trocr", "donut"),
+        help="paddle = PP-OCR detect-then-recognize (default; empty if no text); "
+        "trocr = printed line recognizer; donut = document understanding",
     )
     parser.add_argument("--commit-every", type=int, default=32, help="Solr batch size")
     parser.add_argument(

@@ -38,7 +38,7 @@ into Solr, File Manager catalogs the files. The stack under it is new.
 | Wicket OPSUI | Vue 3 OPSUI from Mnemosyne (`pcs-opsui` WAR overlay) |
 | Solr 4.10 + Solr Cell `/update/extract` | Solr 10, cores `imagecat` and `oodt-fm`, JSON `/update` |
 | Tomcat 7 | Tomcat 9.0.7 (OPSUI / pcs-services / fmprod only) |
-| Tesseract | HuggingFace TrOCR (`microsoft/trocr-base-printed`) or Donut (`naver-clova-ix/donut-base`) via `pge/bin/imagecat-ocr/imagecat-ocr.py` |
+| Tesseract | Paddle/RapidOCR PP-OCR (`--model paddle`, default) via `pge/bin/imagecat-ocr/imagecat-ocr.py`; TrOCR and Donut remain as options |
 | `solrcell_ingest` curl loop | same name, now a shim onto `imagecat-ocr.py` |
 | `python2.7` shebangs and `print` / `long()` | Python 3 |
 
