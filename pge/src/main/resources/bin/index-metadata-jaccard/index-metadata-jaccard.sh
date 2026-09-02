@@ -8,12 +8,12 @@ if [ -z "${IMAGE_SPACE_HOME:-}" ] && [ -n "${OODT_HOME:-}" ]; then
 fi
 
 if [ -z "${IMAGE_SPACE_HOME:-}" ]; then
-  echo "urn:memex:IndexMetadataJaccard: IMAGE_SPACE_HOME is unset; skip Jaccard"
+  echo "urn:imagecat:IndexMetadataJaccard: IMAGE_SPACE_HOME is unset; skip Jaccard"
   exit 0
 fi
 
 if [ ! -d "$IMAGE_SPACE_HOME/server" ]; then
-  echo "urn:memex:IndexMetadataJaccard: no server at $IMAGE_SPACE_HOME; skip Jaccard"
+  echo "urn:imagecat:IndexMetadataJaccard: no server at $IMAGE_SPACE_HOME; skip Jaccard"
   exit 0
 fi
 

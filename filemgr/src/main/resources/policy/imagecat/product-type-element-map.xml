@@ -21,7 +21,7 @@ of elements between the types
 -->
 
   <type id="urn:oodt:ChunkList" parent="urn:oodt:TraceableFile">
-    <element id="urn:memex:ChunkNum"/>
+    <element id="urn:imagecat:ChunkNum"/>
   </type>
 
 </cas:producttypemap>

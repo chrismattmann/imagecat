@@ -15,7 +15,7 @@
    limitations under the License.
   -->
 <cas:tasks xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas">
-  <task id="urn:memex:IngestInPlaceTask" name="IngestInPlace" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
+  <task id="urn:imagecat:IngestInPlaceTask" name="IngestInPlace" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
     <conditions/>
     <configuration>
       <property name="PGETask_Name" value="IngestInPlace"/>
@@ -32,7 +32,7 @@
     <requiredMetFields/>
   </task>
 
-  <task id="urn:memex:Chunker" name="Chunker" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
+  <task id="urn:imagecat:Chunker" name="Chunker" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
     <conditions/>
     <configuration>
       <property name="PGETask_Name" value="Chunker"/>
@@ -43,13 +43,12 @@
       <property name="PCS_MetFileExtension" value="met"/>
       <property name="PCS_ClientTransferServiceFactory" value="org.apache.oodt.cas.filemgr.datatransfer.LocalDataTransferFactory"/>
       <property name="PCS_ActionRepoFile" value="file:[CRAWLER_HOME]/policy/crawler-config.xml" envReplace="true"/>
-      <property name="CrawlTaskId" value="urn:memex:Crawl"/>
       <property name="ChunkSize" value="50000"/>
     </configuration>
     <requiredMetFields/>
   </task>
 
-  <task id="urn:memex:CheckFailedTask" name="CheckFailed" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
+  <task id="urn:imagecat:CheckFailedTask" name="CheckFailed" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
     <conditions/>
     <configuration>
       <property name="PGETask_Name" value="CheckFailed"/>
@@ -66,7 +65,7 @@
     <requiredMetFields/>
   </task>
 
-  <task id="urn:memex:OcrTask" name="OCR" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
+  <task id="urn:imagecat:OcrTask" name="OCR" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
     <conditions/>
     <configuration>
       <property name="PGETask_Name" value="OCR"/>
@@ -85,7 +84,7 @@
 
   <!-- After IngestInPlace OCR/Tika, score each Solr doc against the
        collection golden key/value sets (ETLlib Jaccard). -->
-  <task id="urn:memex:IndexMetadataJaccard" name="IndexMetadataJaccard" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
+  <task id="urn:imagecat:IndexMetadataJaccard" name="IndexMetadataJaccard" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
     <conditions/>
     <configuration>
       <property name="PGETask_Name" value="IndexMetadataJaccard"/>
@@ -103,7 +102,7 @@
 
   <!-- After IngestInPlace OCR, increment CLIP/FAISS for ImageSpace.
        Script no-ops unless IMAGE_SPACE_HOME is set on the workflow manager. -->
-  <task id="urn:memex:IndexImageSpace" name="IndexImageSpace" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
+  <task id="urn:imagecat:IndexImageSpace" name="IndexImageSpace" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
     <conditions/>
     <configuration>
       <property name="PGETask_Name" value="IndexImageSpace"/>
@@ -121,7 +120,7 @@
 
   <!-- After CLIP, increment foreground/background CLIP. No-op unless
        IMAGE_SPACE_HOME is set. Needs rembg in the ImageSpace embed venv. -->
-  <task id="urn:memex:IndexImageSpaceFgBg" name="IndexImageSpaceFgBg" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
+  <task id="urn:imagecat:IndexImageSpaceFgBg" name="IndexImageSpaceFgBg" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
     <conditions/>
     <configuration>
       <property name="PGETask_Name" value="IndexImageSpaceFgBg"/>

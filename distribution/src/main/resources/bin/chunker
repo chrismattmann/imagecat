@@ -21,4 +21,4 @@ else
 fi
 
 cd $OODT_HOME/workflow/bin
-./wmgr-client --url $WORKFLOW_URL --operation --dynWorkflow  --taskIds urn:memex:Chunker --metaData --key ImageListFile $LIST_FILE
+./wmgr-client --url $WORKFLOW_URL --operation --dynWorkflow  --taskIds urn:imagecat:Chunker --metaData --key ImageListFile $LIST_FILE

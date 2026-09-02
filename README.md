@@ -76,9 +76,9 @@ ImageSpace
 ----------
 
 After OCR, the same ingest workflow scores Tika metadata Jaccard
-(`urn:memex:IndexMetadataJaccard`), then CLIP/FAISS
-(`urn:memex:IndexImageSpace`) and foreground/background CLIP
-(`urn:memex:IndexImageSpaceFgBg`). The UI at
+(`urn:imagecat:IndexMetadataJaccard`), then CLIP/FAISS
+(`urn:imagecat:IndexImageSpace`) and foreground/background CLIP
+(`urn:imagecat:IndexImageSpaceFgBg`). The UI at
 `http://127.0.0.1:8090/` searches Solr (`ocr_text`, `caption`, copy-field
 `text`), shows the pictures, and runs Similar / FG / BG / Keys / Vals
 against those indexes. IQR is not a pretrained model: mark tiles + / −

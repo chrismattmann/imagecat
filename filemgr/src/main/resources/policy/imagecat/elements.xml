@@ -16,7 +16,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <cas:elements xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas">
-<element id="urn:memex:ChunkNum" name="ChunkNum">
+<element id="urn:imagecat:ChunkNum" name="ChunkNum">
    <dcElement/>
    <description>The subset of the original IST image catalog of file paths to process.</description>
 </element>

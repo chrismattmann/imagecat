@@ -21,7 +21,7 @@
    
    <modelVersion>4.0.0</modelVersion>
    <parent>
-      <groupId>gov.darpa.memex.imageCatalog</groupId>
+      <groupId>ai.mattmann.imagecat</groupId>
       <artifactId>oodt</artifactId>
       <version>0.1</version>
       <relativePath>../pom.xml</relativePath>
@@ -89,7 +89,7 @@
    </profiles>
    <dependencies>
       <dependency>
-         <groupId>gov.darpa.memex.imageCatalog</groupId>
+         <groupId>ai.mattmann.imagecat</groupId>
          <artifactId>oodt-extensions</artifactId>
          <version>${project.parent.version}</version>
          <type>jar</type>
