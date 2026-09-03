@@ -247,14 +247,30 @@ button:disabled { opacity: 0.45; cursor: not-allowed; }
 }
 
 .status { padding: 0.4rem 1rem; font-size: 0.85rem; color: var(--muted); }
-.iqr-bar {
+.lens-bar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
   padding: 0 1rem 0.5rem;
   font-size: 0.85rem;
   color: var(--muted);
 }
+.lens-save {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.lens-save input,
+.lens-pick {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.82rem;
+  background: var(--card);
+  color: var(--ink);
+}
+.lens-save input { width: 9rem; }
 .tile.pos { outline: 2px solid #3f6212; }
 .tile.neg { outline: 2px solid #9f1239; }
 .actions button.on {

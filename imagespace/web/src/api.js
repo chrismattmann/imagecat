@@ -48,8 +48,8 @@ export function similar(id, n, space) {
   return fetch(`/api/similar?${params}`).then(readJson)
 }
 
-export function refineIqr(positive, negative, n) {
-  return fetch('/api/iqr/refine', {
+export function refineLens(positive, negative, n) {
+  return fetch('/api/lenses/refine', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -57,6 +57,36 @@ export function refineIqr(positive, negative, n) {
       negative: negative || [],
       n: n || 24
     })
+  }).then(readJson)
+}
+
+export function listLenses() {
+  return fetch('/api/lenses').then(readJson)
+}
+
+export function saveLens(name, positive, negative) {
+  return fetch('/api/lenses', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      positive: positive || [],
+      negative: negative || []
+    })
+  }).then(readJson)
+}
+
+export function applyLens(slug, n) {
+  const params = new URLSearchParams()
+  params.set('n', String(n || 24))
+  return fetch('/api/lenses/' + encodeURIComponent(slug) + '/apply?' + params, {
+    method: 'POST'
+  }).then(readJson)
+}
+
+export function deleteLens(slug) {
+  return fetch('/api/lenses/' + encodeURIComponent(slug), {
+    method: 'DELETE'
   }).then(readJson)
 }
 
@@ -87,7 +117,7 @@ export function fieldEntries(doc) {
 const SKIP_FIELD_SEARCH = {
   highlight: true,
   clip_score: true,
-  iqr_score: true,
+  lens_score: true,
   meta_score: true,
   jaccard_keys_f: true,
   jaccard_vals_f: true,

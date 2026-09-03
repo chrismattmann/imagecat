@@ -14,8 +14,8 @@ rapidocr>=3.0
 onnxruntime>=1.17
 
 # ImageSpace API (FastAPI sidecar). CLIP extras are in
-# imagespace/requirements-embed.txt. IQR is Keras 3 on the Torch
-# backend we already ship for TrOCR/CLIP — not a pretrained model.
+# imagespace/requirements-embed.txt. Lens is Keras 3 on the Torch
+# backend we already ship for CLIP — a Lens, not a pretrained model.
 fastapi>=0.110
 uvicorn[standard]>=0.27
 httpx>=0.27

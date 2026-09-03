@@ -36,8 +36,8 @@ fi
 if [ -f "$IMAGECAT_HOME/imagespace/requirements-embed.txt" ]; then
   (cd "$IMAGECAT_HOME/imagespace" && "$VENV/bin/python" -m pip install -r requirements-embed.txt)
 fi
-# keras is in requirements.txt (IQR head, Torch backend). Fail setup if it
-# did not land — "IQR off (needs Keras)" is not an optional extra.
+# keras is in requirements.txt (Lens head, Torch backend). Fail setup if it
+# did not land — "Lens off (needs Keras)" is not an optional extra.
 # rembg is optional; fg/bg ingest no-ops usefully if missing.
 "$VENV/bin/python" -m pip install rembg onnxruntime >/dev/null 2>&1 || \
   echo "rembg not installed; IndexImageSpaceFgBg will skip until pip install rembg onnxruntime" >&2

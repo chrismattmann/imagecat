@@ -50,7 +50,7 @@ SYSTEM_FIELDS = {
     "jaccard_keys_f",
     "jaccard_vals_f",
     "clip_score",
-    "iqr_score",
+    "lens_score",
     "meta_score",
     "clip_indexed",
     "fg_indexed",

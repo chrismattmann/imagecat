@@ -1,4 +1,4 @@
-# IQR uses Keras 3 on the Torch backend (already in ImageCat).
+# Lens uses Keras 3 on the Torch backend (already in ImageCat).
 # bin/imagecat-setup installs keras via the top-level requirements.txt.
 -r requirements.txt
 keras>=3.0

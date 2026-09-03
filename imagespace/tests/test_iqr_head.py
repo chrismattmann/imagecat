@@ -1,7 +1,7 @@
 import unittest
 
 try:
-    from server.iqr import build_head
+    from server.lens import build_head
     build_head(8)
     KERAS = True
 except Exception:

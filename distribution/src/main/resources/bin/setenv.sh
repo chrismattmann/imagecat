@@ -43,7 +43,7 @@ export IMAGESPACE_PORT=8090
 if [ -x "$IMAGECAT_HOME/.venv/bin/python" ]; then
   export IMAGE_SPACE_PYTHON=$IMAGECAT_HOME/.venv/bin/python
 fi
-# IQR Keras 3 uses Torch, already installed for CLIP/TrOCR.
+# Lens Keras 3 uses Torch, already installed for CLIP.
 export KERAS_BACKEND=${KERAS_BACKEND:-torch}
 
 # Bound every Avro client call (Mnemosyne #197). Ten minutes is the code
