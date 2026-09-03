@@ -1,7 +1,10 @@
 <template>
   <div class="shell">
     <aside class="tray">
-      <h2>Saved</h2>
+      <h2>
+        <img class="tray-mark" src="/mark.png" width="22" height="22" alt=""/>
+        Saved
+      </h2>
       <p v-if="!tray.length" class="empty">Save an image from the grid to pin it here.</p>
       <div v-for="row in tray" :key="row.id" class="tray-item" :class="{ active: open && open.id === row.id }">
         <button type="button" class="tray-thumb" :title="basename(row.id)" @click="openDoc(row.id)">
@@ -12,9 +15,12 @@
     </aside>
     <div class="main">
       <header class="mast">
-        <div>
-          <h1>ImageSpace</h1>
-          <p>ImageCat Solr {{ health && health.numFound != null ? health.numFound + ' docs' : '' }}</p>
+        <div class="brand">
+          <img class="brand-mark" src="/mark.png" width="48" height="48" alt="ImageSpace"/>
+          <div>
+            <h1>ImageSpace</h1>
+            <p>ImageCat Solr {{ health && health.numFound != null ? health.numFound + ' docs' : '' }}</p>
+          </div>
         </div>
         <div class="search-stack">
           <form class="search" @submit.prevent="runSearch(0)">
