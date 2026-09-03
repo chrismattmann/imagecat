@@ -20,8 +20,8 @@ its own process (not a Tomcat war) with two cores: `imagecat` (OCR text) and
 
 [ImageSpace](imagespace/README.md) is the analyst desktop in this same tarball:
 search OCR and Tika fields, browse the image grid, CLIP similar, foreground /
-background similar (U2-Net / rembg), and IQR (a tiny Keras head fitted at
-Refine time on CLIP vectors). Saved thumbs sit in a tray; hover (or tap) the
+background similar (U2-Net / rembg), and Lens (a tiny Keras head fitted at
+Refine time on CLIP vectors; save by name and apply later). Saved thumbs sit in a tray; hover (or tap) the
 × to drop one. `bin/oodt start` brings it up on port 8090 the way it starts
 Solr — FastAPI, not a WAR. CLIP / fg / bg indexes live under
 `$IMAGECAT_HOME/data/imagespace/`. This is new work inspired by NASA JPL's
@@ -41,7 +41,7 @@ mvn -B package
 tar xzf distribution/target/oodt-distribution-0.1-bin.tar.gz
 cd <unpacked>
 export IMAGECAT_HOME=$PWD
-bin/imagecat-setup          # .venv (OCR, CLIP, Keras IQR) + Vue build
+bin/imagecat-setup          # .venv (OCR, CLIP, Keras Lens) + Vue build
 bin/oodt start              # File Manager, Workflow, Resource, Tomcat 9, Solr 10, ImageSpace
 ```
 
@@ -81,9 +81,10 @@ After OCR, the same ingest workflow scores Tika metadata Jaccard
 (`urn:imagecat:IndexImageSpaceFgBg`). The UI at
 `http://127.0.0.1:8090/` searches Solr (`ocr_text`, `caption`, copy-field
 `text`), shows the pictures, and runs Similar / FG / BG / Keys / Vals
-against those indexes. IQR is not a pretrained model: mark tiles + / −
+against those indexes. A Lens is not a pretrained model: mark tiles + / −
 and Refine fits a small Keras head (Torch backend) on the CLIP vectors
-you already have.
+you already have. Save as… keeps that head on disk; Apply scores the
+current catalog with it.
 
 `bin/imagecat-setup` installs Keras with the rest of the Python env
 and builds the Vue UI. Vite on 5173 is optional for UI development.

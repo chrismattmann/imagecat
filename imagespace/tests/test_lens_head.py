@@ -1,7 +1,7 @@
 import unittest
 
 try:
-    from server.iqr import build_head
+    from server.lens import build_head
     build_head(8)
     KERAS = True
 except Exception:
@@ -9,7 +9,7 @@ except Exception:
 
 
 @unittest.skipUnless(KERAS, "Keras not installed; phase 1 does not require it")
-class IqrHeadTests(unittest.TestCase):
+class LensHeadTests(unittest.TestCase):
     def test_output_shape(self):
         import numpy as np
 

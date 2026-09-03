@@ -47,5 +47,9 @@ def meta_dir() -> str:
     return os.environ.get("IMAGE_SPACE_META_DIR", os.path.join(data_root(), "meta"))
 
 
+def lenses_dir() -> str:
+    return os.environ.get("IMAGE_SPACE_LENSES_DIR", os.path.join(data_root(), "lenses"))
+
+
 def clip_model() -> str:
     return os.environ.get("IMAGE_SPACE_CLIP_MODEL", "openai/clip-vit-base-patch32")

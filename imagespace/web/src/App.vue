@@ -57,11 +57,22 @@
       </header>
       <p v-if="error" class="banner">{{ error }}</p>
       <p class="status">{{ statusLine }}</p>
-      <div class="iqr-bar">
-        <span v-if="canIqr">IQR {{ iqrPos.length }} relevant / {{ iqrNeg.length }} not</span>
-        <span v-else title="Keras 3 (Torch backend) is not installed in this ImageSpace process">IQR off (needs Keras)</span>
-        <button :disabled="!canIqr || !iqrPos.length || !iqrNeg.length || loading" title="Fit the Keras head on CLIP vectors and rerank" @click="runIqr">Refine</button>
-        <button class="ghost" :disabled="!iqrPos.length && !iqrNeg.length && !iqrActive" @click="clearIqr">Clear labels</button>
+      <div class="lens-bar">
+        <span v-if="canLens">Lens {{ lensPos.length }} yes / {{ lensNeg.length }} no<span v-if="activeLensName"> · {{ activeLensName }}</span></span>
+        <span v-else title="Keras 3 (Torch backend) is not installed in this ImageSpace process">Lens off (needs Keras)</span>
+        <button :disabled="!canLens || !lensPos.length || !lensNeg.length || loading" title="Fit the Keras head on CLIP vectors and rerank" @click="runRefine">Refine</button>
+        <button v-if="!namingLens" class="ghost" :disabled="!canLens || !lensPos.length || !lensNeg.length || loading" title="Save this yes/no ranking as a named lens" @click="startSave">Save as…</button>
+        <form v-else class="lens-save" @submit.prevent="commitSave">
+          <input ref="lensNameEl" v-model="lensName" placeholder="name" @keydown.escape.prevent="namingLens = false"/>
+          <button type="submit">Save</button>
+          <button class="ghost" type="button" @click="namingLens = false">Cancel</button>
+        </form>
+        <select v-if="lenses.length" class="lens-pick" v-model="pickedLens" :disabled="loading" @change="applyPicked">
+          <option value="">Apply a lens…</option>
+          <option v-for="item in lenses" :key="item.slug" :value="item.slug">{{ item.name }}</option>
+        </select>
+        <button v-if="activeLens" class="ghost" title="Delete this saved lens" :disabled="loading" @click="dropActiveLens">Delete</button>
+        <button class="ghost" :disabled="!lensPos.length && !lensNeg.length && !lensActive" @click="clearLens">Clear labels</button>
       </div>
       <div class="grid">
         <article v-for="doc in docs" :key="doc.id" class="tile" :class="{ pos: isPos(doc.id), neg: isNeg(doc.id) }">
@@ -75,8 +86,8 @@
             <button class="ghost" :disabled="!canBg(doc)" :title="bgTitle(doc)" @click="runSimilar(doc, 'bg')">BG</button>
             <button class="ghost" :disabled="!canMeta" :title="canMeta ? 'Same metadata names (camera/pipeline)' : 'Run IndexMetadataJaccard first'" @click="runSimilar(doc, 'keys')">Keys</button>
             <button class="ghost" :disabled="!canMeta" :title="canMeta ? 'Same metadata values' : 'Run IndexMetadataJaccard first'" @click="runSimilar(doc, 'vals')">Vals</button>
-            <button class="ghost" :class="{ on: isPos(doc.id) }" :disabled="!canIqr" title="Relevant" @click="markPos(doc.id)">+</button>
-            <button class="ghost" :class="{ on: isNeg(doc.id) }" :disabled="!canIqr" title="Not relevant" @click="markNeg(doc.id)">−</button>
+            <button class="ghost" :class="{ on: isPos(doc.id) }" :disabled="!canLens" title="Yes for this lens" @click="markPos(doc.id)">+</button>
+            <button class="ghost" :class="{ on: isNeg(doc.id) }" :disabled="!canLens" title="No for this lens" @click="markNeg(doc.id)">−</button>
           </div>
         </article>
       </div>
@@ -98,8 +109,8 @@
               <button class="ghost" :disabled="!canBg(open)" :title="bgTitle(open)" @click="runSimilar(open, 'bg')">Similar BG</button>
               <button class="ghost" :disabled="!canMeta" :title="canMeta ? 'Same metadata names (camera/pipeline)' : 'Run IndexMetadataJaccard first'" @click="runSimilar(open, 'keys')">Keys</button>
               <button class="ghost" :disabled="!canMeta" :title="canMeta ? 'Same metadata values' : 'Run IndexMetadataJaccard first'" @click="runSimilar(open, 'vals')">Vals</button>
-              <button class="ghost" :class="{ on: isPos(open.id) }" :disabled="!canIqr" @click="markPos(open.id)">Relevant</button>
-              <button class="ghost" :class="{ on: isNeg(open.id) }" :disabled="!canIqr" @click="markNeg(open.id)">Not relevant</button>
+              <button class="ghost" :class="{ on: isPos(open.id) }" :disabled="!canLens" @click="markPos(open.id)">Yes</button>
+              <button class="ghost" :class="{ on: isNeg(open.id) }" :disabled="!canLens" @click="markNeg(open.id)">No</button>
               <button class="ghost" @click="open = null">Close</button>
             </div>
           </div>
@@ -130,7 +141,7 @@
 
 <script>
 import { computed, nextTick, onMounted, ref } from 'vue'
-import { canSearchField, fieldEntries, fileSrc, getDoc, getHealth, refineIqr, scalar, search, similar, valueList } from './api.js'
+import { applyLens, canSearchField, deleteLens, fieldEntries, fileSrc, getDoc, getHealth, listLenses, refineLens, saveLens, scalar, search, similar, valueList } from './api.js'
 import { addFilter, filterLabel, isActiveFilter, looksLikeFieldQuery, removeFilter } from './filters.js'
 import { inTray, loadTray, removeFromTray, saveTray, toggleTray } from './tray.js'
 
@@ -152,13 +163,26 @@ export default {
     const health = ref(null)
     const similarTo = ref('')
     const similarSpace = ref('clip')
-    const iqrPos = ref([])
-    const iqrNeg = ref([])
-    const iqrActive = ref(false)
+    const lensPos = ref([])
+    const lensNeg = ref([])
+    const lensActive = ref(false)
+    const lenses = ref([])
+    const activeLens = ref('')
+    const pickedLens = ref('')
+    const namingLens = ref(false)
+    const lensName = ref('')
+    const lensNameEl = ref(null)
     const refining = ref(false)
 
     const canSimilar = computed(() => Boolean(health.value && health.value.capabilities && health.value.capabilities.similar))
-    const canIqr = computed(() => Boolean(health.value && health.value.capabilities && health.value.capabilities.iqr))
+    const canLens = computed(() => Boolean(health.value && health.value.capabilities && health.value.capabilities.lens))
+    const activeLensName = computed(() => {
+      if (!activeLens.value) {
+        return ''
+      }
+      const hit = lenses.value.find((item) => item.slug === activeLens.value)
+      return (hit && hit.name) || activeLens.value
+    })
     const canFgbg = computed(() => Boolean(health.value && health.value.capabilities && health.value.capabilities.fgbg))
     const canMeta = computed(() => Boolean(health.value && health.value.capabilities && health.value.capabilities.meta))
 
@@ -219,8 +243,8 @@ export default {
         return similarTo.value ? 'Finding similar…' : 'Searching…'
       }
       const count = numFound.value + ' image' + (numFound.value === 1 ? '' : 's')
-      if (iqrActive.value) {
-        return 'IQR ranked — ' + count
+      if (lensActive.value) {
+        return (activeLensName.value ? 'Lens ' + activeLensName.value : 'Lens') + ' ranked — ' + count
       }
       if (similarTo.value) {
         const kind = similarSpace.value === 'fg' ? 'FG similar to '
@@ -238,8 +262,8 @@ export default {
       if (doc.meta_score != null && doc.meta_score !== '') {
         return Number(doc.meta_score).toFixed(3) + ' · ' + text
       }
-      if (doc.iqr_score != null && doc.iqr_score !== '') {
-        return Number(doc.iqr_score).toFixed(3) + ' · ' + text
+      if (doc.lens_score != null && doc.lens_score !== '') {
+        return Number(doc.lens_score).toFixed(3) + ' · ' + text
       }
       if (doc.clip_score == null || doc.clip_score === '') {
         return text
@@ -248,28 +272,28 @@ export default {
     }
 
     function isPos(id) {
-      return iqrPos.value.indexOf(id) !== -1
+      return lensPos.value.indexOf(id) !== -1
     }
 
     function isNeg(id) {
-      return iqrNeg.value.indexOf(id) !== -1
+      return lensNeg.value.indexOf(id) !== -1
     }
 
     function markPos(id) {
-      iqrNeg.value = iqrNeg.value.filter((item) => item !== id)
+      lensNeg.value = lensNeg.value.filter((item) => item !== id)
       if (isPos(id)) {
-        iqrPos.value = iqrPos.value.filter((item) => item !== id)
+        lensPos.value = lensPos.value.filter((item) => item !== id)
       } else {
-        iqrPos.value = iqrPos.value.concat([id])
+        lensPos.value = lensPos.value.concat([id])
       }
     }
 
     function markNeg(id) {
-      iqrPos.value = iqrPos.value.filter((item) => item !== id)
+      lensPos.value = lensPos.value.filter((item) => item !== id)
       if (isNeg(id)) {
-        iqrNeg.value = iqrNeg.value.filter((item) => item !== id)
+        lensNeg.value = lensNeg.value.filter((item) => item !== id)
       } else {
-        iqrNeg.value = iqrNeg.value.concat([id])
+        lensNeg.value = lensNeg.value.concat([id])
       }
     }
 
@@ -368,7 +392,8 @@ export default {
       error.value = ''
       similarTo.value = ''
       similarSpace.value = 'clip'
-      iqrActive.value = false
+      lensActive.value = false
+      activeLens.value = ''
       if (!start) {
         docs.value = []
       }
@@ -390,7 +415,8 @@ export default {
       q.value = '*'
       similarTo.value = ''
       similarSpace.value = 'clip'
-      iqrActive.value = false
+      lensActive.value = false
+      activeLens.value = ''
       runSearch(0)
     }
 
@@ -401,8 +427,17 @@ export default {
       runSearch(0)
     }
 
-    async function runIqr() {
-      if (!canIqr.value || !iqrPos.value.length || !iqrNeg.value.length) {
+    async function refreshLenses() {
+      try {
+        const body = await listLenses()
+        lenses.value = (body && body.lenses) || []
+      } catch (e) {
+        lenses.value = []
+      }
+    }
+
+    async function runRefine() {
+      if (!canLens.value || !lensPos.value.length || !lensNeg.value.length) {
         return
       }
       loading.value = true
@@ -410,9 +445,11 @@ export default {
       error.value = ''
       open.value = null
       try {
-        const body = await refineIqr(iqrPos.value, iqrNeg.value, 48)
+        const body = await refineLens(lensPos.value, lensNeg.value, 48)
         similarTo.value = ''
-        iqrActive.value = true
+        lensActive.value = true
+        activeLens.value = ''
+        pickedLens.value = ''
         numFound.value = body.numFound || 0
         docs.value = body.docs || []
       } catch (e) {
@@ -423,10 +460,88 @@ export default {
       }
     }
 
-    function clearIqr() {
-      iqrPos.value = []
-      iqrNeg.value = []
-      if (iqrActive.value) {
+    async function startSave() {
+      namingLens.value = true
+      lensName.value = activeLensName.value || ''
+      await nextTick()
+      if (lensNameEl.value) {
+        lensNameEl.value.focus()
+      }
+    }
+
+    async function commitSave() {
+      if (!lensName.value.trim()) {
+        return
+      }
+      loading.value = true
+      error.value = ''
+      try {
+        const meta = await saveLens(lensName.value, lensPos.value, lensNeg.value)
+        namingLens.value = false
+        await refreshLenses()
+        activeLens.value = meta.slug
+        pickedLens.value = meta.slug
+        lensActive.value = true
+      } catch (e) {
+        error.value = e.message || String(e)
+      } finally {
+        loading.value = false
+      }
+    }
+
+    async function applyPicked() {
+      const slug = pickedLens.value
+      if (!slug) {
+        return
+      }
+      loading.value = true
+      refining.value = true
+      error.value = ''
+      open.value = null
+      try {
+        const body = await applyLens(slug, 48)
+        similarTo.value = ''
+        lensActive.value = true
+        activeLens.value = slug
+        lensPos.value = (body.stats && body.stats.positive) || []
+        lensNeg.value = (body.stats && body.stats.negative) || []
+        numFound.value = body.numFound || 0
+        docs.value = body.docs || []
+      } catch (e) {
+        error.value = e.message || String(e)
+        pickedLens.value = activeLens.value || ''
+      } finally {
+        refining.value = false
+        loading.value = false
+      }
+    }
+
+    async function dropActiveLens() {
+      if (!activeLens.value) {
+        return
+      }
+      loading.value = true
+      error.value = ''
+      try {
+        await deleteLens(activeLens.value)
+        activeLens.value = ''
+        pickedLens.value = ''
+        await refreshLenses()
+      } catch (e) {
+        error.value = e.message || String(e)
+      } finally {
+        loading.value = false
+      }
+    }
+
+    function clearLens() {
+      lensPos.value = []
+      lensNeg.value = []
+      namingLens.value = false
+      const was = lensActive.value
+      activeLens.value = ''
+      pickedLens.value = ''
+      if (was) {
         runSearch(0)
       }
     }
@@ -451,7 +566,8 @@ export default {
       loading.value = true
       error.value = ''
       open.value = null
-      iqrActive.value = false
+      lensActive.value = false
+      activeLens.value = ''
       try {
         const body = await similar(doc.id, n || 24, mode)
         similarTo.value = doc.id
@@ -469,12 +585,15 @@ export default {
       if (loading.value || docs.value.length >= numFound.value) {
         return
       }
-      if (iqrActive.value) {
+      if (lensActive.value) {
         loading.value = true
         refining.value = true
         error.value = ''
         try {
-          const body = await refineIqr(iqrPos.value, iqrNeg.value, docs.value.length + 24)
+          const n = docs.value.length + 24
+          const body = activeLens.value
+            ? await applyLens(activeLens.value, n)
+            : await refineLens(lensPos.value, lensNeg.value, n)
           numFound.value = body.numFound || 0
           docs.value = body.docs || []
         } catch (e) {
@@ -507,12 +626,15 @@ export default {
       } catch (e) {
         error.value = e.message || String(e)
       }
+      await refreshLenses()
       await runSearch(0)
     })
 
     return {
-      q, filters, addingFilter, newField, newValue, newFieldEl, fieldHints, docs, numFound, loading, error, open, tray, health, similarTo, similarSpace, iqrPos, iqrNeg, iqrActive, refining,
-      statusLine, canSimilar, canIqr, canFgbg, canMeta, canFg, canBg, fgTitle, bgTitle, similarLabel, isPos, isNeg, markPos, markNeg, runIqr, clearIqr,
+      q, filters, addingFilter, newField, newValue, newFieldEl, fieldHints, docs, numFound, loading, error, open, tray, health, similarTo, similarSpace,
+      lensPos, lensNeg, lensActive, lenses, activeLens, activeLensName, pickedLens, namingLens, lensName, lensNameEl, refining,
+      statusLine, canSimilar, canLens, canFgbg, canMeta, canFg, canBg, fgTitle, bgTitle, similarLabel, isPos, isNeg, markPos, markNeg,
+      runRefine, startSave, commitSave, applyPicked, dropActiveLens, clearLens,
       basename, scoreLine, formatVal, formatOne, searchField, dropFilter, startAddFilter, cancelAddFilter, submitNewFilter, filterLabel, isActiveFilter, canSearchField, valueList, saved, toggle, dropSaved, runSearch, onSearchBox, loadMore, runSimilar, clearSimilar, openDoc, fileSrc, fieldEntries, scalar
     }
   }

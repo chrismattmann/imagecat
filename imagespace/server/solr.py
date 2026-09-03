@@ -14,7 +14,7 @@ HIDDEN = {"_version_", "_root_", "text", "text_rev"}
 SKIP_FIELD_SEARCH = HIDDEN | {
     "highlight",
     "clip_score",
-    "iqr_score",
+    "lens_score",
     "meta_score",
     "jaccard_keys_f",
     "jaccard_vals_f",

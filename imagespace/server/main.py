@@ -1,11 +1,11 @@
-"""ImageSpace HTTP API. Search, CLIP similar, IQR refine."""
+"""ImageSpace HTTP API. Search, CLIP similar, Lens refine."""
 
 from __future__ import annotations
 
 import os
 
 # FAISS and Keras/Torch each ship libomp. Two copies abort the process on
-# macOS (OMP Error #15) the first time IQR imports Keras after CLIP is loaded.
+# macOS (OMP Error #15) the first time Lens imports Keras after CLIP is loaded.
 os.environ.setdefault("KERAS_BACKEND", "torch")
 os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 
@@ -16,7 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import images, iqr, solr
+from . import images, lens, solr
 from .config import bg_dir, fg_dir
 from .meta import MetaIndex
 from .similar import ClipIndex
@@ -31,10 +31,16 @@ app.add_middleware(
 
 _UI_DIST = Path(__file__).resolve().parents[1] / "web" / "dist"
 
-class IqrRefineBody(BaseModel):
+class LensRefineBody(BaseModel):
     positive: list[str] = Field(default_factory=list)
     negative: list[str] = Field(default_factory=list)
     n: int = 24
+
+
+class LensSaveBody(BaseModel):
+    name: str
+    positive: list[str] = Field(default_factory=list)
+    negative: list[str] = Field(default_factory=list)
 
 
 _clip = ClipIndex()
@@ -69,7 +75,7 @@ def health():
     ping["capabilities"] = {
         "search": True,
         "similar": index.available(),
-        "iqr": index.available() and iqr.keras_available(),
+        "lens": index.available() and lens.keras_available(),
         "fgbg": _fg.available() and _bg.available(),
         "meta": _meta.available(),
     }
@@ -166,27 +172,80 @@ def similar(id: str = Query(...), n: int = Query(24), space: str = Query("clip")
     }
 
 
-@app.post("/api/iqr/refine")
-def iqr_refine(body: IqrRefineBody):
+def _lens_docs(hits):
+    docs = solr.get_docs([h["id"] for h in hits])
+    scores = {h["id"]: h["lens_score"] for h in hits}
+    for doc in docs:
+        doc["lens_score"] = scores.get(doc.get("id"))
+    _mark_indexes(docs)
+    return docs
+
+
+def _need_clip_and_keras():
     index = _index()
     if not index.available():
         raise HTTPException(status_code=503, detail="CLIP index is not built. Run python -m server.embed")
-    if not iqr.keras_available():
-        raise HTTPException(status_code=503, detail="Keras is not installed (IQR head)")
+    if not lens.keras_available():
+        raise HTTPException(status_code=503, detail="Keras is not installed (Lens head)")
+    return index
+
+
+@app.post("/api/lenses/refine")
+def lenses_refine(body: LensRefineBody):
+    index = _need_clip_and_keras()
     try:
-        hits, stats = iqr.refine(index, body.positive, body.negative, body.n)
+        hits, stats = lens.refine(index, body.positive, body.negative, body.n)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    docs = solr.get_docs([h["id"] for h in hits])
-    scores = {h["id"]: h["iqr_score"] for h in hits}
-    for doc in docs:
-        doc["iqr_score"] = scores.get(doc.get("id"))
-    _mark_indexes(docs)
+    docs = _lens_docs(hits)
     return {
         "numFound": int((stats or {}).get("scored") or len(docs)),
         "docs": docs,
         "stats": stats,
     }
+
+
+@app.get("/api/lenses")
+def lenses_list():
+    return {"lenses": lens.list_lenses()}
+
+
+@app.post("/api/lenses")
+def lenses_save(body: LensSaveBody):
+    index = _need_clip_and_keras()
+    try:
+        meta = lens.save_lens(index, body.name, body.positive, body.negative)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return meta
+
+
+@app.post("/api/lenses/{slug}/apply")
+def lenses_apply(slug: str, n: int = Query(24)):
+    index = _need_clip_and_keras()
+    try:
+        hits, stats = lens.apply_lens(index, slug, n)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    docs = _lens_docs(hits)
+    return {
+        "numFound": int((stats or {}).get("scored") or len(docs)),
+        "docs": docs,
+        "stats": stats,
+    }
+
+
+@app.delete("/api/lenses/{slug}")
+def lenses_delete(slug: str):
+    try:
+        lens.delete_lens(slug)
+    except FileNotFoundError as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return {"ok": True, "slug": slug}
 
 
 @app.post("/api/clip/reload")
