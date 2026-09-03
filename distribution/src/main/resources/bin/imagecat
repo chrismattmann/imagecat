@@ -1,0 +1,528 @@
+#!/usr/bin/env bash
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements. See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License. You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# ImageCat's operator command, same shape as bin/drat: one verb hides
+# staging, chunker, OCR, Jaccard, CLIP, and fg/bg. Reset is a separate
+# verb so an extra folder can be indexed without wiping the catalog.
+
+set -euo pipefail
+
+IMAGECAT_HOME=${IMAGECAT_HOME:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}
+export IMAGECAT_HOME
+if [ -r "$IMAGECAT_HOME/bin/setenv.sh" ]; then
+  # shellcheck disable=SC1091
+  . "$IMAGECAT_HOME/bin/setenv.sh"
+fi
+export OODT_HOME=${OODT_HOME:-$IMAGECAT_HOME}
+
+FILEMGR_URL=${FILEMGR_URL:-http://localhost:9000}
+WORKFLOW_URL=${WORKFLOW_URL:-http://localhost:9001}
+RESMGR_URL=${RESMGR_URL:-http://localhost:9002}
+IMAGESPACE_PORT=${IMAGESPACE_PORT:-8090}
+TOMCAT_PORT=${TOMCAT_PORT:-8080}
+OODT_HOST=${OODT_HOST:-localhost}
+IMAGE_SPACE_SOLR=${IMAGE_SPACE_SOLR:-http://localhost:8983/solr/imagecat}
+PCS_SERVICES_URL=${PCS_SERVICES_URL:-http://${OODT_HOST}:${TOMCAT_PORT}/pcs/services}
+IMAGE_SPACE_URL=${IMAGE_SPACE_URL:-http://127.0.0.1:${IMAGESPACE_PORT}}
+OPSUI_URL=${OPSUI_URL:-http://${OODT_HOST}:${TOMCAT_PORT}/opsui/}
+export FILEMGR_URL WORKFLOW_URL RESMGR_URL OODT_HOME IMAGECAT_HOME IMAGE_SPACE_SOLR
+
+LOG=${IMAGECAT_HOME}/logs/imagecat.log
+mkdir -p "$IMAGECAT_HOME/logs"
+
+PYTHON=${IMAGE_SPACE_PYTHON:-python3}
+
+port_from_url() {
+  echo "$1" | sed -n 's#^[^:]*://[^/:]*:\([0-9][0-9]*\).*#\1#p'
+}
+
+FILEMGR_PORT=${FILEMGR_PORT:-$(port_from_url "$FILEMGR_URL")}
+WORKFLOW_PORT=${WORKFLOW_PORT:-$(port_from_url "$WORKFLOW_URL")}
+RESMGR_PORT=${RESMGR_PORT:-$(port_from_url "$RESMGR_URL")}
+SOLR_PORT=${SOLR_PORT:-$(port_from_url "$IMAGE_SPACE_SOLR")}
+SOLR_PORT=${SOLR_PORT:-8983}
+SOLR_BASE=http://${OODT_HOST}:${SOLR_PORT}/solr
+
+print_help() {
+  cat <<EOF
+Usage: imagecat <command>
+
+  index <dir> [dir...]   Copy JPGs into staging (nested paths kept), then
+                         OCR, metadata Jaccard, CLIP, fg/bg. Adds to the
+                         catalog; does not reset.
+                         --no-wait  submit and return (watch OPSUI)
+  reset [--yes] [--lenses]
+                         Empty the catalog and jobs. Staging stays.
+                         Lenses stay unless --lenses. --yes skips the prompt.
+  status                 Solr count, ImageSpace capabilities, running task
+  setup                  Create .venv and build the ImageSpace UI
+  check                  Look for failed ingestions
+  start | stop           Start or stop this ImageCat (not DRAT)
+  help
+
+JPGs only. Duplicate basenames stay in their subfolders.
+EOF
+}
+
+print_ui_info() {
+  echo "OPSUI:      $OPSUI_URL"
+  echo "ImageSpace: $IMAGE_SPACE_URL/"
+}
+
+port_open() {
+  nc -z "${OODT_HOST}" "$1" >/dev/null 2>&1
+}
+
+check_services_running() {
+  local missing=0
+  if ! port_open "$FILEMGR_PORT"; then
+    echo "File Manager is not listening on $FILEMGR_PORT ($FILEMGR_URL)"
+    missing=1
+  fi
+  if ! port_open "$WORKFLOW_PORT"; then
+    echo "Workflow Manager is not listening on $WORKFLOW_PORT ($WORKFLOW_URL)"
+    missing=1
+  fi
+  if ! port_open "$RESMGR_PORT"; then
+    echo "Resource Manager is not listening on $RESMGR_PORT ($RESMGR_URL)"
+    missing=1
+  fi
+  if ! port_open "$TOMCAT_PORT"; then
+    echo "Tomcat is not listening on $TOMCAT_PORT"
+    missing=1
+  fi
+  if ! port_open "$SOLR_PORT"; then
+    echo "Solr is not listening on $SOLR_PORT"
+    missing=1
+  fi
+  if [ "$missing" -ne 0 ]; then
+    echo "Start this ImageCat first: $IMAGECAT_HOME/bin/imagecat start"
+    echo "Aborting..."
+    exit 1
+  fi
+}
+
+# Running / waiting statuses. Do not invent pause/resume/stop; we only refuse
+# to reset or to start a second index while one of these is in flight.
+BUSY_STATUSES='PGE EXEC|STARTED|QUEUED|WAITING'
+
+pcs_python() {
+  "$PYTHON" - "$PCS_SERVICES_URL" "$IMAGECAT_HOME" "$@" <<'PY'
+import glob, json, os, sys, urllib.request
+
+pcs, live = sys.argv[1], sys.argv[2]
+cmd = sys.argv[3] if len(sys.argv) > 3 else "status"
+before = set(filter(None, (sys.argv[4] if len(sys.argv) > 4 else "").split(",")))
+BUSY = {"PGE EXEC", "STARTED", "QUEUED", "WAITING"}
+
+def get(url):
+    req = urllib.request.Request(url, headers={"Cache-Control": "no-store"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        return json.load(r)
+
+def insts():
+    try:
+        return get(pcs.rstrip("/") + "/workflow/instances?status=ALL&page=1").get("page", {}).get("instances") or []
+    except Exception:
+        return []
+
+def progress():
+    lines = []
+    for p in glob.glob(live + "/data/jobs/*/*/.progress") + glob.glob(live + "/data/jobs/*/*/output/.progress"):
+        try:
+            d = dict(line.strip().split("=", 1) for line in open(p) if "=" in line)
+            lines.append("%s/%s %s" % (d.get("done", "?"), d.get("total", "?"), d.get("msg", "")))
+        except Exception:
+            pass
+    return lines
+
+rows = insts()
+if cmd == "ids":
+    print(",".join(i.get("id") or "" for i in rows if i.get("id")))
+    sys.exit(0)
+
+if cmd == "busy":
+    busy = [i for i in rows if str(i.get("status", "")).upper() in BUSY]
+    for i in busy:
+        print("%s\t%s\t%s" % (i.get("status"), i.get("workflowName"), i.get("currentTaskName")))
+    sys.exit(0 if not busy else 2)
+
+if cmd == "wait":
+    new = [i for i in rows if i.get("id") not in before]
+    failed = [i for i in new if str(i.get("status", "")).upper() in ("FAILURE", "FAILED", "CRASHED")]
+    busy = [i for i in new if str(i.get("status", "")).upper() in BUSY]
+    ingest_done = [i for i in new if i.get("workflowName") == "IngestInPlace"
+                   and str(i.get("status", "")).upper() == "FINISHED"]
+    progs = progress()
+    summary = " | ".join(
+        "%s %s %s" % (i.get("status"), i.get("workflowName"), i.get("currentTaskName") or "")
+        for i in (new or rows)[:6]
+    )
+    if progs:
+        summary = summary + " | " + "; ".join(progs)
+    print(summary)
+    if failed:
+        sys.exit(2)
+    if busy:
+        sys.exit(1)
+    if ingest_done:
+        sys.exit(0)
+    if new and not busy:
+        # Chunker finished and ingest has not appeared yet.
+        sys.exit(3)
+    sys.exit(1)
+
+# cmd == dump
+for i in rows:
+    print("%-12s %-22s %-22s %s" % (
+        i.get("status") or "",
+        (i.get("workflowName") or "")[:22],
+        (i.get("currentTaskName") or "")[:22],
+        i.get("startDateTime") or ""))
+for p in progress():
+    print("progress     " + p)
+PY
+}
+
+any_busy() {
+  local rc=0
+  set +e
+  pcs_python busy >/dev/null
+  rc=$?
+  set -e
+  [ "$rc" -eq 2 ]
+}
+
+solr_delete_all() {
+  local core=$1
+  local code
+  code=$(curl -s -o /dev/null -w '%{http_code}' \
+    -H 'Content-Type: text/xml' \
+    "${SOLR_BASE}/${core}/update?commit=true" \
+    --data-binary '<delete><query>*:*</query></delete>' 2>/dev/null || echo 000)
+  if [ "$code" != "200" ]; then
+    echo "Solr core '${core}' did not accept the delete (HTTP ${code})."
+    return 1
+  fi
+  echo "Emptied Solr core '$core'"
+}
+
+clear_workflow_instances() {
+  echo "Asking the workflow manager to clear its instances"
+  if ! "$IMAGECAT_HOME/workflow/bin/wmgr-client" --url "$WORKFLOW_URL" \
+      --operation --clearInstances --force >>"$LOG" 2>&1; then
+    echo "The workflow manager could not clear its instances."
+    echo "It refuses while anything is executing. See $LOG"
+    return 1
+  fi
+  echo "Cleared workflow instances"
+}
+
+reload_imagespace() {
+  if ! port_open "$IMAGESPACE_PORT"; then
+    return 0
+  fi
+  curl -sS -o /dev/null -X POST "$IMAGE_SPACE_URL/api/clip/reload" || true
+  curl -sS -o /dev/null -X POST "$IMAGE_SPACE_URL/api/meta/reload" || true
+}
+
+staging_dest() {
+  local src=$1
+  local staging=$2
+  local base dest n marker prev
+  base=$(basename "$src")
+  dest="$staging/$base"
+  marker="$dest/.imagecat-source"
+  if [ -d "$dest" ] && [ -f "$marker" ]; then
+    prev=$(cat "$marker")
+    if [ "$prev" = "$src" ]; then
+      printf '%s\n' "$dest"
+      return 0
+    fi
+  elif [ ! -e "$dest" ]; then
+    printf '%s\n' "$dest"
+    return 0
+  fi
+  n=2
+  while [ -e "$staging/${base}-${n}" ]; do
+    marker="$staging/${base}-${n}/.imagecat-source"
+    if [ -f "$marker" ] && [ "$(cat "$marker")" = "$src" ]; then
+      printf '%s\n' "$staging/${base}-${n}"
+      return 0
+    fi
+    n=$((n + 1))
+  done
+  printf '%s\n' "$staging/${base}-${n}"
+}
+
+cmd_index() {
+  local no_wait=false
+  local dirs=()
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --no-wait) no_wait=true; shift ;;
+      -*)
+        echo "Unrecognized index option: '$1'"
+        print_help
+        exit 1
+        ;;
+      *) dirs+=("$1"); shift ;;
+    esac
+  done
+  if [ ${#dirs[@]} -eq 0 ]; then
+    echo "Expected at least one directory for 'index'."
+    print_help
+    exit 1
+  fi
+  check_services_running
+  if any_busy; then
+    echo "An ImageCat ingest is already running. Wait for it, or see:"
+    echo "  $IMAGECAT_HOME/bin/imagecat status"
+    exit 1
+  fi
+
+  local staging="$IMAGECAT_HOME/data/staging/images"
+  mkdir -p "$staging"
+  local list="$IMAGECAT_HOME/data/staging/image-list.txt"
+  : >"$list"
+
+  local dir src dest count
+  for dir in "${dirs[@]}"; do
+    if [ ! -d "$dir" ]; then
+      echo "Not a directory: $dir"
+      exit 1
+    fi
+    src=$(cd "$dir" && pwd)
+    dest=$(staging_dest "$src" "$staging")
+    mkdir -p "$dest"
+    echo "Staging $src -> $dest"
+    # Nested paths kept so duplicate Pic 1.jpg names survive. JPGs only.
+    rsync -a -m \
+      --include='*/' \
+      --include='*.jpg' --include='*.jpeg' --include='*.JPG' --include='*.JPEG' \
+      --exclude='*' \
+      "$src"/ "$dest"/ >>"$LOG" 2>&1
+    printf '%s\n' "$src" >"$dest/.imagecat-source"
+    count=$(find "$dest" -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) | wc -l | tr -d ' ')
+    echo "  $count JPG(s)"
+    find "$dest" -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) | sort >>"$list"
+  done
+
+  local n
+  n=$(grep -c . "$list" || true)
+  if [ "${n:-0}" -eq 0 ]; then
+    echo "No JPG files under: ${dirs[*]}"
+    exit 1
+  fi
+  echo "Wrote $n paths to $list"
+
+  local before
+  before=$(pcs_python ids)
+
+  echo "Submitting chunker"
+  "$IMAGECAT_HOME/bin/chunker" "$list" >>"$LOG" 2>&1
+  echo "IngestInPlace will OCR, score Jaccard, then CLIP / fg/bg."
+  print_ui_info
+
+  if [ "$no_wait" = "true" ]; then
+    echo "Submitted. Watch OPSUI, or: $IMAGECAT_HOME/bin/imagecat status"
+    return 0
+  fi
+
+  echo "Waiting for ingest to finish (Ctrl-C leaves it running)..."
+  local rc=1 empty=0
+  while true; do
+    set +e
+    line=$(pcs_python wait "$before")
+    rc=$?
+    set -e
+    [ -n "$line" ] && echo "  $line"
+    if [ "$rc" -eq 0 ]; then
+      echo "Ingest finished."
+      cmd_status
+      print_ui_info
+      return 0
+    fi
+    if [ "$rc" -eq 2 ]; then
+      echo "Ingest failed. See $OPSUI_URL and $LOG"
+      exit 1
+    fi
+    if [ "$rc" -eq 3 ]; then
+      empty=$((empty + 1))
+      if [ "$empty" -ge 8 ]; then
+        echo "Chunker finished but IngestInPlace never started."
+        echo "See $OPSUI_URL and $LOG"
+        exit 1
+      fi
+    else
+      empty=0
+    fi
+    sleep 15
+  done
+}
+
+cmd_reset() {
+  local yes=false lenses=false
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --yes|-y) yes=true; shift ;;
+      --lenses) lenses=true; shift ;;
+      -*)
+        echo "Unrecognized reset option: '$1'"
+        print_help
+        exit 1
+        ;;
+      *)
+        echo "reset takes no directory arguments."
+        print_help
+        exit 1
+        ;;
+    esac
+  done
+  check_services_running
+  if any_busy; then
+    echo "An ingest is still running. Wait for it to finish before reset."
+    echo "The workflow manager will also refuse --clearInstances while something is executing."
+    pcs_python dump || true
+    exit 1
+  fi
+  if [ "$yes" != "true" ]; then
+    echo "This empties Solr (imagecat, oodt-fm), jobs, archive, and CLIP/fg/bg/meta indexes."
+    echo "Staging stays. Lenses stay unless --lenses."
+    printf "Continue? [yN] "
+    read -r yn
+    case "$yn" in
+      [Yy]*) ;;
+      *) echo "Reset cancelled."; exit 0 ;;
+    esac
+  fi
+
+  clear_workflow_instances
+  solr_delete_all imagecat
+  solr_delete_all oodt-fm
+  echo "rm -rf $IMAGECAT_HOME/data/archive/*"
+  rm -rf "$IMAGECAT_HOME/data/archive/"*
+  echo "rm -rf $IMAGECAT_HOME/data/jobs/*"
+  rm -rf "$IMAGECAT_HOME/data/jobs/"*
+  local d
+  for d in clip fg bg thumbs meta; do
+    mkdir -p "$IMAGECAT_HOME/data/imagespace/$d"
+    rm -rf "$IMAGECAT_HOME/data/imagespace/$d/"*
+  done
+  if [ "$lenses" = "true" ]; then
+    echo "Removing saved lenses"
+    mkdir -p "$IMAGECAT_HOME/data/imagespace/lenses"
+    rm -rf "$IMAGECAT_HOME/data/imagespace/lenses/"*
+  fi
+  mkdir -p "$IMAGECAT_HOME/data/imagespace/lenses"
+  reload_imagespace
+  echo "Reset complete. Staging is still at $IMAGECAT_HOME/data/staging/"
+  echo "Index again with: $IMAGECAT_HOME/bin/imagecat index <dir> [dir...]"
+}
+
+cmd_status() {
+  echo "ImageCat  $IMAGECAT_HOME"
+  echo "  File Manager  $FILEMGR_URL"
+  echo "  Workflow      $WORKFLOW_URL"
+  echo "  Resource      $RESMGR_URL"
+  local fm wm rm_p solr_p img tc
+  fm=$(port_open "$FILEMGR_PORT" && echo up || echo down)
+  wm=$(port_open "$WORKFLOW_PORT" && echo up || echo down)
+  rm_p=$(port_open "$RESMGR_PORT" && echo up || echo down)
+  solr_p=$(port_open "$SOLR_PORT" && echo up || echo down)
+  img=$(port_open "$IMAGESPACE_PORT" && echo up || echo down)
+  tc=$(port_open "$TOMCAT_PORT" && echo up || echo down)
+  echo "  ports         FM $fm  WM $wm  RM $rm_p  Tomcat $tc  Solr $solr_p  ImageSpace $img"
+
+  if port_open "$SOLR_PORT"; then
+    "$PYTHON" - "$SOLR_BASE" <<'PY' || true
+import json, sys, urllib.request
+base = sys.argv[1]
+for core in ("imagecat", "oodt-fm"):
+    try:
+        with urllib.request.urlopen(base + "/" + core + "/select?q=*:*&rows=0", timeout=10) as r:
+            n = json.load(r)["response"]["numFound"]
+        print("  Solr %-10s %s" % (core, n))
+    except Exception as e:
+        print("  Solr %-10s (%s)" % (core, e))
+PY
+  fi
+  if port_open "$IMAGESPACE_PORT"; then
+    "$PYTHON" - "$IMAGE_SPACE_URL" <<'PY' || true
+import json, sys, urllib.request
+try:
+    with urllib.request.urlopen(sys.argv[1] + "/api/health", timeout=10) as r:
+        h = json.load(r)
+except Exception as e:
+    print("  ImageSpace    (%s)" % e)
+    sys.exit(0)
+caps = h.get("capabilities") or {}
+print("  ImageSpace    numFound=%s  search=%s similar=%s lens=%s fgbg=%s meta=%s" % (
+    h.get("numFound"), caps.get("search"), caps.get("similar"),
+    caps.get("lens"), caps.get("fgbg"), caps.get("meta")))
+clip = h.get("clip") or {}
+if clip:
+    print("  CLIP          count=%s model=%s" % (clip.get("count"), clip.get("model")))
+PY
+    if [ -d "$IMAGECAT_HOME/data/imagespace/lenses" ]; then
+      local nlen
+      nlen=$(find "$IMAGECAT_HOME/data/imagespace/lenses" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')
+      echo "  Lenses        $nlen saved"
+    fi
+  fi
+  if port_open "$TOMCAT_PORT"; then
+    echo "  instances"
+    pcs_python dump | sed 's/^/    /' || true
+  fi
+}
+
+cmd_setup() {
+  exec "$IMAGECAT_HOME/bin/imagecat-setup" "$@"
+}
+
+cmd_check() {
+  check_services_running
+  exec "$IMAGECAT_HOME/bin/check_failed" "$@"
+}
+
+cmd_start() {
+  exec "$IMAGECAT_HOME/bin/oodt" start
+}
+
+cmd_stop() {
+  exec "$IMAGECAT_HOME/bin/oodt" stop
+}
+
+if [ $# -lt 1 ]; then
+  print_help
+  exit 1
+fi
+
+case "$1" in
+  index) shift; cmd_index "$@" ;;
+  reset) shift; cmd_reset "$@" ;;
+  status) shift; cmd_status "$@" ;;
+  setup) shift; cmd_setup "$@" ;;
+  check) shift; cmd_check "$@" ;;
+  start) shift; cmd_start "$@" ;;
+  stop) shift; cmd_stop "$@" ;;
+  help|-h|--help) print_help ;;
+  *)
+    echo "Unknown command: $1"
+    print_help
+    exit 1
+    ;;
+esac

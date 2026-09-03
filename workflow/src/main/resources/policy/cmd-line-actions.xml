@@ -27,6 +27,9 @@
     <bean id="dynWorkflow" class="org.apache.oodt.cas.workflow.cli.action.DynWorkflowCliAction">
     <property name="description" value="Creates a workflow using the given tasks and then executes it" />
   </bean>
+  <bean id="clearInstances" class="org.apache.oodt.cas.workflow.cli.action.ClearWorkflowInstancesCliAction">
+    <property name="description" value="Removes every workflow instance the manager holds. Requires --force" />
+  </bean>
   <bean id="getWorkflowInsts" class="org.apache.oodt.cas.workflow.cli.action.GetWorkflowInstsCliAction">
     <property name="description" value="List all workflow instances" />
   </bean>
