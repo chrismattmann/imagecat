@@ -69,7 +69,7 @@ Usage: imagecat <command>
                          Lenses stay unless --lenses. --yes skips the prompt.
   status                 Solr count, ImageSpace capabilities, running task
   setup                  Create .venv and build the ImageSpace UI
-  check                  Look for failed ingestions
+  check                  Compare chunk lists to Solr; print what is still out
   start | stop           Start or stop this ImageCat (not DRAT)
   help
 
@@ -183,6 +183,32 @@ if cmd == "wait":
     if new and not busy:
         # Chunker finished and ingest has not appeared yet.
         sys.exit(3)
+    sys.exit(1)
+
+if cmd == "waittask":
+    want = sys.argv[5] if len(sys.argv) > 5 else "CheckFailed"
+    new = [i for i in rows if i.get("id") not in before]
+    failed = [i for i in new if str(i.get("status", "")).upper() in ("FAILURE", "FAILED", "CRASHED")]
+    busy = [i for i in new if str(i.get("status", "")).upper() in BUSY]
+    done = [i for i in new if i.get("currentTaskName") == want
+            and str(i.get("status", "")).upper() == "FINISHED"]
+    if not new:
+        print("waiting for %s..." % want)
+        sys.exit(1)
+    progs = progress()
+    summary = " | ".join(
+        "%s %s %s" % (i.get("status"), i.get("workflowName"), i.get("currentTaskName") or "")
+        for i in new[:6]
+    )
+    if progs:
+        summary = summary + " | " + "; ".join(progs)
+    print(summary)
+    if failed:
+        sys.exit(2)
+    if busy:
+        sys.exit(1)
+    if done:
+        sys.exit(0)
     sys.exit(1)
 
 # cmd == dump
@@ -495,7 +521,63 @@ cmd_setup() {
 
 cmd_check() {
   check_services_running
-  exec "$IMAGECAT_HOME/bin/check_failed" "$@"
+  local before
+  before=$(pcs_python ids)
+  echo "Comparing ChunkList paths to Solr imagecat..."
+  if [ $# -ge 1 ]; then
+    "$IMAGECAT_HOME/workflow/bin/wmgr-client" --url "$WORKFLOW_URL" \
+      --operation --dynWorkflow --taskIds urn:imagecat:CheckFailedTask \
+      --metaData --key ChunkStart "$1" >>"$LOG" 2>&1
+  else
+    "$IMAGECAT_HOME/workflow/bin/wmgr-client" --url "$WORKFLOW_URL" \
+      --operation --dynWorkflow --taskIds urn:imagecat:CheckFailedTask \
+      >>"$LOG" 2>&1
+  fi
+
+  local rc=1
+  while true; do
+    set +e
+    line=$(pcs_python waittask "$before" CheckFailed)
+    rc=$?
+    set -e
+    [ -n "$line" ] && echo "  $line"
+    if [ "$rc" -eq 0 ]; then
+      break
+    fi
+    if [ "$rc" -eq 2 ]; then
+      echo "CheckFailed failed. See $OPSUI_URL and $LOG"
+      exit 1
+    fi
+    sleep 2
+  done
+
+  local job
+  job=$(ls -td "$IMAGECAT_HOME/data/jobs/check_failed"/*/ 2>/dev/null | head -1 || true)
+  job=${job%/}
+  if [ -z "$job" ]; then
+    echo "CheckFinished, but no job dir under data/jobs/check_failed/"
+    exit 1
+  fi
+  echo "Job  $job"
+  local logf
+  logf=$(ls -t "$job"/logs/CheckFailed.*.log 2>/dev/null | head -1 || true)
+  if [ -n "$logf" ]; then
+    echo "Log  $logf"
+    grep -E 'Num Missed|Chunk File|Output File' "$logf" | sed 's/^OUTPUT: //; s/^INFO: OUTPUT: //' | sed 's/^/  /'
+  fi
+  local missed
+  missed=$(find "$job/output" -name '*_missed.txt' -type f 2>/dev/null || true)
+  if [ -z "$missed" ]; then
+    echo "Nothing missing. Solr has every path in the chunk lists (no *_missed.txt written)."
+    return 0
+  fi
+  echo "Missed paths:"
+  local f n
+  for f in $missed; do
+    n=$(grep -c . "$f" || true)
+    echo "  $f  ($n)"
+  done
+  echo "Those lists ingest like any other chunk once they land as ChunkList products."
 }
 
 cmd_start() {
