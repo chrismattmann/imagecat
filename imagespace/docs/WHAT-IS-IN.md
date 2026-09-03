@@ -17,7 +17,7 @@ it and shows the pictures.
 ## Throw out
 
 - Girder 1.x, Mongo, Jade / Backbone / Grunt
-- Kitware SMQTK (CaffeNet, FLANN, libSVM, IQR Flask)
+- Kitware SMQTK (CaffeNet, FLANN, libSVM, Flask ranker)
 - CMU Caffe fg/bg + ScalableLSH
 - OpenCV histogram / Tangelo FLANN server
 - Docker-as-install
@@ -31,7 +31,7 @@ it and shows the pictures.
 | Solr 4 `imagecatdev` | ImageCat Solr 10 `imagecat` |
 | Caffe AlexNet FC7 | HuggingFace CLIP (`openai/clip-vit-base-patch32`, Torch) |
 | FLANN / ITQ-LSH | Cosine over L2-normalized CLIP vectors (numpy; FAISS when the corpus is huge) |
-| SMQTK IQR + libSVM | Lens: tiny Keras head on CLIP vectors, saved under `data/imagespace/lenses/` |
+| SMQTK libSVM ranker | Lens: tiny Keras head on CLIP vectors, saved under `data/imagespace/lenses/` |
 | CMU Caffe segmentation | U2-Net (`rembg`) fg/bg CLIP indexes |
 | Girder Private folder | `localStorage` tray |
 

@@ -9,7 +9,7 @@ except Exception:
 
 
 @unittest.skipUnless(KERAS, "Keras not installed; phase 1 does not require it")
-class IqrHeadTests(unittest.TestCase):
+class LensHeadTests(unittest.TestCase):
     def test_output_shape(self):
         import numpy as np
 

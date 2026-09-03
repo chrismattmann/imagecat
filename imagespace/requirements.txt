@@ -9,4 +9,4 @@ Pillow>=10.0.0
 # torch
 # transformers>=4.40.0,<5
 # Pillow>=10.0.0
-# Lens: pip install -r requirements-iqr.txt (Python 3.9+)
+# Lens: pip install -r requirements-lens.txt (Python 3.9+)

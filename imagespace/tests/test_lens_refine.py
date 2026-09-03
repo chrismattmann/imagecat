@@ -9,7 +9,7 @@ from server.similar import ClipIndex, save_index
 
 
 @unittest.skipUnless(keras_available(), "Keras not installed")
-class IqrRefineTests(unittest.TestCase):
+class LensRefineTests(unittest.TestCase):
     def test_positives_rank_above_negatives(self):
         ids = ["pos.jpg", "neg.jpg", "other.jpg"]
         vectors = np.array(

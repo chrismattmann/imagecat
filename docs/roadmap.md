@@ -10,8 +10,8 @@ default OCR. ImageSpace lives in this tarball, not a second GitHub repo.
 ## Where we started
 
 RADiX ingest (chunk → OCR/Tika → Solr) and OPSUI for jobs. Similarity,
-fg/bg, IQR, and “watch it in OPSUI” were missing or bolted on with a
-local `IMAGE_SPACE_HOME`. ImageSpace was a second repo.
+fg/bg, a saved ranker, and “watch it in OPSUI” were missing or bolted on
+with a local `IMAGE_SPACE_HOME`. ImageSpace was a second repo.
 
 ## Slice / where
 
@@ -25,13 +25,13 @@ local `IMAGE_SPACE_HOME`. ImageSpace was a second repo.
 | Card actions stay on the tile | ImageSpace #7 |
 | IndexImageSpace + IndexImageSpaceFgBg on IngestInPlace | ImageCat #50–#54 |
 | ImageSpace in the ImageCat tarball (`oodt start` → :8090) | ImageCat #55 |
-| Keras IQR in the distro; README ImageSpace section | ImageCat #56 |
+| Keras Lens head in the distro; README ImageSpace section | ImageCat #56 |
 | MEMEX credit (no second-tree pointer) | ImageCat #57 |
 | PGE Peek, progress bar, W1 `PGE EXEC` stamp, wall clock | Mnemosyne #262, #265, #270, #256 |
 | Tika metadata Jaccard + Keys/Vals | ImageCat #61, #62 |
 | Paddle/RapidOCR default; `text_ocr` URL split | ImageCat #63 |
 | Tray × to drop a saved thumb | ImageCat #64 |
-| Lens (named Keras rankers; was IQR) | ImageCat #69 |
+| Lens (named Keras rankers on disk) | ImageCat #69 |
 | Workflow/FM IDs `urn:imagecat:` (was `urn:memex:`) | ImageCat #67 |
 | Wiki Installation / How to Run / Interacting | [imagecat wiki](https://github.com/chrismattmann/imagecat/wiki) |
 
