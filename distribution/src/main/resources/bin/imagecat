@@ -563,7 +563,13 @@ cmd_check() {
   logf=$(ls -t "$job"/logs/CheckFailed.*.log 2>/dev/null | head -1 || true)
   if [ -n "$logf" ]; then
     echo "Log  $logf"
-    grep -E 'Num Missed|Chunk File|Output File' "$logf" | sed 's/^OUTPUT: //; s/^INFO: OUTPUT: //' | sed 's/^/  /'
+    # LoggerOutputStream.flush() is unsynchronized: the gobbler flush and
+    # close() can log the same stdout block twice. One pass over the chunk
+    # list; show it once.
+    grep -E 'Num Missed|Chunk File|Output File' "$logf" \
+      | sed 's/^OUTPUT: //; s/^INFO: OUTPUT: //' \
+      | awk '!seen[$0]++' \
+      | sed 's/^/  /'
   fi
   local missed
   missed=$(find "$job/output" -name '*_missed.txt' -type f 2>/dev/null || true)
