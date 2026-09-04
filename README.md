@@ -22,8 +22,11 @@ its own process (not a Tomcat war) with two cores: `imagecat` (OCR text) and
 search OCR and Tika fields, browse the image grid, CLIP similar, foreground /
 background similar (U2-Net / rembg), and Lens (a tiny Keras head fitted at
 Refine time on CLIP vectors; save by name and apply later). Saved thumbs sit in a tray; hover (or tap) the
-× to drop one. `bin/oodt start` brings it up on port 8090 the way it starts
-Solr — FastAPI, not a WAR. CLIP / fg / bg indexes live under
+× to drop one. `bin/imagecat start` brings it up on port 8090 the way it starts
+Solr — FastAPI, not a WAR. `bin/imagecat index <dir> [dir...]` copies
+JPGs (nested paths kept), then OCR / Jaccard / CLIP / fg/bg.
+`bin/imagecat reset` empties the catalog; staging and lenses stay
+unless `--lenses`. CLIP / fg / bg indexes live under
 `$IMAGECAT_HOME/data/imagespace/`. This is new work inspired by NASA JPL's
 efforts on the DARPA MEMEX program.
 
@@ -41,8 +44,9 @@ mvn -B package
 tar xzf distribution/target/oodt-distribution-0.1-bin.tar.gz
 cd <unpacked>
 export IMAGECAT_HOME=$PWD
-bin/imagecat-setup          # .venv (OCR, CLIP, Keras Lens) + Vue build
-bin/oodt start              # File Manager, Workflow, Resource, Tomcat 9, Solr 10, ImageSpace
+bin/imagecat setup          # .venv (OCR, CLIP, Keras Lens) + Vue build
+bin/imagecat start          # File Manager, Workflow, Resource, Tomcat 9, Solr 10, ImageSpace
+bin/imagecat index /path/to/jpgs [/more/dirs...]
 ```
 
 - OPSUI: `http://localhost:8080/opsui/`
@@ -86,12 +90,13 @@ and Refine fits a small Keras head (Torch backend) on the CLIP vectors
 you already have. Save as… keeps that head on disk; Apply scores the
 current catalog with it.
 
-`bin/imagecat-setup` installs Keras with the rest of the Python env
+`bin/imagecat setup` installs Keras with the rest of the Python env
 and builds the Vue UI. Vite on 5173 is optional for UI development.
 
 See the wiki for more on installing and running ImageCat:
 * [Installation instructions](https://github.com/chrismattmann/imagecat/wiki/Installation)
 * [How to run](https://github.com/chrismattmann/imagecat/wiki/How-to-Run)
+* [Re-running](https://github.com/chrismattmann/imagecat/wiki/Re-running)
 * [How to interact with ImageCat](https://github.com/chrismattmann/imagecat/wiki/Interacting-with-ImageCat)
 
 You can clone the wiki by running

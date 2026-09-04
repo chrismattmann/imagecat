@@ -3,8 +3,8 @@
 ImageCat is the ingest pipeline. ImageSpace is the analyst desktop (now
 in this tarball). OPSUI (Mnemosyne) is how we watch the jobs.
 
-The product path is in. Wiki Installation / How to Run match `bin/imagecat-setup`
-plus `bin/oodt start` plus ImageSpace on **8090**. Paddle/RapidOCR is the
+The product path is in. Wiki Installation / How to Run match `bin/imagecat setup`
+plus `bin/imagecat start` / `index` / `reset`. Paddle/RapidOCR is the
 default OCR. ImageSpace lives in this tarball, not a second GitHub repo.
 
 ## Where we started
@@ -37,8 +37,7 @@ with a local `IMAGE_SPACE_HOME`. ImageSpace was a second repo.
 
 ## Next
 
-1. **One clean unpack** — rebuild the tarball and start from it so a live tree is not a pile of overlays
-2. **Leave settled-condition unwired** until IngestInPlace is fanned out across chunks; sequential CLIP already waits. A fan-out would want a Solr settle, not FM `ChunkList`
+1. **Leave settled-condition unwired** until IngestInPlace is fanned out across chunks; sequential CLIP already waits. A fan-out would want a Solr settle, not FM `ChunkList`
 
 ~~Archive `chrismattmann/image_space`~~ **done** (remote deleted; product is `imagespace/` in this repo).
 

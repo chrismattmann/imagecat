@@ -47,6 +47,8 @@
                 <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
                     p:option-ref="dynWorkflow" p:required="false" />
                 <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
+                    p:option-ref="clearInstances" p:required="false" />
+                <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
                     p:option-ref="getWorkflowInsts" p:required="false" />
                 <bean class="org.apache.oodt.cas.cli.option.GroupSubOption"
                     p:option-ref="getWorkflows" p:required="false" />
@@ -122,6 +124,25 @@
             <list>
                 <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
                     p:actionName="dynWorkflow" p:relation="REQUIRED" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="clearInstances" class="org.apache.oodt.cas.cli.option.ActionCmdLineOption"
+        p:isSubOption="true">
+        <property name="shortOption" value="ci" />
+        <property name="longOption" value="clearInstances" />
+        <property name="description" value="Triggers clearInstances Action" />
+        <property name="hasArgs" value="false" />
+        <property name="staticArgs">
+            <list>
+                <value>clearInstances</value>
+            </list>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="clearInstances" p:relation="REQUIRED" />
             </list>
         </property>
     </bean>
@@ -678,6 +699,33 @@
         </property>
         <property name="handler">
             <bean class="org.apache.oodt.cas.cli.option.handler.ApplyToActionHandler" />
+        </property>
+    </bean>
+
+    <!--
+        Required by clearInstances, and required rather than optional on
+        purpose: clearing removes every record of every run, so it is not
+        something to arrive at by leaving an argument off.
+    -->
+    <bean id="force" class="org.apache.oodt.cas.cli.option.AdvancedCmdLineOption">
+        <property name="shortOption" value="f" />
+        <property name="longOption" value="force" />
+        <property name="description" value="Confirms an operation that discards data" />
+        <property name="hasArgs" value="false" />
+        <property name="handler">
+            <bean class="org.apache.oodt.cas.cli.option.handler.SetJavaPropertiesHandler">
+                <property name="propertyNames">
+                    <list>
+                        <value>org.apache.oodt.cas.workflow.cli.force</value>
+                    </list>
+                </property>
+            </bean>
+        </property>
+        <property name="requirementRules">
+            <list>
+                <bean class="org.apache.oodt.cas.cli.option.require.ActionDependencyRule"
+                    p:actionName="clearInstances" p:relation="REQUIRED" />
+            </list>
         </property>
     </bean>
 </beans>

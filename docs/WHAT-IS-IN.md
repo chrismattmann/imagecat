@@ -12,7 +12,8 @@ into Solr, File Manager catalogs the files. The stack under it is new.
 - Tika MIME / EXIF on the Solr `imagecat` core (`imagecat-ocr.py`), the same place Solr Cell used to put it. File Manager catalogs ChunkList path files, not the images.
 - FLAG: after IngestInPlace, metadata Jaccard, ImageSpace CLIP/FAISS, and fg/bg are incremented (`urn:imagecat:IndexMetadataJaccard`, `urn:imagecat:IndexImageSpace`, `urn:imagecat:IndexImageSpaceFgBg`).
 - Vue OPSUI overlay of `ai.mattmann.mnemosyne:pcs-opsui`
-- ImageSpace analyst UI in this repo (`imagespace/`), started by `bin/oodt start` on port 8090. Indexes under `$OODT_HOME/data/imagespace/`. Inspired by NASA JPL's work on the DARPA MEMEX program.
+- ImageSpace analyst UI in this repo (`imagespace/`), started by `bin/imagecat start` on port 8090. Indexes under `$OODT_HOME/data/imagespace/`. Inspired by NASA JPL's work on the DARPA MEMEX program.
+- `bin/imagecat` — `index` / `reset` / `status` / `setup` / `start` / `stop`, same shape as `bin/drat`
 
 ## Throw out
 
