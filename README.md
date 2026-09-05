@@ -2,9 +2,11 @@ ImageCatalog
 ============
 
 [![Build](https://github.com/chrismattmann/imagecat/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/chrismattmann/imagecat/actions/workflows/build.yml)
+[![Site](https://github.com/chrismattmann/imagecat/actions/workflows/site.yml/badge.svg?branch=master)](https://github.com/chrismattmann/imagecat/actions/workflows/site.yml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![JDK](https://img.shields.io/badge/JDK-21-orange.svg)](https://adoptium.net/)
 [![Powered by Mnemosyne](https://img.shields.io/badge/powered%20by-Mnemosyne%201.11.0-6E4B8E.svg)](https://github.com/chrismattmann/mnemosyne)
+[![Website](https://img.shields.io/badge/website-chrismattmann.github.io%2Fimagecat-informational.svg)](https://chrismattmann.github.io/imagecat/)
 [![Wiki](https://img.shields.io/badge/wiki-github-informational.svg)](https://github.com/chrismattmann/imagecat/wiki)
 
 <img align="left" width="100" height="80" src="https://github.com/chrismattmann/imagecat/raw/master/ImageCat.png">
@@ -99,6 +101,8 @@ current catalog with it.
 
 `bin/imagecat setup` installs Keras with the rest of the Python env
 and builds the Vue UI. Vite on 5173 is optional for UI development.
+
+Visit the site: [chrismattmann.github.io/imagecat](https://chrismattmann.github.io/imagecat/).
 
 See the wiki for more on installing and running ImageCat:
 * [Installation instructions](https://github.com/chrismattmann/imagecat/wiki/Installation)
