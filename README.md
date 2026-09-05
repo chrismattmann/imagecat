@@ -2,7 +2,6 @@ ImageCatalog
 ============
 
 [![Build](https://github.com/chrismattmann/imagecat/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/chrismattmann/imagecat/actions/workflows/build.yml)
-[![Site](https://github.com/chrismattmann/imagecat/actions/workflows/site.yml/badge.svg?branch=master)](https://github.com/chrismattmann/imagecat/actions/workflows/site.yml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 [![JDK](https://img.shields.io/badge/JDK-21-orange.svg)](https://adoptium.net/)
 [![Powered by Mnemosyne](https://img.shields.io/badge/powered%20by-Mnemosyne%201.11.0-6E4B8E.svg)](https://github.com/chrismattmann/mnemosyne)
