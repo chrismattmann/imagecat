@@ -9,7 +9,7 @@ ImageCatalog
 [![Website](https://img.shields.io/badge/website-chrismattmann.github.io%2Fimagecat-informational.svg)](https://chrismattmann.github.io/imagecat/)
 [![Wiki](https://img.shields.io/badge/wiki-github-informational.svg)](https://github.com/chrismattmann/imagecat/wiki)
 
-<img align="left" width="100" height="80" src="https://github.com/chrismattmann/imagecat/raw/master/ImageCat.png">
+<img align="left" width="100" height="100" src="https://github.com/chrismattmann/imagecat/raw/master/ImageCat.png">
 
 This is a [RADiX](https://cwiki.apache.org/confluence/display/OODT/RADiX+Powered+By+OODT)
 application on [Mnemosyne](https://github.com/chrismattmann/mnemosyne) 1.11.0
