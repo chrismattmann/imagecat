@@ -30,6 +30,7 @@ _BIN = Path(__file__).resolve().parent.parent
 if str(_BIN) not in sys.path:
     sys.path.insert(0, str(_BIN))
 from progress import write_progress  # noqa: E402
+from solr_url import require_resolved  # noqa: E402
 
 
 def compute_sha(file_path):
@@ -86,6 +87,7 @@ def main(argv):
         print(usage)
         sys.exit()
 
+    solr_url = require_resolved(solr_url, "sha1sum.py")
     print("Solr URL    : [%s]" % solr_url)
     iterate_docs(solr_url)
 

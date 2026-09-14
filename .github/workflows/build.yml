@@ -18,7 +18,7 @@ jobs:
           python-version: '3.12'
 
       - name: Test
-        run: python -m unittest tests.test_pge_python -v
+        run: python -m unittest tests.test_pge_python tests.test_solr_url -v
 
   imagespace-web:
     name: ImageSpace Vue
@@ -90,10 +90,19 @@ jobs:
           tar tzf $TARBALL | grep -q 'solr/imagecat/conf/schema.xml'
           tar tzf $TARBALL | grep -q 'solr/oodt-fm/conf/schema.xml'
           tar tzf $TARBALL | grep -q 'pge/bin/imagecat-ocr/imagecat-ocr.py'
+          tar tzf $TARBALL | grep -q 'pge/bin/solr_url.py'
           tar tzf $TARBALL | grep -q 'solr-server/bin/solr'
           tar tzf $TARBALL | grep -q 'bin/imagecat$'
           tar tvzf $TARBALL | grep -E 'tomcat/bin/catalina.sh' | grep -q '^-rwx'
           tar tvzf $TARBALL | grep -E 'bin/imagecat$' | grep -q '^-rwx'
+
+          # One port, one set of URLs: SOLR_PORT in bin/setenv.sh. A literal
+          # here is how a run indexes nothing and still reports success.
+          # Assert the files are present first, or an empty grep passes.
+          tar tzf $TARBALL | grep -q 'workflow/policy/tasks.xml'
+          tar tzf $TARBALL | grep -q 'filemgr/etc/filemgr.properties'
+          ! tar xzOf $TARBALL --wildcards 'workflow/policy/tasks.xml' | grep -q '8983'
+          ! tar xzOf $TARBALL --wildcards 'filemgr/etc/filemgr.properties' | grep -q '8983'
 
           ! tar tzf $TARBALL | grep -q 'solr4/'
           ! tar tzf $TARBALL | grep -q 'tomcat7/'

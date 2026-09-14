@@ -20,7 +20,9 @@
 set -euo pipefail
 
 CHUNK_FILE=${1:?Usage: solrcell_ingest <chunk file>}
-SOLR_URL=${SOLR_URL:-http://localhost:8983/solr/imagecat}
+# Same chain the PGE scripts use, so a port set once in bin/setenv.sh
+# reaches this shim too.
+SOLR_URL=${SOLR_URL:-${SolrUrl:-${IMAGE_SPACE_SOLR:-http://${SOLR_HOST:-localhost}:${SOLR_PORT:-8983}/solr/imagecat}}}
 OCR_MODEL=${OCR_MODEL:-trocr}
 OCR_PY=${PGE_ROOT:-${OODT_HOME:?}/pge}/bin/imagecat-ocr/imagecat-ocr.py
 
