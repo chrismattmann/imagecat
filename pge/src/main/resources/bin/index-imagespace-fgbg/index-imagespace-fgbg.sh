@@ -33,7 +33,19 @@ pick_python() {
   echo python3
 }
 
-SOLR_URL=${SolrUrl:-${IMAGE_SPACE_SOLR:-http://localhost:8983/solr/imagecat}}
+# SolrUrl arrives from workflow policy, which resolves [SOLR_URL] out of
+# the environment bin/setenv.sh exports. Every fallback below is worked
+# out from SOLR_PORT for the same reason: one port, one set of URLs.
+SOLR_URL=${SolrUrl:-${IMAGE_SPACE_SOLR:-http://${SOLR_HOST:-localhost}:${SOLR_PORT:-8983}/solr/imagecat}}
+case "$SOLR_URL" in
+  *'['[A-Za-z_]*']'*)
+    # An unresolved placeholder, not a URL. Posting to it would index
+    # nothing while the task still reported success, so stop here.
+    echo "index-imagespace-fgbg: SolrUrl did not resolve: $SOLR_URL" >&2
+    echo "Set SOLR_PORT in bin/setenv.sh, or IMAGE_SPACE_SOLR in this shell." >&2
+    exit 1
+    ;;
+esac
 RELOAD=${IMAGE_SPACE_RELOAD_URL:-http://127.0.0.1:8090/api/clip/reload}
 PY=$(pick_python)
 

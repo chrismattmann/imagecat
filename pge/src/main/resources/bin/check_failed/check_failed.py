@@ -31,6 +31,7 @@ _BIN = Path(__file__).resolve().parent.parent
 if str(_BIN) not in sys.path:
     sys.path.insert(0, str(_BIN))
 from progress import write_progress  # noqa: E402
+from solr_url import require_resolved  # noqa: E402
 
 
 def check_image_file(filepath, client):
@@ -90,6 +91,8 @@ def main(argv):
     if chunk_file is None or solr_url is None or output_file is None:
         print(usage)
         sys.exit()
+
+    solr_url = require_resolved(solr_url, "check_failed.py")
 
     print("Chunk File  : [%s]" % chunk_file)
     print("Solr URL    : [%s]" % solr_url)

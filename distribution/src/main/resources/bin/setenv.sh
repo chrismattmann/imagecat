@@ -35,10 +35,26 @@ export PGE_ROOT=$IMAGECAT_HOME/pge
 export PCS_HOME=$IMAGECAT_HOME/pcs
 export FMPROD_HOME=$IMAGECAT_HOME/tomcat/webapps/fmprod/WEB-INF/classes/
 
+# Solr. The port is the only knob. Every Solr URL below is worked out from
+# it, and bin/oodt starts Solr on this same SOLR_PORT, so the server and the
+# things that post to it cannot disagree.
+#
+# They used to. Moving Solr to 8985 to dodge a port collision left the six
+# SolrUrl literals in workflow/policy/tasks.xml pointing at 8983 -- a closed
+# port. Nothing failed loudly: the chunker ran, the instances went COMPLETE,
+# OCR burned CPU, and the core stayed at zero documents.
+export SOLR_PORT=${SOLR_PORT:-8983}
+export SOLR_HOST=${SOLR_HOST:-localhost}
+export SOLR_BASE_URL=http://$SOLR_HOST:$SOLR_PORT/solr
+# The OCR/metadata core the PGEs post to. tasks.xml reads it as [SOLR_URL].
+export SOLR_URL=${SOLR_URL:-$SOLR_BASE_URL/imagecat}
+# The File Manager's Solr catalog core. filemgr.properties reads it the same way.
+export SOLR_FM_URL=${SOLR_FM_URL:-$SOLR_BASE_URL/oodt-fm}
+
 # ImageSpace lives in this tarball. CLIP/fg/bg ingest hooks use these.
 export IMAGE_SPACE_HOME=$IMAGECAT_HOME/imagespace
 export IMAGE_SPACE_DATA=$IMAGECAT_HOME/data/imagespace
-export IMAGE_SPACE_SOLR=http://localhost:8983/solr/imagecat
+export IMAGE_SPACE_SOLR=${IMAGE_SPACE_SOLR:-$SOLR_URL}
 export IMAGESPACE_PORT=8090
 if [ -x "$IMAGECAT_HOME/.venv/bin/python" ]; then
   export IMAGE_SPACE_PYTHON=$IMAGECAT_HOME/.venv/bin/python

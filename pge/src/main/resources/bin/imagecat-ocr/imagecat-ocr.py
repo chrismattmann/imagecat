@@ -37,6 +37,7 @@ _BIN = Path(__file__).resolve().parent.parent
 if str(_BIN) not in sys.path:
     sys.path.insert(0, str(_BIN))
 from progress import write_progress  # noqa: E402
+from solr_url import require_resolved  # noqa: E402
 
 
 TROCR_MODEL = "microsoft/trocr-base-printed"
@@ -411,6 +412,8 @@ def main(argv=None) -> int:
     )
     args = parser.parse_args(argv)
 
+    solr_url = require_resolved(args.solr_url, "imagecat-ocr.py")
+
     chunk = Path(args.chunk_file)
     if not chunk.is_file():
         print("Chunk file not found: %s" % chunk, file=sys.stderr)
@@ -418,7 +421,7 @@ def main(argv=None) -> int:
 
     paths = read_chunk(str(chunk))
     print("Chunk file : [%s]" % chunk)
-    print("Solr URL   : [%s]" % args.solr_url)
+    print("Solr URL   : [%s]" % solr_url)
     print("OCR model  : [%s]" % args.model)
     print("Images     : [%d]" % len(paths))
 
@@ -488,13 +491,13 @@ def main(argv=None) -> int:
         batch.append(doc)
         write_progress(i + 1, n, "ocr")
         if len(batch) >= args.commit_every:
-            index_docs(args.solr_url, batch)
+            index_docs(solr_url, batch)
             indexed += len(batch)
             print("Posted %d / %d" % (indexed, n))
             batch = []
 
     if batch:
-        index_docs(args.solr_url, batch)
+        index_docs(solr_url, batch)
         indexed += len(batch)
 
     write_progress(n, n, "ocr")
