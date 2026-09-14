@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import os
 import re
 import subprocess
@@ -160,14 +161,126 @@ def find_tika_app() -> Path | None:
     return None
 
 
-def tika_metadata(path: str, tika_app: Path | None) -> dict[str, str]:
-    if tika_app is None:
-        return {}
+# How many files go to one Tika process.
+#
+# Not one, which is what this used to do. A JVM that has parsed nothing yet
+# still has to load the jar, build the parser registry and the MIME detector,
+# and on this corpus that is about half a second before it looks at an image.
+# Paid once per file it is most of the cost of the stage; paid once per batch
+# it disappears. Measured on twenty 8MB JPEGs:
+#
+#   twenty JVMs, one file each   29.7s   1.48s per image
+#   one JVM, twenty files        18.8s   0.94s per image
+#
+# Bounded because the paths go on a command line and ARG_MAX is finite. Two
+# hundred paths of a few hundred bytes is far inside it on any platform, and
+# the amortisation is already flat by then.
+TIKA_BATCH = int(os.environ.get("IMAGECAT_TIKA_BATCH", "200"))
+
+
+def _java_bin() -> str:
     java = os.environ.get("JAVA_HOME", "")
-    java_bin = str(Path(java) / "bin" / "java") if java else "java"
+    return str(Path(java) / "bin" / "java") if java else "java"
+
+
+def parse_tika_json_stream(text: str) -> list[dict[str, str]]:
+    """Split `tika-app -j` output for several files into one dict per file.
+
+    Tika writes one JSON object per input with nothing between them, so this
+    is a stream of concatenated objects rather than a list. raw_decode walks
+    them in order.
+    """
+    decoder = json.JSONDecoder()
+    out: list[dict[str, str]] = []
+    index = 0
+    length = len(text)
+    while index < length:
+        while index < length and text[index].isspace():
+            index += 1
+        if index >= length:
+            break
+        try:
+            obj, index = decoder.raw_decode(text, index)
+        except ValueError:
+            break
+        out.append(obj if isinstance(obj, dict) else {})
+    return out
+
+
+def clean_tika_fields(raw: dict) -> dict[str, str]:
+    """The same filtering the line-oriented parser did, over parsed JSON."""
+    out = {}
+    for key, value in raw.items():
+        key = str(key).strip()
+        if not key or skip_tika_key(key):
+            continue
+        if isinstance(value, list):
+            value = value[0] if value else ""
+        value = str(value).strip()
+        if not value or len(value) > MAX_TIKA_VALUE:
+            continue
+        field = solr_field_name(key)
+        if field in ("id", "ocr_text", "ocr_model_s", "sha1sum_s_md", "_version_"):
+            continue
+        out[field] = value
+    return out
+
+
+def tika_metadata_batch(paths: list[str], tika_app: Path | None) -> list[dict[str, str]]:
+    """Metadata for several files from one Tika process, in the order given.
+
+    Tika emits its objects in argument order, and each carries resourceName,
+    so position is the mapping and the name is the check. When the two
+    disagree, or the batch comes back short, the batch is abandoned and its
+    files are read one at a time -- a wrong answer aligned to the wrong image
+    is worse than a slow one.
+    """
+    if tika_app is None or not paths:
+        return [{} for _ in paths]
     try:
         proc = subprocess.run(
-            [java_bin, "-jar", str(tika_app), "-m", path],
+            [_java_bin(), "-jar", str(tika_app), "-j"] + list(paths),
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=30 + 10 * len(paths),
+        )
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        print("Tika batch failed (%d files): %s" % (len(paths), exc), file=sys.stderr)
+        return [tika_metadata(p, tika_app) for p in paths]
+    if proc.returncode != 0:
+        print("Tika batch exit %s: %s"
+              % (proc.returncode, proc.stderr.strip()[:200]), file=sys.stderr)
+        return [tika_metadata(p, tika_app) for p in paths]
+
+    objects = parse_tika_json_stream(proc.stdout)
+    if len(objects) != len(paths):
+        # Short output means some file was skipped, and every object after
+        # that point belongs to a different image than the one it would be
+        # attached to.
+        print("Tika batch returned %d of %d; falling back to one at a time"
+              % (len(objects), len(paths)), file=sys.stderr)
+        return [tika_metadata(p, tika_app) for p in paths]
+
+    results = []
+    for path, obj in zip(paths, objects):
+        name = str(obj.get("resourceName", "")).strip('"')
+        if name and name != os.path.basename(path):
+            print("Tika batch out of order at %s (got %s); one at a time"
+                  % (os.path.basename(path), name), file=sys.stderr)
+            return [tika_metadata(p, tika_app) for p in paths]
+        results.append(clean_tika_fields(obj))
+    return results
+
+
+def tika_metadata(path: str, tika_app: Path | None) -> dict[str, str]:
+    """One file, one process. The fallback, and what the batch is measured
+    against."""
+    if tika_app is None:
+        return {}
+    try:
+        proc = subprocess.run(
+            [_java_bin(), "-jar", str(tika_app), "-m", path],
             check=False,
             capture_output=True,
             text=True,
@@ -318,6 +431,32 @@ def main(argv=None) -> int:
         print("Tika       : [%s]" % tika_app)
 
     ocr, hf_id = load_ocr(args.model)
+
+    # Tika runs ahead of the loop, a slice at a time, because its cost is per
+    # process and not per file. OCR still runs one image at a time: that cost
+    # is genuinely per image and there is nothing to amortise.
+    tika_cache: dict[str, dict[str, str]] = {}
+    tika_pending = [p for p in paths if Path(p).is_file()] if tika_app else []
+
+    def tika_for(path: str) -> dict[str, str]:
+        if tika_app is None:
+            return {}
+        if path in tika_cache:
+            return tika_cache.pop(path)
+        # The loop walks paths in order and the queue was built in that order,
+        # so the wanted file is at the front. Anything ahead of it was skipped
+        # by the loop -- unreadable, or not a file -- and is discarded rather
+        # than searched for, which keeps this O(1) per image instead of O(n).
+        while tika_pending and tika_pending[0] != path:
+            tika_pending.pop(0)
+        window = tika_pending[:TIKA_BATCH]
+        if not window:
+            return tika_metadata(path, tika_app)
+        for got, meta in zip(window, tika_metadata_batch(window, tika_app)):
+            tika_cache[got] = meta
+        del tika_pending[:len(window)]
+        return tika_cache.pop(path, {})
+
     batch = []
     indexed = 0
     failed = 0
@@ -345,7 +484,7 @@ def main(argv=None) -> int:
         if args.model == "donut":
             doc["caption"] = text
         if tika_app is not None:
-            doc.update(tika_metadata(path, tika_app))
+            doc.update(tika_for(path))
         batch.append(doc)
         write_progress(i + 1, n, "ocr")
         if len(batch) >= args.commit_every:

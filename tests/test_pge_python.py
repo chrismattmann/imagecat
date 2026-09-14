@@ -126,5 +126,81 @@ class TikaSolrMappingTests(unittest.TestCase):
         self.assertFalse(any("Halftoning" in k for k in parsed))
 
 
+class TikaBatchTests(unittest.TestCase):
+    """Tika costs about half a second per process before it reads an image.
+
+    Paid per file that is most of the stage; paid per batch it is nothing.
+    Measured on twenty 8MB JPEGs: 29.7s one at a time, 18.8s batched.
+    """
+
+    def test_stream_splits_concatenated_objects(self):
+        # tika-app -j writes one object per input with nothing between them,
+        # so the output is a stream rather than a list.
+        text = '{"resourceName":"a.jpg","tiff:Make":"Canon"}' \
+               '{"resourceName":"b.jpg","tiff:Make":"Nikon"}'
+        out = ocr.parse_tika_json_stream(text)
+        self.assertEqual(len(out), 2)
+        self.assertEqual(out[0]["resourceName"], "a.jpg")
+        self.assertEqual(out[1]["tiff:Make"], "Nikon")
+
+    def test_stream_tolerates_whitespace_and_newlines(self):
+        text = '\n{"resourceName":"a.jpg"}\n\n{"resourceName":"b.jpg"}\n'
+        self.assertEqual(len(ocr.parse_tika_json_stream(text)), 2)
+
+    def test_stream_stops_at_garbage_rather_than_raising(self):
+        # A truncated batch must not take the run down; the caller checks the
+        # count and falls back.
+        text = '{"resourceName":"a.jpg"}{"resourceName":'
+        self.assertEqual(len(ocr.parse_tika_json_stream(text)), 1)
+
+    def test_clean_applies_the_same_filters_as_the_line_parser(self):
+        raw = {
+            "Content-Type": "image/jpeg",
+            "tiff:Make": "Canon",
+            "ICC:Green TRC": "0.0, 0.0000763",
+            "Padding": "x",
+            "By-line": "Matteo Chinellato",
+        }
+        parsed = ocr.clean_tika_fields(raw)
+        self.assertEqual(parsed["content_type"], "image/jpeg")
+        self.assertEqual(parsed["tiff_Make"], "Canon")
+        self.assertEqual(parsed["By_line"], "Matteo Chinellato")
+        self.assertNotIn("Padding", parsed)
+        self.assertFalse(any(k.startswith("ICC") for k in parsed))
+
+    def test_clean_takes_the_first_of_a_multi_valued_field(self):
+        # JSON gives lists where the line format gave one line.
+        self.assertEqual(
+            ocr.clean_tika_fields({"tiff:Make": ["Canon", "Canon"]})["tiff_Make"],
+            "Canon")
+
+    def test_clean_drops_the_fields_that_would_collide_with_our_own(self):
+        raw = {"id": "x", "ocr_text": "y", "sha1sum_s_md": "z", "tiff:Make": "Canon"}
+        parsed = ocr.clean_tika_fields(raw)
+        self.assertEqual(list(parsed), ["tiff_Make"])
+
+    def test_a_json_caption_with_html_stays_one_field(self):
+        # The line parser split IPTC captions containing markup into invented
+        # fields -- B_Ref, Picture_by, Pictured -- and truncated the caption at
+        # the first newline. Parsed as JSON the caption survives whole.
+        caption = "Awards at 72nd Venice\n<B>Ref: SPL1123870</B><BR/>\nPicture by: Splash"
+        parsed = ocr.clean_tika_fields({"Caption/Abstract": caption})
+        self.assertEqual(len(parsed), 1)
+        self.assertNotIn("B_Ref", parsed)
+        self.assertNotIn("Picture_by", parsed)
+        self.assertIn("Awards at 72nd Venice", parsed["Caption_Abstract"])
+
+    def test_batch_size_is_bounded(self):
+        # The paths go on a command line, and ARG_MAX is finite.
+        self.assertGreater(ocr.TIKA_BATCH, 1)
+        self.assertLessEqual(ocr.TIKA_BATCH, 1000)
+
+    def test_no_tika_returns_one_empty_dict_per_path(self):
+        self.assertEqual(ocr.tika_metadata_batch(["a", "b"], None), [{}, {}])
+
+    def test_empty_batch_is_not_an_error(self):
+        self.assertEqual(ocr.tika_metadata_batch([], None), [])
+
+
 if __name__ == "__main__":
     unittest.main()
