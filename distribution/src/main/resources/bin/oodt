@@ -98,8 +98,29 @@ if [ ! -x "$OODT_BASE"/tomcat/bin/"$TOMCAT_EXEC" ]; then
   exit 1
 fi
 
+
+ensure_workflow_instance_schema() {
+  schema_sql="$OODT_BASE/workflow/etc/workflow-instances.sql"
+  schema_props="$OODT_BASE/workflow/etc/workflow.properties"
+  [ -f "$schema_sql" ] && [ -f "$schema_props" ] || return 0
+  if [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ]; then
+    schema_java="$JAVA_HOME/bin/java"
+  else
+    schema_java=java
+  fi
+  # Before the Workflow Manager starts. HSQLDB in file mode belongs to one
+  # process at a time, so this cannot be done once the manager holds the
+  # lock. The tool no-ops when the configured repository is Lucene, so it is
+  # safe to run unconditionally.
+  "$schema_java" -cp "$OODT_BASE/workflow/lib/*" \
+    org.imagecat.workflow.WorkflowInstanceSchema \
+    "$schema_props" "$schema_sql" \
+    || echo "Could not verify the workflow instance database; starting anyway."
+}
+
 if [ "$1" = "start" ]; then
   exec "$FILEMGR_HOME"/bin/"$FILEMGR_EXEC" start "$@" >> "$OODT_OUT" 2>&1  &
+  ensure_workflow_instance_schema
   exec "$WORKFLOW_HOME"/bin/"$WORKFLOW_EXEC" start "$@" >> "$OODT_OUT" 2>&1  &
   exec "$RESMGR_HOME"/bin/"$RESMGR_EXEC" start "$@" >> "$OODT_OUT" 2>&1  &  
   exec "$OODT_BASE"/tomcat/bin/"$TOMCAT_EXEC" start "$@" >> "$OODT_OUT" 2>&1 &
