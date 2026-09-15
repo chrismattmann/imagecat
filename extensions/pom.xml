@@ -72,6 +72,19 @@
       <version>${oodt.version}</version>
     </dependency>
     <dependency>
+      <groupId>ai.mattmann.mnemosyne</groupId>
+      <artifactId>cas-workflow</artifactId>
+      <version>${oodt.version}</version>
+    </dependency>
+    <!-- The instance repository. File mode, one process at a time, so
+         the schema has to exist before the Workflow Manager takes the
+         lock. WorkflowInstanceSchema is what puts it there. -->
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>2.7.4</version>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.2</version>
