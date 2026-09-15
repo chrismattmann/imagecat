@@ -20,4 +20,10 @@
      <workflow id="urn:imagecat:IngestInPlaceWorkflow"/>
   </event>
 
+  <!-- Fired once by the chunker, after every chunk is catalogued. The
+       workflow it starts waits on OcrSettled, so one instance sits
+       gated rather than one per chunk racing. -->
+  <event name="ImageCorpusReady">
+     <workflow id="urn:imagecat:IndexCorpusWorkflow"/>
+  </event>
 </cas:workflowevents>

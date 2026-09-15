@@ -12,12 +12,21 @@
      <cmd>cp -R [ChunkFilePath] [JobInputDir]</cmd>
      <cmd>python3 [PGE_ROOT]/bin/imagecat-ocr/imagecat-ocr.py -f [JobInputDir]/[Filename] -s [SolrUrl] --model [OcrModel]</cmd>
      <cmd>python3 [PGE_ROOT]/bin/sha1sum/sha1sum.py -s [SolrUrl]</cmd>
+     <!-- A receipt, so that "this chunk has been OCR'd" is a fact in
+          the catalogue rather than something only the log knows.
+          OcrSettled counts these against ChunkList products; without
+          one per chunk there is no number to compare, and the corpus
+          stages cannot be gated at all. -->
+     <cmd>echo "chunk=[Filename] images=$(grep -c . [JobInputDir]/[Filename])" [GreaterThan] [JobOutputDir]/ocr_[Filename]</cmd>
    </exe>
 
   <!-- Files to ingest -->
   <output>
  <!-- one or more of these -->
     <dir path="[JobOutputDir]" createBeforeExe="false">
+       <files regExp="ocr_.*\.txt"
+              metFileWriterClass="org.apache.oodt.cas.pge.writers.metlist.MetadataListPcsMetFileWriter"
+              args="[PGE_ROOT]/extractors/metout/ocrchunk_metout.xml"/>
     </dir>
 
   </output>
