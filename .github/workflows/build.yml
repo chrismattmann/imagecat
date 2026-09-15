@@ -126,4 +126,22 @@ jobs:
           ! tar xzOf $TARBALL --wildcards '*/bin/*' 2>/dev/null | grep -q 'java.ext.dirs'
           ! tar xzOf $TARBALL --wildcards '*/WEB-INF/web.xml' 2>/dev/null | grep -qi wicket
 
+          # W2 on HSQLDB. The schema must be creatable before the workflow
+          # manager takes the file lock, so all three of these have to ship.
+          # No '*/' prefix: this tarball has no top-level directory, and a
+          # leading wildcard would match nothing (DRAT#263 learned that the
+          # loud way).
+          tar tzf $TARBALL | grep -q '^workflow/etc/workflow-instances.sql$'
+          tar tzf $TARBALL | grep -q '^workflow/lib/hsqldb-'
+          tar tzf $TARBALL | grep -q '^workflow/lib/oodt-extensions-'
+
+          PROPS=$(tar xzOf $TARBALL workflow/etc/workflow.properties)
+          echo "$PROPS" | grep -q 'workflow.engine.factory *= *org.apache.oodt.cas.workflow.engine.PrioritizedQueueBasedWorkflowEngineFactory'
+          echo "$PROPS" | grep -q 'workflow.wengine.runner.factory *= *org.apache.oodt.cas.workflow.engine.runner.AsynchronousLocalEngineRunnerFactory'
+          echo "$PROPS" | grep -q 'instanceRep.factory *= *org.apache.oodt.cas.workflow.instrepo.DataSourceWorkflowInstanceRepositoryFactory'
+
+          EXT=$(tar tzf $TARBALL | grep -E '^workflow/lib/oodt-extensions-.*\.jar$' | head -1)
+          tar xzOf $TARBALL "$EXT" > /tmp/ic-ext.jar
+          unzip -l /tmp/ic-ext.jar | grep -q 'org/imagecat/workflow/WorkflowInstanceSchema.class'
+
           echo "distribution contents OK"
