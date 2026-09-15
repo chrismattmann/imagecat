@@ -32,6 +32,10 @@
    <properties>
       <tomcat.version>9.0.7</tomcat.version>
       <solr.version>10.0.0</solr.version>
+      <!-- Outside target/ so `mvn clean` does not discard a 343MB
+           download, and so CI can cache it. Override for an offline
+           or mirrored build. -->
+      <solr.download.dir>${user.home}/.cache/imagecat-solr</solr.download.dir>
    </properties>
          <dependencies>
             <dependency>
@@ -175,10 +179,35 @@
             <goals><goal>run</goal></goals>
             <configuration>
               <target>
+                <!--
+                  The mirror first, the archive second, a bound on both, and
+                  the tarball kept outside target/.
+
+                  It is 343MB and both hosts serve it at about 380KB/s, so it
+                  is a fifteen minute download from either. Choosing the CDN
+                  does not make it quick; not doing it twice does. With no
+                  maxtime a slow one is also indistinguishable from a dead
+                  one, which cost DRAT CI twenty minutes of nobody being able
+                  to tell which it was.
+
+                  Outside target/ so a local `mvn clean` does not throw the
+                  download away, and so CI can restore it into a directory
+                  the build will not delete.
+
+                  maxtime and retries make a failure bounded. ignoreerrors on
+                  the first means a version the CDN has rotated out falls
+                  through to the archive rather than failing the build.
+                -->
+                <mkdir dir="${solr.download.dir}"/>
+                <get src="https://dlcdn.apache.org/solr/solr/${solr.version}/solr-${solr.version}.tgz"
+                     dest="${solr.download.dir}/solr-${solr.version}.tgz"
+                     skipexisting="true" verbose="false"
+                     ignoreerrors="true" maxtime="600" retries="2"/>
                 <get src="https://archive.apache.org/dist/solr/solr/${solr.version}/solr-${solr.version}.tgz"
-                     dest="${project.build.directory}/solr-${solr.version}.tgz"
-                     skipexisting="true" verbose="false"/>
-                <untar src="${project.build.directory}/solr-${solr.version}.tgz"
+                     dest="${solr.download.dir}/solr-${solr.version}.tgz"
+                     skipexisting="true" verbose="false"
+                     maxtime="900" retries="3"/>
+                <untar src="${solr.download.dir}/solr-${solr.version}.tgz"
                        dest="${project.build.directory}" compression="gzip"/>
                 <chmod dir="${project.build.directory}/solr-${solr.version}/bin" perm="755" includes="*"/>
               </target>
