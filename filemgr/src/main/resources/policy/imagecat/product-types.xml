@@ -47,4 +47,32 @@ limitations under the License.
     </metadata>
   </type>
 
+
+  <!--
+    One per chunk, written by the OCR task once that chunk is indexed. It
+    exists to be counted: OcrSettled compares these against ChunkList
+    products, and the corpus-wide stages (Jaccard, CLIP, fg/bg) wait until
+    the two agree. The file itself is a line of text; the fact that it was
+    catalogued is the payload.
+  -->
+  <type id="urn:oodt:OcrChunk" name="OcrChunk">
+    <repository path="file://[OODT_HOME]/data/archive/ocr-chunks"/>
+    <versioner class="org.apache.oodt.cas.filemgr.versioning.BasicVersioner"/>
+    <description>A receipt that one chunk has been OCR'd and indexed.</description>
+    <metExtractors>
+      <extractor class="org.apache.oodt.cas.filemgr.metadata.extractors.CoreMetExtractor">
+        <configuration>
+          <property name="nsAware" value="true" />
+          <property name="elementNs" value="CAS" />
+          <property name="elements" value="ProductReceivedTime,ProductName,ProductId" />
+        </configuration>
+      </extractor>
+      <extractor class="org.apache.oodt.cas.filemgr.metadata.extractors.examples.MimeTypeExtractor" />
+      <extractor class="org.apache.oodt.cas.filemgr.metadata.extractors.examples.FinalFileLocationExtractor">
+        <configuration>
+          <property name="replace" value="true"/>
+        </configuration>
+      </extractor>
+    </metExtractors>
+  </type>
 </cas:producttypes>

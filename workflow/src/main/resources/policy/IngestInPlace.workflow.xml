@@ -1,11 +1,10 @@
 <cas:workflow xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas" name="IngestInPlace" id="urn:imagecat:IngestInPlaceWorkflow">
  <tasks>
+   <!--
+     Per chunk, and only per chunk. Jaccard, CLIP and fg/bg used to run
+     here too; they are corpus-wide and now live in IndexCorpusWorkflow,
+     gated on OcrSettled so they run once rather than once per chunk.
+   -->
    <task id="urn:imagecat:IngestInPlaceTask"/>
-   <!-- After OCR/Tika land in Solr imagecat, score metadata Jaccard, then
-        CLIP/FAISS, then fg/bg CLIP. Scripts no-op unless IMAGE_SPACE_HOME
-        is set on the WM. -->
-   <task id="urn:imagecat:IndexMetadataJaccard"/>
-   <task id="urn:imagecat:IndexImageSpace"/>
-   <task id="urn:imagecat:IndexImageSpaceFgBg"/>
  </tasks>
 </cas:workflow>

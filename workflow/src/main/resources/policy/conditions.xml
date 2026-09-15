@@ -1,21 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
 
-      http://www.apache.org/licenses/LICENSE-2.0
+   http://www.apache.org/licenses/LICENSE-2.0
 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+  -->
 <cas:conditions xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas">
-<!--
-  TODO: Add some examples
--->
+
+  <!--
+    Hold the corpus-wide stages until every chunk has been OCR'd.
+
+    Jaccard, CLIP and fg/bg each read the whole Solr core and rebuild
+    whole-collection artefacts. They used to sit at the end of the per-chunk
+    workflow, which meant running all three over the entire corpus once per
+    chunk: with n chunks, n full CLIP passes and n full rembg passes to
+    produce one index. It was invisible at 686 images only because 686
+    images is a single chunk at the default ChunkSize of 50000.
+
+    They could not be moved out, because there was nothing to gate them on:
+    this file was a three-line stub reading "TODO: Add some examples".
+
+    The count is the question, not quiet. Asking "has production paused?"
+    is answerable by a slow chunk as easily as by the last one; asking
+    "do the counts agree?" is not. BigTranslate learned this the expensive
+    way: on a 458-chunk run there were seventeen gaps of two minutes or
+    more, the first with 155 chunks still to do.
+  -->
+  <condition id="urn:imagecat:OcrSettled" name="OCR Settled"
+             class="org.apache.oodt.cas.pge.condition.ProductCountMatchesCondition">
+    <configuration>
+      <property name="FileManagerUrl" value="[FILEMGR_URL]" envReplace="true"/>
+      <!-- The OCR task catalogues one OcrChunk per chunk it finishes. The
+           chunker catalogues one ChunkList per chunk before any OCR starts,
+           so the number to reach is known rather than guessed at. -->
+      <property name="ProductTypeName" value="OcrChunk"/>
+      <property name="MatchesProductTypeName" value="ChunkList"/>
+      <!-- Before the chunker has catalogued anything, nought matches nought
+           and the gate would open on an empty corpus. -->
+      <property name="MinCount" value="1"/>
+    </configuration>
+  </condition>
+
 </cas:conditions>

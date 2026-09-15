@@ -10,6 +10,11 @@
      <cmd>mkdir [JobOutputDir] ; mkdir [JobInputDir]</cmd>
      <cmd>cd [JobOutputDir]</cmd>
      <cmd>chunk_file.py -f [ImageListFile] -c [ChunkSize]</cmd>
+     <!-- Every chunk is catalogued by the time this runs, so the count
+          OcrSettled has to reach is fixed from here. Firing once means
+          one gated IndexCorpusWorkflow instance waiting, rather than
+          one per chunk all asking the same question. -->
+     <cmd>[OODT_HOME]/workflow/bin/wmgr-client --url [PCS_WorkflowManagerUrl] --operation --sendEvent --eventName ImageCorpusReady</cmd>
    </exe>
 
   <!-- Files to ingest -->

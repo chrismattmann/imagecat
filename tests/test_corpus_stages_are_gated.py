@@ -1,0 +1,145 @@
+"""The corpus-wide stages run once, not once per chunk.
+
+Jaccard, CLIP and fg/bg each read the whole Solr core and rebuild
+whole-collection artefacts. They used to sit at the end of the per-chunk
+workflow, so with n chunks they ran n times over the entire corpus to
+produce one index. At the default ChunkSize of 50000 a 686-image run is a
+single chunk, which is why it never showed.
+
+These tests pin the structure that fixes it, because the failure mode is
+silent: a correct index, produced n times over.
+"""
+
+import os
+import re
+import unittest
+import xml.etree.ElementTree as ET
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+WF = os.path.join(ROOT, "workflow", "src", "main", "resources", "policy")
+PGE = os.path.join(ROOT, "pge", "src", "main", "resources", "policy")
+FM = os.path.join(ROOT, "filemgr", "src", "main", "resources", "policy", "imagecat")
+NS = {"cas": "http://oodt.jpl.nasa.gov/1.0/cas"}
+
+CORPUS_TASKS = {
+    "urn:imagecat:IndexMetadataJaccard",
+    "urn:imagecat:IndexImageSpace",
+    "urn:imagecat:IndexImageSpaceFgBg",
+}
+
+
+def workflow_tasks(path):
+    root = ET.parse(path).getroot()
+    return [t.get("id") for t in root.iter("task")]
+
+
+class TheCorpusStagesLeftThePerChunkLoop(unittest.TestCase):
+    def test_per_chunk_workflow_holds_only_the_ocr_task(self):
+        tasks = workflow_tasks(os.path.join(WF, "IngestInPlace.workflow.xml"))
+        self.assertEqual(tasks, ["urn:imagecat:IngestInPlaceTask"])
+
+    def test_no_corpus_stage_remains_in_the_per_chunk_workflow(self):
+        tasks = set(workflow_tasks(os.path.join(WF, "IngestInPlace.workflow.xml")))
+        stranded = tasks & CORPUS_TASKS
+        self.assertEqual(stranded, set(),
+                         "%s would run once per chunk over the whole corpus" % stranded)
+
+    def test_the_corpus_workflow_holds_all_three_in_order(self):
+        # fg/bg reads the CLIP embeddings, so the order is not arbitrary.
+        tasks = workflow_tasks(os.path.join(WF, "IndexCorpus.workflow.xml"))
+        self.assertEqual(tasks, [
+            "urn:imagecat:IndexMetadataJaccard",
+            "urn:imagecat:IndexImageSpace",
+            "urn:imagecat:IndexImageSpaceFgBg",
+        ])
+
+
+class TheGateExistsAndAsksTheRightQuestion(unittest.TestCase):
+    def setUp(self):
+        self.root = ET.parse(os.path.join(WF, "conditions.xml")).getroot()
+        self.conds = list(self.root.iter("condition"))
+
+    def test_conditions_is_no_longer_a_stub(self):
+        self.assertTrue(self.conds, "conditions.xml defines no condition")
+
+    def test_ocrsettled_counts_rather_than_waits_for_quiet(self):
+        c = [x for x in self.conds if x.get("id") == "urn:imagecat:OcrSettled"]
+        self.assertEqual(len(c), 1)
+        cls = c[0].get("class")
+        self.assertTrue(cls.endswith("ProductCountMatchesCondition"),
+                        "gate is %s; a settled/quiet gate fires on a slow chunk" % cls)
+        props = {p.get("name"): p.get("value") for p in c[0].iter("property")}
+        self.assertEqual(props.get("ProductTypeName"), "OcrChunk")
+        self.assertEqual(props.get("MatchesProductTypeName"), "ChunkList")
+        # Without this, nought matches nought before the chunker has run.
+        self.assertEqual(props.get("MinCount"), "1")
+
+    def test_the_gate_is_attached_to_the_first_corpus_task(self):
+        root = ET.parse(os.path.join(WF, "tasks.xml")).getroot()
+        for task in root.iter("task"):
+            if task.get("id") == "urn:imagecat:IndexMetadataJaccard":
+                ids = [c.get("id") for c in task.iter("condition")]
+                self.assertIn("urn:imagecat:OcrSettled", ids)
+                return
+        self.fail("IndexMetadataJaccard not found in tasks.xml")
+
+
+class SomethingProducesTheCountsTheGateCompares(unittest.TestCase):
+    def test_the_ocr_task_catalogues_a_receipt_per_chunk(self):
+        with open(os.path.join(PGE, "PgeConfig_Crawl.xml"), encoding="utf-8") as fh:
+            body = fh.read()
+        self.assertIn("ocr_[Filename]", body,
+                      "the OCR task writes no receipt, so OcrChunk never exists")
+        self.assertIn("ocrchunk_metout.xml", body,
+                      "the receipt is written but not catalogued, so it cannot be counted")
+
+    def test_the_ocrchunk_product_type_exists(self):
+        root = ET.parse(os.path.join(FM, "product-types.xml")).getroot()
+        names = {t.get("name") for t in root.iter("type")}
+        self.assertIn("OcrChunk", names)
+        self.assertIn("ChunkList", names)
+
+    def test_the_metout_declares_the_right_product_type(self):
+        path = os.path.join(ROOT, "pge", "src", "main", "resources",
+                            "extractors", "metout", "ocrchunk_metout.xml")
+        root = ET.parse(path).getroot()
+        vals = {m.get("key"): m.get("val") for m in root.iter("metadata")}
+        self.assertEqual(vals.get("ProductType"), "OcrChunk")
+
+
+class TheGatedWorkflowIsStartedExactlyOnce(unittest.TestCase):
+    def test_the_event_maps_to_the_corpus_workflow(self):
+        root = ET.parse(os.path.join(WF, "events.xml")).getroot()
+        mapping = {}
+        for ev in root.iter("event"):
+            mapping[ev.get("name")] = [w.get("id") for w in ev.iter("workflow")]
+        self.assertEqual(mapping.get("ImageCorpusReady"),
+                         ["urn:imagecat:IndexCorpusWorkflow"])
+
+    def test_the_chunker_fires_it_and_the_ocr_task_does_not(self):
+        with open(os.path.join(PGE, "PgeConfig_Chunker.xml"), encoding="utf-8") as fh:
+            chunker = fh.read()
+        self.assertIn("ImageCorpusReady", chunker)
+        self.assertIn("sendEvent", chunker)
+        # Firing per chunk would create one gated instance per chunk, all
+        # asking the same question of the same counts.
+        with open(os.path.join(PGE, "PgeConfig_Crawl.xml"), encoding="utf-8") as fh:
+            crawl = fh.read()
+        self.assertNotIn("ImageCorpusReady", crawl)
+
+
+class TheConditionClassIsActuallyAvailable(unittest.TestCase):
+    def test_oodt_version_carries_productcountmatchescondition(self):
+        # Published cas-pge 1.11.0 contains neither condition class; it first
+        # ships in 1.12.0. Against 1.11.0 the gate resolves only on a machine
+        # with a locally built Mnemosyne in ~/.m2, and fails in CI.
+        with open(os.path.join(ROOT, "pom.xml"), encoding="utf-8") as fh:
+            pom = fh.read()
+        found = re.search(r"<oodt\.version>([^<]+)</oodt\.version>", pom)
+        self.assertTrue(found, "no oodt.version in the root pom")
+        self.assertNotIn("SNAPSHOT", found.group(1))
+        self.assertEqual(found.group(1), "1.12.0")
+
+
+if __name__ == "__main__":
+    unittest.main()

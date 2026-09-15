@@ -85,7 +85,12 @@
   <!-- After IngestInPlace OCR/Tika, score each Solr doc against the
        collection golden key/value sets (ETLlib Jaccard). -->
   <task id="urn:imagecat:IndexMetadataJaccard" name="IndexMetadataJaccard" class="org.apache.oodt.cas.pge.StdPGETaskInstance">
-    <conditions/>
+    <conditions>
+      <!-- Holds this task, and therefore the two after it, until every
+           chunk has been OCR'd. Without it these three run once per
+           chunk over the whole corpus. -->
+      <condition id="urn:imagecat:OcrSettled"/>
+    </conditions>
     <configuration>
       <property name="PGETask_Name" value="IndexMetadataJaccard"/>
       <property name="PGETask_ConfigFilePath" value="[PGE_ROOT]/policy/PgeConfig_IndexMetadataJaccard.xml" envReplace="true"/>
