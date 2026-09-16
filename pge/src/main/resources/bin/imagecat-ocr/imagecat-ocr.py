@@ -162,6 +162,35 @@ def find_tika_app() -> Path | None:
     return None
 
 
+# Tika's own OCR, turned off.
+#
+# Tika runs tesseract over every image it parses if it finds tesseract on the
+# PATH. ImageCat uses Tika for MIME type and EXIF and does its own OCR with
+# RapidOCR, so that work is thrown away -- and it is most of the cost of the
+# stage. Measured on this corpus:
+#
+#   tesseract enabled (Tika's default)   0.25s per image
+#   TesseractOCRParser excluded          0.09s per image
+#
+# The config travels with this script rather than being written at runtime, so
+# the same file is what the tests read and what Tika is given.
+TIKA_CONFIG = Path(__file__).resolve().parent / "tika-no-ocr.xml"
+
+
+def tika_config_args() -> list[str]:
+    """--config for Tika, when the config shipped alongside is present.
+
+    Missing, Tika falls back to its default parsers and the stage is slow
+    rather than broken, which is the right way round for a deployment that
+    was assembled by hand.
+    """
+    if TIKA_CONFIG.is_file():
+        return ["--config=%s" % TIKA_CONFIG]
+    print("Tika       : %s missing; Tika will run its own OCR and be slow"
+          % TIKA_CONFIG, file=sys.stderr)
+    return []
+
+
 # How many files go to one Tika process.
 #
 # Not one, which is what this used to do. A JVM that has parsed nothing yet
@@ -240,7 +269,8 @@ def tika_metadata_batch(paths: list[str], tika_app: Path | None) -> list[dict[st
         return [{} for _ in paths]
     try:
         proc = subprocess.run(
-            [_java_bin(), "-jar", str(tika_app), "-j"] + list(paths),
+            [_java_bin(), "-jar", str(tika_app), "-j"] + tika_config_args()
+            + list(paths),
             check=False,
             capture_output=True,
             text=True,
@@ -281,7 +311,7 @@ def tika_metadata(path: str, tika_app: Path | None) -> dict[str, str]:
         return {}
     try:
         proc = subprocess.run(
-            [_java_bin(), "-jar", str(tika_app), "-m", path],
+            [_java_bin(), "-jar", str(tika_app), "-m"] + tika_config_args() + [path],
             check=False,
             capture_output=True,
             text=True,

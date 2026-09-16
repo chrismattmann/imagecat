@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Tika parses images here for MIME type and EXIF only. ImageCat does its own
+  OCR with RapidOCR, and that is what it stores.
+
+  Tika detects tesseract on the PATH and, finding it, runs it over every image
+  it parses. So on any machine that happens to have tesseract installed (on
+  this one it arrived in June 2025 as a dependency of ghostscript, years after
+  the OCR stage was written) every image is OCR'd twice and one of the two
+  results is discarded. Nothing announces it. The stage simply gets slower,
+  and the java process shows almost no CPU while it waits on a subprocess.
+
+  Excluding the parser is the only way to say no: the tesseract path is a
+  property of the environment, not of the invocation.
+-->
+<properties>
+  <parsers>
+    <parser class="org.apache.tika.parser.DefaultParser">
+      <parser-exclude class="org.apache.tika.parser.ocr.TesseractOCRParser"/>
+    </parser>
+  </parsers>
+</properties>
