@@ -384,6 +384,43 @@ def load_ocr(model_name: str):
     raise SystemExit("Unknown --model %s (use paddle, trocr or donut)" % model_name)
 
 
+def ocr_by_sha1(solr_url: str, shas: list[str]) -> dict[str, dict]:
+    """What the core already knows, keyed by sha1.
+
+    Dedup skips the work, not the document. Two paths holding identical bytes
+    are two facts about where that image lives, and dropping one would lose
+    exactly the provenance indexing in place was for. So a duplicate still
+    gets its own document -- it just does not pay for OCR a second time.
+
+    Only ocr_text and ocr_model_s are reused. Tika still runs per file: it is
+    one process per batch since #75, and its output carries the file's own
+    name.
+    """
+    found: dict[str, dict] = {}
+    if not shas:
+        return found
+    client = pysolr.Solr(solr_url, timeout=60)
+    batch = 200
+    for start in range(0, len(shas), batch):
+        window = [x for x in shas[start:start + batch] if x]
+        if not window:
+            continue
+        query = " OR ".join('sha1sum_s_md:"%s"' % x for x in window)
+        try:
+            for doc in client.search(query, rows=len(window),
+                                     fl="sha1sum_s_md,ocr_text,ocr_model_s"):
+                sha = doc.get("sha1sum_s_md")
+                if isinstance(sha, list):
+                    sha = sha[0] if sha else None
+                if sha and sha not in found:
+                    found[sha] = doc
+        except Exception as exc:  # a lookup failure must not stop the chunk
+            print("sha1 lookup failed (will OCR everything): %s" % exc,
+                  file=sys.stderr)
+            return {}
+    return found
+
+
 def index_docs(solr_url: str, docs: list[dict]) -> None:
     import pysolr
 
@@ -405,6 +442,12 @@ def main(argv=None) -> int:
         "trocr = printed line recognizer; donut = document understanding",
     )
     parser.add_argument("--commit-every", type=int, default=32, help="Solr batch size")
+    parser.add_argument(
+        "--no-dedup",
+        action="store_true",
+        help="OCR every image even if the core already has one with the same "
+             "sha1. Default is to reuse the text.",
+    )
     parser.add_argument(
         "--no-tika",
         action="store_true",
@@ -432,6 +475,18 @@ def main(argv=None) -> int:
         print("Tika       : tika-app.jar not found; MIME/EXIF will be missing", file=sys.stderr)
     else:
         print("Tika       : [%s]" % tika_app)
+
+    # Hashed once, before any OCR. The hash was already being computed, just
+    # afterwards, where it recorded what had been done rather than deciding
+    # what to do.
+    shas = [sha1_of(path) for path in paths]
+    known: dict[str, dict] = {}
+    if not args.no_dedup:
+        known = ocr_by_sha1(solr_url, shas)
+        reusable = sum(1 for x in shas if x in known)
+        print("Dedup      : [%d of %d already OCR'd]" % (reusable, len(paths)))
+    else:
+        print("Dedup      : [off]")
 
     ocr, hf_id = load_ocr(args.model)
 
@@ -463,6 +518,7 @@ def main(argv=None) -> int:
     batch = []
     indexed = 0
     failed = 0
+    reused = 0
     n = len(paths)
     write_progress(0, n, "ocr")
     for i, path in enumerate(paths):
@@ -472,7 +528,17 @@ def main(argv=None) -> int:
             write_progress(i + 1, n, "ocr")
             continue
         try:
-            text = ocr(path)
+            sha = shas[i]
+            seen = known.get(sha)
+            if seen is not None:
+                text = seen.get("ocr_text") or ""
+                model = seen.get("ocr_model_s") or hf_id
+                if isinstance(model, list):
+                    model = model[0] if model else hf_id
+                reused += 1
+            else:
+                text = ocr(path)
+                model = hf_id
         except Exception as exc:  # keep the chunk moving
             print("OCR failed %s: %s" % (path, exc), file=sys.stderr)
             failed += 1
@@ -481,8 +547,8 @@ def main(argv=None) -> int:
         doc = {
             "id": path,
             "ocr_text": text,
-            "ocr_model_s": hf_id,
-            "sha1sum_s_md": sha1_of(path),
+            "ocr_model_s": model,
+            "sha1sum_s_md": shas[i],
         }
         if args.model == "donut":
             doc["caption"] = text
@@ -501,7 +567,8 @@ def main(argv=None) -> int:
         indexed += len(batch)
 
     write_progress(n, n, "ocr")
-    print("Indexed: %d  Failed: %d" % (indexed, failed))
+    print("Indexed: %d  Failed: %d  OCR reused: %d"
+          % (indexed, failed, reused))
     return 0 if failed == 0 else 1
 
 

@@ -20,7 +20,8 @@
   Paddle/RapidOCR, TrOCR, or Donut produced. Tika MIME/EXIF from
   imagecat-ocr.py lands on content_type and the catch-all dynamicField
   (tiff_Make, Exif_IFD0_*, …). sha1sum_s_md is filled by the OCR PGE
-  and by sha1sum.py. ocr_text uses text_ocr so a URL like
+  by imagecat-ocr.py, which hashes each image before OCR so a duplicate
+  reuses the text instead of paying for it again. ocr_text uses text_ocr so a URL like
   emmejihad.wordpress.com is searchable as wordpress, not only as the
   whole host token StandardTokenizer would keep.
 -->

@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 # ImageCat's operator command, same shape as bin/drat: one verb hides
-# staging, chunker, OCR, Jaccard, CLIP, and fg/bg. Reset is a separate
+# chunker, OCR, Jaccard, CLIP, and fg/bg. Reset is a separate
 # verb so an extra folder can be indexed without wiping the catalog.
 
 set -euo pipefail
@@ -60,13 +60,14 @@ print_help() {
   cat <<EOF
 Usage: imagecat <command>
 
-  index <dir> [dir...]   Copy JPGs into staging (nested paths kept), then
+  index <dir> [dir...]   Catalogue the JPGs under <dir> where they are, then
                          OCR, metadata Jaccard, CLIP, fg/bg. Adds to the
                          catalog; does not reset.
                          --no-wait  submit and return (watch OPSUI)
   reset [--yes] [--lenses]
-                         Empty the catalog and jobs. Staging stays.
-                         Lenses stay unless --lenses. --yes skips the prompt.
+                         Empty the catalog and jobs. The images are never
+                         touched. Lenses stay unless --lenses. --yes skips
+                         the prompt.
   status                 Solr count, ImageSpace capabilities, running task
   setup                  Create .venv and build the ImageSpace UI
   check                  Compare chunk lists to Solr; print what is still out
@@ -265,34 +266,6 @@ reload_imagespace() {
   curl -sS -o /dev/null -X POST "$IMAGE_SPACE_URL/api/meta/reload" || true
 }
 
-staging_dest() {
-  local src=$1
-  local staging=$2
-  local base dest n marker prev
-  base=$(basename "$src")
-  dest="$staging/$base"
-  marker="$dest/.imagecat-source"
-  if [ -d "$dest" ] && [ -f "$marker" ]; then
-    prev=$(cat "$marker")
-    if [ "$prev" = "$src" ]; then
-      printf '%s\n' "$dest"
-      return 0
-    fi
-  elif [ ! -e "$dest" ]; then
-    printf '%s\n' "$dest"
-    return 0
-  fi
-  n=2
-  while [ -e "$staging/${base}-${n}" ]; do
-    marker="$staging/${base}-${n}/.imagecat-source"
-    if [ -f "$marker" ] && [ "$(cat "$marker")" = "$src" ]; then
-      printf '%s\n' "$staging/${base}-${n}"
-      return 0
-    fi
-    n=$((n + 1))
-  done
-  printf '%s\n' "$staging/${base}-${n}"
-}
 
 cmd_index() {
   local no_wait=false
@@ -320,31 +293,33 @@ cmd_index() {
     exit 1
   fi
 
-  local staging="$IMAGECAT_HOME/data/staging/images"
-  mkdir -p "$staging"
-  local list="$IMAGECAT_HOME/data/staging/image-list.txt"
+  # Indexed where they are. The document id is the path the image actually
+  # has, so the catalogue can say where a picture came from -- which is the
+  # question this system exists to answer, and which it could not answer
+  # while the id named a copy ImageCat had made of the file.
+  #
+  # It also stops the corpus being stored twice. The copy was 1.8G for 686
+  # images and grows with the collection.
+  local list="$IMAGECAT_HOME/data/image-list.txt"
+  mkdir -p "$(dirname "$list")"
   : >"$list"
 
-  local dir src dest count
+  local dir src count
   for dir in "${dirs[@]}"; do
     if [ ! -d "$dir" ]; then
       echo "Not a directory: $dir"
       exit 1
     fi
     src=$(cd "$dir" && pwd)
-    dest=$(staging_dest "$src" "$staging")
-    mkdir -p "$dest"
-    echo "Staging $src -> $dest"
-    # Nested paths kept so duplicate Pic 1.jpg names survive. JPGs only.
-    rsync -a -m \
-      --include='*/' \
-      --include='*.jpg' --include='*.jpeg' --include='*.JPG' --include='*.JPEG' \
-      --exclude='*' \
-      "$src"/ "$dest"/ >>"$LOG" 2>&1
-    printf '%s\n' "$src" >"$dest/.imagecat-source"
-    count=$(find "$dest" -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) | wc -l | tr -d ' ')
+    echo "Indexing $src in place"
+    # AppleDouble sidecars are excluded by name. A volume that has been
+    # mounted over AFP or SMB carries a ._NAME.jpg beside each NAME.jpg,
+    # holding the resource fork -- and "._CHIN9997.jpg" matches *.jpg as
+    # readily as the image does. BigTranslate ingested 2,806 of them as
+    # corpus before anyone noticed the file count was exactly double.
+    count=$(find "$src" -type f ! -name '._*' \( -iname '*.jpg' -o -iname '*.jpeg' \) | wc -l | tr -d ' ')
     echo "  $count JPG(s)"
-    find "$dest" -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) | sort >>"$list"
+    find "$src" -type f ! -name '._*' \( -iname '*.jpg' -o -iname '*.jpeg' \) | sort >>"$list"
   done
 
   local n
@@ -427,7 +402,7 @@ cmd_reset() {
   fi
   if [ "$yes" != "true" ]; then
     echo "This empties Solr (imagecat, oodt-fm), jobs, archive, and CLIP/fg/bg/meta indexes."
-    echo "Staging stays. Lenses stay unless --lenses."
+    echo "The images are untouched. Lenses stay unless --lenses."
     printf "Continue? [yN] "
     read -r yn
     case "$yn" in
@@ -455,7 +430,7 @@ cmd_reset() {
   fi
   mkdir -p "$IMAGECAT_HOME/data/imagespace/lenses"
   reload_imagespace
-  echo "Reset complete. Staging is still at $IMAGECAT_HOME/data/staging/"
+  echo "Reset complete. The images themselves are untouched; they were never copied here."
   echo "Index again with: $IMAGECAT_HOME/bin/imagecat index <dir> [dir...]"
 }
 
