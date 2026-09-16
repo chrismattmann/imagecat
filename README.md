@@ -120,3 +120,30 @@ Send them to [Chris A. Mattmann](mailto:chris.a.mattmann@jpl.nasa.gov).
 License
 =======
 [Apache License, version 2](http://www.apache.org/licenses/LICENSE-2.0)
+
+## Testing against an unreleased Mnemosyne fix
+
+Publishing Mnemosyne to Maven Central is a release: immutable, published by
+hand, and a couple of hours before it resolves. That is right for a release
+and far too much for "does this fix work against ImageCat".
+
+Central also carries a snapshot repository, and Mnemosyne's publishing
+plugin sends `-SNAPSHOT` versions there automatically. So:
+
+```bash
+# in mnemosyne, on the branch with the fix
+mvn -B deploy -Prelease          # publishes e.g. 1.13.3-SNAPSHOT, ~4 minutes
+```
+
+```xml
+<!-- in imagecat, on a branch -->
+<oodt.version>1.13.3-SNAPSHOT</oodt.version>
+```
+
+CI resolves it like anything else — no local `~/.m2` install, which is the
+part that does not work in CI today.
+
+A snapshot is mutable, so a green build against one does not stay green.
+That is fine while testing a branch and not fine in master, so
+`tests/snapshot_policy.py` refuses a snapshot in a pull request targeting
+master. Cut the release and point at it before merging.
