@@ -11,7 +11,6 @@
      <cmd>echo "Staging file [ChunkFilePath] to [JobInputDir]"</cmd>
      <cmd>cp -R [ChunkFilePath] [JobInputDir]</cmd>
      <cmd>python3 [PGE_ROOT]/bin/imagecat-ocr/imagecat-ocr.py -f [JobInputDir]/[Filename] -s [SolrUrl] --model [OcrModel]</cmd>
-     <cmd>python3 [PGE_ROOT]/bin/sha1sum/sha1sum.py -s [SolrUrl]</cmd>
      <!-- A receipt, so that "this chunk has been OCR'd" is a fact in
           the catalogue rather than something only the log knows.
           OcrSettled counts these against ChunkList products; without

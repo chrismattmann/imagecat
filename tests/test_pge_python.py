@@ -41,7 +41,6 @@ class ChunkFileTests(unittest.TestCase):
     def test_scripts_parse_as_python3(self):
         scripts = [
             os.path.join(PGE_BIN, "chunk_file", "chunk_file.py"),
-            os.path.join(PGE_BIN, "sha1sum", "sha1sum.py"),
             os.path.join(PGE_BIN, "check_failed", "check_failed.py"),
             os.path.join(PGE_BIN, "imagecat-ocr", "imagecat-ocr.py"),
         ]

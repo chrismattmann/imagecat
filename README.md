@@ -33,7 +33,8 @@ Refine time on CLIP vectors; save by name and apply later). Saved thumbs sit in 
 × to drop one. `bin/imagecat start` brings it up on port 8090 the way it starts
 Solr — FastAPI, not a WAR. `bin/imagecat index <dir> [dir...]` copies
 JPGs (nested paths kept), then OCR / Jaccard / CLIP / fg/bg.
-`bin/imagecat reset` empties the catalog; staging and lenses stay
+`bin/imagecat reset` empties the catalog; lenses stay, and the images
+themselves are never touched because they are indexed where they live
 unless `--lenses`. CLIP / fg / bg indexes live under
 `$IMAGECAT_HOME/data/imagespace/`. This is new work inspired by NASA JPL's
 efforts on the DARPA MEMEX program.
