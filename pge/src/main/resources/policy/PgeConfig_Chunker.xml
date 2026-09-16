@@ -7,7 +7,7 @@
      <cmd>export PATH=[OODT_HOME]/bin/:[PGE_ROOT]/bin/chunk_file:${PATH}</cmd>
      <cmd>shopt -s expand_aliases</cmd>
      <cmd>echo "Creating working dirs"</cmd>
-     <cmd>mkdir [JobOutputDir] ; mkdir [JobInputDir]</cmd>
+     <cmd>mkdir -p [JobOutputDir] ; mkdir -p [JobInputDir]</cmd>
      <cmd>cd [JobOutputDir]</cmd>
      <cmd>chunk_file.py -f [ImageListFile] -c [ChunkSize]</cmd>
      <!-- Every chunk is catalogued by the time this runs, so the count
