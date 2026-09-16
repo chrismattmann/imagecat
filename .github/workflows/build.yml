@@ -18,7 +18,10 @@ jobs:
           python-version: '3.12'
 
       - name: Test
-        run: python -m unittest tests.test_pge_python tests.test_solr_url tests.test_corpus_stages_are_gated tests.test_jobdirs_survive_concurrency tests.test_indexed_in_place tests.test_snapshot_policy tests.test_dedup_lookup_runs -v
+        # Discovery rather than a list: the list had already lost
+        # tests/test_imagespace_config.py, and a test that is written but
+        # never run is worse than no test, because it reads as coverage.
+        run: python -m unittest discover -s tests -t . -v
 
   imagespace-web:
     name: ImageSpace Vue
