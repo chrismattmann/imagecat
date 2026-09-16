@@ -113,5 +113,35 @@ class AnUnreachableSourceStillShowsThumbnails(unittest.TestCase):
         ast.parse(self.text, filename=IMAGES_PY)
 
 
+class AppleDoubleSidecarsAreNotImages(unittest.TestCase):
+    """A ._NAME.jpg is a resource fork, not a picture.
+
+    A volume mounted over AFP or SMB carries one beside every file, and
+    "._CHIN9997.jpg" matches *.jpg as readily as the image does. BigTranslate
+    ingested 2,806 of them as corpus before anyone noticed the file count was
+    exactly double.
+    """
+
+    def test_the_walk_excludes_them(self):
+        text = body(IMAGECAT)
+        for line in text.splitlines():
+            if "-iname '*.jpg'" in line and "find" in line:
+                self.assertIn("! -name '._*'", line,
+                              "this find would take sidecars for images: %s"
+                              % line.strip())
+
+    def test_find_actually_behaves_that_way(self):
+        import subprocess, tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            open(os.path.join(tmp, "real.jpg"), "w").close()
+            open(os.path.join(tmp, "._real.jpg"), "w").close()
+            out = subprocess.run(
+                ["find", tmp, "-type", "f", "!", "-name", "._*",
+                 "(", "-iname", "*.jpg", "-o", "-iname", "*.jpeg", ")"],
+                capture_output=True, text=True).stdout.split()
+            names = sorted(os.path.basename(x) for x in out)
+            self.assertEqual(names, ["real.jpg"])
+
+
 if __name__ == "__main__":
     unittest.main()

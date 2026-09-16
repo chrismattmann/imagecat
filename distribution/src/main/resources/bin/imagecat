@@ -312,9 +312,14 @@ cmd_index() {
     fi
     src=$(cd "$dir" && pwd)
     echo "Indexing $src in place"
-    count=$(find "$src" -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) | wc -l | tr -d ' ')
+    # AppleDouble sidecars are excluded by name. A volume that has been
+    # mounted over AFP or SMB carries a ._NAME.jpg beside each NAME.jpg,
+    # holding the resource fork -- and "._CHIN9997.jpg" matches *.jpg as
+    # readily as the image does. BigTranslate ingested 2,806 of them as
+    # corpus before anyone noticed the file count was exactly double.
+    count=$(find "$src" -type f ! -name '._*' \( -iname '*.jpg' -o -iname '*.jpeg' \) | wc -l | tr -d ' ')
     echo "  $count JPG(s)"
-    find "$src" -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) | sort >>"$list"
+    find "$src" -type f ! -name '._*' \( -iname '*.jpg' -o -iname '*.jpeg' \) | sort >>"$list"
   done
 
   local n
