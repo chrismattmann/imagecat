@@ -100,9 +100,8 @@ fi
 
 
 ensure_workflow_instance_schema() {
-  schema_sql="$OODT_BASE/workflow/etc/workflow-instances.sql"
   schema_props="$OODT_BASE/workflow/etc/workflow.properties"
-  [ -f "$schema_sql" ] && [ -f "$schema_props" ] || return 0
+  [ -f "$schema_props" ] || return 0
   if [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ]; then
     schema_java="$JAVA_HOME/bin/java"
   else
@@ -111,10 +110,11 @@ ensure_workflow_instance_schema() {
   # Before the Workflow Manager starts. HSQLDB in file mode belongs to one
   # process at a time, so this cannot be done once the manager holds the
   # lock. The tool no-ops when the configured repository is Lucene, so it is
-  # safe to run unconditionally.
+  # safe to run unconditionally. No .sql argument: the schema ships inside
+  # cas-workflow. ImageCat carried a copy of both until Mnemosyne 1.13.1.
   "$schema_java" -cp "$OODT_BASE/workflow/lib/*" \
-    org.imagecat.workflow.WorkflowInstanceSchema \
-    "$schema_props" "$schema_sql" \
+    org.apache.oodt.cas.workflow.instrepo.WorkflowInstanceSchema \
+    "$schema_props" \
     || echo "Could not verify the workflow instance database; starting anyway."
 }
 
