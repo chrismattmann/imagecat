@@ -55,6 +55,22 @@
         <enabled>false</enabled>
       </releases>
     </repository>
+    <!--
+      Mnemosyne snapshots. Publishing a release to Central is immutable,
+      published by hand and a couple of hours from resolving; that is the
+      right ceremony for a release and far too much for testing a hot fix
+      against ImageCat. The publishing plugin routes -SNAPSHOT versions
+      here automatically, so a fix can be tried in minutes.
+    
+      Only branches may depend on one: tests/snapshot_policy.py refuses a
+      snapshot in a pull request targeting master.
+    -->
+    <repository>
+    <id>central-snapshots</id>
+    <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+    <releases><enabled>false</enabled></releases>
+    <snapshots><enabled>true</enabled></snapshots>
+    </repository>
   </repositories>
 
   <distributionManagement>
@@ -155,25 +171,6 @@
       </plugin>
     </plugins>
   </build>
-
-  <!--
-    Mnemosyne snapshots. Publishing a release to Central is immutable,
-    manually published and a couple of hours from resolving; that is the
-    right ceremony for a release and far too much for testing a hot fix
-    against ImageCat. The publishing plugin routes -SNAPSHOT versions
-    here automatically, so a fix can be tried in minutes.
-  
-    Only branches may depend on one: tests/snapshot_policy.py refuses a
-    snapshot in a pull request targeting master.
-  -->
-  <repositories>
-    <repository>
-      <id>central-snapshots</id>
-      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-      <releases><enabled>false</enabled></releases>
-      <snapshots><enabled>true</enabled></snapshots>
-    </repository>
-  </repositories>
 
   <modules>
     <module>extensions</module>
