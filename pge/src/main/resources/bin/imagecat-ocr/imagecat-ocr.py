@@ -396,6 +396,10 @@ def ocr_by_sha1(solr_url: str, shas: list[str]) -> dict[str, dict]:
     one process per batch since #75, and its output carries the file's own
     name.
     """
+    # Imported here, not at the top, so this module can be loaded without
+    # pysolr installed -- which is how the test suite reads it.
+    import pysolr
+
     found: dict[str, dict] = {}
     if not shas:
         return found
