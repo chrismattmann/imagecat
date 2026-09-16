@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one or more contributor
+license agreements.  See the NOTICE.txt file distributed with this work for
+additional information regarding copyright ownership.  The ASF licenses this
+file to you under the Apache License, Version 2.0 (the "License"); you may not
+use this file except in compliance with the License.  You may obtain a copy of
+the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+License for the specific language governing permissions and limitations under
+the License.
+-->
+<!-- FIXME: Change namespace URI? -->
+<cas:workflowlifecycles xmlns:cas="http://oodt.jpl.nasa.gov/1.0/cas">
+<default>
+ <!-- stages in this sense map to bfoster's original "Category" classification
+      that is mentioned in the Workflow2 User's Guide
+      
+  -->
+  <stage name="initial">
+   <!-- 
+     Statuses can optionally be specified
+     in the form:
+       &lt;status&gt;Name&lt;/status&gt;
+       
+       To preserve backwards compatibility. In this
+       case, the given description will simply be the 
+       provided status name.
+       
+     As of Apache OODT 0.4, statuses in this file can 
+     also take the form:
+     
+       &lt;status name=&quot;Name&quot;&gt;
+        &lt;description&gt;Description&lt;/description&gt;   
+       &lt;/status&gt;      
+    -->
+   <status name="Null">
+     <description>Uninitialized State</description>
+   </status>
+   <status name="Loaded">
+     <description>Loading Complete</description>
+   </status>
+  </stage>
+  <stage name="waiting">
+   <status name="Queued">
+      <description>Queued in WorkflowEngine</description>
+   </status>
+   <status name="Blocked">
+      <description>Task Bailed</description>
+   </status>
+   <status name="WaitingOnResources">
+      <description>Waiting for resource to execute</description>   
+   </status>
+  </stage>
+  <stage name="transition">
+   <status name="PreConditionSuccess">  
+      <description>All PreCondition Finished Successfully</description>
+   </status>
+   <status name="ExecutionComplete">
+      <description>Execution Completed Successfully</description>
+   </status>
+  </stage>
+  <stage name="holding">
+   <status name="Unknown">
+      <description>State is Unknown</description>
+   </status>
+   <status name="Paused">
+      <description>Has been manually paused</description>
+   </status>
+  </stage>  
+  <stage name="running">
+   <status name="PreConditionEval">
+      <description>Executing PreConditions</description>
+   </status>
+   <status name="Executing">
+      <description>Current being executed</description>
+   </status>
+   <status name="PostConditionEval"> 
+      <description>Executing PostConditions</description>
+   </status>
+  </stage>
+  <stage name="results">
+    <status name="ResultsSuccess">
+      <description>Notification of success</description>
+    </status>
+    <status name="ResultsFailure">
+      <description>Notification of failure</description>
+    </status>
+    <status name="ResultsBail">
+      <description>Notification to bail workflow</description>
+    </status>
+  </stage>  
+  <stage name="done">
+    <status name="Stopped">
+      <description>Force Killed</description>
+    </status>
+    <status name="Off">
+      <description>Turned OFF</description>
+    </status>
+    <status name="Failure">
+      <description>Execution Failed</description>
+    </status>
+    <status name="Success">
+      <description>Successfully Completed</description>
+    </status>
+  </stage> 
+ </default>
+<!-- 
+  Lifecycles can also be specified at the 
+  Workflow Id level, by starting with a 
+  <lifecycle name="" workflowId="some_id">
+    
+    declaration, and then using the stage
+    and status tags appropriately as shown
+    above
+    
+  </lifecycle>
+ -->
+</cas:workflowlifecycles>
