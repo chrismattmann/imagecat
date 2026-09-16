@@ -179,5 +179,42 @@ class UnresolvedPlaceholdersAreRefused(unittest.TestCase):
                 self.assertIn("did not resolve", out.stderr, name)
 
 
+class ImageCatHomeLocatesItself(unittest.TestCase):
+    """setenv.sh must not assume the deployment is at /usr/local/imagecat.
+
+    It used to, and every service in a deployment anywhere else started
+    against paths that do not exist:
+
+        Cannot find /usr/local/imagecat/filemgr/bin/filemgr
+
+    Editing the line in the deployment fixed it until the next install,
+    because unpacking the tarball replaces this file.
+    """
+
+    def test_it_follows_oodt_home(self):
+        # env.sh works OODT_HOME out from the running script's location and
+        # sources setenv.sh afterwards, so it is already correct by then.
+        got = sourced(["IMAGECAT_HOME"], OODT_HOME="/somewhere/else")
+        self.assertEqual(got["IMAGECAT_HOME"], "/somewhere/else")
+
+    def test_an_explicit_value_still_wins(self):
+        got = sourced(["IMAGECAT_HOME"],
+                      IMAGECAT_HOME="/explicit", OODT_HOME="/somewhere/else")
+        self.assertEqual(got["IMAGECAT_HOME"], "/explicit")
+
+    def test_the_old_default_remains_when_nothing_is_known(self):
+        # Backward compatible: a deployment actually at /usr/local/imagecat,
+        # invoked with no environment at all, behaves as it always did.
+        got = sourced(["IMAGECAT_HOME"])
+        self.assertEqual(got["IMAGECAT_HOME"], "/usr/local/imagecat")
+
+    def test_the_derived_paths_follow_it(self):
+        got = sourced(["FILEMGR_HOME", "PGE_ROOT", "IMAGE_SPACE_HOME"],
+                      OODT_HOME="/somewhere/else")
+        for name, value in got.items():
+            self.assertTrue(value.startswith("/somewhere/else"),
+                            "%s is %s" % (name, value))
+
+
 if __name__ == "__main__":
     unittest.main()

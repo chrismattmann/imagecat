@@ -25,7 +25,18 @@
 #
 ############################
 
-export IMAGECAT_HOME=${IMAGECAT_HOME:-/usr/local/imagecat}
+# Where this deployment actually is, not where one was once installed.
+#
+# env.sh works OODT_HOME out from the location of the script being run and
+# sources this file afterwards, so by here it is already correct. Defaulting
+# to /usr/local/imagecat instead meant every service in a deployment
+# anywhere else started against paths that do not exist:
+#
+#   Cannot find /usr/local/imagecat/filemgr/bin/filemgr
+#
+# and the fix -- editing this line in the deployment -- was overwritten by
+# the next install, because unpacking the tarball replaces this file.
+export IMAGECAT_HOME=${IMAGECAT_HOME:-${OODT_BASE:-${OODT_HOME:-/usr/local/imagecat}}}
 export FILEMGR_URL=http://localhost:9000
 export WORKFLOW_URL=http://localhost:9001
 export RESMGR_URL=http://localhost:9002
