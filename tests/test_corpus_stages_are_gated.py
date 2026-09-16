@@ -152,5 +152,64 @@ class TheConditionClassIsActuallyAvailable(unittest.TestCase):
             "published cas-pge %s" % (version, ".".join(map(str, FIRST))))
 
 
+class TheW2EngineHasWhatItNeedsToStart(unittest.TestCase):
+    """Config the queue-based engine requires and does not default.
+
+    These assert on properties rather than behaviour because nothing here can
+    start a Workflow Manager. That gap is exactly how a deployment shipped
+    that could not start: every structural test passed, the distribution
+    packaged correctly, and the engine then failed to construct.
+    """
+
+    def setUp(self):
+        path = os.path.join(ROOT, "workflow", "src", "main", "resources",
+                            "etc", "workflow.properties")
+        with open(path, encoding="utf-8") as fh:
+            self.lines = [l.strip() for l in fh
+                          if l.strip() and not l.strip().startswith("#")]
+
+    def prop(self, name):
+        for line in self.lines:
+            if line.split("=")[0].strip().rstrip() == name or \
+               line.startswith(name + " ") or line.startswith(name + "="):
+                return line.split("=", 1)[1].strip()
+        return None
+
+    def test_the_queue_based_engine_is_selected(self):
+        engine = self.prop("workflow.engine.factory")
+        self.assertIn("PrioritizedQueueBasedWorkflowEngineFactory", engine or "")
+
+    def test_a_lifecycle_file_is_named(self):
+        # Without it the factory throws
+        #   Cannot invoke "String.length()" because "origPath" is null
+        # and the manager exits. The port check then reports only that 9001
+        # is down.
+        self.assertIsNotNone(
+            self.prop("org.apache.oodt.cas.workflow.lifecycle.filePath"),
+            "the queue-based engine builds its lifecycle from this and does "
+            "not default it")
+
+    def test_the_lifecycle_file_it_names_is_shipped(self):
+        named = self.prop("org.apache.oodt.cas.workflow.lifecycle.filePath")
+        self.assertTrue(named)
+        # [OODT_HOME]/workflow/etc/x -> workflow/src/main/resources/etc/x
+        leaf = named.rsplit("/", 1)[-1]
+        path = os.path.join(ROOT, "workflow", "src", "main", "resources",
+                            "etc", leaf)
+        self.assertTrue(os.path.isfile(path),
+                        "%s is named but not shipped" % leaf)
+
+    def test_the_w1_lifecycle_is_not_the_one_named(self):
+        # workflow/policy/workflow-lifecycle.xml describes W1's stages. Naming
+        # it here would start, and then model the wrong state machine.
+        named = self.prop("org.apache.oodt.cas.workflow.lifecycle.filePath")
+        self.assertNotIn("policy/workflow-lifecycle.xml", named)
+
+    def test_a_runner_is_named(self):
+        runner = self.prop("workflow.wengine.runner.factory")
+        self.assertIsNotNone(runner, "the engine needs a runner")
+        self.assertIn("AsynchronousLocalEngineRunnerFactory", runner)
+
+
 if __name__ == "__main__":
     unittest.main()
