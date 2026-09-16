@@ -131,7 +131,6 @@ jobs:
           # No '*/' prefix: this tarball has no top-level directory, and a
           # leading wildcard would match nothing (DRAT#263 learned that the
           # loud way).
-          tar tzf $TARBALL | grep -q '^workflow/etc/workflow-instances.sql$'
           tar tzf $TARBALL | grep -q '^workflow/lib/hsqldb-'
           tar tzf $TARBALL | grep -q '^workflow/lib/oodt-extensions-'
 
@@ -140,8 +139,13 @@ jobs:
           echo "$PROPS" | grep -q 'workflow.wengine.runner.factory *= *org.apache.oodt.cas.workflow.engine.runner.AsynchronousLocalEngineRunnerFactory'
           echo "$PROPS" | grep -q 'instanceRep.factory *= *org.apache.oodt.cas.workflow.instrepo.DataSourceWorkflowInstanceRepositoryFactory'
 
-          EXT=$(tar tzf $TARBALL | grep -E '^workflow/lib/oodt-extensions-.*\.jar$' | head -1)
-          tar xzOf $TARBALL "$EXT" > /tmp/ic-ext.jar
-          unzip -l /tmp/ic-ext.jar | grep -q 'org/imagecat/workflow/WorkflowInstanceSchema.class'
+          # The tool and the schema both come from cas-workflow now; ImageCat
+          # carried copies of each until Mnemosyne 1.13.1.
+          WF=$(tar tzf $TARBALL | grep -E '^workflow/lib/cas-workflow-.*\.jar$' | head -1)
+          test -n "$WF"
+          tar xzOf $TARBALL "$WF" > /tmp/cas-workflow.jar
+          unzip -l /tmp/cas-workflow.jar | grep -q 'org/apache/oodt/cas/workflow/instrepo/WorkflowInstanceSchema.class'
+          unzip -l /tmp/cas-workflow.jar | grep -q ' workflow.sql$'
+          ! tar tzf $TARBALL | grep -q 'workflow/etc/workflow-instances.sql'
 
           echo "distribution contents OK"

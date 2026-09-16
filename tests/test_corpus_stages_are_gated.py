@@ -137,8 +137,19 @@ class TheConditionClassIsActuallyAvailable(unittest.TestCase):
             pom = fh.read()
         found = re.search(r"<oodt\.version>([^<]+)</oodt\.version>", pom)
         self.assertTrue(found, "no oodt.version in the root pom")
-        self.assertNotIn("SNAPSHOT", found.group(1))
-        self.assertEqual(found.group(1), "1.12.0")
+        version = found.group(1)
+        self.assertNotIn("SNAPSHOT", version,
+                         "a SNAPSHOT resolves to different bytes on different "
+                         "machines")
+        # New enough, not exactly equal. Pinning the literal made this fail on
+        # the next bump with an assertion that said nothing about why the
+        # version matters.
+        FIRST = (1, 12, 0)
+        parts = tuple(int(p) for p in version.split("."))
+        self.assertGreaterEqual(
+            parts, FIRST,
+            "oodt.version is %s; ProductCountMatchesCondition first ships in "
+            "published cas-pge %s" % (version, ".".join(map(str, FIRST))))
 
 
 if __name__ == "__main__":

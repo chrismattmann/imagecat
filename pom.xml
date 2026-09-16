@@ -27,7 +27,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <oodt.version>1.12.0</oodt.version>
+    <oodt.version>1.13.1</oodt.version>
     <oodt.pge.version>1.11.0</oodt.pge.version>
     <junit.version>4.12</junit.version>
     <maven.enforcer.plugin.version>3.5.0</maven.enforcer.plugin.version>
