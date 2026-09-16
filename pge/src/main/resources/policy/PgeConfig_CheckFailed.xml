@@ -7,7 +7,7 @@
      <cmd>export PATH=[OODT_HOME]/bin/:[PGE_ROOT]/bin/check_failed:${PATH}</cmd>
      <cmd>shopt -s expand_aliases</cmd>
      <cmd>echo "Creating working dirs"</cmd>
-     <cmd>mkdir [JobOutputDir] ; mkdir [JobInputDir]</cmd>
+     <cmd>mkdir -p [JobOutputDir] ; mkdir -p [JobInputDir]</cmd>
      <cmd>cd [JobOutputDir]</cmd>
      <cmd>export NUM_CHUNKS=`ls -t [ChunkDir] | head -1`</cmd>
      <cmd>for i in $(seq [ChunkStart] $NUM_CHUNKS); do</cmd>
