@@ -12,7 +12,11 @@ silent: a correct index, produced n times over.
 
 import os
 import re
+import sys
 import unittest
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import snapshot_policy  # noqa: E402
 import xml.etree.ElementTree as ET
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -138,9 +142,14 @@ class TheConditionClassIsActuallyAvailable(unittest.TestCase):
         found = re.search(r"<oodt\.version>([^<]+)</oodt\.version>", pom)
         self.assertTrue(found, "no oodt.version in the root pom")
         version = found.group(1)
-        self.assertNotIn("SNAPSHOT", version,
-                         "a SNAPSHOT resolves to different bytes on different "
-                         "machines")
+
+        # A snapshot is allowed on a branch, where a Mnemosyne fix is being
+        # tested, and not in master. See tests/snapshot_policy.py.
+        if "SNAPSHOT" in version:
+            self.assertFalse(snapshot_policy.targets_the_default_branch(),
+                             snapshot_policy.why_a_snapshot_is_not_allowed(version))
+            return
+
         # New enough, not exactly equal. Pinning the literal made this fail on
         # the next bump with an assertion that said nothing about why the
         # version matters.

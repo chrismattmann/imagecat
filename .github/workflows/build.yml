@@ -18,7 +18,7 @@ jobs:
           python-version: '3.12'
 
       - name: Test
-        run: python -m unittest tests.test_pge_python tests.test_solr_url tests.test_corpus_stages_are_gated tests.test_jobdirs_survive_concurrency tests.test_indexed_in_place -v
+        run: python -m unittest tests.test_pge_python tests.test_solr_url tests.test_corpus_stages_are_gated tests.test_jobdirs_survive_concurrency tests.test_indexed_in_place tests.test_snapshot_policy -v
 
   imagespace-web:
     name: ImageSpace Vue
