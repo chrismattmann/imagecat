@@ -22,13 +22,19 @@ jobs:
       # server.solr to check it still imports, and that needs httpx. A
       # skip would defeat the one thing that test is for.
       - name: Install test dependencies
-        run: python -m pip install --quiet httpx
+        run: python -m pip install --quiet httpx fastapi numpy faiss-cpu Pillow
 
       - name: Test
         # Discovery rather than a list: the list had already lost
         # tests/test_imagespace_config.py, and a test that is written but
         # never run is worse than no test, because it reads as coverage.
         # It was also failing, which is the other thing a list hides.
+        run: python -m unittest discover -s tests -t . -v
+
+      # imagespace/tests was never run anywhere: eight files, and the ninth
+      # would have joined them. Its own tree, so its own discover.
+      - name: Test ImageSpace
+        working-directory: imagespace
         run: python -m unittest discover -s tests -t . -v
 
   imagespace-web:
