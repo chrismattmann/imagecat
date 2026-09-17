@@ -191,6 +191,45 @@ def tika_config_args() -> list[str]:
     return []
 
 
+# Where a mirrored image came from.
+#
+# `imagecat index` mirrors a source tree under IMAGECAT_HOME/data/staging by
+# hanging the absolute source path beneath it, so the mirror of
+# /Volumes/BRICK/pics/a.jpg is <root>/Volumes/BRICK/pics/a.jpg. The document
+# id is the file that was catalogued -- the mirror, when there is one -- and
+# the original is recovered by removing that prefix.
+#
+# Recorded on the document rather than left to be worked out later: a reader
+# asking where a picture came from should not have to know the mirroring
+# rule, and the rule can change.
+def mirror_root() -> str:
+    env = os.environ.get("IMAGECAT_MIRROR_ROOT")
+    if env:
+        return env.rstrip("/")
+    home = os.environ.get("IMAGECAT_HOME") or os.environ.get("OODT_HOME")
+    if not home:
+        return ""
+    return os.path.join(home, "data", "staging", "images").rstrip("/")
+
+
+def provenance(path: str) -> dict[str, str]:
+    """OrigPath / MirrorPath for this file, as Solr fields.
+
+    A path outside the mirror root was catalogued where it lives, so there
+    is no pair to record: the id already is the original.
+    """
+    root = mirror_root()
+    if not root:
+        return {}
+    prefix = root + os.sep
+    if not path.startswith(prefix):
+        return {}
+    original = path[len(root):]
+    if not original.startswith(os.sep):
+        original = os.sep + original
+    return {"orig_path": original, "mirror_path": path}
+
+
 # How many files go to one Tika process.
 #
 # Not one, which is what this used to do. A JVM that has parsed nothing yet
@@ -584,6 +623,7 @@ def main(argv=None) -> int:
             "ocr_model_s": model,
             "sha1sum_s_md": shas[i],
         }
+        doc.update(provenance(path))
         if args.model == "donut":
             doc["caption"] = text
         if tika_app is not None:

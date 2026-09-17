@@ -16,7 +16,9 @@
  limitations under the License.
 -->
 <!--
-  OCR / image-content core. id is the original file path. ocr_text is what
+  OCR / image-content core. id is the absolute path of the file that was
+  catalogued: the mirror when mirroring, the source when not, with orig_path
+  and mirror_path recording the pair. ocr_text is what
   Paddle/RapidOCR, TrOCR, or Donut produced. Tika MIME/EXIF from
   imagecat-ocr.py lands on content_type and the catch-all dynamicField
   (tiff_Make, Exif_IFD0_*, …). sha1sum_s_md is filled by the OCR PGE
@@ -91,6 +93,15 @@
   <field name="ocr_text" type="text_ocr" indexed="true" stored="true" required="false" multiValued="false"/>
   <field name="ocr_model_s" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
   <field name="sha1sum_s_md" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+
+  <!-- Where a mirrored image came from, and where the copy sits. Both are
+       absolute. Present only when `imagecat index` mirrored the source; a
+       corpus indexed without mirroring is already at its original path,
+       which is the id. Declared rather than left to the catch-all dynamicField,
+       which is multiValued and would make an exact path match a list
+       membership test. -->
+  <field name="orig_path" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
+  <field name="mirror_path" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
   <field name="caption" type="text_general" indexed="true" stored="true" required="false" multiValued="false"/>
   <field name="content_type" type="string" indexed="true" stored="true" required="false" multiValued="false"/>
   <field name="jaccard_keys_f" type="pfloat" indexed="true" stored="true" required="false" multiValued="false"/>

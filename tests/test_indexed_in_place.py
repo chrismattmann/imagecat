@@ -7,6 +7,13 @@ twice, 1.8G for 686 images and growing with the collection.
 
 The sha1 was already being computed, just afterwards, where it recorded
 what had been done rather than deciding what to do.
+
+A local copy is made again, because ImageSpace reads the source on every
+request and an external volume serves about 47 MB/s here against 3258 MB/s
+locally. That is a different question from what an image is called, and
+these tests are about what it is called: the id is the source path whether
+or not a copy exists. The copy is a read cache, and the tests for it are in
+tests/test_index_stages_by_default.py.
 """
 
 import ast
@@ -30,19 +37,39 @@ def body(path):
         return fh.read()
 
 
-class NothingIsCopiedBeforeIndexing(unittest.TestCase):
-    def test_the_indexer_does_not_rsync(self):
-        self.assertNotIn("rsync", body(IMAGECAT),
-                         "the corpus is being copied before it is indexed")
+class TheCatalogueSaysWhereAPictureCameFrom(unittest.TestCase):
+    """What #84 established, and how it is kept now.
 
-    def test_there_is_no_staging_destination_left(self):
-        self.assertNotIn("staging_dest", body(IMAGECAT))
+    #84 removed a copy because the id was the copy's path and the original
+    was nowhere on the record. The copy is back, as the default, because
+    ImageSpace reads the catalogued file on every first view and an external
+    volume is 70x slower than local disk.
 
-    def test_the_file_list_holds_source_paths(self):
-        # find runs over $src, the directory the user named, not over a copy.
+    What makes that safe is not avoiding the copy. It is that the mirror path
+    is a pure function of the source -- so the same image always takes the
+    same id -- and that the original is written down rather than inferred.
+    The old scheme had neither: staging_dest chose names by what had been
+    staged before, and nothing recorded the source but a marker file.
+
+    This class used to assert the script contained no "rsync", which is a
+    mechanism rather than a property, and it failed on a change it was not
+    written to catch.
+    """
+
+    def test_the_original_is_recorded_on_the_document(self):
+        self.assertIn("doc.update(provenance(path))", body(OCR_PY))
+
+    def test_the_old_naming_scheme_is_still_gone(self):
+        # staging_dest picked a destination, and a .imagecat-source marker
+        # remembered which source it held, because the name did not say.
         text = body(IMAGECAT)
-        self.assertRegex(text, r'find "\$src" -type f')
-        self.assertNotRegex(text, r'find "\$dest" -type f')
+        self.assertNotIn("staging_dest", text)
+        self.assertNotRegex(text, r'>\s*"?\$\{?dest\}?/\.imagecat-source')
+
+    def test_the_mirror_is_derived_not_remembered(self):
+        # One expression, no state: the reason an id built from it is stable.
+        self.assertRegex(body(IMAGECAT),
+                         r'mirror_path_for\(\) \{\s*\n\s*printf')
 
 
 class ADuplicateDoesNotPayForOcrTwice(unittest.TestCase):
