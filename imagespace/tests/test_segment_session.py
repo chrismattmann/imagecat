@@ -148,5 +148,47 @@ class TheSessionIsBuiltOnce(unittest.TestCase):
         self.assertEqual(2, len(self.built))
 
 
+class TheModelIsNamedNotInherited(unittest.TestCase):
+    """rembg's default is not a decision this repository made.
+
+    segment.py's docstring said U2-Net long after rembg's default had become
+    bria-rmbg, so a 6.4s-per-image model was in the pipeline without anyone
+    choosing it -- the same way tesseract arrived inside Tika. The model is
+    now named at the call, and bria-rmbg is a measured choice: the faster
+    alternatives leave parts of a subject translucent.
+    """
+
+    def setUp(self):
+        self.built = []
+        install_fake_rembg(self.built)
+        self.segment = load_segment()
+
+    def tearDown(self):
+        sys.modules.pop("rembg", None)
+        self.segment.session.cache_clear()
+
+    def test_the_session_names_its_model(self):
+        self.segment.session()
+        self.assertEqual(["bria-rmbg"], self.built,
+                         "the model must be named here, not taken from "
+                         "whatever rembg currently defaults to")
+
+    def test_the_docstring_names_it_too(self):
+        # The docstring is where somebody looks when they notice the stage
+        # costs an hour. It named the wrong model for months.
+        doc = self.segment.__doc__ or ""
+        self.assertIn("bria-rmbg", doc)
+        # The false claim, not the string: the docstring still mentions
+        # U2-Net to explain what it used to say and why that went stale.
+        self.assertNotIn("Uses rembg (U2-Net)", doc)
+
+    def test_the_docstring_records_why_the_cheap_models_were_refused(self):
+        # So the next person to find 65 minutes of segmentation does not
+        # repeat the benchmark and reach the same answer.
+        doc = self.segment.__doc__ or ""
+        for token in ("u2netp", "translucent", "process pool", "CoreML"):
+            self.assertIn(token, doc, token)
+
+
 if __name__ == "__main__":
     unittest.main()

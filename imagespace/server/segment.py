@@ -1,6 +1,38 @@
 """Split an image into foreground / background stills for CLIP.
 
-Uses rembg (U2-Net). The search server does not load this module.
+Uses rembg, which means bria-rmbg: that is rembg's default and this module
+has never named a model. The docstring said U2-Net, which was true when it
+was written and stopped being true when the dependency changed its default.
+An expensive model arrived that way without anyone choosing it, the same
+way tesseract arrived inside Tika.
+
+bria-rmbg is now a deliberate choice. It costs 6.4s an image -- about 65
+minutes for a 686 image corpus, which is most of a run -- and four lighter
+models were measured against it on real corpus images:
+
+    u2netp              0.15s   42x faster   mask IoU 0.66
+    silueta             0.21s   30x          mask IoU 0.69
+    isnet-general-use   0.59s   11x          mask IoU 0.71
+
+They are not rougher, they are wrong. Each leaves parts of a person
+translucent, so the subject leaks into the background plate: the foreground
+embedding loses them and the background embedding gains a ghost of them.
+The IoU figures say "different" and cannot say "wrong"; that came from
+looking at the cutouts.
+
+Three other ways to make this cheaper are measured and dead:
+
+  - a process pool. onnxruntime already spreads inference across about 6.5
+    cores, so two workers gave 1.14x and four were slower than two.
+  - a smaller input. 768, 512 and 384 all cost 6.4s, because bria-rmbg
+    resizes to its own fixed input and never sees the size below.
+  - the CoreML provider. onnxruntime spent 18 minutes compiling this model
+    for the Neural Engine and produced nothing.
+
+What did work was building the session once rather than per image, which
+took the stage from 96 minutes to 65 without changing a mask.
+
+The search server does not load this module.
 """
 
 from __future__ import annotations
