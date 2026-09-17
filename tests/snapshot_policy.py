@@ -59,11 +59,24 @@ def oodt_version(root):
     return found.group(1).strip() if found else None
 
 
+def is_snapshot(version):
+    """Whether this version names a snapshot rather than a release."""
+    return bool(version) and version.strip().endswith("-SNAPSHOT")
+
+
 def why_a_snapshot_is_not_allowed(version):
-    """The message for a snapshot that has reached somewhere it should not."""
+    """Why this version may not go to master, or None when it may.
+
+    This used to return the refusal whatever it was given: a message builder
+    with the name of a question. Nothing called it, so nothing noticed, and
+    the policy was a docstring rather than a guard -- a snapshot could have
+    reached master with CI green.
+    """
+    if not is_snapshot(version):
+        return None
     return (
         "oodt.version is %s. A snapshot may be used on a branch while a "
         "Mnemosyne fix is being tested, but not merged to %s: it is mutable, "
         "so a green build here would not stay green. Cut the release and "
-        "point at it." % (version, DEFAULT_BRANCH)
+        "point at it." % (version.strip(), DEFAULT_BRANCH)
     )

@@ -77,6 +77,32 @@ class TheMessageSaysWhatToDo(unittest.TestCase):
         self.assertIn("Cut the release", msg)
 
 
+class ThePomItselfIsChecked(unittest.TestCase):
+    """The part that was missing.
+
+    why_a_snapshot_is_not_allowed answered correctly and nothing ever asked
+    it about this repository's own pom.xml, so the policy was a function with
+    tests rather than a guard: master could have taken a -SNAPSHOT with CI
+    green. This is the test that fails when that happens.
+    """
+
+    def test_the_declared_version_is_allowed_where_this_build_runs(self):
+        version = snapshot_policy.oodt_version(ROOT)
+        self.assertTrue(version, "pom.xml declares no oodt.version")
+        if not snapshot_policy.targets_the_default_branch():
+            return
+        why = snapshot_policy.why_a_snapshot_is_not_allowed(version)
+        self.assertIsNone(why, why or "")
+
+    def test_a_snapshot_would_be_refused_on_master(self):
+        # The guard, exercised directly, so this file still fails loudly if
+        # the check above is ever made vacuous by the branch it runs on.
+        self.assertIsNotNone(
+            snapshot_policy.why_a_snapshot_is_not_allowed("1.13.3-SNAPSHOT"))
+        self.assertIsNone(
+            snapshot_policy.why_a_snapshot_is_not_allowed("1.13.3"))
+
+
 class TheRepositoryIsDeclared(unittest.TestCase):
     def test_a_snapshot_could_actually_resolve(self):
         # Without this the policy would permit something that cannot be built.
