@@ -64,10 +64,12 @@ Usage: imagecat <command>
                          OCR, metadata Jaccard, CLIP, fg/bg. Adds to the
                          catalog; does not reset.
                          --no-wait  submit and return (watch OPSUI)
-  reset [--yes] [--lenses]
+  reset [--yes] [--lenses] [--stuck]
                          Empty the catalog and jobs. The images are never
                          touched. Lenses stay unless --lenses. --yes skips
-                         the prompt.
+                         the prompt. --stuck treats instances left Executing
+                         by an aborted run as stranded, bouncing the workflow
+                         manager to clear them.
   status                 Solr count, ImageSpace capabilities, running task
   setup                  Create .venv and build the ImageSpace UI
   check                  Compare chunk lists to Solr; print what is still out
@@ -247,15 +249,80 @@ solr_delete_all() {
   echo "Emptied Solr core '$core'"
 }
 
+# Where the manager keeps its instances, read from its own configuration
+# rather than assumed, because the two repositories put them in different
+# places and a reset that deletes the wrong one reports success having
+# cleared nothing.
+instance_store() {
+  local props="$IMAGECAT_HOME/workflow/etc/workflow.properties"
+  [ -f "$props" ] || return 0
+  local factory url idx
+  factory=$(grep -E '^[[:space:]]*workflow\.engine\.instanceRep\.factory' "$props" \
+    | tail -1 | cut -d= -f2- | tr -d '[:space:]')
+  case "$factory" in
+    *DataSourceWorkflowInstanceRepositoryFactory*)
+      url=$(grep -E '^[[:space:]]*org\.apache\.oodt\.cas\.workflow\.instanceRep\.datasource\.jdbc\.url' \
+        "$props" | tail -1 | cut -d= -f2- | tr -d '[:space:]')
+      case "$url" in
+        *hsqldb:file:*)
+          # jdbc:hsqldb:file:/path/to/winstdb/winst -> /path/to/winstdb
+          url=${url#*hsqldb:file:}
+          printf '%s\n' "$(dirname "$url")"
+          ;;
+      esac
+      ;;
+    *LuceneWorkflowInstanceRepositoryFactory*)
+      idx=$(grep -E '^[[:space:]]*org\.apache\.oodt\.cas\.workflow\.instanceRep\.lucene\.idxPath' \
+        "$props" | tail -1 | cut -d= -f2- | tr -d '[:space:]')
+      printf '%s\n' "$idx"
+      ;;
+  esac
+}
+
 clear_workflow_instances() {
+  local stuck=${1:-false}
   echo "Asking the workflow manager to clear its instances"
-  if ! "$IMAGECAT_HOME/workflow/bin/wmgr-client" --url "$WORKFLOW_URL" \
+  if "$IMAGECAT_HOME/workflow/bin/wmgr-client" --url "$WORKFLOW_URL" \
       --operation --clearInstances --force >>"$LOG" 2>&1; then
-    echo "The workflow manager could not clear its instances."
+    echo "Cleared workflow instances"
+    return 0
+  fi
+
+  echo "The workflow manager could not clear its instances."
+  if [ "$stuck" != "true" ]; then
     echo "It refuses while anything is executing. See $LOG"
     return 1
   fi
-  echo "Cleared workflow instances"
+
+  # --stuck. The manager owns the store while it runs, so it has to come
+  # down before the store can be removed, and it has to go back up whatever
+  # happens: a reset that empties the catalog and leaves no manager is a
+  # worse place to be than a reset that did not clear.
+  local store
+  store=$(instance_store)
+  if [ -z "$store" ]; then
+    echo "Could not work out where the instances live from workflow.properties."
+    return 1
+  fi
+  echo "Stopping the workflow manager to release $store"
+  "$IMAGECAT_HOME/workflow/bin/wmgr" stop >>"$LOG" 2>&1 || true
+  sleep 5
+  rm -rf "$store"
+  echo "Removed $store"
+  echo "Restarting the workflow manager"
+  "$IMAGECAT_HOME/workflow/bin/wmgr" start >>"$LOG" 2>&1 || true
+  local n=0
+  while [ "$n" -lt 30 ]; do
+    port_open "$(port_from_url "$WORKFLOW_URL")" && break
+    sleep 2
+    n=$((n + 1))
+  done
+  if port_open "$(port_from_url "$WORKFLOW_URL")"; then
+    echo "Cleared workflow instances, and the manager is back up"
+    return 0
+  fi
+  echo "The workflow manager did not come back up. See $LOG"
+  return 1
 }
 
 reload_imagespace() {
@@ -376,11 +443,12 @@ cmd_index() {
 }
 
 cmd_reset() {
-  local yes=false lenses=false
+  local yes=false lenses=false stuck=false
   while [ $# -gt 0 ]; do
     case "$1" in
       --yes|-y) yes=true; shift ;;
       --lenses) lenses=true; shift ;;
+      --stuck) stuck=true; shift ;;
       -*)
         echo "Unrecognized reset option: '$1'"
         print_help
@@ -395,10 +463,20 @@ cmd_reset() {
   done
   check_services_running
   if any_busy; then
-    echo "An ingest is still running. Wait for it to finish before reset."
-    echo "The workflow manager will also refuse --clearInstances while something is executing."
+    if [ "$stuck" != "true" ]; then
+      echo "An ingest is still running. Wait for it to finish before reset."
+      echo "The workflow manager will also refuse --clearInstances while something"
+      echo "is executing."
+      echo
+      echo "If nothing is actually running, the instances are stranded: an aborted"
+      echo "run leaves a workflow in Executing for ever, and this then refuses for"
+      echo "ever. There is no way out of that except by hand. Use:"
+      echo "  $IMAGECAT_HOME/bin/imagecat reset --stuck"
+      pcs_python dump || true
+      exit 1
+    fi
+    echo "--stuck: treating the executing instances as stranded."
     pcs_python dump || true
-    exit 1
   fi
   if [ "$yes" != "true" ]; then
     echo "This empties Solr (imagecat, oodt-fm), jobs, archive, and CLIP/fg/bg/meta indexes."
@@ -411,7 +489,7 @@ cmd_reset() {
     esac
   fi
 
-  clear_workflow_instances
+  clear_workflow_instances "$stuck"
   solr_delete_all imagecat
   solr_delete_all oodt-fm
   echo "rm -rf $IMAGECAT_HOME/data/archive/*"
