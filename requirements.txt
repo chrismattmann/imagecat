@@ -22,3 +22,4 @@ httpx>=0.27
 numpy>=1.24
 faiss-cpu>=1.8.0
 keras>=3.0
+portalocker>=2.8

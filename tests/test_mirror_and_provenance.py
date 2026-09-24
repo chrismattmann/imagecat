@@ -180,6 +180,11 @@ class MirroringIsTheDefault(unittest.TestCase):
         # and looks like a successful smaller one.
         self.assertIn("Mirroring failed", self.index)
 
+    def test_git_bash_without_rsync_has_a_copy_fallback(self):
+        self.assertIn("command -v rsync", self.index)
+        self.assertIn("find \"$src\"", self.index)
+        self.assertIn("cp -p \"$image\" \"$dest/$rel\"", self.index)
+
     def test_help_documents_it(self):
         start = self.text.index("  index <dir> [dir...]")
         usage = self.text[start:self.text.index("  reset [", start)]

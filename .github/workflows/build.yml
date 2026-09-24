@@ -22,7 +22,7 @@ jobs:
       # server.solr to check it still imports, and that needs httpx. A
       # skip would defeat the one thing that test is for.
       - name: Install test dependencies
-        run: python -m pip install --quiet httpx fastapi numpy faiss-cpu Pillow
+        run: python -m pip install --quiet httpx fastapi numpy faiss-cpu Pillow portalocker
 
       - name: Test
         # Discovery rather than a list: the list had already lost
@@ -81,6 +81,82 @@ jobs:
           print("vulnerabilities:", json.dumps(vulns))
           sys.exit(1 if high else 0)
           PY
+
+  windows:
+    name: Windows build and runtime checks
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: imagespace/web/package-lock.json
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Install Python test dependencies
+        run: python -m pip install --quiet httpx fastapi numpy faiss-cpu Pillow portalocker
+
+      - name: Test cross-platform ImageSpace locking
+        working-directory: imagespace
+        run: python -m unittest tests.test_index_lock -v
+
+      - name: Test Windows shell and mirroring policies
+        run: >-
+          python -m unittest
+          tests.test_cross_platform_pge_shells
+          tests.test_mirror_and_provenance.MirroringIsTheDefault -v
+
+      - name: Validate Bash entry points
+        shell: bash
+        run: |
+          bash -n distribution/src/main/resources/bin/imagecat
+          bash -n pge/src/main/resources/bin/index-imagespace/index-imagespace.sh
+          bash -n pge/src/main/resources/bin/index-imagespace-fgbg/index-imagespace-fgbg.sh
+          bash -n pge/src/main/resources/bin/index-metadata-jaccard/index-metadata-jaccard.sh
+
+      - name: Validate PowerShell launchers
+        shell: pwsh
+        run: |
+          $errors = $null
+          [void][System.Management.Automation.Language.Parser]::ParseFile(
+            (Resolve-Path 'distribution/src/main/resources/bin/imagecat.ps1'),
+            [ref]$null, [ref]$errors)
+          if ($errors) { throw ($errors | Out-String) }
+          [void][System.Management.Automation.Language.Parser]::ParseFile(
+            (Resolve-Path 'distribution/src/main/resources/bin/oodt.ps1'),
+            [ref]$null, [ref]$errors)
+          if ($errors) { throw ($errors | Out-String) }
+
+      - name: Test and build ImageSpace web app
+        working-directory: imagespace/web
+        run: |
+          npm ci
+          npm test
+          npm run build
+
+      - name: Package ImageCat on Windows
+        run: mvn -B package
+
+      - name: Check Windows launchers are packaged
+        shell: pwsh
+        run: |
+          $tarball = Get-ChildItem distribution/target/oodt-distribution-*-bin.tar.gz | Select-Object -First 1
+          if (-not $tarball) { throw 'ImageCat distribution tarball was not built' }
+          $entries = tar tzf $tarball.FullName
+          foreach ($entry in @('bin/imagecat.ps1', 'bin/oodt.ps1', 'solr-server/bin/solr.cmd')) {
+            if ($entries -notcontains $entry) { throw "$entry is missing from the distribution" }
+          }
 
   package:
     name: Maven package (JDK 21)

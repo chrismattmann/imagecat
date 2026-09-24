@@ -3,15 +3,14 @@
 <pgeConfig>
 
   <!-- How to run the PGE -->
-  <exe dir="[JobDir]" shell="/bin/bash">
+  <exe dir="[JobDir]" shell="bash">
      <cmd>export PATH=[OODT_HOME]/bin/:[PGE_ROOT]/bin/check_failed:${PATH}</cmd>
-     <cmd>shopt -s expand_aliases</cmd>
      <cmd>echo "Creating working dirs"</cmd>
      <cmd>mkdir -p [JobOutputDir] ; mkdir -p [JobInputDir]</cmd>
      <cmd>cd [JobOutputDir]</cmd>
      <cmd>export NUM_CHUNKS=`ls -t [ChunkDir] | head -1`</cmd>
      <cmd>for i in $(seq [ChunkStart] $NUM_CHUNKS); do</cmd>
-     <cmd>check_failed.py -f [ChunkDir]/${i}/filelist_chunk_${i}.txt -s [SolrUrl] -o filelist_chunk_${i}_missed.txt;</cmd>
+     <cmd>[PYTHON_EXECUTABLE] [PGE_ROOT]/bin/check_failed/check_failed.py -f [ChunkDir]/${i}/filelist_chunk_${i}.txt -s [SolrUrl] -o filelist_chunk_${i}_missed.txt;</cmd>
      <cmd>done</cmd>
    </exe>
 

@@ -91,7 +91,11 @@ print_ui_info() {
 }
 
 port_open() {
-  nc -z "${OODT_HOST}" "$1" >/dev/null 2>&1
+  if command -v nc >/dev/null 2>&1; then
+    nc -z "${OODT_HOST}" "$1" >/dev/null 2>&1
+  else
+    (echo > "/dev/tcp/${OODT_HOST}/$1") >/dev/null 2>&1
+  fi
 }
 
 check_services_running() {
@@ -421,16 +425,27 @@ cmd_index() {
       mkdir -p "$dest"
       # Nested paths kept so duplicate names survive. JPGs only, and the
       # same AppleDouble exclusion the listing uses below.
-      rsync -a -m \
-        --exclude='._*' \
-        --include='*/' \
-        --include='*.jpg' --include='*.jpeg' \
-        --include='*.JPG' --include='*.JPEG' \
-        --exclude='*' \
-        "$src"/ "$dest"/ >>"$LOG" 2>&1 || {
-          echo "Mirroring failed. See $LOG"
-          exit 1
-        }
+      if command -v rsync >/dev/null 2>&1; then
+        rsync -a -m \
+          --exclude='._*' \
+          --include='*/' \
+          --include='*.jpg' --include='*.jpeg' \
+          --include='*.JPG' --include='*.JPEG' \
+          --exclude='*' \
+          "$src"/ "$dest"/ >>"$LOG" 2>&1 || {
+            echo "Mirroring failed. See $LOG"
+            exit 1
+          }
+      else
+        # Git for Windows supplies find/cp but not rsync. Preserve the
+        # relative tree so duplicate basenames remain distinct.
+        while IFS= read -r -d '' image; do
+          rel=${image#"$src"/}
+          mkdir -p "$dest/$(dirname "$rel")"
+          cp -p "$image" "$dest/$rel"
+        done < <(find "$src" -type f ! -name '._*' \
+          \( -iname '*.jpg' -o -iname '*.jpeg' \) -print0)
+      fi
       listed="$dest"
     else
       echo "Indexing $src in place"
@@ -443,7 +458,14 @@ cmd_index() {
     # corpus before anyone noticed the file count was exactly double.
     count=$(find "$listed" -type f ! -name '._*' \( -iname '*.jpg' -o -iname '*.jpeg' \) | wc -l | tr -d ' ')
     echo "  $count JPG(s)"
-    find "$listed" -type f ! -name '._*' \( -iname '*.jpg' -o -iname '*.jpeg' \) | sort >>"$list"
+    find "$listed" -type f ! -name '._*' \( -iname '*.jpg' -o -iname '*.jpeg' \) |
+      while IFS= read -r image; do
+        if command -v cygpath >/dev/null 2>&1; then
+          cygpath -m "$image"
+        else
+          printf '%s\n' "$image"
+        fi
+      done | sort >>"$list"
   done
 
   local n
@@ -549,21 +571,56 @@ cmd_reset() {
   clear_workflow_instances "$stuck"
   solr_delete_all imagecat
   solr_delete_all oodt-fm
+
+  # A completed PGE can leave its log file open in the Workflow Manager JVM.
+  # Unix permits unlinking that file; Windows does not. The native supervisor
+  # owns every process in this distribution, so briefly stop the stack before
+  # removing generated data and bring it back regardless of cleanup success.
+  local windows_stack=false cleanup_rc=0
+  case "$(uname -s 2>/dev/null || true)" in
+    MINGW*|MSYS*|CYGWIN*)
+      if command -v powershell.exe >/dev/null 2>&1 &&
+          [ -f "$IMAGECAT_HOME/bin/oodt.ps1" ]; then
+        windows_stack=true
+        echo "Stopping ImageCat services to release Windows file handles"
+        powershell.exe -NoProfile -ExecutionPolicy Bypass -File \
+          "$IMAGECAT_HOME/bin/oodt.ps1" stop -OodtHome "$IMAGECAT_HOME" || cleanup_rc=$?
+      fi
+      ;;
+  esac
+
+  set +e
   echo "rm -rf $IMAGECAT_HOME/data/archive/*"
   rm -rf "$IMAGECAT_HOME/data/archive/"*
+  [ "$?" -eq 0 ] || cleanup_rc=1
   echo "rm -rf $IMAGECAT_HOME/data/jobs/*"
   rm -rf "$IMAGECAT_HOME/data/jobs/"*
+  [ "$?" -eq 0 ] || cleanup_rc=1
   local d
   for d in clip fg bg thumbs meta; do
     mkdir -p "$IMAGECAT_HOME/data/imagespace/$d"
     rm -rf "$IMAGECAT_HOME/data/imagespace/$d/"*
+    [ "$?" -eq 0 ] || cleanup_rc=1
   done
   if [ "$lenses" = "true" ]; then
     echo "Removing saved lenses"
     mkdir -p "$IMAGECAT_HOME/data/imagespace/lenses"
     rm -rf "$IMAGECAT_HOME/data/imagespace/lenses/"*
+    [ "$?" -eq 0 ] || cleanup_rc=1
   fi
   mkdir -p "$IMAGECAT_HOME/data/imagespace/lenses"
+  [ "$?" -eq 0 ] || cleanup_rc=1
+  set -e
+
+  if [ "$windows_stack" = "true" ]; then
+    echo "Restarting ImageCat services"
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File \
+      "$IMAGECAT_HOME/bin/oodt.ps1" start -OodtHome "$IMAGECAT_HOME" || cleanup_rc=$?
+  fi
+  if [ "$cleanup_rc" -ne 0 ]; then
+    echo "Reset cleanup failed; ImageCat services were restarted. See $LOG"
+    return "$cleanup_rc"
+  fi
   reload_imagespace
   if [ -d "$(mirror_root)" ]; then
     echo "Reset complete. The images themselves are untouched; the local copy"
