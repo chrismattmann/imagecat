@@ -3,14 +3,13 @@
 <pgeConfig>
 
   <!-- Re-OCR an existing chunk without going through Solr Cell. -->
-  <exe dir="[JobDir]" shell="/bin/bash">
+  <exe dir="[JobDir]" shell="bash">
      <cmd>export PATH=[OODT_HOME]/bin/:${PATH}</cmd>
-     <cmd>shopt -s expand_aliases</cmd>
      <cmd>echo "Creating working dirs"</cmd>
      <cmd>mkdir -p [JobOutputDir] ; mkdir -p [JobInputDir]</cmd>
      <cmd>echo "Staging file [ChunkFilePath] to [JobInputDir]"</cmd>
      <cmd>cp -R [ChunkFilePath] [JobInputDir]</cmd>
-     <cmd>python3 [PGE_ROOT]/bin/imagecat-ocr/imagecat-ocr.py -f [JobInputDir]/[Filename] -s [SolrUrl] --model [OcrModel]</cmd>
+     <cmd>[PYTHON_EXECUTABLE] [PGE_ROOT]/bin/imagecat-ocr/imagecat-ocr.py -f [JobInputDir]/[Filename] -s [SolrUrl] --model [OcrModel]</cmd>
    </exe>
 
   <output>

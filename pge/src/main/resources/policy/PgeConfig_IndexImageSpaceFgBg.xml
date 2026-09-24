@@ -7,11 +7,9 @@
   double-hyphen.
 -->
 <pgeConfig>
-  <exe dir="[JobDir]" shell="/bin/bash">
-     <cmd>export PATH=[OODT_HOME]/bin/:[PGE_ROOT]/bin/index-imagespace-fgbg:${PATH}</cmd>
-     <cmd>shopt -s expand_aliases</cmd>
+  <exe dir="[JobDir]" shell="bash">
      <cmd>mkdir -p [JobOutputDir] [JobLogDir]</cmd>
-     <cmd>index-imagespace-fgbg.sh</cmd>
+     <cmd>bash [PGE_ROOT]/bin/index-imagespace-fgbg/index-imagespace-fgbg.sh</cmd>
   </exe>
   <output>
     <dir path="[JobOutputDir]" createBeforeExe="false">

@@ -69,6 +69,12 @@ export IMAGE_SPACE_SOLR=${IMAGE_SPACE_SOLR:-$SOLR_URL}
 export IMAGESPACE_PORT=8090
 if [ -x "$IMAGECAT_HOME/.venv/bin/python" ]; then
   export IMAGE_SPACE_PYTHON=$IMAGECAT_HOME/.venv/bin/python
+  export PYTHON_EXECUTABLE=$IMAGE_SPACE_PYTHON
+elif [ -x "$IMAGECAT_HOME/.venv/Scripts/python.exe" ]; then
+  export IMAGE_SPACE_PYTHON=$IMAGECAT_HOME/.venv/Scripts/python.exe
+  export PYTHON_EXECUTABLE=$IMAGE_SPACE_PYTHON
+else
+  export PYTHON_EXECUTABLE=${PYTHON_EXECUTABLE:-python3}
 fi
 # Lens Keras 3 uses Torch, already installed for CLIP.
 export KERAS_BACKEND=${KERAS_BACKEND:-torch}

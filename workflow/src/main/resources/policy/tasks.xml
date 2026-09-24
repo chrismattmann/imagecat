@@ -27,6 +27,7 @@
       <property name="PCS_ClientTransferServiceFactory" value="org.apache.oodt.cas.filemgr.datatransfer.InPlaceDataTransferFactory"/>
       <property name="PCS_ActionRepoFile" value="file:[CRAWLER_HOME]/policy/crawler-config.xml" envReplace="true"/>
       <property name="SolrUrl" value="[SOLR_URL]" envReplace="true"/>
+      <property name="PYTHON_EXECUTABLE" value="[PYTHON_EXECUTABLE]" envReplace="true"/>
       <property name="OcrModel" value="paddle"/>
     </configuration>
     <requiredMetFields/>
@@ -43,6 +44,7 @@
       <property name="PCS_MetFileExtension" value="met"/>
       <property name="PCS_ClientTransferServiceFactory" value="org.apache.oodt.cas.filemgr.datatransfer.LocalDataTransferFactory"/>
       <property name="PCS_ActionRepoFile" value="file:[CRAWLER_HOME]/policy/crawler-config.xml" envReplace="true"/>
+      <property name="PYTHON_EXECUTABLE" value="[PYTHON_EXECUTABLE]" envReplace="true"/>
       <property name="ChunkSize" value="50000"/>
     </configuration>
     <requiredMetFields/>
@@ -61,6 +63,7 @@
       <property name="PCS_ActionRepoFile" value="file:[CRAWLER_HOME]/policy/crawler-config.xml" envReplace="true"/>
       <property name="ChunkDir" value="[OODT_HOME]/data/archive/chunks" envReplace="true"/>
       <property name="SolrUrl" value="[SOLR_URL]" envReplace="true"/>
+      <property name="PYTHON_EXECUTABLE" value="[PYTHON_EXECUTABLE]" envReplace="true"/>
     </configuration>
     <requiredMetFields/>
   </task>
@@ -77,6 +80,7 @@
       <property name="PCS_ClientTransferServiceFactory" value="org.apache.oodt.cas.filemgr.datatransfer.InPlaceDataTransferFactory"/>
       <property name="PCS_ActionRepoFile" value="file:[CRAWLER_HOME]/policy/crawler-config.xml" envReplace="true"/>
       <property name="SolrUrl" value="[SOLR_URL]" envReplace="true"/>
+      <property name="PYTHON_EXECUTABLE" value="[PYTHON_EXECUTABLE]" envReplace="true"/>
       <property name="OcrModel" value="paddle"/>
     </configuration>
     <requiredMetFields/>
