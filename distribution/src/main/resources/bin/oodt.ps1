@@ -221,8 +221,20 @@ function Start-Oodt {
         '-cp', (Join-Path $OodtHome 'workflow\lib\*'),
         'org.apache.oodt.cas.workflow.instrepo.WorkflowInstanceSchema',
         $workflowProperties)
-    & $java @schemaArgs *>&1 | Set-Content -LiteralPath (Join-Path $LogHome 'workflow-schema.log')
-    if ($LASTEXITCODE -ne 0) {
+    # Java may write informational messages (for example, the
+    # JDK_JAVA_OPTIONS notice) to stderr even when it succeeds.  Preserve the
+    # complete schema log, but let the native process exit code determine
+    # whether initialization failed.
+    $previousErrorActionPreference = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = 'Continue'
+        & $java @schemaArgs *>&1 |
+            Set-Content -LiteralPath (Join-Path $LogHome 'workflow-schema.log')
+        $schemaExitCode = $LASTEXITCODE
+    } finally {
+        $ErrorActionPreference = $previousErrorActionPreference
+    }
+    if ($schemaExitCode -ne 0) {
         throw "Unable to initialize the workflow database. See $LogHome\workflow-schema.log."
     }
     $services = @(
