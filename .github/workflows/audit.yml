@@ -1,0 +1,84 @@
+# Is our dependency tree vulnerable today?
+#
+# That is a different question from "did this change introduce a vulnerable
+# dependency", which build.yml answers on the pull requests that touched
+# package.json or package-lock.json. npm audit queries a live advisory
+# database, so a tree nobody has touched becomes vulnerable on its own, and
+# there is no pull request to fail for it. Failing an unrelated one instead
+# teaches people that a red Vue job means nothing.
+#
+# So drift gets an issue. An issue is the right shape for it: it says what to
+# upgrade, it survives being read next week, and it does not stop anybody's
+# work in the meantime.
+#
+# Note for whoever finds this quiet: GitHub disables scheduled workflows in a
+# repository with no activity for 60 days, and says so by email. Re-enable it
+# from the Actions tab.
+name: dependency audit
+
+on:
+  schedule:
+    # Mondays, 13:17 UTC. Off the hour on purpose -- scheduled jobs on the
+    # hour queue behind everybody else's.
+    - cron: '17 13 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  shipped:
+    name: Shipped dependency advisories
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: imagespace/web/package-lock.json
+
+      - name: Install
+        working-directory: imagespace/web
+        run: npm ci
+
+      - name: npm audit
+        id: audit
+        working-directory: imagespace/web
+        run: |
+          python3 "$GITHUB_WORKSPACE/.github/scripts/npm_audit_gate.py" \
+            --mode report | tee "$RUNNER_TEMP/audit.txt"
+
+      # findings is -1 when npm gave no usable answer, which is not the same
+      # as a clean tree and must not be filed as one.
+      - name: Open or update the issue
+        if: >-
+          steps.audit.outputs.findings != '0' &&
+          steps.audit.outputs.findings != '-1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FINDINGS: ${{ steps.audit.outputs.findings }}
+        run: |
+          set -euo pipefail
+          title="Shipped npm dependencies have high or critical advisories"
+
+          # One issue, reopened and commented rather than duplicated weekly.
+          existing=$(gh issue list --state open --search "in:title \"$title\"" \
+            --json number,title \
+            --jq ".[] | select(.title == \"$title\") | .number" | head -1)
+
+          body=$(printf '%s\n\n```\n%s\n```\n\n%s\n' \
+            "\`npm audit --omit=dev\` reports $FINDINGS high/critical advisory(ies) in the tree ImageSpace ships." \
+            "$(cat "$RUNNER_TEMP/audit.txt")" \
+            "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}")
+
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+            echo "commented on #$existing"
+          else
+            gh issue create --title "$title" --body "$body" \
+              --label dependencies 2>/dev/null \
+              || gh issue create --title "$title" --body "$body"
+          fi

@@ -45,6 +45,10 @@ jobs:
         working-directory: imagespace/web
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The audit gate blocks only when this change touched the dependency
+          # tree, and deciding that needs a base commit to diff against.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -55,66 +59,59 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      # Whether an npm advisory should fail this build depends on whether
+      # this change could have caused it. npm audit queries a live advisory
+      # database, so its answer moves on its own: a pull request touching Java
+      # or Python can go red because somebody published an advisory about vue
+      # overnight. That failure is not actionable by its author, and a job that
+      # fails for reasons unrelated to the change is a job people learn to
+      # ignore -- which is how a real finding gets waved through later.
+      #
+      # A change that touches package.json or package-lock.json is the one case
+      # where a new advisory is this change's doing, so that is where the gate
+      # blocks. Drift in a tree nobody touched is still worth knowing about,
+      # and .github/workflows/audit.yml opens an issue for it weekly, which is
+      # the right shape for "go upgrade something" work.
+      - name: Did this change touch the dependency tree?
+        id: deps
+        working-directory: ${{ github.workspace }}
+        run: |
+          set -euo pipefail
+          watched="imagespace/web/package.json imagespace/web/package-lock.json"
+
+          case "${{ github.event_name }}" in
+            pull_request) base="origin/${{ github.base_ref }}" ;;
+            push)         base="${{ github.event.before }}" ;;
+            # A manual run is somebody asking the question, so answer it.
+            *)            base="" ;;
+          esac
+
+          mode=gate
+          if [ -z "$base" ] || [ "$base" = "0000000000000000000000000000000000000000" ]; then
+            echo "no base commit for a ${{ github.event_name }} event: gating"
+          elif ! git rev-parse --verify --quiet "$base^{commit}" >/dev/null; then
+            # Gating is the safe answer when the diff cannot be computed: a
+            # build that goes red prints the advisory and can be looked at,
+            # whereas silently not gating a dependency change is the one thing
+            # this gate exists to catch.
+            echo "could not resolve [$base]: gating"
+          else
+            merge_base=$(git merge-base "$base" HEAD)
+            changed=$(git diff --name-only "$merge_base" HEAD -- $watched)
+            if [ -n "$changed" ]; then
+              echo "dependency tree changed:"
+              echo "$changed" | sed 's/^/  /'
+            else
+              echo "no change to $watched"
+              mode=report
+            fi
+          fi
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+
       - name: npm audit
         run: |
-          # Scoped to what ships, and reported for what does not.
-          #
-          # npm 10 still posts to the retired audits/quick endpoint, which 400s
-          # "Invalid package tree" after a clean npm ci, so an endpoint error is
-          # not treated as a finding.
-          #
-          # The gate asks --omit=dev. This repository's only runtime dependency
-          # is vue; vite and @vitejs/plugin-vue are build tooling and never
-          # reach a browser. Auditing both together failed an unrelated pull
-          # request -- a Mnemosyne version bump -- on a launch-editor argument
-          # injection flaw in the dev server's "open my editor" helper. That is
-          # a real advisory and it cannot affect the artifact ImageSpace serves,
-          # so blocking on it stops work without making anything safer, and
-          # teaches people that a red Vue job means nothing.
-          #
-          # Development advisories are still printed, because the information is
-          # worth having; they just do not fail a build that ships none of it.
-          python3 - <<'PY'
-          import json, subprocess, sys
-
-
-          def audit(*flags):
-              proc = subprocess.run(["npm", "audit", "--json", *flags],
-                                    capture_output=True, text=True)
-              raw = proc.stdout or proc.stderr or ""
-              try:
-                  body = json.loads(raw)
-              except ValueError:
-                  return None, ("npm audit did not return JSON (exit %s)"
-                                % proc.returncode)
-              if body.get("statusCode") or body.get("error"):
-                  return None, ("npm audit endpoint error: %s"
-                                % (body.get("message") or body.get("error")))
-              return (body.get("metadata") or {}).get("vulnerabilities") or {}, None
-
-
-          def high_and_critical(vulns):
-              return int(vulns.get("high") or 0) + int(vulns.get("critical") or 0)
-
-
-          shipped, problem = audit("--omit=dev")
-          if problem:
-              print("%s; not blocking" % problem)
-              sys.exit(0)
-          print("runtime dependencies:", json.dumps(shipped))
-
-          everything, _ = audit()
-          if everything is not None:
-              dev_only = high_and_critical(everything) - high_and_critical(shipped)
-              print("including build tooling:", json.dumps(everything))
-              if dev_only > 0:
-                  print("%d high/critical advisory(ies) affect build tooling "
-                        "only; reported, not blocking. Clear them with "
-                        "'npm audit fix' in imagespace/web when convenient."
-                        % dev_only)
-
-          sys.exit(1 if high_and_critical(shipped) else 0)
-          PY
+          python3 "$GITHUB_WORKSPACE/.github/scripts/npm_audit_gate.py" \
+            --mode "${{ steps.deps.outputs.mode }}"
 
   windows:
     name: Windows build and runtime checks
