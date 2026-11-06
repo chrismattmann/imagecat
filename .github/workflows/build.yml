@@ -57,29 +57,63 @@ jobs:
       - run: npm run build
       - name: npm audit
         run: |
-          # npm 10 still posts to the retired audits/quick endpoint, which
-          # 400s "Invalid package tree" after a clean npm ci and blocks the
-          # PR. Fail only when the API actually reports high/critical.
+          # Scoped to what ships, and reported for what does not.
+          #
+          # npm 10 still posts to the retired audits/quick endpoint, which 400s
+          # "Invalid package tree" after a clean npm ci, so an endpoint error is
+          # not treated as a finding.
+          #
+          # The gate asks --omit=dev. This repository's only runtime dependency
+          # is vue; vite and @vitejs/plugin-vue are build tooling and never
+          # reach a browser. Auditing both together failed an unrelated pull
+          # request -- a Mnemosyne version bump -- on a launch-editor argument
+          # injection flaw in the dev server's "open my editor" helper. That is
+          # a real advisory and it cannot affect the artifact ImageSpace serves,
+          # so blocking on it stops work without making anything safer, and
+          # teaches people that a red Vue job means nothing.
+          #
+          # Development advisories are still printed, because the information is
+          # worth having; they just do not fail a build that ships none of it.
           python3 - <<'PY'
           import json, subprocess, sys
-          proc = subprocess.run(
-              ["npm", "audit", "--json"], capture_output=True, text=True
-          )
-          raw = proc.stdout or proc.stderr or ""
-          try:
-              body = json.loads(raw)
-          except ValueError:
-              print("npm audit did not return JSON (exit %s); not blocking"
-                    % proc.returncode)
+
+
+          def audit(*flags):
+              proc = subprocess.run(["npm", "audit", "--json", *flags],
+                                    capture_output=True, text=True)
+              raw = proc.stdout or proc.stderr or ""
+              try:
+                  body = json.loads(raw)
+              except ValueError:
+                  return None, ("npm audit did not return JSON (exit %s)"
+                                % proc.returncode)
+              if body.get("statusCode") or body.get("error"):
+                  return None, ("npm audit endpoint error: %s"
+                                % (body.get("message") or body.get("error")))
+              return (body.get("metadata") or {}).get("vulnerabilities") or {}, None
+
+
+          def high_and_critical(vulns):
+              return int(vulns.get("high") or 0) + int(vulns.get("critical") or 0)
+
+
+          shipped, problem = audit("--omit=dev")
+          if problem:
+              print("%s; not blocking" % problem)
               sys.exit(0)
-          if body.get("statusCode") or body.get("error"):
-              print("npm audit endpoint error:",
-                    body.get("message") or body.get("error"))
-              sys.exit(0)
-          vulns = (body.get("metadata") or {}).get("vulnerabilities") or {}
-          high = int(vulns.get("high") or 0) + int(vulns.get("critical") or 0)
-          print("vulnerabilities:", json.dumps(vulns))
-          sys.exit(1 if high else 0)
+          print("runtime dependencies:", json.dumps(shipped))
+
+          everything, _ = audit()
+          if everything is not None:
+              dev_only = high_and_critical(everything) - high_and_critical(shipped)
+              print("including build tooling:", json.dumps(everything))
+              if dev_only > 0:
+                  print("%d high/critical advisory(ies) affect build tooling "
+                        "only; reported, not blocking. Clear them with "
+                        "'npm audit fix' in imagespace/web when convenient."
+                        % dev_only)
+
+          sys.exit(1 if high_and_critical(shipped) else 0)
           PY
 
   windows:
